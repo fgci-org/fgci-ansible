@@ -1,6 +1,10 @@
 # file: hosts
 
 
+[common]
+
+liuske2.csc.fi
+
 [grid]
 
 pluto-grid.fgci.csc.fi

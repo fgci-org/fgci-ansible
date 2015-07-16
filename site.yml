@@ -9,3 +9,9 @@
   roles:
     - common
 
+- name: Boot Server
+  hosts: boot
+  remote_user: root
+
+  roles:
+    - boot
