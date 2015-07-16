@@ -1,53 +1,11 @@
-# ansible-playbook site.yml
+# ansible-playbook file: site.yml
 #
 
 
-# Boot (iPXE + http server) host
-- hosts: boot
+- name: Apply common configuration to all hosts  
+  hosts: all
+  remote_user: root
+
   roles:
-#    - common
-    - boot
-#    - monitored
-
-# Admin host
-#- hosts: admin
-#  roles:
-#    - common
-#    - admin
-#    - monitored
-
-# NFS host
-#- hosts: nfs
-#  roles:
-#    - common
-#    - nfs
-#    - monitored
-
-# Login host
-#- hosts: login
-#  roles:
-#    - common
-#    - login
-#    - monitored
-
-# Compute host
-#- hosts: compute
-#  roles:
-#    - common
-#    - compute
-#    - monitored
-
-# Install host - VM on Admin node host
-#- hosts: install
-#  roles:
-#    - common
-#    - install
-#    - monitored
-
-# Grid Frontend host - VM on Admin host
-#- hosts: grid
-#  roles:
-#    - common
-#    - grid
-#    - monitored
+    - common
 
