@@ -21,3 +21,10 @@
 
   roles:
     - compute
+
+- name: Install Node
+  hosts: install
+  remote_user: root
+
+  roles:
+    - install
