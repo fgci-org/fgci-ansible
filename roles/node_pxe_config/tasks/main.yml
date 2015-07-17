@@ -1,0 +1,9 @@
+---
+- name: create_dhcp_configs
+  template: src=dhcp_node.conf dest="/etc/dhcp/dhcpd.d/nodes.conf"
+
+- name: create_pxe_boot_data
+  template: src=pxe_node.conf dest="/var/www/provision/nodes/{{ item }}.conf"
+  with_items: groups['pxe_bootable_nodes']
+  notify:
+    - restart dhcpd
