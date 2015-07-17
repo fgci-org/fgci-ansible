@@ -10,8 +10,8 @@ aesyle-grid.fgi.csc.fi
 
 [compute]
 
-#ae[1-6].fgi.csc.fi
-ae4.fgi.csc.fi
+#ae[1-6]
+ae4
 
 [install]
 
