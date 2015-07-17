@@ -1,7 +1,6 @@
 # ansible-playbook file: site.yml
 #
 
-
 - name: Apply common configuration to all hosts  
   hosts: all
   remote_user: root
@@ -15,3 +14,10 @@
 
   roles:
     - boot
+
+- name: Compute Node
+  hosts: compute
+  remote_user: root
+
+  roles:
+    - compute
