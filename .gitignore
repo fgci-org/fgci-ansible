@@ -1,2 +1,6 @@
+
 hosts
 ssh.config
+
+# Backup files
+*.bak

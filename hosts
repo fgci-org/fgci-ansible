@@ -11,7 +11,7 @@ aesyle-grid.fgi.csc.fi
 [compute]
 
 #ae[1-6]
-ae4 ip_address=10.1.100.4 mac_address=78:e7:d1:24:53:00 pxe=yes
+ae4
 
 [install]
 
