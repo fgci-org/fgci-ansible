@@ -4,3 +4,6 @@ ssh.config
 
 # Backup files
 *.bak
+
+# Backup files (e.g. Vim, Gedit, etc.)
+*~

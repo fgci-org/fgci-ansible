@@ -19,11 +19,11 @@ aesyle-install.fgi.csc.fi
 
 [admin]
 
-aesyle-admin.fgi.csc.fi
+aesyle-admin #ansible_ssh_host=193.166.0.138
 
 [nfs]
 
-aesyle-nfs.fgi.csc.fi
+aesyle-nfs #ansible_ssh_host=10.1.1.5
 
 [login]
 

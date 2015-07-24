@@ -1,0 +1,5 @@
+---
+dhcp_server_package: dhcp
+dhcp_server_config: /etc/dhcpd.conf
+dhcp_service: dhcpd4
+dhcp_service_config: []

@@ -1,0 +1,78 @@
+# {{ ansible_managed }}
+
+# Listen on this specific port instead of the standard DNS port
+# (53). Setting this to zero completely disables DNS function,
+# leaving only DHCP and/or TFTP.
+{% if dnsmasq_port == 53 %}#{% endif %}port={{ dnsmasq_port }}
+
+# When enabled, never forward plain names (without a dot or domain part)
+{% if not dnsmasq_domain_needed %}#{% endif %}domain-needed
+
+# When enabled, never forward addresses in the non-routed address spaces.
+{% if not dnsmasq_bogus_priv %}#{% endif %}bogus-priv
+
+# This prevents dnsmasq from reading /etc/resolv.conf or any other file,
+# getting its servers from this file instead.
+{% if not dnsmasq_no_resolv %}#{% endif %}no-resolv
+
+# This disables DHCP and TFTP completely (empty value is intentional)
+{% if not dnsmasq_no_dhcp %}#{% endif %}no-dhcp-interface=
+
+# This prevents dnsmasq from reading /etc/hosts.
+{% if not dnsmasq_no_hosts %}#{% endif %}no-hosts
+# This specifies a file to read besides /etc/hosts.
+{% if not dnsmasq_addn_hosts %}#{% endif %}addn-hosts={{ dnsmasq_addn_hosts }}
+
+# This automatically adds the value of "domain" to simple, non-dotted,
+# non-qualified names in a hosts file.
+{% if not dnsmasq_expand_hosts or not dnsmasq_domain %}#{% endif %}expand-hosts
+
+# When "domain" is set, it does the following things:
+# 1) Allows DHCP hosts to have fully-qualified domain names, as long
+#     as the domain part matches this setting.
+# 2) Sets the "domain" DHCP option, thereby potentially setting the
+#    domain of all systems configured by DHCP.
+# 3) Provides the domain part for "expand-hosts" (if enabled).
+{% if not dnsmasq_domain %}#{% endif %}domain={{ dnsmasq_domain }}
+
+# Normally responses which come from /etc/hosts and the DHCP lease
+# file have Time-To-Live set as zero, which conventionally means
+# do not cache further. If you are happy to trade lower load on the
+# server for potentially stale date, you can set a time-to-live (in
+# seconds) here.
+{% if not dnsmasq_local_ttl %}#{% endif %}local-ttl={{ dnsmasq_local_ttl }}
+
+# When set, if this IP address is found in results, dnsmasq returns an
+# NXDOMAIN response instead.  This is useful if you are using a provider
+# that always returns the same IP address for not-found DNS queries, e.g.
+# to serve up a web page of advertising instead.
+{% if not dnsmasq_bogus_nxdomain %}#{% endif %}bogus-nxdomain={{ dnsmasq_bogus_nxdomain }}
+
+{% if dnsmasq_addresses %}
+# These are address records (A or AAAA) that dnsmasq will always serve,
+# regardless of their availability or values upstream.
+{% for fqdn, address in dnsmasq_addresses.iteritems() %}
+address=/{{ fqdn }}/{{ address }}
+{% endfor %}
+{% endif %}
+
+# This logs all DNS queries coming through dnsmasq, for debugging
+{% if not dnsmasq_log_queries %}#{% endif %}log-queries
+
+# This logs lots of extra information about DHCP transactions, for debugging 
+{% if not dnsmasq_log_dhcp %}#{% endif %}log-dhcp
+
+{% if dnsmasq_external_servers %}
+# These are upstream DNS servers that answer global requests.
+{% for server in dnsmasq_external_servers %}
+server={{ server }}
+{% endfor %}
+{% endif %}
+
+{% if dnsmasq_forward_servers %}
+# These are DNS servers which will be sent any DNS requests for the given
+# domains.
+{% for domain, server in dnsmasq_forward_servers.iteritems() %}
+server=/{{ domain }}/{{ server }}
+{% endfor %}
+{% endif %}

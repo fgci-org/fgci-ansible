@@ -1,0 +1,11 @@
+---
+- name: dnsmasq installed via Yum
+  when: ansible_pkg_mgr == 'yum'
+  yum: name=dnsmasq
+
+- name: dnsmasq installed via pkgin
+  when: ansible_pkg_mgr == 'pkgin'
+  pkgin: name=dnsmasq
+
+- name: dnsmasq service enabled
+  service: name=dnsmasq enabled=yes
