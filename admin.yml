@@ -1,0 +1,12 @@
+# ansible-playbook file: admin.yml
+#
+
+---
+
+- name: Admin node post install config
+  hosts: admin
+  remote_user: root
+
+  roles:
+  - admin
+
