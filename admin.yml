@@ -1,0 +1,8 @@
+---
+- name: Admin Node
+  hosts: admin
+  remote_user: root
+
+  roles: 
+    - admin
+

@@ -1,2 +1,11 @@
 ---
 # tasks file for admin
+
+- name: install virt-install package
+  yum: name=virt-install state=latest
+
+- name: install qemu-kvm package
+  yum: name=qemu-kvm state=latest
+
+- name: Creates VM disks directory
+  file: path=/var/vms state=directory

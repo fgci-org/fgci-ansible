@@ -21,6 +21,7 @@
   remote_user: root
 
   roles:
+    - admin
 
 - name: Compute Node
   hosts: compute

@@ -17,9 +17,7 @@ disks:
   - { path: "/var/vms/grid.raw", size: 40 }
   - { path: "/var/vms/grid-drbd.raw", size: 20 }
 bridges:
-  - br-ext
-  - br-int
-  - br-mgmt
+  - virbr0
 location: "http://www.nic.funet.fi/pub/Linux/INSTALL/Centos/7/os/x86_64/"
 kickstart_tempdir: "/tmp"
 inventory_hostname: "grid"
