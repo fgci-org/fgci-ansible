@@ -1,0 +1,7 @@
+---
+- hosts: vhosts
+  gather_facts: no
+  roles:
+    - provision_vm
+    #    - ip_forwarder
+

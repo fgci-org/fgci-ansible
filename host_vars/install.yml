@@ -1,0 +1,34 @@
+---
+hyper: ae4
+bastion_host: ae4
+#http_proxy: "http://10.20.0.102:3128/"
+#env_virt_install: { http_proxy: "{{ http_proxy }}" }
+siteName: aesyle
+siteDomain: fgi.csc.fi
+
+internal_interface: "eth1" 
+external_interface: "eth0"
+internal_net: "10.1.0.0/16"
+int_ip_addr: "10.1.1.2" 
+ext_ip_addr: "193.166.0.115"
+vcpus: "2"
+ram: "8192"
+disks:
+  - { path: "/var/vms/install.raw", size: 40 }
+  - { path: "/var/vms/install-drbd.raw", size: 20 }
+bridges:
+  - br-ext
+  - br-int
+  - br-mgmt
+location: "http://www.nic.funet.fi/pub/Linux/INSTALL/Centos/7/os/x86_64/"
+kickstart_tempdir: "/tmp"
+inventory_hostname: "install"
+repos:
+  - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/6/x86_64/", pkgname: "epel-release" }
+  - { name: "EL Repo", url: "http://elrepo.org/linux/elrepo/el7/x86_64/", pkgname: "elrepo-release" }
+internal_ip: "{{int_ip_addr}}"
+fqdn: "{{siteName}}-grid.{{siteDomain}}"
+networks:
+  - "network --onboot=on --device=eth0 --bootproto=static --ip={{ext_ip_addr}} --netmask=255.255.255.0 --gateway={{gateway1}} --nameserver={{nameserver1}} --hostname={{ fqdn }}"
+  - "network --onboot=on --device=eth1 --bootproto=static --ip={{int_ip_addr}} --netmask=255.255.0.0 --nodefroute"
+root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"

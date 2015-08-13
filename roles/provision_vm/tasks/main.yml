@@ -1,0 +1,30 @@
+---
+- name: copy over kickstart file
+  template: src="kickstart.cfg" dest="{{ kickstart_tempdir }}/{{ inventory_hostname }}.ks"
+  sudo: yes
+  delegate_to: "{{ hyper }}"
+
+- name: copy over virt-install script
+  template: src="virt-install.sh" dest="{{ kickstart_tempdir }}/{{ inventory_hostname }}-install.sh"
+  sudo: yes
+  delegate_to: "{{ hyper }}"
+
+- name: run virt-install script
+  command: "bash {{ kickstart_tempdir }}/{{ inventory_hostname }}-install.sh"
+  sudo: yes
+  environment: env_virt_install
+  args:
+    creates: "/etc/libvirt/qemu/{{ inventory_hostname }}.xml"
+  delegate_to: "{{ hyper }}"
+
+- name: wait for VM to become available before continuing
+  wait_for: port=22 host="{{ inventory_hostname }}" timeout=300
+  delegate_to: "{{ bastion_host }}"
+
+- name: Remove kickstart file
+  file: path="{{ kickstart_tempdir }}/{{ inventory_hostname }}.ks" state=absent
+  delegate_to: "{{ hyper }}"
+
+- name: Remove install script
+  file: path="{{ kickstart_tempdir }}/{{ inventory_hostname }}-install.sh" state=absent
+  delegate_to: "{{ hyper }}"

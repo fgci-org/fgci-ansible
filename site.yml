@@ -15,6 +15,13 @@
 
 #  - L2G.dnsmasq_proxy
 
+
+- name: Admin Node
+  hosts: admin
+  remote_user: root
+
+  roles:
+
 - name: Compute Node
   hosts: compute
   remote_user: root
