@@ -7,3 +7,7 @@ ssh.config
 
 # Backup files
 *~
+
+# notes file
+
+notes

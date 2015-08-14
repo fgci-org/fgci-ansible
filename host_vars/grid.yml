@@ -1,8 +1,8 @@
 ---
 hyper: ae4
 bastion_host: ae4
-#http_proxy: "http://10.20.0.102:3128/"
-#env_virt_install: { http_proxy: "{{ http_proxy }}" }
+http_proxy: "http://10.1.1.4:3128/"
+env_virt_install: { http_proxy: "{{ http_proxy }}" }
 siteName: aesyle
 siteDomain: fgi.csc.fi
 
