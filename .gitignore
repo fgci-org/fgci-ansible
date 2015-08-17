@@ -11,3 +11,7 @@ ssh.config
 # notes file
 
 notes
+
+# Credentials auto-generated
+
+*_rootpw
