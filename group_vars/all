@@ -3,4 +3,12 @@ siteDomain: fgi.csc.fi
 gateway1: "10..1.1.4"
 gateway2: "193.166.0.254"
 
+repos:
+  - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64/", pkgname: "epel-release" }
+  - { name: "EL Repo", url: "http://elrepo.org/linux/elrepo/el7/x86_64/", pkgname: "elrepo-release" }
+
+hyper: ae4
+bastion_host: ae4
+http_proxy: "http://10.1.1.4:3128/"
+env_virt_install: { http_proxy: "{{ http_proxy }}" }
 
