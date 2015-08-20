@@ -3,11 +3,6 @@ hyper: ae4
 bastion_host: ae4
 http_proxy: "http://10.1.1.4:3128/"
 env_virt_install: { http_proxy: "{{ http_proxy }}" }
-siteName: aesyle
-siteDomain: fgi.csc.fi
-gateway1: "10..1.1.4"
-gateway2: "193.166.0.254"
-
 
 internal_interface: "eth1" 
 external_interface: "eth0"
