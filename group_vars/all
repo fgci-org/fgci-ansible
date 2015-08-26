@@ -1,7 +1,12 @@
 siteName: aesyle
 siteDomain: fgi.csc.fi
+
 gateway1: "10..1.1.4"
 gateway2: "193.166.0.254"
+nameserver1: "193.166.4.24"
+nameserver2: "193.166.4.25"
+
+
 
 repos:
   - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64/", pkgname: "epel-release" }
