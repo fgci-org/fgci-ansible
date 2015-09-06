@@ -2,21 +2,23 @@
 internal_interface: "eth1" 
 external_interface: "eth0"
 internal_net: "10.1.0.0/16"
-int_ip_addr: "10.1.1.4" 
-ext_ip_addr: "193.166.0.114"
-vcpus: "2"
-ram: "8192"
+int_ip_addr: "10.1.1.4"
+internal_ip: "{{int_ip_addr}}"
+int_net_mask: "255.255.0.0"
+ext_ip_addr: "193.166.3.188"
+ext_net_mask: "255.255.255.128"
+vcpus: "{{vm_cpus}}"
+ram: "{{vm_mem}}"
 disks:
   - { path: "/var/vms/login.raw", size: 40 }
   - { path: "/var/vms/login-drbd.raw", size: 20 }
 bridges:
   - virbr0
-location: "http://ftp.funet.fi/pub/linux/mirrors/centos/7.1.1503/os/x86_64"
+location: "{{repo_location}}"
 kickstart_tempdir: "/tmp"
 inventory_hostname: "login"
-internal_ip: "{{int_ip_addr}}"
-fqdn: "{{siteName}}-grid.{{siteDomain}}"
+fqdn: "{{siteName}}-login.{{siteDomain}}"
 networks:
-  - "network --onboot=on --device=eth0 --bootproto=static --ip={{ext_ip_addr}} --netmask=255.255.255.0 --gateway={{gateway1}} --nameserver={{nameserver1}} --hostname={{ fqdn }}"
-  - "network --onboot=on --device=eth1 --bootproto=static --ip={{int_ip_addr}} --netmask=255.255.0.0 --nodefroute"
+  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute"
+  - "network --onboot=on --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --gateway={{ext_gateway}} --nameserver={{nameserver1}} --hostname={{ fqdn }}"
 root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"
