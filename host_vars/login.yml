@@ -10,8 +10,7 @@ ext_net_mask: "255.255.255.128"
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:
-  - { path: "/var/vms/login.raw", size: 40 }
-  - { path: "/var/vms/login-drbd.raw", size: 20 }
+  - { path: "/var/vms/login.raw", size: 12 }
 bridges:
   - virbr0
 location: "{{repo_location}}"
