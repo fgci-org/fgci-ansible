@@ -1,0 +1,33 @@
+
+{% if item.bootproto == 'static' %}
+DEVICE={{ item.device }}
+BOOTPROTO=none
+{% if item.address is defined %}
+IPADDR={{ item.address }}
+{% endif %}
+{% if item.onboot is defined %}
+ONBOOT={{ item.onboot }}
+{% endif %}
+{% if item.netmask is defined %}
+NETMASK={{ item.netmask }}
+{% endif %}
+{% if item.gateway is defined %}
+GATEWAY={{ item.gateway }}
+{% endif %}
+{% if item.vlan is defined %}
+VLAN=yes
+{% endif %}
+{% endif %}
+
+{% if item.bootproto == 'dhcp' %}
+DEVICE={{ item.device }}
+BOOTPROTO=dhcp
+{% endif %}
+
+{% if item.nm_controlled is defined %}
+NM_CONTROLLED={{ item.nm_controlled }}
+{% endif %}
+
+{% if item.defroute is defined %}
+DEFROUTE={{ item.defroute }}
+{% endif %}

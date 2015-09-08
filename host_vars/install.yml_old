@@ -1,0 +1,22 @@
+---
+internal_interface: "eth1" 
+external_interface: "eth0"
+internal_net: "10.1.0.0/16"
+int_ip_addr: "10.1.1.2" 
+ext_ip_addr: "193.166.0.115"
+vcpus: "2"
+ram: "8192"
+disks:
+  - { path: "/var/vms/install.raw", size: 40 }
+  - { path: "/var/vms/install-drbd.raw", size: 20 }
+bridges:
+  - virbr0
+location: "http://ftp.funet.fi/pub/linux/mirrors/centos/7.1.1503/os/x86_64"
+kickstart_tempdir: "/tmp"
+inventory_hostname: "install"
+internal_ip: "{{int_ip_addr}}"
+fqdn: "{{siteName}}-grid.{{siteDomain}}"
+networks:
+  - "network --onboot=on --device=eth0 --bootproto=static --ip={{ext_ip_addr}} --netmask=255.255.255.0 --gateway={{gateway1}} --nameserver={{nameserver1}} --hostname={{ fqdn }}"
+  - "network --onboot=on --device=eth1 --bootproto=static --ip={{int_ip_addr}} --netmask=255.255.0.0 --nodefroute"
+root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"

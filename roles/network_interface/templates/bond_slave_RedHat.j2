@@ -1,0 +1,14 @@
+DEVICE={{ item.1 }}
+BOOTPROTO=none
+MASTER={{ item.0.device }}
+ONBOOT=yes
+SLAVE=yes
+USERCTL=no
+
+{% if item.nm_controlled is defined %}
+NM_CONTROLLED={{ item.nm_controlled }}
+{% endif %}
+
+{% if item.defroute is defined %}
+DEFROUTE={{ item.defroute }}
+{% endif %}
