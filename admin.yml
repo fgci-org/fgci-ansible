@@ -4,6 +4,6 @@
   remote_user: root
 
   roles: 
-    - admin
-    - ansible-role-ntp
-
+  - admin
+  - network_interface
+  - ansible-role-ntp

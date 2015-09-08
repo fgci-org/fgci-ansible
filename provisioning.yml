@@ -3,6 +3,8 @@
   gather_facts: no
   roles:
     - provision_vm
-    #    - ip_forwarder
+    #- ansible-role-ntp 
+    
+    #- ip_forwarder
 
 
