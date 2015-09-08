@@ -12,14 +12,16 @@ int_ip_addr: "10.1.1.1"
 int_net_mask: "255.255.0.0"
 int_gateway: "10.1.1.4"
 
+internal_net: "10.1.1.0/16" 
+
 network_ether_interfaces:
   - device: "{{external_interface}}"
     bootproto: "static"
     onboot: "yes"
     netmask: "{{ext_net_mask}}"
     gateway: "{{ext_gateway}}"
-    nm_controlled: "no"
     defroute: "yes"
+    nm_controlled: "no"
     type: "Ethernet"
 
   - device: "{{internal_interface}}"
@@ -39,7 +41,6 @@ network_bridge_interfaces:
     gateway: "{{ext_gateway}}"
     ports: ["{{external_interface}}"]
     nm_controlled: "no"
-
     route:
       - network: "{{ext_net_addr}}"
         netmask: "{{ext_net_mask}}"

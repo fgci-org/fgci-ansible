@@ -1,0 +1,20 @@
+---
+- name: set ip_forward to 1 to allow kickstarting of network nodes
+  sysctl: name=net.ipv4.ip_forward value=1 sysctl_set=yes reload=no
+  remote_user: root
+- name: get iptables rules
+  shell: iptables -L; iptables -t nat -L
+  register: iptablesrules
+  remote_user: root
+- name: allow forwarding traffic in iptables
+  command: iptables -I FORWARD 1 -i "{{ internal_interface }}" -o "{{ external_interface }}" -m comment --comment "forward from internal net" -j ACCEPT
+  when: iptablesrules.stdout.find("forward from internal net") == -1
+  remote_user: root
+- name: allow related and established traffic in forwarding chain in iptables
+  command: iptables -I FORWARD 1 -i "{{ external_interface }}" -o "{{ internal_interface }}" -m state --state RELATED,ESTABLISHED -m comment --comment "related and established" -j ACCEPT
+  when: iptablesrules.stdout.find("related and established") == -1
+  remote_user: root
+- name: enable masquerading
+  command: iptables -t nat -A POSTROUTING -s "{{ internal_net }}" -o "{{ external_interface }}" -m comment --comment "masquerading for internal net" -j MASQUERADE
+  when: iptablesrules.stdout.find("masquerading for internal net") == -1
+  remote_user: root
