@@ -24,3 +24,4 @@ env_virt_install: { http_proxy: "{{ http_proxy }}" }
 # DEVSYS change later
 vm_mem: "1024"
 vm_cpus: "1"
+
