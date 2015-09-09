@@ -12,8 +12,8 @@ ram: "{{vm_mem}}"
 disks:
   - { path: "/var/vms/grid.raw", size: 12 }
 bridges:
-  - brint
-  - brext
+  - br_int
+  - br_ext
 location: "{{repo_location}}"
 kickstart_tempdir: "/tmp"
 inventory_hostname: "grid"

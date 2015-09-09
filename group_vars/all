@@ -5,16 +5,16 @@ siteName: phoenix
 siteDomain: fgi.csc.fi
 
 enable_ext_nic: "on"
-enable_int_nic: "on"
+enable_int_nic: "off"
 int_gateway: "10.1.1.4"
 ext_gateway: "193.166.3.254"
 nameserver1: "193.166.4.24"
 nameserver2: "193.166.4.25"
 
-repo_location: "http://ftp.funet.fi/pub/mirrors/centos.org/7.1.1503/os/x86_64/"
+repo_location: "http://ftp.funet.fi/pub/mirrors/centos.org/7.1.1503/os/x86_64"
 repos:
-  - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64/", pkgname: "epel-release" }
-  - { name: "EL Repo", url: "http://elrepo.org/linux/elrepo/el7/x86_64/", pkgname: "elrepo-release" }
+  - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64", pkgname: "epel-release" }
+  - { name: "EL Repo", url: "http://elrepo.org/linux/elrepo/el7/x86_64", pkgname: "elrepo-release" }
 
 hyper: "{{siteName}}-admin"
 bastion_host: "{{siteName}}-admin"
