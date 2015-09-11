@@ -10,5 +10,12 @@
 - name: install vim-enhanced package
   yum: name=vim-enhanced state=latest
 
-- name: Creates VM disks directory
+- name: install yum-plugin-priorities package
+  yum: name=yum-plugin-priorities state=latest
+
+- name: install epel-release package
+  yum: name=epel-release state=latest
+
+- name: creates VM disks directory
   file: path=/var/vms state=directory
+
