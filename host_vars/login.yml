@@ -12,12 +12,13 @@ ram: "{{vm_mem}}"
 disks:
   - { path: "/var/vms/login.raw", size: 12 }
 bridges:
-  - virbr0
+  - br_ext
+  - br_int
 location: "{{repo_location}}"
 kickstart_tempdir: "/tmp"
 inventory_hostname: "login"
 fqdn: "{{siteName}}-login.{{siteDomain}}"
 networks:
-  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute"
   - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --gateway={{ext_gateway}} --nameserver={{nameserver1}} --hostname={{ fqdn }}"
+  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute"
 root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"
