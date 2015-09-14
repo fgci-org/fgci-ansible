@@ -4,11 +4,11 @@
   remote_user: root
 
   roles: 
-  - admin
-  - network_interface
+  - { role: admin, tags: [ 'admin' ] }
+  - { role: network_interface, tags: [ 'network' ] }
   - role: ip_forwarder
     when: internal_interface is defined and
           external_interface is defined and
           internal_net is defined
-  - dns 
-  - ansible-role-ntp
+  - { role: dns, tags: [ 'dns' ] }
+  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
