@@ -1,3 +1,0 @@
----
-ntp_service_name: ntpd
-ntp_config_driftfile: /var/lib/ntp/drift

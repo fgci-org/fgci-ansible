@@ -1,0 +1,4 @@
+---
+- src: https://github.com/resmo/ansible-role-ntp
+  path: roles
+  version: 0.4.0

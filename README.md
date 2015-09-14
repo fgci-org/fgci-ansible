@@ -1,6 +1,10 @@
 # fgci-ansible
 Collection of the Finnish Grid and Cloud Infrastructure Ansible playbooks
 
+# Usage:
+ - make a hosts file
+ - install ansible repos with: <pre>ansible-galaxy install -r requirements.yml</pre>
+
 # TODO
 ## Install node TODO:
 
