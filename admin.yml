@@ -4,7 +4,7 @@
   remote_user: root
 
   roles: 
-  - { role: admin, tags: [ 'admin' ] }
+  - { role: ansible-role-fgci-admin, tags: [ 'admin' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
