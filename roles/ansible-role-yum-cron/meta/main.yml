@@ -1,0 +1,13 @@
+---
+galaxy_info:
+  author: Erik Alfredsson
+  description:
+  license: license (MIT)
+  min_ansible_version: 1.2
+  platforms:
+  - name: EL
+    versions:
+    - 6
+  categories:
+  - system
+dependencies: []

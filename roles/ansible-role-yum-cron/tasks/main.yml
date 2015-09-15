@@ -1,0 +1,10 @@
+---
+
+- name: Install yum-cron
+  yum: name=yum-cron state=latest
+
+- name: Configure yum-cron
+  template: src=yum-cron.j2 dest=/etc/sysconfig/yum-cron
+
+- name: Enable yum-cron service
+  service: name=yum-cron enabled=yes state=started
