@@ -1,5 +1,0 @@
----
-dhcp_server_package: isc-dhcp-server
-dhcp_server_config: /etc/dhcp/dhcpd.conf
-dhcp_service: isc-dhcp-server
-dhcp_service_config: /etc/default/isc-dhcp-server
