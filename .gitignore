@@ -2,6 +2,7 @@
 hosts
 ssh.config
 group_vars/root_keys.yml
+group_vars/admin/root_keys.yml
 
 # Ignore roles pulled through requirements.yml
 roles/ansible-role-*
