@@ -14,3 +14,4 @@
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-users, tags: [ 'users' ] }
+  - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }

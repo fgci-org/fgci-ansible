@@ -13,3 +13,6 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-users
   path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-rsyslog-client
+  path: roles

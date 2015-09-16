@@ -20,6 +20,7 @@ hyper: "{{siteName}}-admin"
 bastion_host: "{{siteName}}-admin"
 http_proxy: "http://{{int_gateway}}:3128/"
 env_virt_install: { http_proxy: "{{ http_proxy }}" }
+central_log_host: "@phoenix-admin.fgi.csc.fi"
 
 # DEVSYS  - to change later
 vm_mem: "1024"
