@@ -12,3 +12,5 @@
           internal_net is defined }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
+  - { role: ansible-role-users, tags: [ 'users' ] }
