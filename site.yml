@@ -7,6 +7,9 @@
 
   roles:
 
+# admin.yml installs the admin node
+- include: admin.yml
+
 - name: Boot Server
   hosts: boot
   remote_user: root
@@ -14,14 +17,6 @@
   roles:
 
 #  - L2G.dnsmasq_proxy
-
-
-- name: Admin Node
-  hosts: admin
-  remote_user: root
-
-  roles:
-    - admin
 
 - name: Compute Node
   hosts: compute
