@@ -1,10 +1,9 @@
 ---
-- hosts: vhosts
+- name: Provision VMs
+  hosts: vhosts
   gather_facts: no
+  remote_user: root
+  
   roles:
-    - provision_vm
-    #- ansible-role-ntp 
-    
-    #- ip_forwarder
-
+  - { role: provision_vm, tags: [ 'provision' ] }
 

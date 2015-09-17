@@ -18,8 +18,8 @@ repos:
   - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64", pkgname: "epel-release" }
   - { name: "EL Repo", url: "http://elrepo.org/linux/elrepo/el7/x86_64", pkgname: "elrepo-release" }
 
-hyper: "{{siteName}}-admin"
-bastion_host: "{{siteName}}-admin"
+hyper: "{{siteName}}-admin.{{siteDomain}}"
+bastion_host: "{{siteName}}-admin.{{siteDomain}}"
 http_proxy: ""
 #http_proxy: "http://{{int_gateway}}:3128/"
 env_virt_install: { http_proxy: "{{ http_proxy }}" }
