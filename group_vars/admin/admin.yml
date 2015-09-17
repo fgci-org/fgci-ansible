@@ -1,0 +1,58 @@
+---
+
+external_interface: "enp3s0"
+ext_net_addr: "193.166.3.128"
+ext_ip_addr: "193.166.3.189"
+ext_net_mask: "255.255.255.128"
+ext_gateway: "193.166.3.254"
+
+internal_interface: "enp7s0"
+int_net_addr: "10.1.0.0"
+int_ip_addr: "10.1.1.1"
+int_net_mask: "255.255.0.0"
+int_gateway: "10.1.1.4"
+
+internal_net: "10.1.1.0/16"
+
+network_ether_interfaces:
+  - device: "{{external_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    netmask: "{{ext_net_mask}}"
+    gateway: "{{ext_gateway}}"
+    defroute: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
+
+  - device: "{{internal_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
+
+network_bridge_interfaces:
+  - device: "br_ext"
+    type: "Bridge"
+    bootproto: "static"
+    onboot: "yes"
+    #stp: "on"
+    address: "{{ext_ip_addr}}"
+    netmask: "{{ext_net_mask}}"
+    gateway: "{{ext_gateway}}"
+    ports: ["{{external_interface}}"]
+    nm_controlled: "no"
+    route:
+      - network: "{{ext_net_addr}}"
+        netmask: "{{ext_net_mask}}"
+        gateway: "{{ext_gateway}}"
+
+  - device: "br_int"
+    type: "Bridge"
+    bootproto: "static"
+    onboot: "yes"
+    #stp: "on"
+    address: "{{int_ip_addr}}"
+    netmask: "{{int_net_mask}}"
+    ports: ["{{internal_interface}}"]
+    nm_controlled: "no"
+
