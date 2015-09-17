@@ -1,14 +1,50 @@
 ---
-internal_interface: "eth1" 
+
+# network
+
 external_interface: "eth0"
-internal_net: "10.1.0.0/16"
-int_ip_addr: "10.1.1.2"
-internal_ip: "{{int_ip_addr}}"
-int_net_mask: "255.255.0.0"
+ext_net_addr: "193.166.3.128"
 ext_ip_addr: "193.166.3.190"
 ext_net_mask: "255.255.255.128"
+ext_gateway: "193.166.3.254"
+
+internal_interface: "eth1"
+int_net_addr: "10.1.0.0"
+int_ip_addr: "10.1.1.2"
+int_net_mask: "255.255.0.0"
+int_gateway: "10.1.1.4"
+
+internal_net: "10.1.0.0/16"
+internal_ip: "{{int_ip_addr}}"
+
+network_ether_interfaces:
+  - device: "{{external_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{ext_ip_addr}}"
+    netmask: "{{ext_net_mask}}"
+    gateway: "{{ext_gateway}}"
+    defroute: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
+    route:
+      - network: "{{ext_net_addr}}"
+        netmask: "{{ext_net_mask}}"
+        gateway: "{{ext_gateway}}"
+
+  - device: "{{internal_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{int_ip_addr}}"
+    netmask: "{{int_net_mask}}"
+    nm_controlled: "no"
+    type: "Ethernet"
+
+# Kickstart file specifics
+
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
+
 disks:
   - { path: "/var/vms/install.raw", size: 12 }
 bridges:
