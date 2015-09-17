@@ -1,0 +1,17 @@
+---
+- name: Install Node
+  hosts: install
+  remote_user: root
+
+  roles: 
+  - { role: ansible-role-fgci-install, tags: [ 'install' ] }
+  - { role: network_interface, tags: [ 'network' ] }
+  - { role: ip_forwarder, tags: [ 'network' ], 
+    when: internal_interface is defined and
+          external_interface is defined and
+          internal_net is defined }
+  - { role: dns, tags: [ 'dns' ] }
+  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
+  - { role: ansible-role-users, tags: [ 'users' ] }
+  - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
