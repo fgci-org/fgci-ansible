@@ -19,6 +19,6 @@ kickstart_tempdir: "/tmp"
 inventory_hostname: "install"
 fqdn: "{{siteName}}-install.{{siteDomain}}"
 networks:
-  - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --gateway={{ext_gateway}} --nameserver={{nameserver1}} --hostname={{ fqdn }}"
-  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute"
+  - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver1}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
+#  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute --noipv6"
 root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"

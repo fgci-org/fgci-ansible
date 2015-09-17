@@ -53,11 +53,5 @@ network_bridge_interfaces:
     #stp: "on"
     address: "{{int_ip_addr}}"
     netmask: "{{int_net_mask}}"
-    #gateway: "{{int_gateway}}"
     ports: ["{{internal_interface}}"]
     nm_controlled: "no"
-    #route:
-    #  - network: "{{int_net_addr}}"
-    #    netmask: "{{int_net_mask}}"
-    #    gateway: "{{int_gateway}}"
-
