@@ -2,7 +2,7 @@
 - name: Admin Node
   hosts: admin
   remote_user: root
-#  sudo: yes
+  sudo: yes
 
   roles: 
   - { role: ansible-role-fgci-admin, tags: [ 'admin' ] }
@@ -18,5 +18,6 @@
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
-  - { role: ansible-role-users, tags: [ 'users' ] }
+  - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
+  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
