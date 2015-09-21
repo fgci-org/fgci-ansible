@@ -1,0 +1,36 @@
+# file: hosts
+
+# this needs to be changed to something like "{{siteName}}-admin.{{domainName}}" Maybe!
+#hyper=phoenix-admin 
+
+[grid]
+
+{{siteName}}-grid.{{domainName}}
+
+[compute]
+
+ph[1-4]
+
+[test]
+
+[install]
+
+{{siteName}}-install.{{domainName}}
+
+[admin]
+
+{{siteName}}-admin.{{domainName}}
+
+[nfs]
+
+{{siteName}}-nfs.{{domainName}}
+
+[login]
+
+{{siteName}}.{{domainName}}
+
+[vhosts]
+
+install
+grid
+#login
