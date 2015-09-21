@@ -26,3 +26,6 @@
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-ferm-firewall
   path: roles
   name: ansible-role-ferm-firewall
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
+  path: roles
