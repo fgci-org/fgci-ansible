@@ -3,6 +3,7 @@
 
 siteName: phoenix
 siteDomain: fgi.csc.fi
+nodeBase: ph
 
 int_gateway: "10.1.1.4"
 ext_gateway: "193.166.3.254"

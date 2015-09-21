@@ -9,7 +9,7 @@
 
 [compute]
 
-ph[1-4]
+{{nodeBase}}[1-4]
 
 [test]
 
