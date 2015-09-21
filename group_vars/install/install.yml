@@ -61,3 +61,4 @@ root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_roo
 
 # Slurm
 slurm_type: "service"
+slurm_build: False
