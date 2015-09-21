@@ -1,10 +1,9 @@
 ---
-- name: Login Node
-  hosts: login
+- name: Compute Nodes
+  hosts: compute
   remote_user: root
 
   roles: 
-#  - { role: ansible-role-fgci-install, tags: [ 'install' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
@@ -17,5 +16,4 @@
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-users, tags: [ 'users' ] }
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
-  - { role: ansible-role-squid, tags: [ 'squid' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
