@@ -60,4 +60,4 @@ networks:
 root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"
 
 # Slurm
-slurm_type: "install"
+slurm_type: "service"
