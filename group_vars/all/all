@@ -29,3 +29,5 @@ central_log_host: "@{{siteName}}-admin.{{siteDomain}}"
 vm_mem: "1024"
 vm_cpus: "1"
 
+# Slurm
+slurm_version: "15.08.0"
