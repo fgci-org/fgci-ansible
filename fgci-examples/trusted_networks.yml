@@ -1,4 +1,4 @@
 # trusted_public_networks needs to be a space separated string - used by ansible-role-ferm-firewall to make iptables firewall rules
 # this file needs to be placed in fcgi-ansible/group_vars/all/ or fcgi-ansible/group_vars/groupname/
-trusted_public_networks: "127.1.0.0/24 127.0.0.0/32"
-trusted_public_ipv6_networks: "2001:708::1/128 2002:abcd::1/128"
+trusted_public_networks: "193.166.1.0/24 193.166.3.128/25 193.166.84.0/24 193.166.85.0/24"
+trusted_public_ipv6_networks: "2001:708:10:10::/64 2001:708:10:4008::/64"
