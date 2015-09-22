@@ -24,3 +24,6 @@ notes
 # Credentials auto-generated
 
 *_rootpw
+
+# Slurm Munge key auto generated
+files/munge.key

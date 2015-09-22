@@ -2,6 +2,7 @@
 - name: Install Node
   hosts: install
   remote_user: root
+  sudo: yes
 
   roles: 
   - { role: ansible-role-fgci-install, tags: [ 'install' ] }
