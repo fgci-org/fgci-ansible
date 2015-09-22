@@ -56,3 +56,12 @@ network_bridge_interfaces:
     ports: ["{{internal_interface}}"]
     nm_controlled: "no"
 
+# Ferm - firewall
+ferm_rules:
+ hypervisor:
+ - chain: FORWARD
+   domains: [ip, ip6]
+   rules:
+     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface {{ external_interface }} outerface {{ internal_interface }} mod state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;", comment: "forwarding"}
+
