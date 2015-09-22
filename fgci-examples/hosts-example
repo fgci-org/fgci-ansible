@@ -5,29 +5,29 @@
 
 [grid]
 
-{{siteName}}-grid.{{domainName}}
+phoenix-grid.fgi.csc.fi
 
 [compute]
 
-{{nodeBase}}[1-4]
+ph[1-4]
 
 [test]
 
 [install]
 
-{{siteName}}-install.{{domainName}}
+phoenix-install.fgi.csc.fi
 
 [admin]
 
-{{siteName}}-admin.{{domainName}}
+phoenix-admin.fgi.csc.fi
 
 [nfs]
 
-{{siteName}}-nfs.{{domainName}}
+phoenix-nfs.fgi.csc.fi
 
 [login]
 
-{{siteName}}.{{domainName}}
+phoenix.fgi.csc.fi
 
 [vhosts]
 
