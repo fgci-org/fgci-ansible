@@ -32,3 +32,10 @@ vm_cpus: "1"
 
 # Slurm
 slurm_version: "15.08.0"
+
+# Ferm - firewall
+ferm_rules:
+ ssh:
+ - chain: INPUT
+   rules:
+     - {rule: "proto tcp dport (22) saddr ( {{ trusted_public_networks }} {{ trusted_public_ipv6_networks }} )mod comment comment 'SSH' ACCEPT;", comment: "SSH"}
