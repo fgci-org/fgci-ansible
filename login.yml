@@ -2,9 +2,9 @@
 - name: Login Node
   hosts: login
   remote_user: root
+  sudo: yes
 
   roles: 
-#  - { role: ansible-role-fgci-install, tags: [ 'install' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
@@ -20,4 +20,4 @@
   - { role: ansible-role-squid, tags: [ 'squid' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
-#  - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
+  - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
