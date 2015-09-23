@@ -10,36 +10,13 @@
 # admin.yml installs the admin node
 - include: admin.yml
 
-- name: Boot Server
-  hosts: boot
-  remote_user: root
 
-  roles:
-
-#  - L2G.dnsmasq_proxy
+# install.yml installs the install node
+- include: install.yml
 
 - name: Compute Node
   hosts: compute
   remote_user: root
 
   roles:
-
-- name: Install Node
-  hosts: install
-  remote_user: root
-
-  roles:
-  #  - role: dhcp_server
-  #  dhcp_interfaces: eth1
-  #  dhcp_common_domain: fgi.csc.fi
-  #  dhcp_common_nameservers: aesyle-install.fgi.csc.fi
-  #  dhcp_common_default_lease_time: 600
-  #  dhcp_common_max_lease_time: 7200
-  #  dhcp_common_ddns_update_style: none
-  #  dhcp_common_authoritative: true
-  #  dhcp_common_log_facility: local7
-  #  dhcp_subnets:
-    # MGMT network
-    #    - base: 10.1.0.0
-    #    netmask: 255.255.0.0
 
