@@ -19,3 +19,5 @@
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
   - { role: ansible-role-squid, tags: [ 'squid' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
+  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
+#  - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
