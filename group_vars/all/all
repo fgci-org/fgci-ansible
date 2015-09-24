@@ -66,3 +66,5 @@ ferm_rules:
  
 # CVMFS - if fgci_install is set to False it does not install the CVMFS configs from FGCI repo
 fgci_install: True
+# set cms_site and we create /etc/cvmfs/config.d/cms.cern.ch.local
+# cms_site: "T2_FI_HIP"
