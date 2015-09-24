@@ -17,3 +17,4 @@
   - { role: ansible-role-users, tags: [ 'users' ] }
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
+  - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
