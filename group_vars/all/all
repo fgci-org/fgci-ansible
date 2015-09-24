@@ -64,5 +64,5 @@ ferm_rules:
      - rule: "mod state state (ESTABLISHED RELATED) ACCEPT;"
        comment: "connection tracking"
  
-# CVMFS - if fgci_install is set to False it does not install the CVMFS configs from FGI repo
-fgci_install: False
+# CVMFS - if fgci_install is set to False it does not install the CVMFS configs from FGCI repo
+fgci_install: True
