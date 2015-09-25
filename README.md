@@ -1,6 +1,8 @@
 # fgci-ansible
 Collection of the Finnish Grid and Cloud Infrastructure Ansible playbooks
 
+[![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible.svg?branch=master)](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible)
+
 # Usage:
  - make a hosts file
  - install ansible repos with: <pre>ansible-galaxy install -r requirements.yml</pre>
