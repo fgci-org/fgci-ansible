@@ -32,3 +32,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
   path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-aliases
+  path: roles
+  name: ansible-role-aliases

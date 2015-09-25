@@ -68,3 +68,7 @@ ferm_rules:
 fgci_install: True
 # set cms_site and we create /etc/cvmfs/config.d/cms.cern.ch.local
 # cms_site: "T2_FI_HIP"
+
+# E-mail aliases
+aliases:
+ - { user: "root", alias: "grid-support@postit.csc.fi" }
