@@ -22,3 +22,4 @@
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
+  - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }

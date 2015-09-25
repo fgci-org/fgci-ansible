@@ -36,3 +36,6 @@
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-aliases
   path: roles
   name: ansible-role-aliases
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-rdma
+  path: roles
