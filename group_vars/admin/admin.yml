@@ -81,3 +81,8 @@ ferm_rules_extra:
    domains: [ip]
    rules:
      - {rule: "saddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
+
+# SSHD
+
+sshd:
+ AllowGroups: "root admin" 
