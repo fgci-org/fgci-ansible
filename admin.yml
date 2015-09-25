@@ -26,3 +26,4 @@
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
+  - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
