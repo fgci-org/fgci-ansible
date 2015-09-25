@@ -5,6 +5,7 @@
   sudo: yes
 
   roles: 
+  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
@@ -19,7 +20,6 @@
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
   - { role: ansible-role-squid, tags: [ 'squid' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
-  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }

@@ -11,6 +11,7 @@
   sudo: yes
 
   roles:
+  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: ansible-role-fgci-admin, tags: [ 'admin' ] }
   - { role: network_interface, tags: [ 'network' ],
     when: internal_interface in ansible_interfaces and
@@ -25,5 +26,4 @@
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
-  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }

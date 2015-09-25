@@ -1,7 +1,7 @@
 ---
 
 - name: First add users to install node as root
-  hosts: install admin
+  hosts: install
   remote_user: root
 
   roles: 
@@ -14,6 +14,7 @@
 
   roles: 
   - { role: ansible-role-fgci-install, tags: [ 'install' ] }
+  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
