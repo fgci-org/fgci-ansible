@@ -1,10 +1,16 @@
 ---
+- name: First add users to admin node as root
+  hosts: admin
+  remote_user: root
+
+  roles: 
+  - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
+
 - name: Admin Node
   hosts: admin
   sudo: yes
 
-  roles: 
-  - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
+  roles:
   - { role: ansible-role-fgci-admin, tags: [ 'admin' ] }
   - { role: network_interface, tags: [ 'network' ],
     when: internal_interface in ansible_interfaces and
