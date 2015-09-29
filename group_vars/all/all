@@ -32,6 +32,7 @@ vm_cpus: "1"
 
 # Slurm
 slurm_version: "15.08.0"
+slurm_build: False
 
 # Ferm - firewall
 ferm_rules:
