@@ -1,0 +1,24 @@
+---
+
+network_ether_interfaces:
+  - device: "{{external_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{ext_ip_addr}}"
+    netmask: "{{ext_net_mask}}"
+    gateway: "{{ext_gateway}}"
+    defroute: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
+    route:
+      - network: "{{ext_net_addr}}"
+        netmask: "{{ext_net_mask}}"
+        gateway: "{{ext_gateway}}"
+
+  - device: "{{internal_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{int_ip_addr}}"
+    netmask: "{{int_net_mask}}"
+    nm_controlled: "no"
+    type: "Ethernet"
