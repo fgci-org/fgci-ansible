@@ -1,4 +1,11 @@
 ---
+
+# http://serverfault.com/questions/638507/how-to-access-host-variable-of-a-different-host-with-ansible
+# We need some facts from the install node, specifically to find address of slurm controller.
+- name: grab facts from install nodes
+  hosts: install
+  tasks: [ ]
+
 - name: Compute Nodes
   hosts: compute
   remote_user: root
