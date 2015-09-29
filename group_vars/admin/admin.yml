@@ -70,7 +70,7 @@ ferm_rules_extra:
    domains: [ip]
    rules:
      - {rule: "daddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
-     - {rule: "outerface {{ external_interface }} saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
+     - {rule: "outerface {{ external_interface }} saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
  - chain: PREROUTING
    table: nat
    domains: [ip]
