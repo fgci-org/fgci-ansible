@@ -2,3 +2,5 @@
 
 # Slurm
 slurm_type: "compute"
+# NTP
+ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}" ]
