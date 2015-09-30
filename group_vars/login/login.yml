@@ -45,4 +45,6 @@ ferm_rules_extra:
 #NTP
 ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}" ]
 
-
+#CVMFS
+cvmfs_http_proxy: "{{ http_proxy }}"
+cvmfs_quota_limit: "10240"
