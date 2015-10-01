@@ -6,7 +6,7 @@ unconfigured_packages:
   - bonnie++
 #  - ca-policy-egi-core
 #  - cluster-profile
-  - compat-openmpi
+#  - compat-openmpi
 #  - cvmfs-release
 #  - cvmfs-repofiles-fgi
   - cvs
