@@ -28,6 +28,12 @@ phoenix.fgi.csc.fi
 install
 grid
 #login
+#
+
+[production:children]
+install
+admin
+login
 
 [slurm_service:children]
 install
