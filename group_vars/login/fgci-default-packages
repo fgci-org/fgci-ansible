@@ -22,8 +22,8 @@ unconfigured_packages:
   - gcc-gfortran
   - git
   - "glibc.i686"
-  - gromacs
-  - gromacs-openmpi
+#  - gromacs
+#  - gromacs-openmpi
   - hdf5-openmpi
 #  - hp-health
 #  - hponcfg
