@@ -1,9 +1,10 @@
+---
 # This list is taken from fgi-default-packagse and ks.py
 unconfigured_packages:
   - atlas
-  - blas 
+  - blas
   - bonnie++
-  - ca-policy-egi-core from cvmfs
+  - ca-policy-egi-core
   - cluster-profile
   - compat-openmpi
   - cvmfs-release
@@ -11,8 +12,8 @@ unconfigured_packages:
   - cvs
   - elrepo-release
   - epel-release
-  - fftw 
-  - fftw2 
+  - fftw
+  - fftw2
   - fgi-compute-node
   - fgi-hw-check
   - fgi-release6
@@ -20,9 +21,9 @@ unconfigured_packages:
   - gcc-c++
   - gcc-gfortran
   - git
-  - glibc.i686
+  - "glibc.i686"
   - gromacs
-  - gromacs-openmpi 
+  - gromacs-openmpi
   - hdf5-openmpi
   - hp-health
   - hponcfg
@@ -34,16 +35,16 @@ unconfigured_packages:
   - lapack
   - libcgroup
   - "libgcc.i686"
-  - libgfortran 
+  - libgfortran
   - "libstdc++.i686"
   - "libxml2.i686"
   - mcelog
   - memtester
   - mpitests-openmpi
   - munge
-  - mvapich 
-  - mvapich2 
-  - netcdf 
+  - mvapich
+  - mvapich2
+  - netcdf
   - nfs-utils
   - nordugrid-arc-client
   - nordugrid-arc-plugins-globus
