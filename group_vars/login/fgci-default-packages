@@ -27,8 +27,6 @@ unconfigured_packages:
   - hdf5-openmpi
 #  - hp-health
 #  - hponcfg
-  - "@infiniband"
-  - infiniband-diags
   - iperf
   - "java-1.8.0-openjdk"
   - lapack
@@ -60,6 +58,11 @@ unconfigured_packages:
 #  - ypbind
   - yum-plugin-fastestmirror
   - "zlib.i686"
+
+ib_unconfigured_packages:
+  - "@infiniband"
+  - infiniband-diags
+
 remove_packages:
   - phonon-backend-gstreamer
   - qt-x11
