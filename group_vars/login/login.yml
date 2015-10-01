@@ -43,7 +43,7 @@ ferm_rules_extra:
      - {rule: "outerface {{ external_interface }} saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
 
 #NTP
-ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}" ]
+ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}", "{{ hostvars[groups['admin'][0]]['ansible_hostname'] }}" ]
 
 #CVMFS
 cvmfs_http_proxy: "{{ http_proxy }}"
