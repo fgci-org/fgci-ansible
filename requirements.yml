@@ -47,4 +47,6 @@
   path: roles
   name: ansible-role-sshd
 
-
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-system-limits
+  path: roles
+  name: ansible-role-system-limits
