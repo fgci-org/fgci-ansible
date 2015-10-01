@@ -36,7 +36,7 @@ unconfigured_packages:
   - "libstdc++.i686"
   - "libxml2.i686"
   - mcelog
-  - memtester
+#  - memtester
   - mpitests-openmpi
 #  - munge
   - mvapich
