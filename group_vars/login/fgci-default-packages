@@ -4,19 +4,19 @@ unconfigured_packages:
   - atlas
   - blas
   - bonnie++
-  - ca-policy-egi-core
-  - cluster-profile
+#  - ca-policy-egi-core
+#  - cluster-profile
   - compat-openmpi
-  - cvmfs-release
-  - cvmfs-repofiles-fgi
+#  - cvmfs-release
+#  - cvmfs-repofiles-fgi
   - cvs
-  - elrepo-release
+#  - elrepo-release
   - epel-release
   - fftw
   - fftw2
-  - fgi-compute-node
-  - fgi-hw-check
-  - fgi-release6
+#  - fgi-compute-node
+#  - fgi-hw-check
+#  - fgi-release6
   - gcc
   - gcc-c++
   - gcc-gfortran
@@ -25,13 +25,12 @@ unconfigured_packages:
   - gromacs
   - gromacs-openmpi
   - hdf5-openmpi
-  - hp-health
-  - hponcfg
+#  - hp-health
+#  - hponcfg
   - "@infiniband"
   - infiniband-diags
   - iperf
   - "java-1.8.0-openjdk"
-  - lapack
   - lapack
   - libcgroup
   - "libgcc.i686"
@@ -41,13 +40,13 @@ unconfigured_packages:
   - mcelog
   - memtester
   - mpitests-openmpi
-  - munge
+#  - munge
   - mvapich
   - mvapich2
   - netcdf
   - nfs-utils
-  - nordugrid-arc-client
-  - nordugrid-arc-plugins-globus
+#  - nordugrid-arc-client
+#  - nordugrid-arc-plugins-globus
   - nscd
   - numpy
   - openmpi
@@ -55,10 +54,10 @@ unconfigured_packages:
   - pdsh
   - perl-Filesys-Df
   - python-sqlite2
-  - slurm-fgi-addons
+#  - slurm-fgi-addons
   - subversion
   - xerces-c
-  - ypbind
+#  - ypbind
   - yum-plugin-fastestmirror
   - "zlib.i686"
 remove_packages:
