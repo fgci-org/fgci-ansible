@@ -26,4 +26,4 @@
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
-
+  - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }

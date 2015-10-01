@@ -50,3 +50,6 @@
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-system-limits
   path: roles
   name: ansible-role-system-limits
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-arc-client
+  path: roles
