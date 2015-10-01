@@ -49,9 +49,9 @@ unconfigured_packages:
   - numpy
   - openmpi
   - openssh-server
-  - pdsh
+#  - pdsh
   - perl-Filesys-Df
-  - python-sqlite2
+#  - python-sqlite2
 #  - slurm-fgi-addons
   - subversion
   - xerces-c
