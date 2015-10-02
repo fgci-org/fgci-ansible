@@ -28,7 +28,7 @@ slurm_type: "submit"
 
 # Ferm - firewall
 ferm_rules_extra:
- nat:
+ 10_nat:
  - chain: FORWARD
    table: filter
    domains: [ip, ip6]
@@ -41,7 +41,7 @@ ferm_rules_extra:
    rules:
      - {rule: "daddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
      - {rule: "outerface br_ext saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
- internet_ssh:
+ 90_ssh_internet:
  - chain: INPUT
    domains: [ip, ip6]
    rules:

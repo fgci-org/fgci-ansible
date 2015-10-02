@@ -37,8 +37,9 @@ slurm_version: "15.08.0"
 slurm_build: False
 
 # Ferm - firewall
+# Ordering is important. This rule is a default and is added early in the iptables rules.
 ferm_rules:
- ssh:
+ 05_ssh:
  - chain: INPUT
    domains: [ip, ip6]
    rules:
