@@ -11,6 +11,7 @@
   remote_user: root
 
   roles: 
+  - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
