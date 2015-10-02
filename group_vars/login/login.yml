@@ -33,14 +33,21 @@ ferm_rules_extra:
    table: filter
    domains: [ip, ip6]
    rules:
-     - {rule: "interface br_int outerface br_ext mod state state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;", comment: "forwarding"}
-     - {rule: "interface br_ext outerface br_ext mod state state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;", comment: "forwarding"}
  - chain: POSTROUTING
    table: nat
    domains: [ip]
    rules:
      - {rule: "daddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
      - {rule: "outerface br_ext saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
+ internet_ssh:
+ - chain: INPUT
+   domains: [ip, ip6]
+   rules:
+     - {rule: "interface {{ external_interface }} proto tcp dport (22) mod hashlimit hashlimit 10/minute hashlimit-burst 15 hashlimit-mode srcip hashlimit-htable-expire 60000 hashlimit-name SSH mod comment comment 'allow ssh - but block with hashlimit' ACCEPT;", comment: "SSH allowed with hashlimit"}
+     - {rule: "interface {{ external_interface }} proto tcp dport (22) mod state state (NEW) mod comment comment 'Allow new SSH' ACCEPT;", comment: "SSH allow"}
+
 
 #NTP
 ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}", "{{ hostvars[groups['admin'][0]]['ansible_hostname'] }}" ]
