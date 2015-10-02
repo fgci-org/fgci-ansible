@@ -26,6 +26,9 @@ root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_roo
 # Slurm
 slurm_type: "submit"
 
+# This makes ansible-role-ferm-firewall restart fail2ban if ferm is reloaded.
+ferm_fail2ban: True
+
 # Ferm - firewall
 ferm_rules_extra:
  08_fail2ban:
