@@ -33,6 +33,9 @@
   path: roles
   name: ansible-role-ferm-firewall
 
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fail2ban
+  path: roles
+
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
   path: roles
 

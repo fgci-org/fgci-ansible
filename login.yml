@@ -14,6 +14,7 @@
   roles: 
   - { role: ansible-role-fgci-login, tags: [ 'login' ] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
+  - { role: ansible-role-fail2ban, tags: [ 'firewall', 'fail2ban' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
