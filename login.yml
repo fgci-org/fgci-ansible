@@ -2,7 +2,7 @@
 
 # http://serverfault.com/questions/638507/how-to-access-host-variable-of-a-different-host-with-ansible
 # We need some facts from the install node, specifically to find address of slurm controller.
-- name: grab facts from install nodes
+- name: grab facts from production nodes
   hosts: production
   tasks: [ ]
 
@@ -12,7 +12,8 @@
   sudo: yes
 
   roles: 
-  - { role: ansible-role-fgci-login, tags: [ 'login' ] }
+#  - { role: ansible-role-fgci-login, tags: [ 'login' ] }
+  - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: ansible-role-fail2ban, tags: [ 'firewall', 'fail2ban' ] }
   - { role: network_interface, tags: [ 'network' ] }
