@@ -12,6 +12,7 @@
 - include: admin.yml
 - include: install.yml
 - include: login.yml
+- include: grid.yml
 
 #- name: Boot Server
 #  hosts: boot
