@@ -1,0 +1,37 @@
+---
+
+# http://serverfault.com/questions/638507/how-to-access-host-variable-of-a-different-host-with-ansible
+# We need some facts from the install node, specifically to find address of slurm controller.
+- name: grab facts from production nodes
+  hosts: production
+  tasks: [ ]
+
+- name: Grid Node
+  hosts: grid
+  remote_user: root
+  sudo: yes
+
+  roles: 
+#  - { role: ansible-role-fgci-login, tags: [ 'login' ] }
+  - { role: ansible-role-yum, tags: [ 'yum', 'repos' ] }
+  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
+  - { role: ansible-role-fail2ban, tags: [ 'firewall', 'fail2ban' ] }
+  - { role: network_interface, tags: [ 'network' ] }
+  - { role: ip_forwarder, tags: [ 'network' ], 
+    when: internal_interface is defined and
+          external_interface is defined and
+          internal_net is defined and
+          internal_interface in ansible_interfaces and
+          external_interface in ansible_interfaces }
+  - { role: dns, tags: [ 'dns' ] }
+  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
+  - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
+#  - { role: ansible-role-squid, tags: [ 'squid' ] }
+  - { role: ansible-role-slurm, tags: [ 'slurm' ] }
+  - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
+  - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
+    #  - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
+  - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
+  - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
+  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
