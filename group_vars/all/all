@@ -83,4 +83,6 @@ sshd:
  GSSAPICleanupCredentials: "no"
 #NTP
 ntp_config_server: [ 0.fi.pool.ntp.org, 1.fi.pool.ntp.org, 2.fi.pool.ntp.org, 3.fi.pool.ntp.org, ntp2.funet.fi, ntp4.funet.fi]
-#
+
+#Flowdock
+flowdock_token: 22a225c10814863ea809b80940d25b0e
