@@ -4,10 +4,10 @@
 #hyper=phoenix-admin 
 
 [grid]
-phoenix-grid.fgi.csc.fi
+phoenix-grid.fgi.csc.fi 
 
 [compute]
-ph[1-4]
+ph[1:4]
 
 [test]
 test-host
@@ -27,8 +27,7 @@ phoenix.fgi.csc.fi
 [vhosts:children]
 install
 grid
-#login
-#
+login
 
 [production:children]
 install
@@ -40,4 +39,3 @@ install
 
 [slurm_compute:children]
 compute
-
