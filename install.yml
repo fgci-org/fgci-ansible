@@ -3,6 +3,7 @@
 - name: First add users to install node as root
   hosts: install
   remote_user: root
+#  sudo: yes
 
   roles: 
   - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
@@ -24,6 +25,8 @@
           external_interface in ansible_interfaces }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap' ] }
+  - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
