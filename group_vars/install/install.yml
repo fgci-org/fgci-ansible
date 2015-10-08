@@ -1,5 +1,7 @@
 ---
 
+admingroup: "admin"
+
 external_interface: "eth0"
 ext_net_addr: "193.166.3.128"
 ext_ip_addr: "193.166.3.190"
@@ -55,3 +57,22 @@ network_bridge_interfaces:
     netmask: "{{int_net_mask}}"
     ports: ["{{internal_interface}}"]
     nm_controlled: "no"
+
+## DHCP_SERVER
+
+dhcp_interfaces: "{{ internal_interface }}"
+dhcp_common_domain: "fgi.csc.fi"
+dhcp_common_nameservers: 193.166.4.24, 193.166.4.25
+dhcp_common_default_lease_time: 600
+dhcp_common_max_lease_time: 7200
+dhcp_common_options: []
+dhcp_common_parameters:
+ - include "/etc/dhcp/dhcpd.d/ipxe.conf"
+ - include "/etc/dhcp/dhcpd.d/nodes.conf"
+dhcp_subnets:
+ - base: 10.1.0.0
+   netmask: "{{ int_net_mask }}"
+#   routers: 10.1.1.2
+
+dhcp_tftp_server_ip: "{{ int_ip_addr }}"
+
