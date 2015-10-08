@@ -28,4 +28,5 @@
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
+  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

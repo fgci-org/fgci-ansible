@@ -29,4 +29,5 @@
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
+  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

@@ -6,6 +6,11 @@
   roles: 
   - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
 
+# We need some facts from the install node
+- name: grab facts from production nodes
+  hosts: production
+  tasks: [ ]
+
 - name: Admin Node
   hosts: admin
   sudo: yes
@@ -28,4 +33,5 @@
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
+  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

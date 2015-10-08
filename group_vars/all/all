@@ -87,3 +87,11 @@ ntp_config_server: [ 0.fi.pool.ntp.org, 1.fi.pool.ntp.org, 2.fi.pool.ntp.org, 3.
 #Flowdock
 flowdock_token: 22a225c10814863ea809b80940d25b0e
 flowdock_chat: False
+
+#Collectd
+collectd_tsdb_writer: True
+collectd_tsdb_host: vm0405.kaj.pouta.csc.fi
+collectd_network_listener: False
+collectd_network_server: False
+collectd_plugin_packages:
+ - collectd-write_tsdb
