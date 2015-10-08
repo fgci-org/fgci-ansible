@@ -91,6 +91,7 @@ flowdock_chat: False
 #Collectd
 collectd_tsdb_writer: True
 collectd_tsdb_host: vm0405.kaj.pouta.csc.fi
+collectd_tsdb_tags: "status=production domain={{ ansible_domain }} distribution={{ ansible_distribution }} dist_version={{ ansible_distribution_version }} site={{ siteName }} nodebase={{ nodeBase }}"
 collectd_network_listener: False
 collectd_network_server: False
 collectd_plugin_packages:
