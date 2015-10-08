@@ -42,3 +42,4 @@ slurm_type: "service"
 # SSHD
 sshd:
  AllowGroups: "root admin" 
+
