@@ -3,6 +3,8 @@ hosts
 ssh.config
 group_vars/root_keys.yml
 group_vars/admin/root_keys.yml
+group_vars/install/slurm_mysql_password
+group_vars/*/trusted_networks.yml
 ansible.cfg
 
 # Ignore roles pulled through requirements.yml
@@ -22,3 +24,6 @@ notes
 # Credentials auto-generated
 
 *_rootpw
+
+# Slurm Munge key auto generated
+files/munge.key

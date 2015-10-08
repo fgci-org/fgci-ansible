@@ -1,22 +1,21 @@
 # ansible-playbook file: site.yml
 #
 
-- name: Apply common configuration to all hosts  
-  hosts: all
-  remote_user: root
+#- name: Apply common configuration to all hosts  
+#  hosts: all
+#  remote_user: root
+#
+#  roles:
 
-  roles:
-
+###
 # admin.yml installs the admin node
 - include: admin.yml
-
-
-# install.yml installs the install node
 - include: install.yml
+- include: login.yml
+- include: grid.yml
 
-- name: Compute Node
-  hosts: compute
-  remote_user: root
-
-  roles:
-
+#- name: Compute Node
+#  hosts: compute
+#  remote_user: root
+#
+#  roles:

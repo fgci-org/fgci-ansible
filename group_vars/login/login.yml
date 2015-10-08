@@ -1,0 +1,106 @@
+---
+internal_interface: "eth1" 
+external_interface: "eth0"
+internal_net: "10.1.0.0/16"
+int_ip_addr: "10.1.1.4"
+internal_ip: "{{int_ip_addr}}"
+int_net_mask: "255.255.0.0"
+ext_ip_addr: "193.166.3.188"
+ext_net_mask: "255.255.255.128"
+vcpus: "{{vm_cpus}}"
+ram: "{{vm_mem}}"
+disks:
+  - { path: "/var/vms/login.raw", size: 12 }
+bridges:
+  - br_ext
+  - br_int
+location: "{{repo_location}}"
+kickstart_tempdir: "/tmp"
+inventory_hostname: "login"
+fqdn: "{{siteName}}-login.{{siteDomain}}"
+networks:
+  - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver1}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
+#  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute --noipv6"
+root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"
+
+# Slurm
+slurm_type: "submit"
+
+# This makes ansible-role-ferm-firewall restart fail2ban if ferm is reloaded.
+ferm_fail2ban: True
+
+# Ferm - firewall
+ferm_rules_extra:
+ 08_fail2ban:
+ - chain: INPUT
+   table: filter
+   domains: [ip]
+   rules:
+     - {rule: "proto tcp mod multiport destination-ports (22) jump f2b-sshd;", comment: "default fail2ban rule"}
+ - chain: f2b-sshd
+   table: filter
+   domains: [ip]
+   rules:
+     - {rule: "RETURN;", comment: "default fail2ban rule"}
+ 10_nat:
+ - chain: FORWARD
+   table: filter
+   domains: [ip, ip6]
+   rules:
+     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;", comment: "forwarding"}
+ - chain: POSTROUTING
+   table: nat
+   domains: [ip]
+   rules:
+     - {rule: "daddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
+     - {rule: "outerface br_ext saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
+ 90_ssh_internet:
+ - chain: INPUT
+   table: filter
+   domains: [ip, ip6]
+   rules:
+     - {rule: "proto tcp dport (22) mod state state (NEW) mod comment comment 'Allow new SSH' ACCEPT;", comment: "SSH allow new connections from everywhere"}
+
+# Fail2ban - firewall
+fail2ban_config:
+  ignoreip: 127.0.0.0/8 {{ internal_net }} {{ trusted_public_networks }}
+  bantime: 600
+  findtime: 1800
+  maxretry: 8
+  destemail: root@localhost
+fail2ban_jails:
+  sshd:
+    enabled: 'true'
+    port: 'ssh'
+    protocol: 'tcp'
+    logpath: '/var/log/secure'
+    maxretry: 10
+
+
+
+#NTP
+ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}", "{{ hostvars[groups['admin'][0]]['ansible_hostname'] }}" ]
+
+#CVMFS
+cvmfs_http_proxy: "{{ http_proxy }}"
+cvmfs_quota_limit: "10240"
+
+#Limits for MPI
+limits_domains:
+  - domain: '*'
+    type: 'hard'
+    item: memlock
+    value: unlimited
+  - domain: '*'
+    type: 'soft'
+    item: memlock
+    value: unlimited
+  - domain: '*'
+    type: 'hard'
+    item: stack
+    value: unlimited
+  - domain: '*'
+    type: 'soft'
+    item: stack
+    value: unlimited

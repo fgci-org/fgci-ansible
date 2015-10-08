@@ -1,27 +1,21 @@
 ---
-- name: First add users to admin node as root
-  hosts: admin
-  remote_user: root
 
-  roles: 
-  - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
-
-# We need some facts from the install node
+# http://serverfault.com/questions/638507/how-to-access-host-variable-of-a-different-host-with-ansible
+# We need some facts from the install node, specifically to find address of slurm controller.
 - name: grab facts from production nodes
   hosts: production
   tasks: [ ]
 
-- name: Admin Node
-  hosts: admin
+- name: Grid Node
+  hosts: grid
+  remote_user: root
   sudo: yes
 
-  roles:
+  roles: 
+  - { role: ansible-role-yum, tags: [ 'yum', 'repos' ] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
-  - { role: ansible-role-fgci-admin, tags: [ 'admin' ] }
-  - { role: network_interface, tags: [ 'network' ],
-    when: internal_interface in ansible_interfaces and
-          external_interface in ansible_interfaces }
-  - { role: ip_forwarder, tags: [ 'network' ],
+  - { role: network_interface, tags: [ 'network' ] }
+  - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
           external_interface is defined and
           internal_net is defined and
@@ -31,7 +25,9 @@
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
+  - { role: ansible-role-slurm, tags: [ 'slurm' ] }
+  - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
-  - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
+  - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

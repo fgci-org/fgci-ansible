@@ -1,0 +1,69 @@
+---
+# This list is taken from fgi-default-packagse and ks.py
+unconfigured_packages:
+  - atlas
+  - blas
+  - bonnie++
+#  - ca-policy-egi-core
+#  - cluster-profile
+#  - compat-openmpi
+#  - cvmfs-release
+#  - cvmfs-repofiles-fgi
+  - cvs
+#  - elrepo-release
+  - epel-release
+  - fftw
+  - fftw2
+#  - fgi-compute-node
+#  - fgi-hw-check
+#  - fgi-release6
+  - gcc
+  - gcc-c++
+  - gcc-gfortran
+  - git
+  - "glibc.i686"
+#  - gromacs
+#  - gromacs-openmpi
+  - hdf5-openmpi
+#  - hp-health
+#  - hponcfg
+  - iperf
+  - "java-1.8.0-openjdk"
+  - lapack
+  - libcgroup
+  - "libgcc.i686"
+  - libgfortran
+  - "libstdc++.i686"
+  - "libxml2.i686"
+  - mcelog
+#  - memtester
+  - mpitests-openmpi
+#  - munge
+#  - mvapich
+  - mvapich2
+  - netcdf
+  - nfs-utils
+#  - nordugrid-arc-client
+#  - nordugrid-arc-plugins-globus
+  - nscd
+  - numpy
+  - openmpi
+  - openssh-server
+#  - pdsh
+  - perl-Filesys-Df
+#  - python-sqlite2
+#  - slurm-fgi-addons
+  - subversion
+  - xerces-c
+#  - ypbind
+  - yum-plugin-fastestmirror
+  - "zlib.i686"
+
+ib_unconfigured_packages:
+  - "@infiniband"
+  - infiniband-diags
+
+remove_packages:
+  - phonon-backend-gstreamer
+  - qt-x11
+  - redhat-lsb-graphics

@@ -1,0 +1,24 @@
+---
+language: python
+python: "2.7"
+
+before_install:
+  - sudo apt-get update -qq
+
+install:
+  # Install Ansible.
+  - pip install ansible
+
+  # Add ansible.cfg to pick up roles path.
+  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+
+script:
+  # We'll add some commands to test the role here.
+  - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
+
+ # Run the role/playbook with ansible-playbook.
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+
+notifications:
+  flowdock:
+    secure: "lxqZTTUCUYy19JzwXnH/kRcndYwNasUYpa0AK0vcRqTRSoULRzwE2jcJUk2YBz0qTBcTgAkinj1VQbImdrl68NTPDTmOZM4+hPZ8RQNTGR7VJwy4Ynjl/RtvxmwvoW/kSZJI3twDvPpAl2yEKfiPwSE4kYNFs84w43WieNhX3qO0LN9EdFykV6M0xeZgGc71v6oGof3n9HhBMfMUYU6YZJKvirHJNwAxHsWiFSq+dfDA5hqDyilwuQM0toNgjsFi6F7b40vOVJPGJKdSNekrFgp2Gm/Fzd83sO/Sp1ord9v73UflshejKuK2/iMRddPW5JDl05FNrJ7x6xcCfK9sxOj5KDELotagHCDdCTqX4USelBpI7DeO9yV8NAIxyL2KAFi5b3uwvF5reitGhRfdeqA0B9eK+k6vdRQ/xKryYc48hVX46wraL2ibZv2gbic7vpYdxiWFUirKB9NBoQu7JHkTT/LT3LjbC9/uL9c4qRyakAnQwhgi4/sEk7f9euvtZA6MJfZpCzfiYVt3rGe6H9HqcCflnxW5F1ZjLBSkHk02rNn6hcfFxGHSS5x1362F9JCwVkAWgJ43JvQLRxobW4htbx56+niX0zS+vs2kK5K3NxUCJzInUb4UV5/9lwcCBZQJL0fD4u2Gy8/TC7MrhhOVxkSSPmjjoonaRPY497c="

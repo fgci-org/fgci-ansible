@@ -12,7 +12,7 @@ int_ip_addr: "10.1.1.1"
 int_net_mask: "255.255.0.0"
 int_gateway: "10.1.1.4"
 
-internal_net: "10.1.1.0/16" 
+internal_net: "10.1.1.0/16"
 
 network_ether_interfaces:
   - device: "{{external_interface}}"
@@ -55,3 +55,34 @@ network_bridge_interfaces:
     netmask: "{{int_net_mask}}"
     ports: ["{{internal_interface}}"]
     nm_controlled: "no"
+
+# Ferm - firewall
+ferm_rules_extra:
+ hypervisor:
+ - chain: FORWARD
+   table: filter
+   domains: [ip, ip6]
+   rules:
+     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface {{ external_interface }} outerface {{ internal_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;", comment: "forwarding"}
+ - chain: POSTROUTING
+   table: nat
+   domains: [ip]
+   rules:
+     - {rule: "daddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
+     - {rule: "outerface {{ external_interface }} saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
+ - chain: PREROUTING
+   table: nat
+   domains: [ip]
+   rules:
+     - {rule: "saddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
+ - chain: PREROUTING
+   table: mangle
+   domains: [ip]
+   rules:
+     - {rule: "saddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
+
+# SSHD
+
+sshd:
+ AllowGroups: "root admin" 
