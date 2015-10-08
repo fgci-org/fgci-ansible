@@ -21,7 +21,7 @@
   - { role: network_interface, tags: [ 'network' ],
     when: internal_interface in ansible_interfaces and
           external_interface in ansible_interfaces }
-  - { role: ip_forwarder, tags: [ 'network' ], 
+  - { role: ip_forwarder, tags: [ 'network' ],
     when: internal_interface is defined and
           external_interface is defined and
           internal_net is defined and
