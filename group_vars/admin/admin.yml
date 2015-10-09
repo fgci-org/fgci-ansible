@@ -93,3 +93,8 @@ unconfigured_packages:
  - "qemu-kvm"
  - "vim-enhanced"
  - "yum-plugin-priorities"
+
+# Admin node receives syslog from cluster nodes
+central_log_listener: True
+central_logs_directory: "/var/log/remote/servers"
+central_logs_retention_days: 60
