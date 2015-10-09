@@ -49,3 +49,5 @@ ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}",
 cvmfs_http_proxy: "{{ http_proxy }}"
 cvmfs_quota_limit: "10240"
 
+# Do not extra install infiniband packages
+infiniband_available: False

@@ -14,7 +14,7 @@ nameserver2: "193.166.4.25"
 enable_ext_nic: "yes"
 enable_int_nic: "yes"
 
-infiniband_on_login_node: False
+infiniband_available: False
 
 #repo_location: "http://ftp.funet.fi/pub/mirrors/centos.org/7/os/x86_64"
 repo_location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"

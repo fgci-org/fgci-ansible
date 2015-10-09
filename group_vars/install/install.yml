@@ -107,3 +107,6 @@ sshd:
 # Install extra packages
 unconfigured_packages:
  - git
+
+# For sure do not install infiniband packages on install node
+infiniband_available: False
