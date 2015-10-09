@@ -28,7 +28,7 @@
   - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap' ] }
   - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
-  - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
+  - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }

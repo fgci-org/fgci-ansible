@@ -31,7 +31,7 @@
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
-  - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
+  - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
