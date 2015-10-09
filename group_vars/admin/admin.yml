@@ -86,3 +86,10 @@ ferm_rules_extra:
 
 sshd:
  AllowGroups: "root admin" 
+
+# Install these package
+unconfigured_packages:
+ - "virt-install"
+ - "qemu-kvm"
+ - "vim-enhanced"
+ - "yum-plugin-priorities"
