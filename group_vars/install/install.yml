@@ -103,3 +103,7 @@ slurm_type: "service"
 # SSHD
 sshd:
  AllowGroups: "root admin" 
+
+# Install extra packages
+unconfigured_packages:
+ - git
