@@ -6,6 +6,7 @@ group_vars/admin/root_keys.yml
 group_vars/install/slurm_mysql_password
 group_vars/*/trusted_networks.yml
 ansible.cfg
+secrets.yml
 
 # Ignore roles pulled through requirements.yml
 roles/ansible-role-*
