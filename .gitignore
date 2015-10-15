@@ -1,5 +1,6 @@
 
 hosts
+hosts_*
 ssh.config
 group_vars/root_keys.yml
 group_vars/admin/root_keys.yml
