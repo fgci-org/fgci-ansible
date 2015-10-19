@@ -2,12 +2,12 @@
 # 
 #  
 
-siteName: phoenix
-siteDomain: fgi.csc.fi
-nodeBase: ph
+siteName: io
+siteDomain: fgci.csc.fi
+nodeBase: io
 
 int_gateway: "10.1.1.4"
-ext_gateway: "193.166.3.254"
+ext_gateway: "86.50.166.1"
 nameserver1: "193.166.4.24"
 nameserver2: "193.166.4.25"
 
