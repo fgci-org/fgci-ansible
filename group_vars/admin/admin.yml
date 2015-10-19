@@ -1,12 +1,12 @@
 ---
 
-external_interface: "enp3s0"
-ext_net_addr: "193.166.3.128"
-ext_ip_addr: "193.166.3.189"
-ext_net_mask: "255.255.255.128"
-ext_gateway: "193.166.3.254"
+external_interface: "em1"
+ext_net_addr: "86.50.166.0"
+ext_ip_addr: "86.50.166.62"
+ext_net_mask: "255.255.255.0"
+ext_gateway: "86.50.166.1"
 
-internal_interface: "enp7s0"
+internal_interface: "em2"
 int_net_addr: "10.1.0.0"
 int_ip_addr: "10.1.1.1"
 int_net_mask: "255.255.0.0"

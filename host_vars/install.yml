@@ -3,10 +3,10 @@
 # network
 
 external_interface: "eth0"
-ext_net_addr: "193.166.3.128"
-ext_ip_addr: "193.166.3.190"
-ext_net_mask: "255.255.255.128"
-ext_gateway: "193.166.3.254"
+ext_net_addr: "86.50.166.0"
+ext_ip_addr: "86.50.166.63"
+ext_net_mask: "255.255.255.0"
+ext_gateway: "86.50.166.1"
 
 internal_interface: "eth1"
 int_net_addr: "10.1.0.0"
@@ -46,7 +46,7 @@ vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 
 disks:
-  - { path: "/var/vms/install.raw", size: 12 }
+  - { path: "/var/vms/install.raw", size: 20 }
 bridges:
   - br_ext
   - br_int

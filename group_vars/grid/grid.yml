@@ -5,12 +5,12 @@ internal_net: "10.1.0.0/16"
 int_ip_addr: "10.1.1.3"
 internal_ip: "{{int_ip_addr}}"
 int_net_mask: "255.255.0.0"
-ext_ip_addr: "193.166.3.191"
-ext_net_mask: "255.255.255.128"
+ext_ip_addr: "86.50.166.64"
+ext_net_mask: "255.255.255.0"
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:
-  - { path: "/var/vms/grid.raw", size: 12 }
+  - { path: "/var/vms/grid.raw", size: 20 }
 bridges:
   - br_ext
   - br_int
