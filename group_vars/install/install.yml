@@ -1,0 +1,44 @@
+---
+
+# network
+
+external_interface: "eth0"
+ext_net_addr: "193.166.3.128"
+ext_ip_addr: "193.166.3.190"
+ext_net_mask: "255.255.255.128"
+ext_gateway: "193.166.3.254"
+
+internal_interface: "eth1"
+int_net_addr: "10.1.0.0"
+int_ip_addr: "10.1.1.2"
+int_net_mask: "255.255.0.0"
+int_gateway: "10.1.1.4"
+
+internal_net: "10.1.0.0/16"
+internal_ip: "{{int_ip_addr}}"
+
+# Kickstart file specifics
+
+vcpus: "{{vm_cpus}}"
+ram: "{{vm_mem}}"
+
+disks:
+  - { path: "/var/vms/install.raw", size: 12 }
+bridges:
+  - br_ext
+  - br_int
+location: "{{repo_location}}"
+kickstart_tempdir: "/tmp"
+inventory_hostname: "install"
+fqdn: "{{siteName}}-install.{{siteDomain}}"
+networks:
+  - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver1}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
+#  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute --noipv6"
+root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"
+
+# Slurm
+slurm_type: "service"
+
+# SSHD
+sshd:
+ AllowGroups: "root admin" 

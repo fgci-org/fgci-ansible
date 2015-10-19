@@ -1,0 +1,29 @@
+# ansible-playbook file: site.yml
+#
+
+#- name: Apply common configuration to all hosts  
+#  hosts: all
+#  remote_user: root
+#
+#  roles:
+
+###
+# admin.yml installs the admin node
+- include: admin.yml
+- include: install.yml
+- include: login.yml
+- include: grid.yml
+
+#- name: Boot Server
+#  hosts: boot
+#  remote_user: root
+#
+#  roles:
+
+#  - L2G.dnsmasq_proxy
+
+#- name: Compute Node
+#  hosts: compute
+#  remote_user: root
+#
+#  roles:

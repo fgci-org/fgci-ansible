@@ -1,0 +1,67 @@
+---
+- src: https://github.com/resmo/ansible-role-ntp
+  path: roles
+  version: 0.4.0
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-install
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-admin
+  path: roles
+
+#- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-login
+#  path: roles
+
+- src: https://github.com/kaffeeh/ansible-yum-cron
+  path: roles
+  name: ansible-role-yum-cron
+  version: fef55b2adcc2062d2727f1d06886f0abedd3907f
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-users
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-rsyslog-client
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-squid
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-ferm-firewall
+  path: roles
+  name: ansible-role-ferm-firewall
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fail2ban
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-aliases
+  path: roles
+  name: ansible-role-aliases
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-rdma
+  path: roles
+
+- src: https://github.com/willshersystems/ansible-sshd
+  path: roles
+  name: ansible-role-sshd
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-system-limits
+  path: roles
+  name: ansible-role-system-limits
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-arc-client
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-yum
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-flowdock
+  path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-collectd
+  path: roles
