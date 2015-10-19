@@ -14,8 +14,3 @@
 - include: login.yml
 - include: grid.yml
 
-#- name: Compute Node
-#  hosts: compute
-#  remote_user: root
-#
-#  roles:
