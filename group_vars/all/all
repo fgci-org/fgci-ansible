@@ -29,8 +29,8 @@ env_virt_install: { http_proxy: "{{ http_proxy }}" }
 central_log_host: "@{{siteName}}-admin.{{siteDomain}}"
 
 # DEVSYS  - to change later
-vm_mem: "1024"
-vm_cpus: "1"
+vm_mem: "16000"
+vm_cpus: "4"
 
 # Slurm
 slurm_version: "15.08.0"

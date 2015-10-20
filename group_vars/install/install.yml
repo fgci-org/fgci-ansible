@@ -85,7 +85,7 @@ vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 
 disks:
-  - { path: "/var/vms/install.raw", size: 20 }
+  - { path: "/var/vms/install.raw", size: 200 }
 bridges:
   - br_ext
   - br_int
