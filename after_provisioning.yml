@@ -4,7 +4,7 @@
   tasks: [ ]
   gather_facts: yes
 
-- name:  Configure Admin Node
+- name:  Configure Admin Node After Install node
   hosts: admin
   sudo: yes
 
