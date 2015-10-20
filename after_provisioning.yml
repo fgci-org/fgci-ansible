@@ -1,0 +1,13 @@
+---
+- name: grab facts from production nodes
+  hosts: production
+  tasks: [ ]
+  gather_facts: yes
+
+- name:  Configure Admin Node After Install node
+  hosts: admin
+  sudo: yes
+
+  roles:
+  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
+  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

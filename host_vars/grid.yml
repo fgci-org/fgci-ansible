@@ -10,7 +10,7 @@ ext_net_mask: "255.255.255.0"
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:
-  - { path: "/var/vms/grid.raw", size: 20 }
+  - { path: "/var/vms/grid.raw", size: 200 }
 bridges:
    - br_ext
    - br_int
