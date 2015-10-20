@@ -65,3 +65,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-collectd
   path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_config
+  path: roles
+

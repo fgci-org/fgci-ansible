@@ -1,0 +1,5 @@
+---
+## PXE
+
+kickstart_profile: FGCI-nfs-node
+kickstart_server_ip: 10.1.1.2

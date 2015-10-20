@@ -4,3 +4,9 @@
 slurm_type: "compute"
 # NTP
 ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}", "{{ hostvars[groups['admin'][0]]['ansible_hostname'] }}" ]
+#
+
+## PXE
+
+kickstart_profile: FGCI-compute-node
+kickstart_server_ip: 10.1.1.2
