@@ -65,7 +65,8 @@ network_bridge_interfaces:
 
 dhcp_interfaces: "{{ internal_interface }}"
 dhcp_common_domain: "fgci.csc.fi"
-dhcp_common_nameservers: 193.166.4.24, 193.166.4.25
+#dhcp_common_nameservers: 193.166.4.24, 193.166.4.25
+dhcp_common_nameservers: 127.0.0.1
 dhcp_common_default_lease_time: 600
 dhcp_common_max_lease_time: 7200
 dhcp_common_options: []
@@ -73,9 +74,9 @@ dhcp_common_parameters:
  - include "/etc/dhcp/dhcpd.d/ipxe.conf"
  - include "/etc/dhcp/dhcpd.d/nodes.conf"
 dhcp_subnets:
- - base: 10.1.0.0
+ - base: "{{ int_net_addr }}"
    netmask: "{{ int_net_mask }}"
-#   routers: 10.1.1.2
+   #   routers: 10.1.1.2
 
 dhcp_tftp_server_ip: "{{ int_ip_addr }}"
 
@@ -111,3 +112,4 @@ unconfigured_packages:
 
 # For sure do not install infiniband packages on install node
 infiniband_available: False
+
