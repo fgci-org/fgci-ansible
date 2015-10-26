@@ -78,3 +78,6 @@
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-ssl-certificate
   path: roles
   name: ansible-role-ssl-certificate
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-sssd
+  path: roles
