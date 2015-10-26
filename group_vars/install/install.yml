@@ -113,3 +113,12 @@ unconfigured_packages:
 # For sure do not install infiniband packages on install node
 infiniband_available: False
 
+# For self-generated SSL certs - used by openldap
+ssl_certificate_owner: root
+ssl_certificate_group: root
+ssl_certificate_name: hostcert
+ssl_certificate_path: /etc/pki/tls
+ssl_certificate_path_public: "{{ ssl_certificate_path }}/certs/{{ ssl_certificate_name }}.crt"
+ssl_certificate_path_private: "{{ ssl_certificate_path }}/private/{{ ssl_certificate_name }}.key"
+ssl_certificate_self_signed: yes
+ssl_certificate_self_subject: "/C=FI/ST=Uusimaa/L=Helsinki/O=FGCI/CN={{ ssl_certificate_self_signed_common_name }}"
