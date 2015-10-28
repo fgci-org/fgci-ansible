@@ -27,7 +27,7 @@
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap' ] }
-  - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server' ] }
+  - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server', 'dhcpserver' ] }
   - { role: ansible-role-dnsmasq, tags: [ 'dnsmasq' ] }
   - { role: ansible-role-pxe_config, tags: [ 'pxe_config' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }

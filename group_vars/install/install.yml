@@ -78,7 +78,7 @@ dhcp_subnets:
    netmask: "{{ int_net_mask }}"
    routers: "{{ int_ip_addr }}"
    interface: "{{ internal_interface }}"
-   domain_servers: "{{ int_ip_addr }}, {{ nameserver1 }}, {{ nameserver2 }}"
+   domain_nameservers: "{{ int_ip_addr }}, {{ nameserver1 }}, {{ nameserver2 }}"
    domain_name: "{{ dhcp_common_domain }}"
 
 dhcp_tftp_server_ip: "{{ int_ip_addr }}"
