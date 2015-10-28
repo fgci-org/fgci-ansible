@@ -13,6 +13,9 @@ install:
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
 script:
+  # Install all the required roles.
+  - "ansible-galaxy install -r requirements.yml --force"
+
   # We'll add some commands to test the role here.
   - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
 
