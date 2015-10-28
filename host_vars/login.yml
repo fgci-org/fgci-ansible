@@ -1,6 +1,6 @@
 ---
-internal_interface: "eth1" 
-external_interface: "eth0"
+internal_interface: "em2" 
+external_interface: "em1"
 internal_net: "10.1.0.0/16"
 int_ip_addr: "10.1.1.4"
 internal_ip: "{{int_ip_addr}}"
