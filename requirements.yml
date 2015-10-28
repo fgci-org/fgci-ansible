@@ -72,8 +72,5 @@
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
   path: roles
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-openldap
-  path: roles
-
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nis
   path: roles
