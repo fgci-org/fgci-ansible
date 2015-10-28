@@ -4,4 +4,3 @@
    roles:
      - fgci-ansible
      - ansible-role-aliases
-

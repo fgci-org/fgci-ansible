@@ -14,7 +14,7 @@ install:
   # roles_path = /opt/mysite/roles:/opt/othersite/roles
   #
   # Add ansible.cfg to pick up roles path.
-  - "{ echo '[defaults]'; echo 'roles_path = ../:fgci-ansible/roles'; } >> ansible.cfg"
+  - "{ echo '[defaults]'; echo 'roles_path = ../:fgci-ansible/roles:roles'; } >> ansible.cfg"
 
 script:
   # Install all the required roles.
