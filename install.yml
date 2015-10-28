@@ -35,6 +35,5 @@
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
-#  - { role: ansible-role-ssl-certificate, tags: [ 'ldap', 'cert' ] }
-#  - { role: ansible-role-openldap, tags: [ 'ldap' ] }
+  - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

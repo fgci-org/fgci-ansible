@@ -34,5 +34,5 @@
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
-#  - { role: ansible-role-sssd, tags: [ 'sssd' ] }
+  - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
