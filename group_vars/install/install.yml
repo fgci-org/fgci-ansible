@@ -65,7 +65,7 @@ network_bridge_interfaces:
 
 dhcp_interfaces: "{{ internal_interface }}"
 dhcp_common_domain: "fgci.csc.fi"
-#dhcp_common_nameservers: 193.166.4.24, 193.166.4.25
+#dhcp_common_nameservers: "{{ int_ip_addr }}",193.166.4.24, 193.166.4.25
 dhcp_common_nameservers: 127.0.0.1
 dhcp_common_default_lease_time: 600
 dhcp_common_max_lease_time: 7200
@@ -76,7 +76,10 @@ dhcp_common_parameters:
 dhcp_subnets:
  - base: "{{ int_net_addr }}"
    netmask: "{{ int_net_mask }}"
-   #   routers: 10.1.1.2
+   routers: "{{ int_ip_addr }}"
+   interface: "{{ internal_interface }}"
+   domain_servers: "{{ int_ip_addr }}", "{{ nameserver1 }}", "{{ nameserver2 }}"
+   domain_name: "{{ dhcp_common_domain }}"
 
 dhcp_tftp_server_ip: "{{ int_ip_addr }}"
 
