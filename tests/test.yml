@@ -4,3 +4,30 @@
    roles:
      - fgci-ansible
      - ansible-role-aliases
+     - ansible-role-arc-client
+     - ansible-role-collectd
+     - ansible-role-cvmfs
+     - ansible-role-dhcp_server
+     - ansible-role-dnsmasq
+     - ansible-role-fail2ban
+     - ansible-role-ferm-firewall
+     - ansible-role-fgci-admin
+     - ansible-role-flowdock
+     - ansible-role-nis
+     - ansible-role-ntp
+     - ansible-role-pxe_bootstrap
+     - ansible-role-pxe_config
+     - ansible-role-rdma
+     - ansible-role-rsyslog
+     - ansible-role-slurm
+     - ansible-role-squid
+     - ansible-role-sshd
+     - ansible-role-system-limits
+     - ansible-role-users
+     - ansible-role-yum
+     - ansible-role-yum-cron
+     - dns
+     - ip_forwarder
+     - network_interface
+     - provision_vm
+
