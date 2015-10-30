@@ -83,7 +83,7 @@ dhcp_subnets:
 
 dhcp_tftp_server_ip: "{{ int_ip_addr }}"
 
-# Kickstart file specifics
+# Kickstart file VM specifics
 
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
@@ -117,3 +117,6 @@ unconfigured_packages:
 infiniband_available: False
 
 nis_server: True
+
+## KS profile and server Dir
+ksBootSrvDir: "/var/www/html/ks"
