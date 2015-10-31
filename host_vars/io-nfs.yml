@@ -1,0 +1,10 @@
+---
+
+internal_interface: "em1"
+
+network_ether_interfaces:
+  - device: "{{internal_interface}}"
+    bootproto: "dhcp"
+    onboot: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
