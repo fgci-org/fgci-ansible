@@ -6,7 +6,7 @@ unconfigured_packages:
   - bonnie++
 #  - ca-policy-egi-core
 #  - cluster-profile
-  - compat-openmpi
+#  - compat-openmpi
 #  - cvmfs-release
 #  - cvmfs-repofiles-fgi
   - cvs
@@ -22,8 +22,8 @@ unconfigured_packages:
   - gcc-gfortran
   - git
   - "glibc.i686"
-  - gromacs
-  - gromacs-openmpi
+  #  - gromacs
+  #- gromacs-openmpi
   - hdf5-openmpi
 #  - hp-health
 #  - hponcfg
@@ -38,11 +38,11 @@ unconfigured_packages:
   - "libstdc++.i686"
   - "libxml2.i686"
   - mcelog
-  - memtester
+  #  - memtester
   - mpitests-openmpi
 #  - munge
-  - mvapich
-  - mvapich2
+#  - mvapich
+#  - mvapich2
   - netcdf
   - nfs-utils
 #  - nordugrid-arc-client
@@ -51,15 +51,15 @@ unconfigured_packages:
   - numpy
   - openmpi
   - openssh-server
-  - pdsh
+  #  - pdsh
   - perl-Filesys-Df
-  - python-sqlite2
+  #  - python-sqlite2
 #  - slurm-fgi-addons
   - subversion
   - xerces-c
 #  - ypbind
   - yum-plugin-fastestmirror
-  - "zlib.i686"
+  #  - "zlib.i686"
 remove_packages:
   - phonon-backend-gstreamer
   - qt-x11

@@ -9,6 +9,8 @@ network_ether_interfaces:
     nm_controlled: "no"
     type: "Ethernet"
 
+infiniband_available: True
+
 # Slurm
 slurm_type: "compute"
 # NTP
@@ -25,4 +27,3 @@ kickstart_partitions: |
   zerombr
   clearpart --all --initlabel --drives=sda
 
-  

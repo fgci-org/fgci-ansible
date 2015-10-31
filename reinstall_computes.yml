@@ -1,0 +1,15 @@
+---
+#
+# This role will set reinstall flags for all compute nodes on Install node
+#
+
+- name: Compute Nodes
+  hosts: install
+  remote_user: root
+  
+  tasks:
+  - name: Create compute node reinstall flag files in Install node
+    #command: /bin/touch /var/www/provision/reinstall/{{ hostvars[item].ansible_hostname }}
+    command: /bin/touch /var/www/provision/reinstall/{{ item }}
+    with_items: groups.compute
+
