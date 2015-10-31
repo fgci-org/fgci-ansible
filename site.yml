@@ -8,11 +8,12 @@
 #  roles:
 
 ###
-# admin.yml installs the admin node
+# after_provisioning.yml installs the admin node
 - include: admin.yml
 - include: install.yml
 - include: login.yml
 - include: grid.yml
+- include: after_provisioning.yml
 
 #- name: Compute Node
 #  hosts: compute
