@@ -12,3 +12,6 @@
     command: /bin/touch /var/www/provision/reinstall/{{ item }}
     with_items: groups.compute
 
+  - name: Delete known_hosts entries for compute nodes
+    lineinfile: dest=/root/.ssh/known_hosts regexp=^{{ item }} state=absent
+    with_items: groups.compute
