@@ -24,8 +24,11 @@ script:
   # Where are the roles installed?
   - "tree ../"
 
-  # We'll add some commands to test the role here.
+  # Syntax Check
   - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
+
+  # --check
+  - "ansible-playbook -i tests/inventory tests/test.yml --check"
 
  # Run the role/playbook with ansible-playbook.
   - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
