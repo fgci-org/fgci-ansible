@@ -115,7 +115,12 @@ unconfigured_packages:
 # For sure do not install infiniband packages on install node
 infiniband_available: False
 
+# NIS server settings
 nis_server: True
+nis_initialize: True
+nis_enabled: True
+nis_domain: "fgci.csc.fi"
+
 
 ## KS profile and server Dir
 ksBootSrvDir: "/var/www/html/ks"

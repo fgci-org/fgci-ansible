@@ -11,6 +11,9 @@ network_ether_interfaces:
 
 infiniband_available: True
 
+networks:
+  - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
+
 # Slurm
 slurm_type: "compute"
 # NTP
