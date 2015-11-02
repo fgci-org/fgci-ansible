@@ -44,7 +44,9 @@ ansible --version
 
 function tree_list() {
 
-tree ../
+sudo yum -y install tree
+
+tree
 
 }
 
@@ -76,6 +78,7 @@ set -e
 function main(){
     show_version
     tree_list
+    test_install_requirements
     test_playbook_syntax
     test_playbook
 #    extra_tests
