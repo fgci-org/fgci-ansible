@@ -26,10 +26,10 @@
   - { role: ansible-role-fgci-install, tags: [ 'fgci-install' ] }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
-  - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap' ] }
-  - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server', 'dhcpserver' ] }
-  - { role: ansible-role-dnsmasq, tags: [ 'dnsmasq' ] }
-  - { role: ansible-role-pxe_config, tags: [ 'pxe_config' ] }
+  - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap', 'pxe' ] }
+  - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server', 'dhcpserver', 'pxe' ] }
+  - { role: ansible-role-dnsmasq, tags: [ 'dnsmasq', 'pxe' ] }
+  - { role: ansible-role-pxe_config, tags: [ 'pxe_config', 'pxe' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }

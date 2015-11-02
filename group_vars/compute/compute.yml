@@ -22,7 +22,7 @@ ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}",
 kickstart_profile: FGCI-compute-node
 kickstart_server_ip: 10.1.1.2
 kickstart_partitions: |
-  boootloader --location=mbr --append="selinux=0" --boot-drive=sda
+  bootloader --location=mbr --append="selinux=0" --boot-drive=sda
   autopart --type=lvm
   zerombr
   clearpart --all --initlabel --drives=sda
