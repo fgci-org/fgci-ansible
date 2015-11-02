@@ -14,3 +14,15 @@ kickstart_partitions: |
   logvol /  --fstype="xfs" --size=200000 --name=lv_root --vgname=vgroot --grow
   logvol /var  --fstype="xfs" --size=200000 --name=lv_var --vgname=vgroot
   logvol /tmp  --fstype="xfs" --size=100000 --name=lv_tmp --vgname=vgroot
+kickstart_packages: |
+  epel-release
+  git
+  @infiniband
+  infiniband-diags
+  iperf
+  mcelog
+  netcdf
+  nfs-utils
+  nscd
+  openssh-server
+  yum-plugin-fastestmirror
