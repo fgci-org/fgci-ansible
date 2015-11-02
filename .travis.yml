@@ -15,6 +15,8 @@ install:
   #
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../:fgci-ansible/roles:roles'; } >> ansible.cfg"
+  # Add an empty ssh.config which is called from ansible.cfg
+  - "echo '' >> ssh.config"
   # Print ansible version
   - "ansible --version"
 
@@ -28,7 +30,7 @@ script:
   - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
 
   # --check
-  - "ansible-playbook -i tests/inventory tests/test.yml --check"
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo --check"
 
  # Run the role/playbook with ansible-playbook.
   - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
