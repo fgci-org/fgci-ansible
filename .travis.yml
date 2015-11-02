@@ -29,8 +29,8 @@ script:
   # Syntax Check
   - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
 
-  # --check
-  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo --check"
+  # --check would be nice, but the current travis config is Ubuntu only. Would need to use Travis's docker to run with CentOS7
+  #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo --check"
 
  # Run the role/playbook with ansible-playbook.
   - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
