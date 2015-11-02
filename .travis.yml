@@ -38,7 +38,11 @@ script:
   # Install all the required roles.
   #- "ansible-galaxy install -r requirements.yml --force"
   ## Where are we?
-  - "tree ../"
+#  - "tree ../"
+  - "find ."
+  - "ls -la ../"
+  - "ls -la ../../"
+  - "ls -la /"
 
   ## Syntax Check
   #- "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
