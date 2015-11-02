@@ -1,39 +1,55 @@
 ---
 language: python
 python: "2.7"
+sudo: required
+
+env:
+  #matrix:
+  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=1.9.2
+
+branches:
+  only:
+#  - master
+  - travis
+
+services:
+  - docker
 
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install tree
+  - docker pull weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION}
+#  - sudo apt-get update -qq
+#  - sudo apt-get install tree
 
 install:
   # Install Ansible.
-  - pip install ansible
+  #- pip install ansible
 
   # /home/travis/build/CSC-IT-Center-for-Science/fgci-ansible/tests/roles/ansible-role-aliases or /home/travis/build/CSC-IT-Center-for-Science/fgci-ansible/tests/ansible-role-aliases or /home/travis/build/CSC-IT-Center-for-Science/ansible-role-aliases
   # roles_path = /opt/mysite/roles:/opt/othersite/roles
   #
   # Add ansible.cfg to pick up roles path.
-  - "{ echo '[defaults]'; echo 'roles_path = ../:fgci-ansible/roles:roles'; } >> ansible.cfg"
-  # Add an empty ssh.config which is called from ansible.cfg
-  - "echo '' >> ssh.config"
-  # Print ansible version
-  - "ansible --version"
+  #- "{ echo '[defaults]'; echo 'roles_path = ../:fgci-ansible/roles:roles'; } >> ansible.cfg"
+  ## Add an empty ssh.config which is called from ansible.cfg
+  #- "echo '' >> ssh.config"
+  ## Print ansible version
+  #- "ansible --version"
 
 script:
   # Install all the required roles.
-  - "ansible-galaxy install -r requirements.yml --force"
-  # Where are the roles installed?
-  - "tree ../"
+  #- "ansible-galaxy install -r requirements.yml --force"
+  ## Where are the roles installed?
+  #- "tree ../"
 
-  # Syntax Check
-  - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
+  ## Syntax Check
+  #- "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
 
-  # --check would be nice, but the current travis config is Ubuntu only. Would need to use Travis's docker to run with CentOS7
-  #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo --check"
+  ## --check would be nice, but the current travis config is Ubuntu only. Would need to use Travis's docker to run with CentOS7
+  ##- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo --check"
 
- # Run the role/playbook with ansible-playbook.
-  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+ ## Run the role/playbook with ansible-playbook.
+  #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+  # Run the test in Container
+  - docker run --rm=true -v `pwd`:/ansible-apache:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/bash -c "/fgci-ansible/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"
 
 notifications:
   email: false
