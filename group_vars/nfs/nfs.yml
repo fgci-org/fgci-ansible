@@ -7,6 +7,7 @@ kickstart_partitions: |
   bootloader --location=mbr --append="selinux=0" --boot-drive=sda
   zerombr
   clearpart --initlabel --drives=sda --all
+  part /boot --fstype="ext3" --size=400
   part swap --fstype="swap" --size=10000
   part pv.01 --fstype="lvmpv" --size=1 --grow
   part /scratch --fstype="xfs" --onpart=sdc

@@ -1,0 +1,14 @@
+---
+#
+# This role will reboot all compute nodes
+#
+
+- name: Reboot Compute Nodes
+  hosts: install
+  remote_user: root
+  
+  tasks:
+  - name: Reboot compute nodes
+    command: /bin/ssh {{ item }} reboot
+    with_items: groups.compute
+
