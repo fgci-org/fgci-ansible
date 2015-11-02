@@ -54,8 +54,8 @@ script:
  ## Run the role/playbook with ansible-playbook.
   #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
   # Run the test in Container
-  - docker run --rm=true -v `pwd`:/fgci-ansible:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} "find ."
-#  - docker run --rm=true -v `pwd`:/fgci-ansible:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/bash -c "/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"
+  #- docker run --rm=true -v `pwd`:/fgci-ansible:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/ls /
+  - docker run --rm=true -v `pwd`:/fgci-ansible:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/bash -c "/fgci-ansible/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"
 
 notifications:
   email: false
