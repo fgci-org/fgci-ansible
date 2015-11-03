@@ -2,6 +2,7 @@
 
 # Order of roles is important
 # vars are documented in https://github.com/CSC-IT-Center-for-Science/fgci-ansible/tree/master/examples
+# slurm_type - we only do the slurm service node tasks because submit/compute depend on the munge key from the service node task.
 
  - hosts: localhost
    remote_user: root
@@ -9,6 +10,7 @@
      - trusted_public_networks: "10.0.0.0/8"
      - trusted_public_ipv6_networks: "fd11::/64"
      - slurm_mysql_password: "slurmpassword"
+     - slurm_type: "service"
    roles:
      - fgci-ansible
      - ansible-role-yum
