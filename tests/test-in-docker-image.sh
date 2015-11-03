@@ -44,6 +44,21 @@ id
 
 }
 
+function install_ansible_devel() {
+
+# http://docs.ansible.com/ansible/intro_installation.html#latest-release-via-yum
+
+yum -y install PyYAML python-paramiko python-jinja2 python-httplib2 rpm-build make python2-devel
+rm -Rf ansible
+git clone https://github.com/ansible/ansible --recursive
+cd ansible
+make rpm
+rpm -Uvh ./rpm-build/ansible-*.noarch.rpm
+cd ..
+rm -Rf ansible
+
+}
+
 function install_os_deps() {
 yum -y install epel-release sudo
 yum -y install ansible tree git
@@ -83,6 +98,7 @@ function extra_tests(){
 set -e
 function main(){
     install_os_deps
+    install_ansible_devel
     show_version
     tree_list
     test_install_requirements
