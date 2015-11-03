@@ -7,6 +7,8 @@
    remote_user: root
    vars:
      - trusted_public_networks: "10.0.0.0/8"
+     - trusted_public_ipv6_networks: "fd11::/64"
+     - slurm_mysql_password: "slurmpassword"
    roles:
      - fgci-ansible
      - ansible-role-yum
