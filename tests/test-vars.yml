@@ -1,0 +1,5 @@
+---
+
+# Variables only used while testing
+# These should all be represented in https://github.com/CSC-IT-Center-for-Science/fgci-ansible/tree/master/examples
+trusted_public_networks: "10.0.0.0/8"
