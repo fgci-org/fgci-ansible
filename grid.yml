@@ -27,7 +27,7 @@
   - { role: ansible-role-rsyslog-client, tags: [ 'rsyslog-client' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
-  - { role: ansible-role-nis, tags: [ 'nis' ] }
+    #  - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }

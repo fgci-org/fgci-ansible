@@ -24,7 +24,8 @@ repos:
 
 hyper: "{{siteName}}-admin.{{siteDomain}}"
 bastion_host: "{{siteName}}-admin.{{siteDomain}}"
-http_proxy: "http://{{ hostvars[groups['login'][0]]['ansible_hostname'] }}:3128"
+#http_proxy: "http://{{ hostvars[groups['login'][0]]['ansible_hostname'] }}:3128"
+http_proxy: "http://{{ int_gateway }}:3128"
 env_virt_install: { http_proxy: "{{ http_proxy }}" }
 central_log_host: "@{{siteName}}-admin.{{siteDomain}}"
 
