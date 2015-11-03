@@ -20,7 +20,7 @@ before_install:
   - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
-  - docker pull centos7:centos7
+#  - docker pull centos7:centos7
 #  - sudo apt-get update -qq
 
 install:
