@@ -5,12 +5,14 @@ admingroup: "admin"
 # network
 
 external_interface: "eth0"
+#external_bridge: "br_ext"
 ext_net_addr: "86.50.166.0"
 ext_ip_addr: "86.50.166.63"
 ext_net_mask: "255.255.255.0"
 ext_gateway: "86.50.166.1"
 
 internal_interface: "eth1"
+#internal_bridge: "br_int"
 int_net_addr: "10.1.0.0"
 int_ip_addr: "10.1.1.2"
 int_net_mask: "255.255.0.0"
@@ -23,49 +25,58 @@ network_ether_interfaces:
   - device: "{{external_interface}}"
     bootproto: "static"
     onboot: "yes"
+    address: "{{ext_ip_addr}}"
     netmask: "{{ext_net_mask}}"
     gateway: "{{ext_gateway}}"
     defroute: "yes"
     nm_controlled: "no"
     type: "Ethernet"
-
-  - device: "{{internal_interface}}"
-    bootproto: "static"
-    onboot: "yes"
-    nm_controlled: "no"
-    type: "Ethernet"
-
-network_bridge_interfaces:
-  - device: "br_ext"
-    type: "Bridge"
-    bootproto: "static"
-    onboot: "yes"
-    #stp: "on"
-    address: "{{ext_ip_addr}}"
-    netmask: "{{ext_net_mask}}"
-    gateway: "{{ext_gateway}}"
-    ports: ["{{external_interface}}"]
-    nm_controlled: "no"
     route:
       - network: "{{ext_net_addr}}"
         netmask: "{{ext_net_mask}}"
         gateway: "{{ext_gateway}}"
 
-  - device: "br_int"
-    type: "Bridge"
+
+  - device: "{{internal_interface}}"
     bootproto: "static"
     onboot: "yes"
-    #stp: "on"
     address: "{{int_ip_addr}}"
     netmask: "{{int_net_mask}}"
-    ports: ["{{internal_interface}}"]
     nm_controlled: "no"
+    type: "Ethernet"
+
+#network_bridge_interfaces:
+#  - device: "br_ext"
+#    type: "Bridge"
+#    bootproto: "static"
+#    onboot: "yes"
+#    defroute: "yes"
+#    #stp: "on"
+#    address: "{{ext_ip_addr}}"
+#    netmask: "{{ext_net_mask}}"
+#    gateway: "{{ext_gateway}}"
+#    ports: ["{{external_interface}}"]
+#    nm_controlled: "no"
+#    route:
+#      - network: "{{ext_net_addr}}"
+#        netmask: "{{ext_net_mask}}"
+#        gateway: "{{ext_gateway}}"
+#
+#  - device: "br_int"
+#    type: "Bridge"
+#    bootproto: "static"
+#    onboot: "yes"
+#    #stp: "on"
+#    address: "{{int_ip_addr}}"
+#    netmask: "{{int_net_mask}}"
+#    ports: ["{{internal_interface}}"]
+#    nm_controlled: "no"
 
 ## DHCP_SERVER
 
 dhcp_interfaces: "{{ internal_interface }}"
 dhcp_common_domain: "fgci.csc.fi"
-#dhcp_common_nameservers: "{{ int_ip_addr }}",193.166.4.24, 193.166.4.25
+#dhcp_common_nameservers: "{{ int_ip_addr }}, 193.166.4.24, 193.166.4.25"
 dhcp_common_nameservers: 127.0.0.1
 dhcp_common_default_lease_time: 7200
 dhcp_common_max_lease_time: 14400

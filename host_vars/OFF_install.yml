@@ -21,24 +21,41 @@ network_ether_interfaces:
   - device: "{{external_interface}}"
     bootproto: "static"
     onboot: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
+
+  - device: "{{internal_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
+
+network_bridge_interfaces:
+  - device: "br_ext"
+    type: "Bridge"
+    bootproto: "static"
+    onboot: "yes"
+    #stp: "on"
     address: "{{ext_ip_addr}}"
     netmask: "{{ext_net_mask}}"
     gateway: "{{ext_gateway}}"
-    defroute: "yes"
+    ports: ["{{external_interface}}"]
     nm_controlled: "no"
-    type: "Ethernet"
     route:
       - network: "{{ext_net_addr}}"
         netmask: "{{ext_net_mask}}"
         gateway: "{{ext_gateway}}"
 
-  - device: "{{internal_interface}}"
+  - device: "br_int"
+    type: "Bridge"
     bootproto: "static"
     onboot: "yes"
+    #stp: "on"
     address: "{{int_ip_addr}}"
     netmask: "{{int_net_mask}}"
+    ports: ["{{internal_interface}}"]
     nm_controlled: "no"
-    type: "Ethernet"
+
 
 # Kickstart file specifics
 
