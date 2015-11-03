@@ -42,6 +42,11 @@ ansible --version
 
 }
 
+function install_systemd() {
+sudo yum -y install systemd
+
+}
+
 function tree_list() {
 
 sudo yum -y install tree
@@ -78,6 +83,7 @@ set -e
 function main(){
     show_version
     tree_list
+    install_systemd
     test_install_requirements
     test_playbook_syntax
     test_playbook
