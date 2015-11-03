@@ -40,16 +40,17 @@ function show_version() {
 
 ansible --version
 
+id
+
 }
 
-function install_systemd() {
-sudo yum -y install systemd
+function install_os_deps() {
+yum -y install epel-release sudo
+yum -y install ansible tree git
 
 }
 
 function tree_list() {
-
-sudo yum -y install tree
 
 tree
 
@@ -81,9 +82,9 @@ function extra_tests(){
 
 set -e
 function main(){
+    install_os_deps
     show_version
     tree_list
-    install_systemd
     test_install_requirements
     test_playbook_syntax
     test_playbook
