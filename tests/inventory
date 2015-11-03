@@ -1,3 +1,10 @@
+# https://github.com/CSC-IT-Center-for-Science/fgci-ansible/blob/master/examples/hosts-example
+localhost
+
+[login]
+localhost
+
+[admin]
 localhost
 
 [install]
@@ -7,4 +14,16 @@ localhost
 localhost ip_address=10.1.100.1 mac_address=00:11:22:33:44:55 pxe=yes
 
 [pxe_bootable_nodes:children]
+compute
+
+[production:children]
+install
+admin
+#login
+grid
+
+[slurm_service:children]
+install
+
+[slurm_compute:children]
 compute
