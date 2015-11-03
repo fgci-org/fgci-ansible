@@ -53,7 +53,7 @@ yum -y install PyYAML python-paramiko python-jinja2 python-httplib2 rpm-build ma
 rm -Rf ansible
 git clone https://github.com/ansible/ansible --recursive
 cd ansible
-make rpm
+make rpm 2>&1 >/dev/null
 rpm -Uvh ./rpm-build/ansible-*.noarch.rpm
 cd ..
 rm -Rf ansible
