@@ -9,6 +9,6 @@
   
   tasks:
   - name: Reboot compute nodes
-    command: /bin/ssh {{ item }} reboot
+    command: /bin/ssh {{ item }} 'reboot'
     with_items: groups.compute
 
