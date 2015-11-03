@@ -4,7 +4,7 @@
 
  - hosts: localhost
    remote_user: root
-   vars_files: test-vars.yml
+   vars_files: "testvars.yml"
    roles:
      - fgci-ansible
      - ansible-role-yum
