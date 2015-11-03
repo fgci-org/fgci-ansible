@@ -17,27 +17,15 @@ services:
 
 before_install:
   - sudo apt-get update
-#  - sudo apt-get upgrade lxc-docker
   - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
-  - docker pull weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION}
+  - docker pull centos7:centos7
 #  - sudo apt-get update -qq
-#  - sudo apt-get install tree
 
 install:
   # Install Ansible.
   #- pip install ansible
-
-  # /home/travis/build/CSC-IT-Center-for-Science/fgci-ansible/tests/roles/ansible-role-aliases or /home/travis/build/CSC-IT-Center-for-Science/fgci-ansible/tests/ansible-role-aliases or /home/travis/build/CSC-IT-Center-for-Science/ansible-role-aliases
-  # roles_path = /opt/mysite/roles:/opt/othersite/roles
-  #
-  # Add ansible.cfg to pick up roles path.
-  #- "{ echo '[defaults]'; echo 'roles_path = ../:fgci-ansible/roles:roles'; } >> ansible.cfg"
-  ## Add an empty ssh.config which is called from ansible.cfg
-  #- "echo '' >> ssh.config"
-  ## Print ansible version
-  #- "ansible --version"
 
 script:
   # Install all the required roles.
@@ -45,18 +33,13 @@ script:
   ## Where are we?
   - "find $PWD"
 
-  ## Syntax Check
-  #- "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
-
-  ## --check would be nice, but the current travis config is Ubuntu only. Would need to use Travis's docker to run with CentOS7
-  ##- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo --check"
-
- ## Run the role/playbook with ansible-playbook.
-  #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
-  # Run the test in Container
-  #- docker run --rm=true -v `pwd`:/fgci-ansible:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/ls /
-  #- docker run --rm=true -v `pwd`:/fgci-ansible:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/bash -c "/fgci-ansible/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"
-  - docker run --rm=true -v `pwd`:/fgci-ansible:rw centos:7 /bin/bash -c "/fgci-ansible/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"
+  ## Run it in a CentOS7 privileged docker
+  # This is heavily nested.
+  # First build a new docker image.
+  # Install new image
+  # Inside compile ansible from source (because ansible 1.9.2 and systemd was not happy together)
+  # Do several ansible checks
+  - "/bin/bash tests/launch-docker.sh"
 
 notifications:
   email: false
