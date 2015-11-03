@@ -48,7 +48,7 @@ function install_ansible_devel() {
 
 # http://docs.ansible.com/ansible/intro_installation.html#latest-release-via-yum
 
-yum -y install PyYAML python-paramiko python-jinja2 python-httplib2 rpm-build make python2-devel
+yum -y install PyYAML python-paramiko python-jinja2 python-httplib2 rpm-build make python2-devel asciidoc
 rm -Rf ansible
 git clone https://github.com/ansible/ansible --recursive
 cd ansible
