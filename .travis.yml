@@ -20,6 +20,7 @@ before_install:
   - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
+  - "find $PWD"
 #  - docker pull centos7:centos7
 #  - sudo apt-get update -qq
 
@@ -28,16 +29,11 @@ install:
   #- pip install ansible
 
 script:
-  # Install all the required roles.
-  #- "ansible-galaxy install -r requirements.yml --force"
-  ## Where are we?
-  - "find $PWD"
-
   ## Run it in a CentOS7 privileged docker
   # This is heavily nested.
-  # First build a new docker image.
-  # Install new image
-  # Inside compile ansible from source (because ansible 1.9.2 and systemd was not happy together)
+  # First build a new docker container
+  # Install new container
+  # Inside the container compile ansible from source (because ansible 1.9.2 and systemd was not happy together)
   # Do several ansible checks
   - "/bin/bash tests/launch-docker.sh"
 
