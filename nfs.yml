@@ -13,6 +13,7 @@
 
   roles: 
   - { role: network_interface, tags: [ 'network' ] }
+  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }

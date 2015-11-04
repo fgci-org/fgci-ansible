@@ -1,12 +1,28 @@
 ---
 internal_interface: "em2" 
 external_interface: "em1"
+ib_interface: "ib0"
+
 internal_net: "10.1.0.0/16"
+
 int_ip_addr: "10.1.1.4"
 internal_ip: "{{int_ip_addr}}"
 int_net_mask: "255.255.0.0"
+
 ext_ip_addr: "86.50.166.61"
 ext_net_mask: "255.255.255.0"
+
+ib_ip_addr: "10.2.1.4"
+ib_net_mask: "255.255.0.0"
+
+network_ether_interfaces:
+  - device: "{{ib_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{ib_ip_addr}}"
+    netmask: "{{ib_net_mask}}"
+    nm_controlled: "no"
+
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:
@@ -149,4 +165,9 @@ kickstart_packages: |
   subversion
   xerces-c
   yum-plugin-fastestmirror
+
+# NFS mounts
+nfs_mount: |
+  10.2.1.5:/scratch /scratch                nfs4 defaults 0 0
+  10.2.1.5:/home    /home                   nfs4 defaults 0 0
 

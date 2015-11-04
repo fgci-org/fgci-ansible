@@ -1,8 +1,19 @@
 ---
 
 internal_interface: "em1"
+ib_interface: "ib0"
+
+ib_ip_addr: "10.2.1.5"
+ib_net_mask: "255.255.0.0"
 
 network_ether_interfaces:
+  - device: "{{ib_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{ib_ip_addr}}"
+    netmask: "{{ib_net_mask}}"
+    nm_controlled: "no"
+
   - device: "{{internal_interface}}"
     bootproto: "dhcp"
     onboot: "yes"
@@ -43,5 +54,5 @@ kickstart_packages: |
 
 # NFS exports
 
-nfs_exports: { "/home 10.1.0.0/16(rw,sync,no_root_squash)","/scratch 10.1.0.0/16(rw,no_root_squash)" }
+nfs_exports: { "/home 10.2.0.0/16(rw,sync,no_root_squash)","/scratch 10.2.0.0/16(rw,no_root_squash)" }
 
