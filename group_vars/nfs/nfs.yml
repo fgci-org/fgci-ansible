@@ -41,3 +41,7 @@ kickstart_packages: |
   openssh-server
   yum-plugin-fastestmirror
 
+# NFS exports
+
+nfs_exports: { "/home 10.1.0.0/16(rw,sync,no_root_squash)","/scratch 10.1.0.0/16(rw,no_root_squash)" }
+

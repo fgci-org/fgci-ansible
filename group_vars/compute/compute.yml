@@ -65,3 +65,7 @@ kickstart_packages: |
   subversion
   xerces-c
   yum-plugin-fastestmirror
+
+
+# NFS mounts
+

@@ -77,3 +77,6 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nis
   path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs
+  path: roles
