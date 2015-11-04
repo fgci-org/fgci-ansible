@@ -35,8 +35,8 @@
      - ansible-role-system-limits
      - ansible-role-users
      - ansible-role-flowdock
-#     - ansible-role-yum-cron
-#     - dns
+     - ansible-role-yum-cron
+     - dns
 #     - ip_forwarder
 #     - network_interface
 #     - provision_vm
