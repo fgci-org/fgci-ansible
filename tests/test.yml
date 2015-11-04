@@ -29,7 +29,7 @@
 #     - ansible-role-pxe_config
      - ansible-role-rdma
      - ansible-role-rsyslog
-     - ansible-role-slurm
+#     - ansible-role-slurm
      - ansible-role-squid
      - ansible-role-sshd
      - ansible-role-system-limits

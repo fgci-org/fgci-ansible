@@ -18,9 +18,10 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-# generate ssh keys (not sure why..)
+# generate ssh keys
 RUN ssh-keygen -q -t rsa -f ~/.ssh/id_rsa
 # http://developerblog.redhat.com/2014/05/05/running-systemd-within-docker-container/ 
-RUN yum -y install httpd mariadb ; yum clean all; systemctl enable httpd.service mariadb.service; systemctl start httpd.service mariadb.service
+# This does not help: 
+# RUN yum -y install httpd mariadb ; yum clean all; systemctl enable httpd.service mariadb.service; systemctl start httpd.service mariadb.service
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/sbin/init"]
