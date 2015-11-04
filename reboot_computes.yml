@@ -6,8 +6,9 @@
 - name: Reboot Compute Nodes
   hosts: compute
   remote_user: root
+  gather_facts: false 
   
   tasks:
   - name: Reboot compute nodes
-    command: /sbin/reboot
+    command: /sbin/shutdown -r
     ignore_errors: yes
