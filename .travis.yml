@@ -9,8 +9,8 @@ env:
 
 branches:
   only:
-#  - master
-  - travis
+  - master
+#  - travis
 
 services:
   - docker

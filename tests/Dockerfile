@@ -20,8 +20,11 @@ rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # generate ssh keys
 RUN ssh-keygen -q -t rsa -f ~/.ssh/id_rsa
+## mariadb does not work in this Docker
 # http://developerblog.redhat.com/2014/05/05/running-systemd-within-docker-container/ 
 # This does not help: 
 # RUN yum -y install httpd mariadb ; yum clean all; systemctl enable httpd.service mariadb.service; systemctl start httpd.service mariadb.service
+# Still get the "Failed to get D-Bus connection: No connection to service manager." error when starting mariadb.
+##
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/sbin/init"]
