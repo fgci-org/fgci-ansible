@@ -1,0 +1,5 @@
+---
+# defaults for dns role
+
+nameserver1: "10.0.0.1"
+nameserver2: "10.1.0.1"
