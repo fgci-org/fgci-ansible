@@ -3,7 +3,8 @@
 SOURCE="${BASH_SOURCE[0]}"
 RDIR="$( dirname "$SOURCE" )"
 SUDO=`which sudo 2> /dev/null`
-SUDO_OPTION="--sudo"
+SUDO_OPTION=""
+#SUDO_OPTION="--sudo"
 OS_TYPE=${1:-}
 OS_VERSION=${2:-}
 ANSIBLE_VERSION=${3:-}
