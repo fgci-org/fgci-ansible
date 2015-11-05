@@ -19,7 +19,7 @@ int_net_mask: "255.0.0.0"
 int_gateway: "10.1.1.4"
 
 internal_ip: "{{int_ip_addr}}"
-internal_net: "10.1.1.0/8" 
+internal_net: "10.0.0.0/8" 
 
 network_ether_interfaces:
   - device: "{{external_interface}}"
