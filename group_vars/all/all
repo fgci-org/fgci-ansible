@@ -76,7 +76,8 @@ fgci_install: True
 
 # E-mail aliases
 aliases:
- - { user: "root", alias: "grid-support@postit.csc.fi" }
+# - { user: "root", alias: "grid-support@postit.csc.fi" }
+ - { user: "root", alias: "{{ adminMailAddr }}" }
 
 # SSHD
 # Default in CentOS7 is that GSSAPICleanupCredentials is "no". https://bugzilla.redhat.com/show_bug.cgi?id=1055016
