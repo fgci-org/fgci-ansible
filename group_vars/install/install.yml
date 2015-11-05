@@ -104,6 +104,8 @@ nis_server: True
 nis_initialize: True
 nis_enabled: True
 
+# DNSmasq
+dnsmasq_listen_address: "{{ int_ip_addr }}"
 
 ## KS profile and server Dir
 ksBootSrvDir: "/var/www/html/ks"
