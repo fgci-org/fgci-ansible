@@ -76,7 +76,6 @@ fgci_install: True
 
 # E-mail aliases
 aliases:
-# - { user: "root", alias: "grid-support@postit.csc.fi" }
  - { user: "root", alias: "{{ adminMailAddr }}" }
 
 # SSHD
