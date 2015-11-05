@@ -1,12 +1,43 @@
 ---
+
 internal_interface: "eth1" 
-external_interface: "eth0"
-internal_net: "10.0.0.0/8"
+int_net_addr: "10.0.0.0"
 int_ip_addr: "10.1.1.3"
-internal_ip: "{{int_ip_addr}}"
 int_net_mask: "255.0.0.0"
+int_gateway: "10.1.1.4"
+
+external_interface: "eth0"
 ext_ip_addr: "86.50.166.64"
 ext_net_mask: "255.255.255.0"
+ext_gateway: "86.50.166.1"
+ext_net_addr: "86.50.166.0"
+
+internal_ip: "{{int_ip_addr}}"
+internal_net: "10.0.0.0/8"
+
+network_ether_interfaces:
+  - device: "{{external_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{ext_ip_addr}}"
+    netmask: "{{ext_net_mask}}"
+    gateway: "{{ext_gateway}}"
+    defroute: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
+    route:
+      - network: "{{ext_net_addr}}"
+        netmask: "{{ext_net_mask}}"
+        gateway: "{{ext_gateway}}"
+
+  - device: "{{internal_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{int_ip_addr}}"
+    netmask: "{{int_net_mask}}"
+    nm_controlled: "no"
+    type: "Ethernet"
+
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:
