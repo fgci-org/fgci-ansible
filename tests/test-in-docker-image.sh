@@ -3,7 +3,8 @@
 SOURCE="${BASH_SOURCE[0]}"
 RDIR="$( dirname "$SOURCE" )"
 SUDO=`which sudo 2> /dev/null`
-SUDO_OPTION="--sudo"
+SUDO_OPTION=""
+#SUDO_OPTION="--sudo"
 OS_TYPE=${1:-}
 OS_VERSION=${2:-}
 ANSIBLE_VERSION=${3:-}
@@ -48,24 +49,23 @@ id
 function install_ansible_devel() {
 
 # http://docs.ansible.com/ansible/intro_installation.html#latest-release-via-yum
-echo "building ansible"
+echo "TEST: building ansible"
 
-yum -y install PyYAML python-paramiko python-jinja2 python-httplib2 rpm-build make python2-devel asciidoc
+yum -y install PyYAML python-paramiko python-jinja2 python-httplib2 rpm-build make python2-devel asciidoc 2>&1 >/dev/null || (echo "Could not install ansible yum dependencies" && exit 2 )
 rm -Rf ansible
-git clone https://github.com/ansible/ansible --recursive
+git clone https://github.com/ansible/ansible --recursive ||(echo "Could not clone ansible from Github" && exit 2 )
 cd ansible
 make rpm 2>&1 >/dev/null
-rpm -Uvh ./rpm-build/ansible-*.noarch.rpm
+rpm -Uvh ./rpm-build/ansible-*.noarch.rpm ||(echo "Could not install built ansible devel rpms" && exit 2 )
 cd ..
 rm -Rf ansible
 
 }
 
 function install_os_deps() {
-echo "installing os deps"
+echo "TEST: installing os deps"
 
-yum -y install epel-release sudo
-yum -y install ansible tree git
+yum -y install epel-release sudo ansible tree git ||(echo "Could not install some os deps" && exit 2 )
 
 }
 
@@ -76,22 +76,22 @@ tree
 }
 
 function test_install_requirements(){
-    echo "ansible-galaxy install -r requirements.yml --force"
+    echo "TEST: ansible-galaxy install -r requirements.yml --force"
 
-    ansible-galaxy install -r requirements.yml --force || (echo "requirements install failed" && exit 2 )
+    ansible-galaxy install -r requirements.yml --force ||(echo "requirements install failed" && exit 2 )
 
 }
 
 function test_playbook_syntax(){
-    echo "ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} --syntax-check"
+    echo "TEST: ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} --syntax-check"
 
-    ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} --syntax-check || (echo "ansible playbook syntax check was failed" && exit 2 )
+    ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} --syntax-check ||(echo "ansible playbook syntax check was failed" && exit 2 )
 }
 
 function test_playbook(){
-    echo "ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS}"
+    echo "TEST: ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS}"
 
-    ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS} || ( echo "first run was failed" && exit 2 )
+    ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS} ||(echo "first run was failed" && exit 2 )
 
     # Run the role/playbook again, checking to make sure it's idempotent.
     # ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' ) || (echo 'Idempotence test: fail' && exit 1)
@@ -107,7 +107,7 @@ function main(){
     install_os_deps
     install_ansible_devel
     show_version
-    tree_list
+#    tree_list
     test_install_requirements
     test_playbook_syntax
     test_playbook

@@ -99,12 +99,7 @@ collectd_network_server: False
 collectd_plugin_packages:
  - collectd-write_tsdb
 
-#sssd
-ldap_search_base: "dc=example,dc=com"
-ldap_user_search_base: "ou=People,{{ ldap_search_base }}"
-ldap_group_search_base: "ou=Group,{{ ldap_search_base }}"
-ldap_default_bind_dn: "cn=Manager,{{ ldap_search_base }}"
-ldap_uri: "ldaps://{{ hostvars[groups['install'][0]]['ansible_hostname'] }}/, ldap://{{ hostvars[groups['install'][0]]['ansible_hostname'] }}/"
-ldap_backup_uri: "ldaps://{{ hostvars[groups['install'][0]]['ansible_hostname'] }}"
-ldap_sudo_search_base: "cn=admin,{{ ldap_group_search_base }}"
+#NIS
+#
+nis_domain: "fgci.csc.fi"
 
