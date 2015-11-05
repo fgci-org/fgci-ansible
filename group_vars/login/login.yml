@@ -3,17 +3,17 @@ internal_interface: "em2"
 external_interface: "em1"
 ib_interface: "ib0"
 
-internal_net: "10.1.0.0/16"
+internal_net: "10.0.0.0/8"
 
 int_ip_addr: "10.1.1.4"
 internal_ip: "{{int_ip_addr}}"
-int_net_mask: "255.255.0.0"
+int_net_mask: "255.0.0.0"
 
 ext_ip_addr: "86.50.166.61"
 ext_net_mask: "255.255.255.0"
 
 ib_ip_addr: "10.2.1.4"
-ib_net_mask: "255.255.0.0"
+ib_net_mask: "255.0.0.0"
 
 network_ether_interfaces:
   - device: "{{ib_interface}}"

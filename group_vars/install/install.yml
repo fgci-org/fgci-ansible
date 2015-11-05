@@ -13,13 +13,13 @@ ext_gateway: "86.50.166.1"
 
 internal_interface: "eth1"
 #internal_bridge: "br_int"
-int_net_addr: "10.1.0.0"
+int_net_addr: "10.0.0.0"
 int_ip_addr: "10.1.1.2"
-int_net_mask: "255.255.0.0"
+int_net_mask: "255.0.0.0"
 int_gateway: "10.1.1.4"
 
 internal_ip: "{{int_ip_addr}}"
-internal_net: "10.1.1.0/16" 
+internal_net: "10.1.1.0/8" 
 
 network_ether_interfaces:
   - device: "{{external_interface}}"
@@ -49,8 +49,8 @@ network_ether_interfaces:
 
 dhcp_interfaces: "{{ internal_interface }}"
 dhcp_common_domain: "fgci.csc.fi"
-#dhcp_common_nameservers: "{{ int_ip_addr }}, 193.166.4.24, 193.166.4.25"
-dhcp_common_nameservers: 127.0.0.1
+dhcp_common_nameservers: "{{ int_ip_addr }}, 193.166.4.24, 193.166.4.25"
+#dhcp_common_nameservers: 127.0.0.1
 dhcp_common_default_lease_time: 7200
 dhcp_common_max_lease_time: 14400
 dhcp_common_options: []
@@ -108,3 +108,10 @@ nis_domain: "fgci.csc.fi"
 
 ## KS profile and server Dir
 ksBootSrvDir: "/var/www/html/ks"
+
+# NFS mounts
+
+nfs_mount: |
+  10.2.1.5:/scratch /scratch                nfs4 defaults 0 0
+  10.2.1.5:/home    /home                   nfs4 defaults 0 0
+
