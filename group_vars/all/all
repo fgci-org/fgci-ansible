@@ -8,8 +8,9 @@ nodeBase: io
 
 int_gateway: "10.1.1.4"
 ext_gateway: "86.50.166.1"
-nameserver1: "193.166.4.24"
-nameserver2: "193.166.4.25"
+nameserver1: "10.1.1.2"
+nameserver2: "193.166.4.24"
+nameserver3: "193.166.4.25"
 
 enable_ext_nic: "yes"
 enable_int_nic: "yes"
