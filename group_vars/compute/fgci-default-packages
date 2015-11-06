@@ -50,6 +50,7 @@ unconfigured_packages:
   - nscd
   - numpy
   - openmpi
+  - openmpi-devel
   - openssh-server
   #  - pdsh
   - perl-Filesys-Df
