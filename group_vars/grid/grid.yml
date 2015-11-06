@@ -89,4 +89,51 @@ nfs_mount: |
   10.2.1.5:/scratch /scratch                nfs4 defaults 0 0
   10.2.1.5:/home    /home                   nfs4 defaults 0 0
 
+
 # ARC Frontend vars
+#
+#
+
+# Check if we maintain this VO
+voName: "fgi.csc.fi"
+
+instSiteURL: "http://www.csc.fi"
+gocDBName: "CSC"
+infoSysAdminDomain: "csc.fi"
+
+resource_location: "Espoo, Finland"
+resource_latitude: "60.18"
+resource_longitude: "24.83"
+
+slurm_wakeupperiod: "60"
+
+globus_tcp_port_range: "20000,25000"
+globus_udp_port_range: "20000,25000"
+
+x509_user_key: "/etc/grid-security/hostkey.pem"
+x509_user_cert: "/etc/grid-security/hostcert.pem"
+x509_cert_dir: "/etc/grid-security/certificates"
+
+gridmap: "/etc/grid-security/grid-mapfile"
+voms_processing: "strict"
+
+controldir: "/var/spool/nordugrid/jobstatus"
+sessiondir: "/scratch/grid"
+runtimedir: "/scratch/runtime"
+shared_scratch: "/scratch"
+
+cachedir: "/scratch/cache"
+cachesize: "80 70"
+cachelifetime: "60d"
+
+logsize: "1000000 52"
+shared_filesystem: "yes"
+joblog: "/var/log/arc/gm-jobs.log"
+
+maxjobs: "10000 10000 80"
+wakeupperiod: "30"
+defaultttl: "604800 1209600"
+authplugin: "FINISHED timeout=30,onfailure=pass /usr/local/bin/upload-stat %C/job.%I.statistics"
+arex_mount_point: "https:/{{ fqdn }}:443/"
+maxtransfertries: "10"
+
