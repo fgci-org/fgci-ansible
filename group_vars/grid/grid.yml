@@ -59,6 +59,15 @@ slurm_type: "submit"
 
 # Ferm - firewall
 ferm_rules_extra:
+ grid:
+ - chain: INPUT
+   table: filter
+   domains: [ip]
+   rules:
+     - {rule: "proto tcp dport (443) mod state state (NEW) mod comment comment 'Allow new 443' ACCEPT;", comment: "Allow HTTPS to grid Frontend"}
+     - {rule: "proto tcp dport (2811) mod state state (NEW) mod comment comment 'Allow new 2811' ACCEPT;", comment: "Allow 2811 to grid Frontend"}
+     - {rule: "proto tcp dport (2135) mod state state (NEW) mod comment comment 'Allow new 2135' ACCEPT;", comment: "Allow BDII to grid Frontend"}
+     - {rule: "proto tcp dport (20000:25000) mod state state (NEW) mod comment comment 'Allow new gridftp range' ACCEPT;", comment: "Allow gridftp to grid Frontend"}
  10_nat:
  - chain: FORWARD
    table: filter
