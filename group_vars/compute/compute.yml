@@ -31,7 +31,7 @@ ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}",
 # DNS
 nameserver1: "10.1.1.2"
 # No firewall on compute nodes
-disabled_packages:
+disable_packages:
  - "firewalld"
 
 ## PXE
