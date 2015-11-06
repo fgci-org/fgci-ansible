@@ -22,6 +22,10 @@
   wait_for: port=22 host="{{ fqdn }}" timeout=600
   delegate_to: "{{ hyper }}"
 
+- name: set vm to autostart
+  command: /bin/virsh autostart "{{ fqdn }}"
+  delegate_to: "{{ hyper }}"
+
 - name: Remove kickstart file
   file: path="{{ kickstart_tempdir }}/{{ inventory_hostname }}.ks" state=absent
   delegate_to: "{{ hyper }}"
