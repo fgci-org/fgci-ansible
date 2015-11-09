@@ -77,9 +77,9 @@ tree
 
 }
 function test_ansible_setup(){
-    echo "TEST: ansible -m setup -i ${ANSIBLE_INVENTORY} localhost"
+    echo "TEST: ansible -m setup -i ${ANSIBLE_INVENTORY} --connection=local localhost"
 
-    ansible -m setup -i ${ANSIBLE_INVENTORY} localhost
+    ansible -m setup -i ${ANSIBLE_INVENTORY} --connection=local localhost
 
 }
 
