@@ -76,6 +76,13 @@ function tree_list() {
 tree
 
 }
+function test_ansible_setup(){
+    echo "TEST: ansible -m setup -i ${ANSIBLE_INVENTORY} localhost"
+
+    ansible -m setup -i ${ANSIBLE_INVENTORY} localhost
+
+}
+
 
 function test_install_requirements(){
     echo "TEST: ansible-galaxy install -r requirements.yml --force"
@@ -118,6 +125,7 @@ function main(){
     show_version
 #    tree_list
     test_install_requirements
+    test_ansible_setup
     test_playbook_syntax
     test_playbook
     test_playbook_check
