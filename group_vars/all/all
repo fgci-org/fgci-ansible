@@ -38,6 +38,10 @@ vm_cpus: "4"
 slurm_version: "15.08.0"
 slurm_build: False
 
+# No firewalld anywhere
+disable_packages:
+ - "firewalld"
+
 # Ferm - firewall
 # Ordering is important. This rule is a default and is added early in the iptables rules.
 ferm_rules:
