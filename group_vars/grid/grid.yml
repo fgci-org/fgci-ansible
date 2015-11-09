@@ -143,6 +143,6 @@ maxjobs: "10000 10000 80"
 wakeupperiod: "30"
 defaultttl: "604800 1209600"
 authplugin: "FINISHED timeout=30,onfailure=pass /usr/local/bin/upload-stat %C/job.%I.statistics"
-arex_mount_point: "https:/{{ fqdn }}:443/"
+arex_mount_point: "https://{{ fqdn }}:443/"
 maxtransfertries: "10"
 
