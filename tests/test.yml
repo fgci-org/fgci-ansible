@@ -19,7 +19,6 @@
      - ansible-role-aliases
      - ansible-role-arc-client
      - ansible-role-arc-frontend
-     - ansible-role-bash
      - ansible-role-collectd
      - ansible-role-cuda
 #     - ansible-role-dhcp_server
@@ -27,6 +26,7 @@
      - ansible-role-fail2ban
      - ansible-role-ferm-firewall
      - ansible-role-fgci-admin
+     - ansible-role-fgci-bash
 #     - ansible-role-nfs
 #     - ansible-role-nfs_mount
      - ansible-role-nis
