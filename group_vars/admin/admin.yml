@@ -68,8 +68,8 @@ ferm_rules:
      - {rule: "interface lo ACCEPT;", comment: "allow local packet"}
      - {rule: "proto icmp ACCEPT;", comment: "respond to ping"}
      - {rule: "proto tcp dport (22) saddr ( {{ trusted_public_networks }} {{ trusted_public_ipv6_networks }} )mod comment comment 'SSH' ACCEPT;", comment: "SSH"}
-     - {rule: "proto tcp dport (53 514 123) interface ( br_int ib0 ib1 ) mod comment comment 'TCP Accept DNS,Rsyslog and NTP from internal net' ACCEPT;", comment: "internal"}
-     - {rule: "proto udp dport (53 514 123) interface ( br_int ib0 ib1 ) mod comment comment 'UDP Accept DNS,Rsyslog and NTP from internal net' ACCEPT;", comment: "internal"}
+     - {rule: "proto tcp dport (514 123) interface ( br_int ib0 ib1 ) mod comment comment 'TCP Accept Rsyslog and NTP from internal net' ACCEPT;", comment: "internal"}
+     - {rule: "proto udp dport (514 123) interface ( br_int ib0 ib1 ) mod comment comment 'UDP Accept Rsyslog and NTP from internal net' ACCEPT;", comment: "internal"}
  - chain: OUTPUT
    domains:
      - ip
