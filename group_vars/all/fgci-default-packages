@@ -57,6 +57,7 @@ unconfigured_packages:
   - xerces-c
 #  - ypbind
   - yum-plugin-fastestmirror
+  - wget
   - "zlib.i686"
 
 ib_unconfigured_packages:
