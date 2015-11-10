@@ -9,7 +9,6 @@ group_vars/*/trusted_networks.yml
 group_vars/*/ldap.yml
 ansible.cfg
 group_vars/*/secrets.yml
-group_vars/*/root_keys.yml
 secrets.yml
 
 # Ignore roles pulled through requirements.yml
