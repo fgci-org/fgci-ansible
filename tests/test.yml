@@ -18,7 +18,7 @@
      - ansible-role-cvmfs
      - ansible-role-aliases
      - ansible-role-arc-client
-     - ansible-role-arc-frontend
+#     - ansible-role-arc-frontend
      - ansible-role-collectd
      - ansible-role-cuda
 #     - ansible-role-dhcp_server
