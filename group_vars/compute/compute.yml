@@ -32,6 +32,8 @@ ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}",
 nameserver1: "10.1.1.2"
 # CVMFS
 cvmfs_http_proxy: "{{ http_proxy }}"
+# YUM proxy
+yum_proxy: "{{ http_proxy }}"
 
 ## PXE
 
