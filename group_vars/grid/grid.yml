@@ -65,6 +65,7 @@ ferm_rules_extra:
    domains: [ip]
    rules:
      - {rule: "proto tcp dport (443) mod state state (NEW) mod comment comment 'Allow new 443' ACCEPT;", comment: "Allow HTTPS to grid Frontend"}
+     - {rule: "proto tcp dport (8443) mod state state (NEW) mod comment comment 'Allow new 8443' ACCEPT;", comment: "Allow HTTPS to grid Frontend"}
      - {rule: "proto tcp dport (2811) mod state state (NEW) mod comment comment 'Allow new 2811' ACCEPT;", comment: "Allow 2811 to grid Frontend"}
      - {rule: "proto tcp dport (2135) mod state state (NEW) mod comment comment 'Allow new 2135' ACCEPT;", comment: "Allow BDII to grid Frontend"}
      - {rule: "proto tcp dport (20000:25000) mod state state (NEW) mod comment comment 'Allow new gridftp range' ACCEPT;", comment: "Allow gridftp to grid Frontend"}
@@ -127,11 +128,11 @@ gridmap: "/etc/grid-security/grid-mapfile"
 voms_processing: "strict"
 
 controldir: "/var/spool/nordugrid/jobstatus"
-sessiondir: "/scratch/grid"
-runtimedir: "/scratch/runtime"
+sessiondir: "/home/grid"
+runtimedir: "/home/runtime"
 shared_scratch: "/scratch"
 
-cachedir: "/scratch/cache"
+cachedir: "/home/cache"
 cachesize: "80 70"
 cachelifetime: "60d"
 
