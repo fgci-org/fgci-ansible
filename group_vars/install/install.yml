@@ -111,6 +111,9 @@ dnsmasq_listen_address: "{{ int_ip_addr }}"
 ## KS profile and server Dir
 ksBootSrvDir: "/var/www/html/ks"
 
+# central syslog
+central_log_host: "10.1.1.1"
+
 # NFS mounts
 
 nfs_mount: |
