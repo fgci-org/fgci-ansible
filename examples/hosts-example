@@ -1,7 +1,5 @@
 # file: hosts
 
-# this needs to be changed to something like "{{siteName}}-admin.{{domainName}}" Maybe!
-#hyper=phoenix-admin 
 
 [grid]
 phoenix-grid.fgi.csc.fi 
