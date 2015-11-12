@@ -34,10 +34,6 @@ central_log_host: "@{{siteName}}-admin.{{siteDomain}}"
 vm_mem: "16000"
 vm_cpus: "4"
 
-# Slurm
-slurm_version: "15.08.0"
-slurm_build: False
-
 # No firewalld anywhere
 disable_packages:
  - "firewalld"
