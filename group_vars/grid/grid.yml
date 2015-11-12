@@ -128,11 +128,11 @@ gridmap: "/etc/grid-security/grid-mapfile"
 voms_processing: "strict"
 
 controldir: "/var/spool/nordugrid/jobstatus"
-sessiondir: "/home/grid"
-runtimedir: "/home/runtime"
+sessiondir: "/scratch/grid"
+runtimedir: "/scratch/runtime"
 shared_scratch: "/scratch"
 
-cachedir: "/home/cache"
+cachedir: "/scratch/cache"
 cachesize: "80 70"
 cachelifetime: "60d"
 
@@ -147,3 +147,11 @@ authplugin: "FINISHED timeout=30,onfailure=pass /usr/local/bin/upload-stat %C/jo
 arex_mount_point: "https://{{ fqdn }}:443/"
 maxtransfertries: "10"
 
+unixgroup_dir_ops: "/etc/grid-security/opspool/"
+unixgroup_dir_fgi: "/etc/grid-security/fgipool/"
+
+group_name_ops: "gridops"
+group_name_fgi: "gridfgi"
+
+ops_acct_nr: 40
+fgi_acct_nr: 200
