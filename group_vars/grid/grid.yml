@@ -104,6 +104,9 @@ nfs_mount: |
 #
 #
 
+arc_frontend_nis: false
+add_slurm_accts: false
+
 # Check if we maintain this VO
 voName: "fgi.csc.fi"
 
