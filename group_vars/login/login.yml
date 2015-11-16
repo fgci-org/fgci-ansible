@@ -86,6 +86,7 @@ fail2ban_config:
   destemail: root@localhost
 fail2ban_jails:
   sshd:
+    banaction: "iptables-multiport"
     enabled: 'true'
     port: 'ssh'
     protocol: 'tcp'
