@@ -1,0 +1,24 @@
+---
+#
+# This role will shutdown all nodes
+#
+
+- name: Shutdown Compute Nodes
+  hosts: compute
+  remote_user: root
+  gather_facts: false 
+  
+  tasks:
+  - name: Shutdown compute nodes
+    command: /sbin/shutdown -h
+    ignore_errors: yes
+
+- name: Shutdown Compute Nodes
+  hosts: [ grid, install, login, nfs, admin ]
+  remote_user: root
+  gather_facts: false 
+  
+  tasks:
+  - name: Shutdown the rest of the nodes
+    command: /sbin/shutdown -h
+    ignore_errors: yes

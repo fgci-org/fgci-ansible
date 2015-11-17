@@ -9,5 +9,6 @@
   sudo: yes
 
   roles:
+  - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

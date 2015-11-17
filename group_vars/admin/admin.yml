@@ -93,14 +93,14 @@ ferm_rules_extra:
    table: filter
    domains: [ip, ip6]
    rules:
-     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;", comment: "forwarding"}
-     - {rule: "interface {{ external_interface }} outerface {{ internal_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface br_int outerface br_ext mod state state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface br_ext outerface br_int mod state state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;", comment: "forwarding"}
  - chain: POSTROUTING
    table: nat
    domains: [ip]
    rules:
      - {rule: "daddr ( {{ trusted_public_networks }} {{ internal_net }} ) mod comment comment 'masquerade for internal net' ACCEPT;", comment: "masquerade"}
-     - {rule: "outerface {{ external_interface }} saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
+     - {rule: "outerface br_ext saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
  - chain: PREROUTING
    table: nat
    domains: [ip]
