@@ -146,15 +146,16 @@ joblog: "/var/log/arc/gm-jobs.log"
 maxjobs: "10000 10000 80"
 wakeupperiod: "30"
 defaultttl: "604800 1209600"
-authplugin: "FINISHED timeout=30,onfailure=pass /usr/local/bin/upload-stat %C/job.%I.statistics"
+#authplugin: "FINISHED timeout=30,onfailure=pass /usr/local/bin/upload-stat %C/job.%I.statistics"
+authplugin: ""
 arex_mount_point: "https://{{ fqdn }}:443/"
 maxtransfertries: "10"
 
 unixgroup_dir_ops: "/etc/grid-security/opspool/"
 unixgroup_dir_fgi: "/etc/grid-security/fgipool/"
 
-group_name_ops: "gridops"
-group_name_fgi: "gridfgi"
+group_name_ops: "ops"
+group_name_fgi: "fgi"
 
 ops_acct_nr: 40
 fgi_acct_nr: 200
