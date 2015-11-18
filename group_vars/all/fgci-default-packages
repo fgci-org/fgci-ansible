@@ -60,6 +60,7 @@ unconfigured_packages:
   - yum-plugin-fastestmirror
   - wget
   - "zlib.i686"
+  - net-tools
 
 ib_unconfigured_packages:
   - "@infiniband"
