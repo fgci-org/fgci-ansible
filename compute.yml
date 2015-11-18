@@ -18,6 +18,7 @@
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
+  - { role: ansible-role-nhc, tags: [ 'nhc', 'slurm' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
@@ -27,6 +28,5 @@
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
-  - { role: ansible-role-nhc, tags: [ 'nhc', 'slurm' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
