@@ -51,7 +51,7 @@ inventory_hostname: "grid"
 fqdn: "{{siteName}}-grid.{{siteDomain}}"
 networks:
   - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver2}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
-  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute --noipv6"
+#  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute --noipv6"
 root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"
 
 # Slurm
@@ -104,6 +104,8 @@ nfs_mount: |
 #
 #
 
+
+## Set this as "true" in full cluster install; Set them back to "false" afterwards!
 arc_frontend_nis: false
 add_slurm_accts: false
 
@@ -151,8 +153,8 @@ authplugin: ""
 arex_mount_point: "https://{{ fqdn }}:443/"
 maxtransfertries: "10"
 
-unixgroup_dir_ops: "/etc/grid-security/opspool/"
-unixgroup_dir_fgi: "/etc/grid-security/fgipool/"
+unixgroup_dir_ops: "/etc/grid-security/opspool"
+unixgroup_dir_fgi: "/etc/grid-security/fgipool"
 
 group_name_ops: "ops"
 group_name_fgi: "fgi"
