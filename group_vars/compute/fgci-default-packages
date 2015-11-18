@@ -61,6 +61,8 @@ unconfigured_packages:
 #  - ypbind
   - yum-plugin-fastestmirror
   #  - "zlib.i686"
+  - net-tools
+  - time
 remove_packages:
   - phonon-backend-gstreamer
   - qt-x11

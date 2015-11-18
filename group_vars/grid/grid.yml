@@ -104,7 +104,6 @@ nfs_mount: |
 #
 #
 
-
 ## Set this as "true" in full cluster install; Set them back to "false" afterwards!
 arc_frontend_nis: false
 add_slurm_accts: false
@@ -133,8 +132,9 @@ gridmap: "/etc/grid-security/grid-mapfile"
 voms_processing: "strict"
 
 controldir: "/var/spool/nordugrid/jobstatus"
-sessiondir: "/scratch/grid"
-runtimedir: "/scratch/runtime"
+griddir: "/scratch/grid"
+sessiondir: "{{ griddir }}/sessiondir"
+runtimedir: "{{ griddir }}/runtime"
 shared_scratch: "/scratch"
 
 cachedir: "/scratch/cache"
@@ -148,9 +148,8 @@ joblog: "/var/log/arc/gm-jobs.log"
 maxjobs: "10000 10000 80"
 wakeupperiod: "30"
 defaultttl: "604800 1209600"
-#authplugin: "FINISHED timeout=30,onfailure=pass /usr/local/bin/upload-stat %C/job.%I.statistics"
-authplugin: ""
-arex_mount_point: "https://{{ fqdn }}:443/"
+authplugin: "FINISHED timeout=30,onfailure=pass"
+arex_mount_point: "https://{{ fqdn }}:443"
 maxtransfertries: "10"
 
 unixgroup_dir_ops: "/etc/grid-security/opspool"

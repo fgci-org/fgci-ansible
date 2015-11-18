@@ -61,6 +61,7 @@ unconfigured_packages:
   - wget
   - "zlib.i686"
   - net-tools
+  - time
 
 ib_unconfigured_packages:
   - "@infiniband"
