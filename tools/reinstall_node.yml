@@ -1,0 +1,19 @@
+---
+#
+# This role will set reinstall flags for all compute nodes on Install node
+#
+
+- name: Compute Nodes
+  hosts: install
+  remote_user: root
+  vars_prompt:
+          - name: node_name
+            prompt: "Insert the node's name to be re-installed. Please use the short name (as it apears in inventory file and without the domain).\nBe aware that after next reboot the machine will be reinstalled and all data will be lost.\nMake sure you made all the needed Backups!\n"
+            private: no
+  
+  tasks:
+  - name: Create compute node reinstall flag files in Install node
+    command: /bin/touch /var/www/provision/reinstall/{{ node_name }}
+
+  - name: Delete known_hosts entries for compute nodes
+    lineinfile: dest=/root/.ssh/known_hosts regexp="^{{ node_name }}," state=absent
