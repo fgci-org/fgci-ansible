@@ -134,6 +134,8 @@ unconfigured_packages:
  - "xorg-x11-xinit"
  - "xvattr"
  - "dejavu-lgc-sans-fonts"
+ - "wget"
+ - "pciutils"
 
 # Admin node receives syslog from cluster nodes
 central_log_listener: True
