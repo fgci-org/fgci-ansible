@@ -1,22 +1,15 @@
 # ansible-playbook file: site.yml
 #
 
-#- name: Apply common configuration to all hosts  
-#  hosts: all
-#  remote_user: root
-#
-#  roles:
+# Warning: there are a few steps in between the following roles that still need to be carried out manually.
+#           This playbook is more, at this point, a guideline for the proper deployment sequence 
 
-###
-# after_provisioning.yml installs the admin node
 - include: admin.yml
-- include: install.yml
-- include: login.yml
-- include: grid.yml
+- include: provisioning.yml
 - include: after_provisioning.yml
-
-#- name: Compute Node
-#  hosts: compute
-#  remote_user: root
-#
-#  roles:
+- include: install.yml
+- include: nfs.yml
+- include: login.yml
+- include: tools/reinstall_computes.yml
+- include: compute.yml
+- include: grid.yml
