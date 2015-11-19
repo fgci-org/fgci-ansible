@@ -23,3 +23,11 @@
   - { role: ansible-role-nfs, tags: [ 'nfs' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+
+- name: Mount /home and /scratch on Install Node
+  hosts: install
+  sudo: yes
+
+  roles: 
+  - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
+
