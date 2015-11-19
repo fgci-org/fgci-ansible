@@ -123,6 +123,17 @@ unconfigured_packages:
  - "qemu-kvm"
  - "vim-enhanced"
  - "yum-plugin-priorities"
+ - "glx-utils"
+ - "mesa-dri-drivers"
+ - "plymouth-system-theme"
+ - "spice-vdagent"
+ - "xorg-x11-drivers"
+ - "xorg-x11-server-Xorg"
+ - "xorg-x11-utils"
+ - "xorg-x11-xauth"
+ - "xorg-x11-xinit"
+ - "xvattr"
+ - "dejavu-lgc-sans-fonts"
 
 # Admin node receives syslog from cluster nodes
 central_log_listener: True
