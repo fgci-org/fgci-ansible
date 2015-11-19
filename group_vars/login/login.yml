@@ -37,6 +37,8 @@ fqdn: "{{siteName}}.{{siteDomain}}"
 networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6 --nodefroute"
   - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver1}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
+extdefroute: true
+
 
 # Slurm
 slurm_type: "submit"
