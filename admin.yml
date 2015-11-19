@@ -28,4 +28,5 @@
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
+  - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
