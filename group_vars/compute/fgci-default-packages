@@ -63,6 +63,8 @@ unconfigured_packages:
   #  - "zlib.i686"
   - net-tools
   - time
+  - tcsh
+
 remove_packages:
   - phonon-backend-gstreamer
   - qt-x11
