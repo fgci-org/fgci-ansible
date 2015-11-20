@@ -1,10 +1,14 @@
 ---
 
+## Change this - START ##
+
 external_interface: "em1"
 ext_net_addr: "86.50.166.0"
 ext_ip_addr: "86.50.166.62"
 ext_net_mask: "255.255.255.0"
 ext_gateway: "86.50.166.1"
+
+## Change this - END ##
 
 internal_interface: "em2"
 int_net_addr: "10.0.0.0"

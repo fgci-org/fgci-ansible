@@ -1,18 +1,16 @@
 ---
 
-admingroup: "admin"
-
-# network
+## Change this - START ##
 
 external_interface: "eth0"
-#external_bridge: "br_ext"
 ext_net_addr: "86.50.166.0"
 ext_ip_addr: "86.50.166.63"
 ext_net_mask: "255.255.255.0"
 ext_gateway: "86.50.166.1"
 
+## Change this - END ##
+
 internal_interface: "eth1"
-#internal_bridge: "br_int"
 int_net_addr: "10.0.0.0"
 int_ip_addr: "10.1.1.2"
 int_net_mask: "255.0.0.0"
@@ -20,6 +18,8 @@ int_gateway: "10.1.1.4"
 
 internal_ip: "{{int_ip_addr}}"
 internal_net: "10.0.0.0/8" 
+
+admingroup: "admin"
 
 network_ether_interfaces:
   - device: "{{external_interface}}"
@@ -49,8 +49,7 @@ network_ether_interfaces:
 
 dhcp_interfaces: "{{ internal_interface }}"
 dhcp_common_domain: "fgci.csc.fi"
-dhcp_common_nameservers: "{{ int_ip_addr }}, 193.166.4.24, 193.166.4.25"
-#dhcp_common_nameservers: 127.0.0.1
+dhcp_common_nameservers: "{{ int_ip_addr }}, {{ nameserver2 }}, {{ nameserver3 }}"
 dhcp_common_default_lease_time: 7200
 dhcp_common_max_lease_time: 14400
 dhcp_common_options: []
@@ -62,7 +61,7 @@ dhcp_subnets:
    netmask: "{{ int_net_mask }}"
    routers: "{{ int_ip_addr }}"
    interface: "{{ internal_interface }}"
-   domain_nameservers: "{{ int_ip_addr }}, {{ nameserver1 }}, {{ nameserver2 }}"
+   domain_nameservers: "{{ int_ip_addr }}, {{ nameserver2 }}, {{ nameserver3 }}"
    domain_name: "{{ dhcp_common_domain }}"
 
 dhcp_tftp_server_ip: "{{ int_ip_addr }}"
@@ -83,7 +82,6 @@ inventory_hostname: "install"
 fqdn: "{{siteName}}-install.{{siteDomain}}"
 networks:
   - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver2}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
-#  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute --noipv6"
 
 # Slurm
 slurm_type: "service"

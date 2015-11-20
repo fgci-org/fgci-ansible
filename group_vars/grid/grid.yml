@@ -1,16 +1,20 @@
 ---
 
-internal_interface: "eth1" 
-int_net_addr: "10.0.0.0"
-int_ip_addr: "10.1.1.3"
-int_net_mask: "255.0.0.0"
-int_gateway: "10.1.1.4"
+## Change this (1/2) - START ##
 
 external_interface: "eth0"
 ext_ip_addr: "86.50.166.64"
 ext_net_mask: "255.255.255.0"
 ext_gateway: "86.50.166.1"
 ext_net_addr: "86.50.166.0"
+
+## Change this (1/2) - END ##
+
+internal_interface: "eth1" 
+int_net_addr: "10.0.0.0"
+int_ip_addr: "10.1.1.3"
+int_net_mask: "255.0.0.0"
+int_gateway: "10.1.1.4"
 
 internal_ip: "{{int_ip_addr}}"
 internal_net: "10.0.0.0/8"
@@ -51,7 +55,6 @@ inventory_hostname: "grid"
 fqdn: "{{siteName}}-grid.{{siteDomain}}"
 networks:
   - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver2}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
-#  - "network --onboot={{enable_int_nic}} --device={{internal_interface}} --bootproto=static --ip={{int_ip_addr}} --netmask={{int_net_mask}} --nodefroute --noipv6"
 root_password: "{{ lookup('password', 'credentials/'+ inventory_hostname  +'_rootpw length=15') }}"
 
 # Slurm
@@ -99,25 +102,23 @@ nfs_mount: |
   10.2.1.5:/scratch /scratch                nfs4 defaults 0 0
   10.2.1.5:/home    /home                   nfs4 defaults 0 0
 
-
 # ARC Frontend vars
-#
-#
 
 ## Set this as "true" in full cluster install; Set them back to "false" afterwards!
 arc_frontend_nis: false
 add_slurm_accts: false
 
-# Check if we maintain this VO
-voName: "fgi.csc.fi"
+## Change this (2/2)- START ##
 
+voName: "fgi.csc.fi"
 instSiteURL: "http://www.csc.fi"
 gocDBName: "CSC"
 infoSysAdminDomain: "csc.fi"
-
 resource_location: "Espoo, Finland"
 resource_latitude: "60.18"
 resource_longitude: "24.83"
+
+## Change this (2/2)- END ##
 
 slurm_wakeupperiod: "60"
 

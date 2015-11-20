@@ -1,6 +1,4 @@
 ---
-# 
-#  
 
 siteName: io
 siteDomain: fgci.csc.fi
@@ -17,7 +15,6 @@ enable_int_nic: "yes"
 
 infiniband_available: False
 
-#repo_location: "http://ftp.funet.fi/pub/mirrors/centos.org/7/os/x86_64"
 repo_location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"
 repos:
   - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64", pkgname: "epel-release" }
@@ -25,7 +22,6 @@ repos:
 
 hyper: "{{siteName}}-admin.{{siteDomain}}"
 bastion_host: "{{siteName}}-admin.{{siteDomain}}"
-#http_proxy: "http://{{ hostvars[groups['login'][0]]['ansible_hostname'}}] :3128"
 http_proxy: "http://{{ int_gateway }}:3128"
 env_virt_install: { http_proxy: "{{ http_proxy }}" }
 central_log_host: "@{{siteName}}-admin.{{siteDomain}}"

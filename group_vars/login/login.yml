@@ -1,4 +1,12 @@
 ---
+
+## Change this - START ##
+
+ext_ip_addr: "86.50.166.61"
+ext_net_mask: "255.255.255.0"
+
+## Change this - END ##
+
 internal_interface: "em2" 
 external_interface: "em1"
 ib_interface: "ib0"
@@ -8,9 +16,6 @@ internal_net: "10.0.0.0/8"
 int_ip_addr: "10.1.1.4"
 internal_ip: "{{int_ip_addr}}"
 int_net_mask: "255.0.0.0"
-
-ext_ip_addr: "86.50.166.61"
-ext_net_mask: "255.255.255.0"
 
 ib_ip_addr: "10.2.1.4"
 ib_net_mask: "255.0.0.0"
@@ -38,7 +43,6 @@ networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6 --nodefroute"
   - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver1}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
 extdefroute: True
-
 
 # Slurm
 slurm_type: "submit"
