@@ -3,7 +3,7 @@
 # By CSC's FGCI deployment team @ Nov. 2015 - http://www.csc.fi
 
 [grid]
-phoenix-grid.fgi.csc.fi 
+phoenix-grid.fgi.csc.fi ext_ip_addr= 
 
 [compute]
 ph1 ip_address=10.1.1.1 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph1 ib_ip_addr=10.2.100.1
@@ -16,16 +16,16 @@ gpu ip_address=10.1.1.4 mac_address=XX:XX:XX:XX:XX:XX pxe_name=gpu ib_ip_addr=10
 test-host
 
 [install]
-phoenix-install.fgi.csc.fi
+phoenix-install.fgi.csc.fi ext_ip_addr=
 
 [admin]
-phoenix-admin.fgi.csc.fi
+phoenix-admin.fgi.csc.fi ext_ip_addr=
 
 [nfs]
 phoenix-nfs ip_address=10.1.1.5 mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix-nfs
 
 [login]
-phoenix.fgi.csc.fi ip_address=10.1.1.6 mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix
+phoenix.fgi.csc.fi ext_ip_addr= ip_address=10.1.1.6 mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix
 
 [vhosts:children]
 install
