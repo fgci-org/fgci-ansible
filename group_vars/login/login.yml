@@ -1,12 +1,5 @@
 ---
 
-## Change this - START ##
-
-ext_ip_addr: "86.50.166.61"
-ext_net_mask: "255.255.255.0"
-
-## Change this - END ##
-
 internal_interface: "em2" 
 external_interface: "em1"
 ib_interface: "ib0"

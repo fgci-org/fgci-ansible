@@ -4,8 +4,23 @@ siteName: io
 siteDomain: fgci.csc.fi
 nodeBase: io
 
+# === ARC confs === #
+
+voName: "fgi.csc.fi"
+instSiteURL: "http://www.csc.fi"
+gocDBName: "CSC"
+infoSysAdminDomain: "csc.fi"
+resource_location: "Espoo, Finland"
+resource_latitude: "60.18"
+resource_longitude: "24.83"
+
+#####################
+
 int_gateway: "10.1.1.4"
 ext_gateway: "86.50.166.1"
+ext_net_addr: "86.50.166.0"
+ext_net_mask: "255.255.255.0"
+
 nameserver1: "10.1.1.2"
 nameserver2: "193.166.4.24"
 nameserver3: "193.166.4.25"

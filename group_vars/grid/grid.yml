@@ -1,14 +1,6 @@
 ---
 
-## Change this (1/2) - START ##
-
 external_interface: "eth0"
-ext_ip_addr: "86.50.166.64"
-ext_net_mask: "255.255.255.0"
-ext_gateway: "86.50.166.1"
-ext_net_addr: "86.50.166.0"
-
-## Change this (1/2) - END ##
 
 internal_interface: "eth1" 
 int_net_addr: "10.0.0.0"
@@ -107,18 +99,6 @@ nfs_mount: |
 ## Set this as "true" in full cluster install; Set them back to "false" afterwards!
 arc_frontend_nis: false
 add_slurm_accts: false
-
-## Change this (2/2)- START ##
-
-voName: "fgi.csc.fi"
-instSiteURL: "http://www.csc.fi"
-gocDBName: "CSC"
-infoSysAdminDomain: "csc.fi"
-resource_location: "Espoo, Finland"
-resource_latitude: "60.18"
-resource_longitude: "24.83"
-
-## Change this (2/2)- END ##
 
 slurm_wakeupperiod: "60"
 
