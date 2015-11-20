@@ -25,6 +25,8 @@ nameserver1: "10.1.1.2"
 nameserver2: "193.166.4.24"
 nameserver3: "193.166.4.25"
 
+dhcp_common_domain: "fgci.csc.fi"
+
 enable_ext_nic: "yes"
 enable_int_nic: "yes"
 

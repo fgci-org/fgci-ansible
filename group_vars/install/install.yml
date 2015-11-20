@@ -40,7 +40,6 @@ network_ether_interfaces:
 ## DHCP_SERVER
 
 dhcp_interfaces: "{{ internal_interface }}"
-dhcp_common_domain: "fgci.csc.fi"
 dhcp_common_nameservers: "{{ int_ip_addr }}, {{ nameserver2 }}, {{ nameserver3 }}"
 dhcp_common_default_lease_time: 7200
 dhcp_common_max_lease_time: 14400
