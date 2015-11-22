@@ -1,9 +1,9 @@
 ---
 #
-# This role will set reinstall flags for all compute nodes on Install node
+# This role will set reinstall flags for defined node on Install node
 #
 
-- name: Compute Nodes
+- name:  Reinstall node
   hosts: install
   remote_user: root
   vars_prompt:
@@ -12,8 +12,8 @@
             private: no
   
   tasks:
-  - name: Create compute node reinstall flag files in Install node
+  - name: Create node reinstall flag file in Install node
     command: /bin/touch /var/www/provision/reinstall/{{ node_name }}
 
-  - name: Delete known_hosts entries for compute nodes
+  - name: Delete known_hosts entry for the node
     lineinfile: dest=/root/.ssh/known_hosts regexp="^{{ node_name }}," state=absent
