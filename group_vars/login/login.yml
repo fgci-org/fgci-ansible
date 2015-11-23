@@ -118,6 +118,7 @@ kickstart_partitions: |
   clearpart --all --initlabel --drives=sda
 kickstart_packages: |
   atlas
+  bash-completion
   blas
   bonnie++
   cvs

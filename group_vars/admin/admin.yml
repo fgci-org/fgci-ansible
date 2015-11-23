@@ -132,6 +132,7 @@ unconfigured_packages:
  - "dejavu-lgc-sans-fonts"
  - "wget"
  - "pciutils"
+ - "bash-completion"
 
 # Admin node receives syslog from cluster nodes
 central_log_listener: True
