@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/CSC-IT-Center-for-Science/fgci-ansible.png?label=ready&title=Ready)](https://waffle.io/CSC-IT-Center-for-Science/fgci-ansible)
 # fgci-ansible
 Collection of the Finnish Grid and Cloud Infrastructure Ansible playbooks
 
