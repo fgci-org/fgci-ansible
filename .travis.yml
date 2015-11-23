@@ -8,8 +8,7 @@ env:
   - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=1.9.2
 
 branches:
-  only:
-  - master
+  except:
   - travis
 
 services:
