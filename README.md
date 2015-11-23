@@ -1,8 +1,7 @@
-[![Stories in Ready](https://badge.waffle.io/CSC-IT-Center-for-Science/fgci-ansible.png?label=ready&title=Ready)](https://waffle.io/CSC-IT-Center-for-Science/fgci-ansible)
 # fgci-ansible
 Collection of the Finnish Grid and Cloud Infrastructure Ansible playbooks
 
-[![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible.svg?branch=master)](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible)
+[![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible.svg?branch=master)](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible) [![Stories in Ready](https://badge.waffle.io/CSC-IT-Center-for-Science/fgci-ansible.png?label=ready&title=Ready)](https://waffle.io/CSC-IT-Center-for-Science/fgci-ansible)
 
 # Usage:
  - make a hosts file
