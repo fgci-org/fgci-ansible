@@ -3,7 +3,6 @@
 - name: First add users to install node as root
   hosts: install
   remote_user: root
-#  sudo: yes
 
   roles: 
   - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
@@ -37,3 +36,18 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+
+- name: grab facts from production nodes
+  hosts: production
+  tasks: [ ]
+  gather_facts: yes
+
+- name:  Configure Admin Node After Install node
+  hosts: admin
+  sudo: yes
+
+  roles:
+  - { role: dns, tags: [ 'dns' ] }
+  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
+  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+

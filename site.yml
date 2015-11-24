@@ -6,8 +6,8 @@
 
 - include: admin.yml
 - include: provisioning.yml
-- include: after_provisioning.yml
 - include: install.yml
+- include: tools/reinstall_node.yml
 - include: nfs.yml
 - include: login.yml
 - include: tools/reinstall_computes.yml
