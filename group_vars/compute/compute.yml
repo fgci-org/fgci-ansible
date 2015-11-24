@@ -34,6 +34,8 @@ nameserver1: "10.1.1.2"
 cvmfs_http_proxy: "{{ http_proxy }}"
 # YUM proxy
 yum_proxy: "{{ http_proxy }}"
+# Install NHC from FGCI's yum
+nhc_github: False
 
 ## PXE
 
