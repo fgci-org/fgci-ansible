@@ -1,5 +1,9 @@
 ---
 
+# On admin node put internal DNS server at the end
+nameserver1: "{{ nameserver3 }}"
+nameserver3: "{{ nameserver1 }}"
+
 external_interface: "em1"
 
 internal_interface: "em2"
