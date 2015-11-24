@@ -26,7 +26,14 @@
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
-  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+
+- name: GPU Nodes
+  hosts: compute
+  remote_user: root
+  sudo: yes
+
+  roles: 
+  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
