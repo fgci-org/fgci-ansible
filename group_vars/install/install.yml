@@ -103,6 +103,9 @@ ksBootSrvDir: "/var/www/html/ks"
 # central syslog
 central_log_host: "10.1.1.1"
 
+#Users
+adminremove_passwords: True
+
 # NFS mounts
 
 nfs_mount: |
