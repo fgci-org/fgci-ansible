@@ -101,7 +101,7 @@ dnsmasq_listen_address: "{{ int_ip_addr }}"
 ksBootSrvDir: "/var/www/html/ks"
 
 # central syslog
-central_log_host: "10.1.1.1"
+central_log_host: "@10.1.1.1"
 
 #Users
 adminremove_passwords: True
