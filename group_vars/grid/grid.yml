@@ -113,12 +113,12 @@ gridmap: "/etc/grid-security/grid-mapfile"
 voms_processing: "strict"
 
 controldir: "/var/spool/nordugrid/jobstatus"
-griddir: "/scratch/grid"
-sessiondir: "{{ griddir }}/sessiondir"
-runtimedir: "{{ griddir }}/runtime"
+arc_frontend_griddir: "/scratch/grid"
+arc_frontend_sessiondir: "{{ griddir }}/sessiondir"
+arc_frontend_runtimedir: "{{ griddir }}/runtime"
 shared_scratch: "/scratch"
 
-cachedir: "/scratch/cache"
+arc_frontend_cachedir: "/scratch/cache"
 cachesize: "80 70"
 cachelifetime: "60d"
 
