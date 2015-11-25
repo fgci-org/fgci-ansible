@@ -15,6 +15,7 @@
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
@@ -25,7 +26,6 @@
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
-  - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
