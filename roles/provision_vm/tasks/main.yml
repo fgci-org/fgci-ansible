@@ -1,11 +1,11 @@
 ---
 - name: copy over kickstart file
-  template: src="kickstart.cfg" dest="{{ kickstart_tempdir }}/{{ ansible_hostname }}.ks"
+  template: src="kickstart.cfg" dest="{{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}.ks"
   sudo: yes
   delegate_to: "{{ hyper }}"
 
 - name: copy over virt-install script
-  template: src="virt-install.sh" dest="{{ kickstart_tempdir }}/{{ ansible_hostname }}-install.sh"
+  template: src="virt-install.sh" dest="{{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}-install.sh"
   sudo: yes
   delegate_to: "{{ hyper }}"
 
@@ -38,12 +38,12 @@
   delegate_to: "{{ hyper }}"
 
 - name: run virt-install script
-  command: "bash {{ kickstart_tempdir }}/{{ ansible_hostname }}-install.sh"
+  command: "bash {{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}-install.sh"
   sudo: yes
   #environment: env_virt_install
   environment: { http_proxy: "" }
   args:
-    creates: "/etc/libvirt/qemu/{{ ansible_hostname }}.xml"
+    creates: "/etc/libvirt/qemu/{{ inventory_hostname.split('.').0 }}.xml"
   delegate_to: "{{ hyper }}"
 
 - name: wait for VM to become available before continuing
@@ -51,13 +51,13 @@
   delegate_to: "{{ hyper }}"
 
 - name: set vm to autostart
-  command: /bin/virsh autostart "{{ fqdn }}"
+  command: /bin/virsh autostart "{{ inventory_hostname.split('.').0 }}"
   delegate_to: "{{ hyper }}"
 
 - name: Remove kickstart file
-  file: path="{{ kickstart_tempdir }}/{{ ansible_hostname }}.ks" state=absent
+  file: path="{{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}.ks" state=absent
   delegate_to: "{{ hyper }}"
 
 - name: Remove install script
-  file: path="{{ kickstart_tempdir }}/{{ ansible_hostname }}-install.sh" state=absent
+  file: path="{{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}-install.sh" state=absent
   delegate_to: "{{ hyper }}"

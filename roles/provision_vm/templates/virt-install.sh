@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ ! -f /etc/libvirt/qemu/{{ ansible_hostname }}.xml ]; then
+if [ ! -f /etc/libvirt/qemu/{{ inventory_hostname.split('.').0 }}.xml ]; then
 
 virt-install \
-  --name {{ ansible_hostname }} \
+  --name {{ inventory_hostname.split('.').0 }} \
   --os-variant rhel7 \
   --cpu host-model \
   --vcpus {{ vcpus }} \
@@ -18,7 +18,7 @@ virt-install \
   --location {{ location }} \
   --graphics=vnc,keymap="fi" \
   --wait 20 \
-  --initrd-inject '{{ kickstart_tempdir }}/{{ ansible_hostname }}.ks' \
-  --extra-args 'ks=file:/{{ ansible_hostname }}.ks console=ttyS0,115200n8' \
+  --initrd-inject '{{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}.ks' \
+  --extra-args 'ks=file:/{{ inventory_hostname.split('.').0 }}.ks console=ttyS0,115200n8' \
   --console pty,target_type=serial
 fi
