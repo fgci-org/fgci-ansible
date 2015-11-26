@@ -41,8 +41,8 @@ network_ether_interfaces:
 
 dhcp_interfaces: "{{ internal_interface }}"
 dhcp_common_nameservers: "{{ int_ip_addr }}, {{ nameserver2 }}, {{ nameserver3 }}"
-dhcp_common_default_lease_time: 7200
-dhcp_common_max_lease_time: 14400
+dhcp_common_default_lease_time: 10080
+dhcp_common_max_lease_time: 20160
 dhcp_common_options: []
 dhcp_common_parameters:
  - include "/etc/dhcp/dhcpd.d/ipxe.conf"
