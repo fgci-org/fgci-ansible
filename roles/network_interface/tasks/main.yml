@@ -134,9 +134,3 @@
   register: bridge_port_result
   notify:
      - restart network
-
-handlers:
-  - name: restart network
-    service: 
-      name: network
-      state: restarted
