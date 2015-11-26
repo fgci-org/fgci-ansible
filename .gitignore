@@ -8,6 +8,7 @@ group_vars/*/secrets.yml
 
 # Slurm Munge key auto generated
 files/munge.key
+files/certificates/*
 
 # Deprecated:
 group_vars/root_keys.yml

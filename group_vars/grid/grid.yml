@@ -116,8 +116,8 @@ voms_processing: "strict"
 
 controldir: "/var/spool/nordugrid/jobstatus"
 arc_frontend_griddir: "/scratch/grid"
-arc_frontend_sessiondir: "{{ griddir }}/sessiondir"
-arc_frontend_runtimedir: "{{ griddir }}/runtime"
+arc_frontend_sessiondir: "{{ arc_frontend_griddir }}/sessiondir"
+arc_frontend_runtimedir: "{{ arc_frontend_griddir }}/runtime"
 shared_scratch: "/scratch"
 
 arc_frontend_cachedir: "/scratch/cache"
