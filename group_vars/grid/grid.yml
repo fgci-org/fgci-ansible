@@ -86,6 +86,10 @@ cvmfs_quota_limit: "10240"
 # Do not extra install infiniband packages
 infiniband_available: False
 
+# SSH
+sshd:
+ AllowGroups: "root admin" 
+
 # NFS mounts
 
 nfs_mount: |
