@@ -3,9 +3,6 @@
   path: roles
   version: 0.4.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-admin
-  path: roles
-
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-install
   path: roles
 

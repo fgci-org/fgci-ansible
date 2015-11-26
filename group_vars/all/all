@@ -41,6 +41,9 @@ hyper: "{{siteName}}-admin.{{siteDomain}}"
 bastion_host: "{{siteName}}-admin.{{siteDomain}}"
 http_proxy: "http://{{ int_gateway }}:3128"
 env_virt_install: { http_proxy: "{{ http_proxy }}" }
+libvirt_pool_name: "vms"
+libvirt_pool_type: "dir"
+libvirt_pool_path: "/var/{{ libvirt_pool_name }}"
 central_log_host: "@{{siteName}}-admin.{{siteDomain}}"
 
 # DEVSYS  - to change later

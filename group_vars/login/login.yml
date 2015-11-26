@@ -30,7 +30,6 @@ bridges:
   - br_int
 location: "{{repo_location}}"
 kickstart_tempdir: "/tmp"
-inventory_hostname: "login"
 fqdn: "{{siteName}}.{{siteDomain}}"
 networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6 --nodefroute"
