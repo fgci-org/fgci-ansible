@@ -84,6 +84,8 @@ sshd:
 unconfigured_packages:
  - git
  - nfs-utils
+ - bash-completion
+ - wget
 
 # For sure do not install infiniband packages on install node
 infiniband_available: False
