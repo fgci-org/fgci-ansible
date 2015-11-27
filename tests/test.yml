@@ -26,7 +26,6 @@
 #     - ansible-role-dnsmasq
      - ansible-role-fail2ban
      - ansible-role-ferm-firewall
-     - ansible-role-fgci-admin
      - ansible-role-fgci-bash
 #     - ansible-role-nfs
 #     - ansible-role-nfs_mount
