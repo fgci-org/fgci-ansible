@@ -137,6 +137,7 @@ unconfigured_packages:
  - "wget"
  - "pciutils"
  - "bash-completion"
+ - "smartmontools"
 
 # Admin node receives syslog from cluster nodes
 central_log_listener: True
