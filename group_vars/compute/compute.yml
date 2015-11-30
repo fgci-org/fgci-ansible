@@ -37,6 +37,25 @@ yum_proxy: "{{ http_proxy }}"
 # Install NHC from FGCI's yum
 nhc_github: False
 
+#Limits for MPI
+limits_domains:
+  - domain: '*'
+    type: 'hard'
+    item: memlock
+    value: unlimited
+  - domain: '*'
+    type: 'soft'
+    item: memlock
+    value: unlimited
+  - domain: '*'
+    type: 'hard'
+    item: stack
+    value: unlimited
+  - domain: '*'
+    type: 'soft'
+    item: stack
+    value: unlimited
+
 ## PXE
 
 kickstart_profile: FGCI-compute-node
