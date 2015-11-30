@@ -5,6 +5,10 @@
 
   vars:
 
+    workdir: /var/lib/ansible/local
+    logfile: /var/log/ansible-pull.log
+    cron_user: root
+    schedule: '*/15 * * * *'
     repo_url: https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git
 
   tasks:
