@@ -18,3 +18,17 @@
 
     - name: Create local directory to work from
       file: path={{workdir}} state=directory owner=root group=root mode=0751
+
+     # grab files we don't want in the main github:
+     #  - the hosts file
+     #    - IP addr
+     #  - the munge key
+     # get some variables:
+     #  - facts from the install node 
+     #    - hostname, ip address
+     #  - adminMailAddr
+     #  - root_keys
+
+
+  roles: 
+  - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
