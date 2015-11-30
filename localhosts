@@ -1,0 +1,4 @@
+# file: localhosts
+# used with ansible-pull
+
+localhost
