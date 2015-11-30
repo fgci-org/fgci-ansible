@@ -1,6 +1,10 @@
 ---
 
-- hosts: localhost
+# This is used with ansible-pull
+# The compute group here is the one defined in fgci-ansible/localhosts file
+# _Not_ the one in fgci-ansible/hosts
+#
+- hosts: compute
   remote_user: root
 
   vars:
