@@ -9,6 +9,8 @@ group_vars/*/secrets.yml
 # Slurm Munge key auto generated
 files/munge.key
 files/certificates/*
+# Node SSHd host keys are generated into here
+files/nodes/*
 
 # Deprecated:
 group_vars/root_keys.yml
