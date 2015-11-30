@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  remote_user: root
+
+  vars:
+
+    repo_url: https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git
+
+  tasks:
+
+    - name: Install ansible
+      yum: pkg=ansible state=installed
+
+    - name: Create local directory to work from
+      file: path={{workdir}} state=directory owner=root group=root mode=0751
