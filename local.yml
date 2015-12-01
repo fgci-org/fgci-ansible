@@ -51,7 +51,7 @@
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-nhc, tags: [ 'nhc', 'slurm' ] }
-#  - { role: ansible-role-slurm, tags: [ 'slurm' ] }
+  - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
