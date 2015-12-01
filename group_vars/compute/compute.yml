@@ -66,6 +66,7 @@ kickstart_partitions: |
   zerombr
   clearpart --all --initlabel --drives=sda
 kickstart_packages: |
+  ansible
   atlas
   blas
   bonnie++
