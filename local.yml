@@ -37,7 +37,7 @@
   roles: 
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
 #  - { role: network_interface, tags: [ 'network' ] }
-#  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
 #  - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
 #  - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
