@@ -17,7 +17,7 @@
 
     ntp_config_server: [ "10.1.1.2", "10.1.1.1" ]
 
-  tasks:
+  pre_tasks:
 
     - name: get variables files
       get_url: url="http://10.1.1.2/pull_variables.yml" dest=/root/pull_variables.yml mode=0640 owner=root group=admin
