@@ -19,7 +19,7 @@ fi
 # Get the hosts file 
 /usr/bin/curl http://{{ kickstart_server_ip }}/hosts > /etc/hosts
 
-# 10s random delay, fgci-ansible/local.yml playbook, master branch and /root/hosts inventory file
+# customizable random delay in seconds, fgci-ansible/local.yml playbook, master branch and /root/hosts inventory file
 /usr/bin/ansible-pull -s {{ ansible_pull_sleep }} -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
 
 # Grab the latest ansible-pull-script.sh
