@@ -15,7 +15,7 @@ fi
 /usr/bin/ansible-galaxy install -r requirements.yml -f -i
 
 # Get the hosts file 
-/usr/bin/ansible -m get_url -a "url=http://{{ kickstart_server_ip }}/hosts dest=/root/ mode=0644" localhost
+/usr/bin/curl http://{{ kickstart_server_ip }}/hosts > /etc/hosts
 
 # 10s random delay, fgci-ansible/local.yml playbook, master branch and /root/hosts inventory file
-/usr/bin/ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
+/usr/bin/ansible-pull -s {{ ansible_pull_sleep }} -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
