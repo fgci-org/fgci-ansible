@@ -122,3 +122,6 @@ collectd_plugin_packages:
 #
 nis_domain: "fgci.csc.fi"
 
+#Disable ansible-pull by default
+ansible_pull_kickstart: false
+
