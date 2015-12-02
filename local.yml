@@ -33,7 +33,7 @@
   # After the roles
   post_tasks:
     - name: set cron interval for ansible-pull
-      cron: "name='ansible-pull' user=root job='/bin/bash /usr/local/bin/ansible-pull-script.sh' minute="*/{{ ansible_pull_cron_minute_interval }}" cron_file=ansible-pull"
+      cron: name='ansible-pull' user=root job='/bin/bash /usr/local/bin/ansible-pull-script.sh' minute="*/{{ ansible_pull_cron_minute_interval }}" cron_file=ansible-pull
       tags: pull
 
   roles: 
