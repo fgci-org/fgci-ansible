@@ -18,7 +18,8 @@
   pre_tasks:
       
     - name: get variables files
-      get_url: url="http://10.1.1.2/pull_variables.yml" dest=/root mode=0640 owner=root group=admin
+      get_url: url="http://10.1.1.2/pull_variables.yml" dest=/root mode=0640
+
     - name: include variables
       include_vars: /root/pull_variables.yml
 
