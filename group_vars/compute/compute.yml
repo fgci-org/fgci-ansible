@@ -36,6 +36,8 @@ cvmfs_http_proxy: "{{ http_proxy }}"
 yum_proxy: "{{ http_proxy }}"
 # Install NHC from FGCI's yum
 nhc_github: False
+# Run ansible-pull during kickstart
+ansible_pull_kickstart: true
 
 #Limits for MPI
 limits_domains:
