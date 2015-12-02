@@ -16,8 +16,8 @@ fi
 # Install all the ansible role dependencies
 /usr/bin/ansible-galaxy install -r requirements.yml -f -i
 
-# Get the hosts file 
-/usr/bin/curl http://{{ kickstart_server_ip }}/hosts > /etc/hosts
+# Get the ansible hosts file 
+/usr/bin/curl http://{{ kickstart_server_ip }}/hosts > /root/hosts
 
 # customizable random delay in seconds, fgci-ansible/local.yml playbook, master branch and /root/hosts inventory file
 /usr/bin/ansible-pull -s {{ ansible_pull_sleep }} -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
