@@ -28,4 +28,5 @@
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-dell, tags: [ 'dell' ] }
+  - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

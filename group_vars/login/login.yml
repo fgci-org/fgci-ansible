@@ -21,6 +21,8 @@ network_ether_interfaces:
     netmask: "{{ib_net_mask}}"
     nm_controlled: "no"
 
+infiniband_available: True
+
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:

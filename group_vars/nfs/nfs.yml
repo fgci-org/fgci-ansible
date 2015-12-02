@@ -23,6 +23,8 @@ network_ether_interfaces:
 networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
 
+infiniband_available: True
+
 ## PXE
 
 kickstart_profile: FGCI-nfs-node
