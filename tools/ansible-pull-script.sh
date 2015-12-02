@@ -23,4 +23,4 @@ fi
 /usr/bin/ansible-pull -s {{ ansible_pull_sleep }} -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
 
 # Grab the latest ansible-pull-script.sh
-/usr/bin/ansible -m get_url -a "url=http://{{ kickstart_server_ip }}/ansible-pull-script.sh dest=/usr/local/bin/" localhost -i /root/hosts
+/usr/bin/ansible -i /root/hosts -m get_url -a "url=http://{{ kickstart_server_ip }}/ansible-pull-script.sh dest=/usr/local/bin/" localhost
