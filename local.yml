@@ -1,8 +1,6 @@
 ---
 
-# This is used with ansible-pull
-# The compute group here is the one defined in fgci-ansible/localhosts file
-# _Not_ the one in fgci-ansible/hosts
+# This playbook is used with ansible-pull
 #
 - hosts: compute
   remote_user: root
@@ -15,13 +13,16 @@
     schedule: '*/15 * * * *'
     repo_url: https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git
 
+  # Before the roles
   pre_tasks:
       
     - name: get variables files
       get_url: url="http://10.1.1.2/pull_variables.yml" dest=/root mode=0640
+      tags: pull
 
     - name: include variables
       include_vars: /root/pull_variables.yml
+      tags: pull
 
     - name: Install ansible
       yum: pkg=ansible state=installed
@@ -29,16 +30,11 @@
     - name: Create local directory to work from
       file: path={{workdir}} state=directory owner=root group=root mode=0751
 
-     # grab files we don't want in the main github:
-     #  - the hosts file
-     #    - IP addr
-     #  - the munge key
-     # get some variables:
-     #  - facts from the install node 
-     #    - hostname, ip address
-     #  - adminMailAddr
-     #  - root_keys
-
+  # After the roles
+  post_tasks:
+    - name: set cron interval for ansible-pull
+      cron: "name='ansible-pull' user=root job='/bin/bash /usr/local/bin/ansible-pull-script.sh' minute="*/{{ ansible_pull_cron_minute_interval }}" cron_file=ansible-pull"
+      tags: pull
 
   roles: 
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }

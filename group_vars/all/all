@@ -126,4 +126,6 @@ nis_domain: "fgci.csc.fi"
 ansible_pull_kickstart: false
 # Random delay in seconds
 ansible_pull_sleep: 10
+# Minute interval
+ansible_pull_cron_minute_interval: 15
 

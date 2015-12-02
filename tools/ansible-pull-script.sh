@@ -1,6 +1,8 @@
 #!/bin/bash
 # This is a script to run ansible-pull on an FGCI compute node
-# It is grabbed with curl during kickstart
+# It is first grabbed with curl during kickstart
+# It's initially set to execute every 15 minutes
+# Local.yml itself changes cron interval after execution.
 
 # Setup the ansible-pull fgci work dir
 mkdir -p $HOME/.ansible/pull/$HOSTNAME
@@ -19,3 +21,6 @@ fi
 
 # 10s random delay, fgci-ansible/local.yml playbook, master branch and /root/hosts inventory file
 /usr/bin/ansible-pull -s {{ ansible_pull_sleep }} -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
+
+# Grab the latest ansible-pull-script.sh
+/usr/bin/ansible -m get_url -a "url=http://{{ kickstart_server_ip }}/ansible-pull-script.sh dest=/usr/local/bin/" localhost -i /root/hosts
