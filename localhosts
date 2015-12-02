@@ -1,5 +1,0 @@
-# file: localhosts
-# used with ansible-pull
-
-[compute]
-localhost

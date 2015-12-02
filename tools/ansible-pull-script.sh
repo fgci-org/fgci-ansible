@@ -12,5 +12,4 @@ fi
 ansible-galaxy install -r requirements.yml -f -i
 
 # use -s to add a random sleep
-ansible-pull -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C ansible-pull -i localhosts
-
+ansible-pull -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C ansible-pull -i hosts
