@@ -52,6 +52,7 @@
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
+  - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'host-keys' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
 #  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
