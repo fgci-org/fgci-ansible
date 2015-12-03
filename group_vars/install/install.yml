@@ -50,7 +50,7 @@ dhcp_common_parameters:
 dhcp_subnets:
  - base: "{{ int_net_addr }}"
    netmask: "{{ int_net_mask }}"
-   routers: "{{ int_ip_addr }}"
+   routers: "{{ int_gateway }}"
    interface: "{{ internal_interface }}"
    domain_nameservers: "{{ int_ip_addr }}, {{ nameserver2 }}, {{ nameserver3 }}"
    domain_name: "{{ dhcp_common_domain }}"
