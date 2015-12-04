@@ -44,6 +44,11 @@ slurm_type: "submit"
 # This makes ansible-role-ferm-firewall restart fail2ban if ferm is reloaded.
 ferm_fail2ban: True
 
+# Do not install host keys on this node
+install_ssh_host_keys: False
+# Do install the known_hosts files
+install_ssh_known_hosts: True
+
 # Ferm - firewall
 ferm_rules_extra:
  08_fail2ban:
