@@ -80,6 +80,11 @@ slurm_type: "service"
 sshd:
  AllowGroups: "root admin" 
 
+# Do not install host keys on this node
+install_ssh_host_keys: False
+# But do install the known_hosts files
+install_ssh_known_hosts: True
+
 # Install extra packages
 unconfigured_packages:
  - git
