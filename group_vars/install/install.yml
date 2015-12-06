@@ -91,6 +91,7 @@ unconfigured_packages:
  - nfs-utils
  - bash-completion
  - wget
+ - pdsh
 
 # For sure do not install infiniband packages on install node
 infiniband_available: False
