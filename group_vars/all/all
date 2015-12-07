@@ -44,6 +44,7 @@ env_virt_install: { http_proxy: "{{ http_proxy }}" }
 libvirt_pool_name: "vms"
 libvirt_pool_type: "dir"
 libvirt_pool_path: "/var/{{ libvirt_pool_name }}"
+# The @ for UDP. @@ for TCP
 central_log_host: "@{{siteName}}-admin.{{siteDomain}}"
 
 # DEVSYS  - to change later
