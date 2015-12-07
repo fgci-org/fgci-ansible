@@ -85,7 +85,8 @@ fail2ban_jails:
     logpath: '/var/log/secure'
     maxretry: 10
 
-
+sshd:
+ PermitRootLogin: "without-password"
 
 #NTP
 ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}", "{{ hostvars[groups['admin'][0]]['ansible_hostname'] }}" ]
