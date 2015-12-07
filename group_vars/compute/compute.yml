@@ -38,6 +38,9 @@ yum_proxy: "{{ http_proxy }}"
 nhc_github: False
 # Run ansible-pull during kickstart
 ansible_pull_kickstart: true
+# SSHD
+sshd:
+ PermitRootLogin: "without-password"
 
 #Limits for MPI
 limits_domains:
