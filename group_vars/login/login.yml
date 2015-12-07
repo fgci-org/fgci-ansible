@@ -160,6 +160,7 @@ kickstart_packages: |
   subversion
   xerces-c
   yum-plugin-fastestmirror
+  Lmod
 
 # NFS mounts
 nfs_mount: |

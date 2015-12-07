@@ -87,6 +87,7 @@ cvmfs_quota_limit: "10240"
 unconfigured_packages:
   - bash-completion
   - pdsh
+  - Lmod
 
 # Do not extra install infiniband packages
 infiniband_available: False
