@@ -94,6 +94,7 @@ infiniband_available: False
 # SSH
 sshd:
  AllowGroups: "root admin" 
+ PermitRootLogin: "without-password"
 
 # NFS mounts
 

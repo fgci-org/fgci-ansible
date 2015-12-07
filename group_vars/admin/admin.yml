@@ -116,6 +116,7 @@ ferm_rules_extra:
 
 sshd:
  AllowGroups: "root admin" 
+ PermitRootLogin: "without-password"
 
 # Install these package
 unconfigured_packages:
