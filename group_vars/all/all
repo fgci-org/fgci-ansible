@@ -100,6 +100,8 @@ aliases:
 # Default in CentOS7 is that GSSAPICleanupCredentials is "no". https://bugzilla.redhat.com/show_bug.cgi?id=1055016
 sshd:
  GSSAPICleanupCredentials: "no"
+ PermitRootLogin: "without-password"
+
 #NTP
 ntp_config_server: [ 0.fi.pool.ntp.org, 1.fi.pool.ntp.org, 2.fi.pool.ntp.org, 3.fi.pool.ntp.org, ntp2.funet.fi, ntp4.funet.fi]
 
@@ -120,8 +122,8 @@ collectd_plugin_packages:
  - collectd-write_tsdb
 
 #NIS
-#
 nis_domain: "fgci.csc.fi"
+nis_server_address: "10.1.1.2"
 
 #Disable ansible-pull by default
 ansible_pull_kickstart: false
