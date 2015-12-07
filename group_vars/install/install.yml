@@ -79,6 +79,7 @@ slurm_type: "service"
 # SSHD
 sshd:
  AllowGroups: "root admin" 
+ PermitRootLogin: "without-password"
 
 # Do not install host keys on this node
 install_ssh_host_keys: False
