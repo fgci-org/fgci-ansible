@@ -20,6 +20,7 @@
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
+  - { role: ansible-role-smartd, tags: [ 'smartd' ] }
   - { role: ansible-role-nfs, tags: [ 'nfs' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }

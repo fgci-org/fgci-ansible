@@ -147,3 +147,6 @@ central_logs_retention_days: 60
 
 # Install dell helper script
 dell_install_helper_scripts: True
+# Configure smartd
+smartd_service: True
+
