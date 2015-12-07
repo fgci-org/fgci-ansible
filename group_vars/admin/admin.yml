@@ -144,3 +144,6 @@ unconfigured_packages:
 central_log_listener: True
 central_logs_directory: "/var/log/remote/servers"
 central_logs_retention_days: 60
+
+# Install dell helper script
+dell_install_helper_scripts: True
