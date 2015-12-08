@@ -1,0 +1,142 @@
+---
+
+siteName: io
+siteDomain: fgci.csc.fi
+nodeBase: io
+
+# === ARC confs === #
+
+voName: "fgi.csc.fi"
+instSiteURL: "http://www.csc.fi"
+gocDBName: "CSC"
+infoSysAdminDomain: "csc.fi"
+resource_location: "Espoo, Finland"
+resource_latitude: "60.18"
+resource_longitude: "24.83"
+
+#####################
+
+int_gateway: "10.1.1.4"
+ext_gateway: "86.50.166.1"
+ext_net_addr: "86.50.166.0"
+ext_net_mask: "255.255.255.0"
+
+nameserver1: "10.1.1.2"
+nameserver2: "193.166.4.24"
+nameserver3: "193.166.4.25"
+
+dhcp_common_domain: "fgci.csc.fi"
+
+enable_ext_nic: "yes"
+enable_int_nic: "yes"
+
+infiniband_available: False
+
+# NFS mounts
+
+nfs_mount_addr: "10.2.1.5"
+nfs_mount: |
+  {{ nfs_mount_addr }}:/scratch /scratch nfs4 defaults 0 0
+  {{ nfs_mount_addr }}:/home /home nfs4 defaults 0 0
+
+repo_location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"
+repos:
+  - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64", pkgname: "epel-release" }
+  - { name: "EL Repo", url: "http://elrepo.org/linux/elrepo/el7/x86_64", pkgname: "elrepo-release" }
+
+hyper: "{{siteName}}-admin.{{siteDomain}}"
+bastion_host: "{{siteName}}-admin.{{siteDomain}}"
+http_proxy: "http://{{ int_gateway }}:3128"
+env_virt_install: { http_proxy: "{{ http_proxy }}" }
+libvirt_pool_name: "vms"
+libvirt_pool_type: "dir"
+libvirt_pool_path: "/var/{{ libvirt_pool_name }}"
+# The @ for UDP. @@ for TCP
+central_log_host: "@{{siteName}}-admin"
+
+# DEVSYS  - to change later
+vm_mem: "16000"
+vm_cpus: "4"
+
+# No firewalld anywhere
+disable_packages:
+ - "firewalld"
+
+# Ferm - firewall
+# Ordering is important. This rule is a default and is added early in the iptables rules.
+ferm_rules:
+ 05_ssh:
+ - chain: INPUT
+   domains: [ip, ip6]
+   rules:
+     - {rule: "policy DROP;",  comment: "global policy"}
+     - {rule: "mod state state INVALID DROP;", comment: "connection tracking: drop"}
+     - {rule: "mod state state (ESTABLISHED RELATED) ACCEPT;", comment: "connection tracking"}
+     - {rule: "interface lo ACCEPT;", comment: "allow local packet"}
+     - {rule: "proto icmp ACCEPT;", comment: "respond to ping"}
+     - {rule: "proto tcp dport (22) saddr ( {{ trusted_public_networks }} {{ trusted_public_ipv6_networks }} )mod comment comment 'SSH' ACCEPT;", comment: "SSH"}
+     - {rule: "interface {{ internal_interface }} mod comment comment 'Allow all internal' ACCEPT;", comment: "internal"}
+     - {rule: "interface ( ib0 ib1 ) mod comment comment 'Allow all internal ib traffic' ACCEPT;", comment: "internal"}
+ - chain: OUTPUT
+   domains:
+     - ip
+     - ip6
+   rules:
+     - rule: "policy ACCEPT;"
+       comment: global policy
+ - chain: FORWARD
+   domains: [ip, ip6]
+   rules:
+     - rule: "policy DROP;"
+       comment: global policy
+     - rule: "mod state state INVALID DROP;"
+       comment: "connection tracking: drop"
+     - rule: "mod state state (ESTABLISHED RELATED) ACCEPT;"
+       comment: "connection tracking"
+ 
+# CVMFS - if fgci_install is set to False it does not install the CVMFS configs from FGCI repo
+fgci_install: True
+# set cms_site and we create /etc/cvmfs/config.d/cms.cern.ch.local
+# cms_site: "T2_FI_HIP"
+
+# E-mail aliases
+aliases:
+ - { user: "root", alias: "{{ adminMailAddr }}" }
+
+# SSHD
+# Default in CentOS7 is that GSSAPICleanupCredentials is "no". https://bugzilla.redhat.com/show_bug.cgi?id=1055016
+sshd:
+ GSSAPICleanupCredentials: "no"
+ PermitRootLogin: "without-password"
+
+#NTP
+ntp_config_server: [ 0.fi.pool.ntp.org, 1.fi.pool.ntp.org, 2.fi.pool.ntp.org, 3.fi.pool.ntp.org, ntp2.funet.fi, ntp4.funet.fi]
+
+#Users
+adminremove_passwords: True
+
+#Flowdock
+# set flowdock_token: "TOKEN" to prevent sending flowdock messages to #fgci
+flowdock_token: 22a225c10814863ea809b80940d25b0e
+
+#Collectd
+collectd_tsdb_writer: True
+collectd_tsdb_host: vm0405.kaj.pouta.csc.fi
+collectd_tsdb_tags: "status=production domain={{ ansible_domain }} distribution={{ ansible_distribution }} dist_version={{ ansible_distribution_version }} site={{ siteName }} nodebase={{ nodeBase }}"
+collectd_network_listener: False
+collectd_network_server: False
+collectd_plugin_packages:
+ - collectd-write_tsdb
+
+#NIS
+nis_domain: "fgci.csc.fi"
+nis_server_address: "10.1.1.2"
+
+#Disable ansible-pull by default
+ansible_pull_kickstart: false
+# Random delay in seconds
+ansible_pull_sleep: 10
+# Minute interval
+ansible_pull_cron_minute_interval: 120
+# Only install these on the admin node
+dell_install_helper_scripts: False

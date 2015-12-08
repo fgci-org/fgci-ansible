@@ -1,0 +1,111 @@
+---
+
+internal_interface: "em1"
+ib_interface: "ib0"
+
+ib_net_mask: "255.0.0.0"
+
+network_ether_interfaces:
+  - device: "{{ib_interface}}"
+    bootproto: "static"
+    onboot: "yes"
+    address: "{{ib_ip_addr}}"
+    netmask: "{{ib_net_mask}}"
+    nm_controlled: "no"
+
+  - device: "{{internal_interface}}"
+    bootproto: "dhcp"
+    onboot: "yes"
+    nm_controlled: "no"
+    type: "Ethernet"
+
+infiniband_available: True
+
+networks:
+  - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
+
+# Slurm
+slurm_type: "compute"
+# NTP
+ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}", "{{ hostvars[groups['admin'][0]]['ansible_hostname'] }}" ]
+# DNS
+nameserver1: "10.1.1.2"
+# CVMFS
+cvmfs_http_proxy: "{{ http_proxy }}"
+# YUM proxy
+yum_proxy: "{{ http_proxy }}"
+# Install NHC from FGCI's yum
+nhc_github: False
+# Run ansible-pull during kickstart
+ansible_pull_kickstart: true
+# SSHD
+sshd:
+ PermitRootLogin: "without-password"
+
+#Limits for MPI
+limits_domains:
+  - domain: '*'
+    type: 'hard'
+    item: memlock
+    value: unlimited
+  - domain: '*'
+    type: 'soft'
+    item: memlock
+    value: unlimited
+  - domain: '*'
+    type: 'hard'
+    item: stack
+    value: unlimited
+  - domain: '*'
+    type: 'soft'
+    item: stack
+    value: unlimited
+
+## PXE
+
+kickstart_profile: FGCI-compute-node
+kickstart_server_ip: 10.1.1.2
+kickstart_partitions: |
+  bootloader --location=mbr --append="selinux=0" --boot-drive=sda
+  autopart --type=lvm
+  zerombr
+  clearpart --all --initlabel --drives=sda
+kickstart_packages: |
+  ansible
+  atlas
+  blas
+  bonnie++
+  cvs
+  epel-release
+  fftw
+  fftw2
+  gcc
+  gcc-c++
+  gcc-gfortran
+  git
+  glibc.i686
+  hdf5-openmpi
+  @infiniband
+  infiniband-diags
+  iperf
+  java-1.8.0-openjdk
+  lapack
+  libcgroup
+  libgcc.i686
+  libgfortran
+  libstdc++.i686
+  libxml2.i686
+  mcelog
+  mpitests-openmpi
+  netcdf
+  nfs-utils
+  nscd
+  numpy
+  openmpi
+  openssh-server
+  perl-Filesys-Df
+  subversion
+  xerces-c
+  yum-plugin-fastestmirror
+  Lmod
+
