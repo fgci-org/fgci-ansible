@@ -35,4 +35,5 @@
   - { role: ansible-role-arc-frontend, tags: [ 'arcfrontend' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
+  - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }

@@ -25,6 +25,7 @@
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
+  - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
 
 - name: Mount /home and /scratch on Install Node
