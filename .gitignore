@@ -4,7 +4,7 @@ ssh.config
 ansible.cfg
 group_vars/*/trusted_networks.yml
 group_vars/*/secrets.yml
-group_vars/*.yml
+group_vars/*/*.yml
 # Note: the main secrets.yml file should go into group_vars/all/ folder
 
 # Slurm Munge key auto generated
