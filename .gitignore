@@ -2,9 +2,7 @@
 hosts
 ssh.config
 ansible.cfg
-group_vars/*/trusted_networks.yml
-group_vars/*/secrets.yml
-group_vars/*/*.yml
+group_vars/*
 # Note: the main secrets.yml file should go into group_vars/all/ folder
 
 # Slurm Munge key auto generated
@@ -12,12 +10,6 @@ files/munge.key
 files/certificates/*
 # Node SSHd host keys are generated into here
 files/nodes/*
-
-# Deprecated:
-group_vars/root_keys.yml
-group_vars/admin/root_keys.yml
-group_vars/install/slurm_mysql_password
-secrets.yml
 
 # Ignore roles pulled through requirements.yml. See README.
 roles/ansible-role-*
