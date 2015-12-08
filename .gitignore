@@ -4,6 +4,7 @@ ssh.config
 ansible.cfg
 group_vars/*/trusted_networks.yml
 group_vars/*/secrets.yml
+group_vars/*/*.yml
 # Note: the main secrets.yml file should go into group_vars/all/ folder
 
 # Slurm Munge key auto generated
@@ -16,7 +17,6 @@ files/nodes/*
 group_vars/root_keys.yml
 group_vars/admin/root_keys.yml
 group_vars/install/slurm_mysql_password
-group_vars/*/ldap.yml
 secrets.yml
 
 # Ignore roles pulled through requirements.yml. See README.
