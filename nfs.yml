@@ -33,4 +33,4 @@
 
   roles: 
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
-  - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
+  - { role: ansible-role-sshd-host-keys, tags: [ 'host-keys' ] }
