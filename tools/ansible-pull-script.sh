@@ -8,7 +8,9 @@
 
 # writes to syslog and stderr with tag ansible-pull
 loggercmd="/usr/bin/logger -s -t ansible-pull"
-HTTP_PROXY="{{ http_proxy }}"
+export http_proxy="http://10.1.1.4:3128"
+export https_proxy=$http_proxy
+export no_proxy="localhost,10.1.1.2"
 # Setup the ansible-pull fgci work dir
 mkdir -p $HOME/.ansible/pull/$HOSTNAME
 cd $HOME/.ansible/pull/$HOSTNAME
@@ -34,17 +36,17 @@ if [ "$?" != 0 ]; then
 fi
 
 # Get the ansible hosts file 
-/usr/bin/curl http://{{ kickstart_server_ip }}/hosts > /root/hosts
+/usr/bin/curl http://10.1.1.2/hosts > /root/hosts
 if [ "$?" != 0 ]; then
-        $loggercmd "error: curling http://{{ kickstart_server_ip }}/hosts rc=$?"
+        $loggercmd "error: curling http://10.1.1.2/hosts rc=$?"
 fi
 
 # customizable random delay in seconds, fgci-ansible/local.yml playbook, master branch and /root/hosts inventory file
-/usr/bin/ansible-pull -s {{ ansible_pull_sleep }} -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
-$loggercmd "info: ansible-pull -s {{ ansible_pull_sleep }} -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts exited with rc=$?"
+/usr/bin/ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
+$loggercmd "info: ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts exited with rc=$?"
 
 # Grab the latest ansible-pull-script.sh
-/usr/bin/ansible -i /root/hosts -m get_url -a "url=http://{{ kickstart_server_ip }}/ansible-pull-script.sh dest=/usr/local/bin/" localhost
+/usr/bin/ansible -i /root/hosts -m get_url -a "url=http://10.1.1.2/ansible-pull-script.sh dest=/usr/local/bin/" localhost
 if [ "$?" != 0 ]; then
-        $loggercmd "error: ansible -i /root/hosts -m get_url -a 'url=http://{{ kickstart_server_ip }}/ansible-pull-script.sh dest=/usr/local/bin/' localhost failed with rc=$?"
+        $loggercmd "error: ansible -i /root/hosts -m get_url -a 'url=http://10.1.1.2/ansible-pull-script.sh dest=/usr/local/bin/' localhost failed with rc=$?"
 fi
