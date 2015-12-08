@@ -97,12 +97,6 @@ sshd:
  AllowGroups: "root admin" 
  PermitRootLogin: "without-password"
 
-# NFS mounts
-
-nfs_mount: |
-  10.2.1.5:/scratch /scratch                nfs4 defaults 0 0
-  10.2.1.5:/home    /home                   nfs4 defaults 0 0
-
 # ARC Frontend vars
 
 ## Set this as "true" in full cluster install; Set them back to "false" afterwards!

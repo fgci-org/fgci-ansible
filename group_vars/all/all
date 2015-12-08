@@ -32,6 +32,13 @@ enable_int_nic: "yes"
 
 infiniband_available: False
 
+# NFS mounts
+
+nfs_mount_addr: "10.2.1.5"
+nfs_mount: |
+  {{ nfs_mount_addr }}:/scratch /scratch nfs4 defaults 0 0
+  {{ nfs_mount_addr }}:/home /home nfs4 defaults 0 0
+
 repo_location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"
 repos:
   - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64", pkgname: "epel-release" }

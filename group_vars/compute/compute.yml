@@ -109,9 +109,3 @@ kickstart_packages: |
   yum-plugin-fastestmirror
   Lmod
 
-
-# NFS mounts
-
-nfs_mount: |
-  10.2.1.5:/scratch /scratch                nfs4 defaults 0 0
-  10.2.1.5:/home    /home                   nfs4 defaults 0 0
