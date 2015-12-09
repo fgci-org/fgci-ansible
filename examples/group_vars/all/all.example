@@ -128,6 +128,8 @@ collectd_network_server: False
 collectd_plugin_packages:
  - collectd-write_tsdb
 
+kickstart_server_ip: 10.1.1.2
+
 #NIS
 nis_domain: "fgci.csc.fi"
 nis_server_address: "10.1.1.2"
