@@ -139,6 +139,9 @@ unconfigured_packages:
  - "pciutils"
  - "bash-completion"
  - "smartmontools"
+ - "firefox"
+ - "icedtea-web"
+
 
 # Admin node receives syslog from cluster nodes
 central_log_listener: True
