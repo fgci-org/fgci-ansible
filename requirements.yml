@@ -86,7 +86,6 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_config
   path: roles
-  version: v0.9.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
   path: roles
@@ -126,7 +125,6 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-sshd-host-keys
   path: roles
-  version: v0.9.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-smartd
   path: roles
