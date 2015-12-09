@@ -84,9 +84,11 @@ sshd:
  PermitRootLogin: "without-password"
 
 # Do not install host keys on this node
-install_ssh_host_keys: False
+install_ssh_host_keys_from_nfs: False
+# Do not copy them to NFS
+install_ssh_host_keys_to_nfs: False
 # But do install the known_hosts files
-install_ssh_known_hosts: True
+install_ssh_known_hosts_from_http: True
 
 # Install extra packages
 unconfigured_packages:
