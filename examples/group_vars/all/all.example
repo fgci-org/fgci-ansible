@@ -140,3 +140,6 @@ ansible_pull_sleep: 10
 ansible_pull_cron_minute_interval: 120
 # Only install these on the admin node
 dell_install_helper_scripts: False
+
+# Define your SMTP server here
+postfix_relayhost: "smtp.csc.fi"
