@@ -31,7 +31,7 @@ fi
 
 # Mirror in the group_vars - they are copied to install node's www with the fgci-install tag and role for install node.
 # Wget assumes we are in $HOME/.ansible/pull/$HOSTNAME when running
-/usr/bin/wget --no-host-directories --mirror --accept=example,yml,fgci-default-packages http://10.1.1.2/group_vars
+/usr/bin/wget --random-wait 5 --no-host-directories --mirror --accept=example,yml,fgci-default-packages http://10.1.1.2/group_vars
 
 # Install all the ansible role dependencies
 /usr/bin/ansible-galaxy install -r requirements.yml -f -i
