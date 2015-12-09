@@ -37,6 +37,8 @@ network_ether_interfaces:
     nm_controlled: "no"
     type: "Ethernet"
 
+nfs_mount_addr: "10.1.1.5"
+
 ## DHCP_SERVER
 
 dhcp_interfaces: "{{ internal_interface }}"
