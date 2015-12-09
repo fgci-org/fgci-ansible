@@ -108,4 +108,5 @@ kickstart_packages: |
   xerces-c
   yum-plugin-fastestmirror
   Lmod
+  wget
 

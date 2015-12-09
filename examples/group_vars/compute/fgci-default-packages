@@ -60,6 +60,7 @@ unconfigured_packages:
   - smartmontools
   - subversion
   - xerces-c
+  - wget
 #  - ypbind
   - yum-plugin-fastestmirror
   #  - "zlib.i686"
