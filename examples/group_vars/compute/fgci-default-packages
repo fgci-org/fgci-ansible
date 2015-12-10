@@ -2,6 +2,7 @@
 # This list is taken from fgi-default-packagse and ks.py
 unconfigured_packages:
   - atlas
+  - bash-completion
   - blas
   - bonnie++
 #  - ca-policy-egi-core
