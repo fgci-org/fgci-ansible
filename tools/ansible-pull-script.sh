@@ -12,8 +12,8 @@ export http_proxy="http://10.1.1.4:3128"
 export https_proxy=$http_proxy
 export no_proxy="localhost,10.1.1.2"
 # Setup the ansible-pull fgci work dir
-mkdir -p $HOME/.ansible/pull/$HOSTNAME
-cd $HOME/.ansible/pull/$HOSTNAME
+mkdir -p /root/.ansible/pull/$HOSTNAME
+cd /root/.ansible/pull/$HOSTNAME
 
 # Clone or update the fgci-ansible repo
 if [ ! -d ".git" ]; then
