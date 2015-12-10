@@ -28,9 +28,12 @@
   - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
+  - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+
+# Adding a role here? Make sure to add it to local.yml too for the role to be used with ansible-pull
 
 - name: GPU Nodes
   hosts: compute

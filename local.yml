@@ -59,3 +59,5 @@
 #  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
 
+# Adding a role here? Make sure you add it to compute.yml for it to work with ansible push
+
