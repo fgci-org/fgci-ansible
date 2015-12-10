@@ -5,7 +5,6 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-install
   path: roles
-  version: v0.9.0
 
 - src: https://github.com/kaffeeh/ansible-yum-cron
   path: roles
