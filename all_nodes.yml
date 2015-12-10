@@ -1,0 +1,13 @@
+# ansible-playbook file: all_nodes.yml
+#
+
+# This playbook contains all the playbooks that configure servers.
+# Run it like: ansible-playbook all_nodes.yml --tags slurm -C
+
+- include: admin.yml
+- include: install.yml
+- include: after_provisioning.yml
+- include: nfs.yml
+- include: login.yml
+- include: compute.yml
+- include: grid.yml
