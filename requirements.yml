@@ -105,3 +105,6 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-postfix
   path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-repo
+  path: roles

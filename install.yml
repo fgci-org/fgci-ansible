@@ -14,6 +14,7 @@
   sudo: yes
 
   roles: 
+  - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos' ] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: network_interface, tags: [ 'network' ] }
