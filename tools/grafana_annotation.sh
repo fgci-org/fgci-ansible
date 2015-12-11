@@ -11,6 +11,7 @@ start() {
       "timestamp": '$timestamp',
       "tags": {
          "fqdn": "'"$hostname"'",
+         "state": "started",
          "site": "io"
       }
   }
@@ -23,6 +24,7 @@ stop() {
       "timestamp": '$timestamp',
       "tags": {
          "fqdn": "'"$hostname"'",
+         "state": "stopped",
          "site": "io"
       }
   }
