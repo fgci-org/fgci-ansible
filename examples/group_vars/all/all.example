@@ -122,7 +122,7 @@ flowdock_token: 22a225c10814863ea809b80940d25b0e
 #Collectd
 collectd_tsdb_writer: True
 collectd_tsdb_host: cassini.fgci.csc.fi
-collectd_tsdb_tags: "domain={{ ansible_domain }} site={{ siteName }}"
+collectd_tsdb_tags: "site={{ siteName }}"
 collectd_network_listener: False
 collectd_network_server: False
 collectd_plugin_packages:
