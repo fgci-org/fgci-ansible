@@ -2,6 +2,8 @@
 #
 # This playbook will prepare your local repository to run FGCI playbooks
 #
+#
+# How to run: ansible-playbook -c local -i 'localhost,' tools/prep_local.yml
 
 - name: prepare local folder
   hosts: all
@@ -12,6 +14,12 @@
 
   - name: backup all local files before further actions
     local_action: command /usr/bin/tar -cvf ../backup/bkp-{{ ansible_date_time.date }}_{{ ansible_date_time.epoch }}.tar ../ --exclude=backup
+
+  - name: get all required roles
+    local_action: shell /usr/bin/ansible-galaxy install -r requirements.yml --force
+    args:
+            chdir: ../
+    ignore_errors: True
 
   - stat: path=../examples
     register: st_examples

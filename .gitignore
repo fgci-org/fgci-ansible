@@ -17,6 +17,7 @@ files/nodes/*
 roles/ansible-role-*
 
 # Backup files
+backup/
 hosts_*
 *.bak
 *~
