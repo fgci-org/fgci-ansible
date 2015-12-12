@@ -1,0 +1,31 @@
+---
+#
+# This playbook will prepare your local repository to run FGCI playbooks
+#
+
+- name: prepare local folder
+  hosts: all
+
+  tasks:
+  - name: create backup folder
+    local_action: file path=../backup state=directory mode=0755
+
+  - name: backup all local files before further actions
+    local_action: command /usr/bin/tar -cvf ../backup/bkp-{{ ansible_date_time.date }}_{{ ansible_date_time.epoch }}.tar ../ --exclude=backup
+
+  - stat: path=../examples
+    register: st_examples
+
+  - name: copy examples/hosts-example into this repo root
+    local_action: command cp ../examples/hosts-example ../hosts
+    when: st_examples.stat.isdir is defined and st_examples.stat.isdir 
+
+  - name: copy examples/group_vars into this repo root
+    local_action: command cp -r ../examples/group_vars ../
+    when: st_examples.stat.isdir is defined and st_examples.stat.isdir  
+
+  - name: rename *.example into *.yml
+    local_action: command find ../group_vars -iname "*.example" -exec rename .example .yml '{}' \;
+
+  - name: remove examples folder
+    local_action: file path=../example state=absent mode=0755
