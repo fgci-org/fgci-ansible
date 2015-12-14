@@ -108,3 +108,6 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-repo
   path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-login
+  path: roles

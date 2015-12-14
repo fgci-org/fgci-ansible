@@ -29,6 +29,7 @@
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
   - { role: ansible-role-squid, tags: [ 'squid' ] }
+  - { role: ansible-role-fgci-login, tags: [ 'login'] }  
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
