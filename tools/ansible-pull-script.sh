@@ -10,7 +10,7 @@
 loggercmd="/usr/bin/logger -s -t ansible-pull"
 export http_proxy="http://10.1.1.4:3128"
 export https_proxy=$http_proxy
-export no_proxy="localhost,10.1.1.2"
+export no_proxy="localhost,10.1.1.2,raw.githubusercontent.com"
 # Setup the ansible-pull fgci work dir
 mkdir -p /root/.ansible/pull/$HOSTNAME
 cd /root/.ansible/pull/$HOSTNAME
