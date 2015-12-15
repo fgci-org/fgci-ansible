@@ -68,6 +68,7 @@ unconfigured_packages:
   - net-tools
   - time
   - tcsh
+  - wget
 
 remove_packages:
   - phonon-backend-gstreamer
