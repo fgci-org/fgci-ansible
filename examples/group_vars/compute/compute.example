@@ -43,7 +43,12 @@ sshd:
  PermitRootLogin: "without-password"
 
 # Fetch the sshd host_keys from NFS
+generate_ssh_host_keys: False
+generate_ssh_known_hosts: False
+install_ssh_host_keys_to_nfs: False
 install_ssh_host_keys_from_nfs: True
+install_ssh_known_hosts_from_http: True
+
 
 #Limits for MPI
 limits_domains:
