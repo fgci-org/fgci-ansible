@@ -48,7 +48,8 @@ ferm_fail2ban: True
 # Do not install host keys on this node
 install_ssh_host_keys: False
 # Do install the known_hosts files
-install_ssh_known_hosts: True
+install_ssh_known_hosts_from_http: True
+
 
 # Ferm - firewall
 ferm_rules_extra:
