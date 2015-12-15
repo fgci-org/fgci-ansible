@@ -47,7 +47,7 @@ fi
 
 # customizable random delay in seconds, fgci-ansible/local.yml playbook, master branch and /root/hosts inventory file
 /usr/bin/ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
-$loggercmd "info: ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts exited with rc=$?"
+$loggercmd "info: ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C {{ ansible_pull_branch }} -i /root/hosts exited with rc=$?"
 
 # Grab the latest ansible-pull-script.sh
 /usr/bin/ansible -i /root/hosts -m get_url -a "url=http://10.1.1.2/ansible-pull-script.sh dest=/usr/local/bin/" localhost
