@@ -4,9 +4,18 @@ fgci-ansible contribution guidelines
 Branches
 --------
 
- - master: Work on master, or even better work in feature branches
- - testing: After the work is merged into master, merge it into test and run testing on it
+ - master: Work/commit/push to master, or even better work in feature branches
+ - testing: After the work is commited to master, merge master into test and run testing on it
+  - git checkout master; git pull
+  - git checkout test; git pull; git merge --ff-only master; git checkout master
  - production: After it's been tested and it's working on the test system, merge it to production
+  - git checkout master; git pull
+  - git checkout production; git pull; git merge --ff-only master; git checkout master
+
+Releases
+--------
+
+
 
 Pull Requests
 -------------
