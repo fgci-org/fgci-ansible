@@ -9,7 +9,7 @@ Collection of the Finnish Grid and Cloud Infrastructure Ansible playbooks
 
 # Running:
 
-Basic Usage Example, more details on https://confluence.csc.fi/display/FGCI/Architecture+and+Software+Stack:
+Basic Usage Example, more details on https://confluence.csc.fi/display/FGCI/FGCI+Cluster+deployment+and+installation+guide:
 <pre>
 ansible-playbook -i hosts site.yml --tags user
 ansible-playbook -u ssh-user -i hosts site.yml --tags user
@@ -19,4 +19,3 @@ ansible-playbook -u ssh-user -i hosts site.yml --tags user
 
 This playbook is very much a work in progress.
 
-https://confluence.csc.fi/display/FGCI/Ansible+Tasks
