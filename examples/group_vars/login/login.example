@@ -26,7 +26,7 @@ infiniband_available: True
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:
-  - { path: "/var/vms/login.raw", size: 180 }
+  - { pool: "vms", size: 180 }
 bridges:
   - br_ext
   - br_int
