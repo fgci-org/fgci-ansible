@@ -69,6 +69,8 @@ echo "TEST: installing os deps"
 
 yum -y install epel-release sudo ansible tree git ||(echo "Could not install some os deps" && exit 2 )
 
+yum -y install yYAML python-paramiko python-jinja2 python-httplib2 rpm-build make python2-devel asciidoc
+
 }
 
 function tree_list() {
