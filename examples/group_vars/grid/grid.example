@@ -90,6 +90,7 @@ unconfigured_packages:
   - bash-completion
   - pdsh
   - Lmod
+  - nfs-utils
 
 # Do not extra install infiniband packages
 infiniband_available: False
