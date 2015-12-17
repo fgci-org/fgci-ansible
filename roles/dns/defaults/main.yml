@@ -3,3 +3,4 @@
 
 nameserver1: "10.0.0.1"
 nameserver2: "10.1.0.1"
+nameserver3: "10.2.0.1"
