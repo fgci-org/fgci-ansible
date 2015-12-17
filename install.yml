@@ -24,12 +24,12 @@
           internal_net is defined and
           internal_interface in ansible_interfaces and
           external_interface in ansible_interfaces }
-  - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap', 'pxe' ] }
   - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server', 'dhcpserver', 'pxe' ] }
   - { role: ansible-role-dnsmasq, tags: [ 'dnsmasq', 'pxe' ] }
+  - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-pxe_config, tags: [ 'pxe_config', 'pxe' ] }
   - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
