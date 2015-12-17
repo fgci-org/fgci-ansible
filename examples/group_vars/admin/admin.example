@@ -1,7 +1,8 @@
 ---
 
 # On admin node don't use the internal resolver
-nameserver3: "{{ nameserver1 }}"
+nameserver3: "193.166.4.24"
+nameserver2: "193.166.4.25"
 nameserver1: "193.166.4.25"
 
 external_interface: "em1"
