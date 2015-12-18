@@ -50,7 +50,7 @@ unconfigured_packages:
   - numpy
   - openmpi
   - openssh-server
-#  - pdsh
+  - pdsh
   - pciutils
   - perl-Filesys-Df
 #  - python-sqlite2
