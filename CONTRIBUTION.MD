@@ -4,13 +4,31 @@ fgci-ansible contribution guidelines
 Branches
 --------
 
+Configure upstream:
+
+<pre>
+cd fgci-ansible 
+git pull
+git checkout test
+git branch --set-upstream-to=origin/test test
+git pull
+git checkout production
+git branch --set-upstream-to=origin/production production
+git pull
+git checkout master
+</pre>
+
+Workflow:
+
  - master: Work/commit/push to master, or even better work in feature branches
  - testing: After the work is commited to master, merge master into test and run testing on it
   - git checkout master; git pull
   - git checkout test; git pull; git merge --ff-only master; git checkout master
- - production: After it's been tested and it's working on the test system, merge it to production
+ - production: After it's been tested and it's working on the test system, merge test into production
   - git checkout master; git pull
-  - git checkout production; git pull; git merge --ff-only master; git checkout master
+  - git checkout production; git pull; git merge --ff-only test; git checkout master
+
+Git push where appropriate
 
 Releases
 --------
