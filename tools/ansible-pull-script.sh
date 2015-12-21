@@ -46,7 +46,7 @@ if [ "$?" != 0 ]; then
 fi
 
 # customizable random delay in seconds, fgci-ansible/local.yml playbook, master branch and /root/hosts inventory file
-/usr/bin/ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C master -i /root/hosts
+/usr/bin/ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C {{ ansible_pull_branch }} -i /root/hosts
 $loggercmd "info: ansible-pull -s 10 -U https://github.com/CSC-IT-Center-for-Science/fgci-ansible.git -C {{ ansible_pull_branch }} -i /root/hosts exited with rc=$?"
 
 # Grab the latest ansible-pull-script.sh
