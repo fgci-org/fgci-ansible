@@ -129,7 +129,7 @@ function main(){
 #    install_ansible_devel
     show_version
 #    tree_list
-#    test_install_requirements
+    test_install_requirements
     test_ansible_setup
     test_playbook_syntax
     test_playbook
