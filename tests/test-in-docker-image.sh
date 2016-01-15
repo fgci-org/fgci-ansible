@@ -35,28 +35,34 @@ fi
 
 
 cd $RDIR/..
-printf "[defaults]\nroles_path = ../:fgci-ansible/roles:roles" > ansible.cfg
+printf "[defaults]\nroles_path = ../:roles" > ansible.cfg
 printf "" > ssh.config
 
 function show_version() {
 
+echo "TEST: show versions"
 ansible --version
-
 id
+systemctl --no-pager
+proc1comm=$(cat /proc/1/comm)
+echo "TEST: proc1s comm is $proc1comm"
 
 }
 
 function install_ansible_devel() {
 
 # http://docs.ansible.com/ansible/intro_installation.html#latest-release-via-yum
+
 echo "TEST: building ansible"
 
-yum -y install PyYAML python-paramiko python-jinja2 python-httplib2 rpm-build make python2-devel asciidoc 2>&1 >/dev/null || (echo "Could not install ansible yum dependencies" && exit 2 )
+yum -y install PyYAML python-paramiko python-jinja2 python-httplib2 rpm-build make python2-devel asciidoc patch wget 2>&1 >/dev/null || (echo "Could not install ansible yum dependencies" && exit 2 )
 rm -Rf ansible
 git clone https://github.com/ansible/ansible --recursive ||(echo "Could not clone ansible from Github" && exit 2 )
 cd ansible
 # checking out this commit because some errors after 2015-11-05
-git checkout 07d0d2720c73816e1206882db7bc856087eb5c3f
+#git checkout 07d0d2720c73816e1206882db7bc856087eb5c3f
+# because systemctl and systemd
+git checkout 589971fe7ef78ea8bb41fb9ae6cd19cb8e277371
 make rpm 2>&1 >/dev/null
 rpm -Uvh ./rpm-build/ansible-*.noarch.rpm ||(echo "Could not install built ansible devel rpms" && exit 2 )
 cd ..
@@ -67,7 +73,7 @@ rm -Rf ansible
 function install_os_deps() {
 echo "TEST: installing os deps"
 
-yum -y install epel-release sudo ansible tree git which file less||(echo "Could not install some os deps" && exit 2 )
+yum -y install epel-release sudo tree git which file less||(echo "Could not install some os deps" && exit 2 )
 
 }
 
@@ -106,11 +112,10 @@ function test_playbook_check(){
 
 function test_playbook(){
     echo "TEST: ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS}"
-
     ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS} ||(echo "first ansible run failed" && exit 2 )
 
-    # Run the role/playbook again, checking to make sure it's idempotent.
-    # ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' ) || (echo 'Idempotence test: fail' && exit 1)
+#    echo "TEST: idempotence test! Same as previous but now grep for changed=0.*failed=0"
+#    ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} ${ANSIBLE_LOG_LEVEL} --connection=local ${SUDO_OPTION} ${ANSIBLE_EXTRA_VARS} || grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' ) || (echo 'Idempotence test: fail' && exit 1)
 }
 function extra_tests(){
 
@@ -121,7 +126,7 @@ function extra_tests(){
 set -e
 function main(){
     install_os_deps
-    install_ansible_devel
+#    install_ansible_devel
     show_version
 #    tree_list
     test_install_requirements

@@ -1,40 +1,93 @@
----
 language: python
-python: "2.7"
+
 sudo: required
-
-env:
-  #matrix:
-  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=1.9.2
-
-branches:
-  except:
-  - travis
+dist: trusty
+group: edge
 
 services:
   - docker
 
-before_install:
-  - sudo apt-get update
-  - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
-  - sudo service docker restart
-  - sleep 5
-  - "find $PWD"
-#  - docker pull centos7:centos7
-#  - sudo apt-get update -qq
+matrix:
+  fast_finish: true
+
+env:
+  - IMAGE_BUILD_PLATFORM=stable-centos7
+  - IMAGE_BUILD_PLATFORM=devel-centos7
 
 install:
-  # Install Ansible.
-  #- pip install ansible
+  - npm install -g validate-dockerfile
 
 script:
-  ## Run it in a CentOS7 privileged docker
-  # This is heavily nested.
-  # First build a new docker container
-  # Install new container
-  # Inside the container compile ansible from source (because ansible 1.9.2 and systemd was not happy together)
-  # Do several ansible checks
-  - "/bin/bash tests/launch-docker.sh"
+  # TESTDIR = Where the stable-centos/Dockerfile is located
+  - export TESTDIR=tests
+  # ROLETOTEST = The name of this repo
+  - export ROLETOTEST=$(basename $(pwd))
+  - export COMMIT=${TRAVIS_COMMIT::8}
+  # The tag we assign the docker image we build with the Dockerfile
+  - export REPO=csc/ansible
+  # https://www.npmjs.com/package/validate-dockerfile - validate the Dockerfile
+  - docklint ${TESTDIR}/${IMAGE_BUILD_PLATFORM}/Dockerfile
+  # Build the image
+  - docker build -t ${REPO}:${IMAGE_BUILD_PLATFORM} ${TESTDIR}/${IMAGE_BUILD_PLATFORM}/
+  # Launch the container
+  - docker run --privileged -d -ti -e "container=docker"  -v `pwd`:/$ROLETOTEST -v /sys/fs/cgroup:/sys/fs/cgroup  ${REPO}:${IMAGE_BUILD_PLATFORM}  /usr/sbin/init
+  - DOCKER_CONTAINER_ID=$(docker ps | grep ${IMAGE_BUILD_PLATFORM} | awk '{print $1}')
+  - docker logs $DOCKER_CONTAINER_ID
+# Prepare test environment and print some more debug out
+  - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'sudo yum -y install make && mkdir -p /opt/ansible/'
+  - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'if ! [ -d /opt/ansible/ansible ] || ! bash -c "cd /opt/ansible/ansible && git branch"; then git clone http://github.com/ansible/ansible.git /opt/ansible/ansible ; fi'
+  - >
+    export ANSIBLE_VERSION=$(docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'cd /opt/ansible/ansible && \
+       ansible-playbook --version | perl -n -e '\''if ( m/^ansible-playbook\s+([0-9\.]{1,7})/ ) { print $1 }'\'' | tr -d "\n" \
+    ')
+  - >
+    export GIT_COMMIT=$(docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'cd /opt/ansible/ansible && \
+       ansible-playbook --version | perl -n -e '\''if ( m/^ansible-playbook\s+[0-9\.]{1,7}\s+.*?([a-fA-F0-9]{7,40})/ ) { print $1 }'\'' | tr -d "\n" \
+    ')
+  - >
+    export GIT_TAG=$(docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c "cd /opt/ansible/ansible && \
+      git tag | grep $ANSIBLE_VERSION | grep -v rc | tr -d '\n' \
+    ")
+  - >
+    echo "Ansible Version: $ANSIBLE_VERSION"
+  - >
+    echo "git SHA: $GIT_COMMIT"
+  - >
+    echo "Tagged Release?: $GIT_TAG"
+  - >
+    echo "CHECKING OUT: ${GIT_COMMIT:-$GIT_TAG}"
+  - >
+    docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c "cd /opt/ansible/ansible &&
+       git checkout ${GIT_COMMIT:-$GIT_TAG} &&  git submodule update --init --recursive &&
+       git --no-pager log --decorate=short --pretty=oneline -n 1"
+  - >
+    docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'cd /opt/ansible/ansible &&
+       sudo pip install tox sphinx &&
+       sudo pip install paramiko PyYAML jinja2 httplib2 passlib nose mock '
+  # Testing of this ansible-role:
+  - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test-in-docker-image.sh"
+#  - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'cd /opt/ansible/ansible && make tests '
+#  - >
+#    docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'cd /opt/ansible/ansible/test/integration/ &&
+#       make -j 1 parsing test_var_precedence test_templating_settings includes test_hash test_handlers test_group_by '
+  - >
+    docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'echo -ne "------\nEND ANSIBLE TESTS\n------\nSystemD Units:\n------\n";
+       systemctl --no-pager --all --full status ;
+       echo -ne "------\nJournalD Logs:\n------\n" ;
+       sudo journalctl --catalog --all --full --no-pager'
+  - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'sudo yum -y install tree'
+  - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'tree /ansible*'
+  - docker ps -a
+  - docker stop $DOCKER_CONTAINER_ID
+  - docker rm -v $DOCKER_CONTAINER_ID
+#after_success:
+#  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+#  - if [ "$TRAVIS_BRANCH" == "master" -a "$IMAGE_BUILD_PLATFORM" == "stable-centos7" ]; then docker tag ${REPO}:${IMAGE_BUILD_PLATFORM} $REPO:latest; fi
+#  - docker tag ${REPO}:${IMAGE_BUILD_PLATFORM} $REPO:travis-${TRAVIS_BUILD_NUMBER}
+#  - docker tag ${REPO}:${IMAGE_BUILD_PLATFORM} $REPO:${IMAGE_BUILD_PLATFORM}-${ANSIBLE_VERSION}
+#  - docker tag ${REPO}:${IMAGE_BUILD_PLATFORM} $REPO:${IMAGE_BUILD_PLATFORM}-${GIT_COMMIT:-$GIT_TAG}
+#  - docker push $REPO
+#  - "[ -e \"~/.docker/config.json\" ] && shred -n 30 -u -z ~/.docker/config.json"
 
 notifications:
   email: false
