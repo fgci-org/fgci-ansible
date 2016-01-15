@@ -11,8 +11,25 @@
      - trusted_public_ipv6_networks: "fd11::/64"
      - adminMailAddr: "changeme@example.com"
      - yum_conf_template: False
-#     - slurm_mysql_password: "slurmpassword"
-#     - slurm_type: "service"
+     - fail2ban_jails:
+         sshd:
+           enabled: 'true'
+           port: 'ssh'
+           logpath: '/var/log/secure'
+           maxretry: '6'
+         sshd-ddos:
+           enabled: 'true'
+           port: 'ssh'
+           logpath: '/var/log/secure'
+           maxretry: '6'
+
+# on docker there's no rsyslog by default and thus no /var/log/secure
+   pre_tasks:
+     - name: test only - make sure /var/log directory exists
+       file: path=/var/log state=directory
+     - name: test only - touch /var/log/secure logfile
+       file: path=/var/log/secure state=touch
+
    roles:
      - fgci-ansible
      - ansible-role-yum
