@@ -129,6 +129,7 @@ collectd_plugin_packages:
  - collectd-write_tsdb
 
 kickstart_server_ip: 10.1.1.2
+pull_install_ip: "{{ kickstart_server_ip }}"
 
 #NIS
 nis_domain: "fgci.csc.fi"
