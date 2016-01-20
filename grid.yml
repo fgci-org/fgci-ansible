@@ -24,7 +24,7 @@
           external_interface in ansible_interfaces }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
-  - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
+  - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog-client' ] }

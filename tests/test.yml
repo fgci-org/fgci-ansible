@@ -33,6 +33,7 @@
 
    roles:
      - fgci-ansible
+     - ansible-role-fgci-repo
      - ansible-role-yum
      - ansible-role-cvmfs
      - ansible-role-aliases
@@ -47,19 +48,22 @@
      - ansible-role-fgci-bash
 #     - ansible-role-nfs
 #     - ansible-role-nfs_mount
-     - ansible-role-nis
+     - ansible-role-nhc
      - ansible-role-nis
      - ansible-role-ntp
+     - ansible-role-postfix
 #     - ansible-role-pxe_bootstrap
 #     - ansible-role-pxe_config
      - ansible-role-rdma
      - ansible-role-rsyslog
 #     - ansible-role-slurm
+     - ansible-role-smartd
      - ansible-role-squid
      - ansible-role-sshd
+     - ansible-role-sshd-host-keys
      - ansible-role-system-limits
      - ansible-role-users
-     - ansible-role-yum-cron
+     - ansible-role-yum-cron-2
 #     - dns
 #     - ip_forwarder
 #     - network_interface

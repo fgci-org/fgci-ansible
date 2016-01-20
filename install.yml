@@ -31,7 +31,7 @@
   - { role: ansible-role-dnsmasq, tags: [ 'dnsmasq', 'pxe' ] }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-pxe_config, tags: [ 'pxe_config', 'pxe' ] }
-  - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
+  - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
