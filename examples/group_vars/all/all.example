@@ -148,3 +148,6 @@ dell_install_helper_scripts: False
 
 # Define your SMTP server here
 postfix_relayhost: "smtp.csc.fi"
+
+# Slurm compute nodes: Change this to match the number of nodes in your cluster  
+slurm_compute_nodes: "{{ nodeBase }}[1-4]"
