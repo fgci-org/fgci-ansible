@@ -59,7 +59,7 @@
      - ansible-role-sshd
      - ansible-role-system-limits
      - ansible-role-users
-     - ansible-role-yum-cron
+     - ansible-role-yum-cron-2
 #     - dns
 #     - ip_forwarder
 #     - network_interface
