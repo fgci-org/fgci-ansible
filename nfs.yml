@@ -16,7 +16,7 @@
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
-  - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
+  - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }

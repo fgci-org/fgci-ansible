@@ -17,7 +17,7 @@
   pre_tasks:
       
     - name: get variables files
-      get_url: url="http://10.1.1.2/pull_variables.yml" dest=/root mode=0640
+      get_url: url="http://{{ pull_install_ip }}/pull_variables.yml" dest=/root mode=0640
       tags: pull
 
     - name: include variables
@@ -36,13 +36,13 @@
       cron: name='ansible-pull' user=root job='/bin/bash /usr/local/bin/ansible-pull-script.sh >/var/log/ansible.log 2>&1' minute="*/{{ ansible_pull_cron_minute_interval }}" cron_file=ansible-pull
       tags: pull
 
-  roles:
+  roles: 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
-  - { role: ansible-role-yum-cron, tags: [ 'yumcron' ] }
+  - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }

@@ -30,11 +30,13 @@
 - name: Start libvirt storage pool
   command: /usr/bin/virsh pool-start {{ libvirt_pool_name }}
   run_once: true
+  when: libvirt_pool_check.rc == 1
   delegate_to: "{{ hyper }}"
 
 - name: set libvirt storage pool autostart
   command: /usr/bin/virsh pool-autostart {{ libvirt_pool_name }}
   run_once: true
+  when: libvirt_pool_check.rc == 1
   delegate_to: "{{ hyper }}"
 
 - name: run virt-install script

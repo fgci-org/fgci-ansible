@@ -11,10 +11,29 @@
      - trusted_public_ipv6_networks: "fd11::/64"
      - adminMailAddr: "changeme@example.com"
      - yum_conf_template: False
-#     - slurm_mysql_password: "slurmpassword"
-#     - slurm_type: "service"
+     - nis_server: True
+     - fail2ban_jails:
+         sshd:
+           enabled: 'true'
+           port: 'ssh'
+           logpath: '/var/log/secure'
+           maxretry: '6'
+         sshd-ddos:
+           enabled: 'true'
+           port: 'ssh'
+           logpath: '/var/log/secure'
+           maxretry: '6'
+
+# on docker there's no rsyslog by default and thus no /var/log/secure
+   pre_tasks:
+     - name: test only - make sure /var/log directory exists
+       file: path=/var/log state=directory
+     - name: test only - touch /var/log/secure logfile
+       file: path=/var/log/secure state=touch
+
    roles:
      - fgci-ansible
+     - ansible-role-fgci-repo
      - ansible-role-yum
      - ansible-role-cvmfs
      - ansible-role-aliases
@@ -29,19 +48,22 @@
      - ansible-role-fgci-bash
 #     - ansible-role-nfs
 #     - ansible-role-nfs_mount
-     - ansible-role-nis
+     - ansible-role-nhc
      - ansible-role-nis
      - ansible-role-ntp
+     - ansible-role-postfix
 #     - ansible-role-pxe_bootstrap
 #     - ansible-role-pxe_config
      - ansible-role-rdma
      - ansible-role-rsyslog
 #     - ansible-role-slurm
+     - ansible-role-smartd
      - ansible-role-squid
      - ansible-role-sshd
+     - ansible-role-sshd-host-keys
      - ansible-role-system-limits
      - ansible-role-users
-     - ansible-role-yum-cron
+     - ansible-role-yum-cron-2
 #     - dns
 #     - ip_forwarder
 #     - network_interface
