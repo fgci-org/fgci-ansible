@@ -36,7 +36,8 @@
       cron: name='ansible-pull' user=root job='/bin/bash /usr/local/bin/ansible-pull-script.sh >/var/log/ansible.log 2>&1' minute="*/{{ ansible_pull_cron_minute_interval }}" cron_file=ansible-pull
       tags: pull
 
-  roles: 
+  roles:
+  - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
