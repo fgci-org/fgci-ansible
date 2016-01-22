@@ -6,6 +6,7 @@
   shell: iptables -L; iptables -t nat -L
   register: iptablesrules
   remote_user: root
+  always_run: True
 - name: allow forwarding traffic in iptables
   command: iptables -I FORWARD 1 -i "{{ internal_interface }}" -o "{{ external_interface }}" -m comment --comment "forward from internal net" -j ACCEPT
   when: iptablesrules.stdout.find("forward from internal net") == -1
