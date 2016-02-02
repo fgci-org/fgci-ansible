@@ -38,6 +38,7 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
+  - { role: ansible-role-pdsh-machines, tags: [ 'pdsh', 'machines' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
  
 - name: grab facts from production nodes

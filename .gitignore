@@ -32,3 +32,7 @@ notes
 
 # by Luís
 requirements-latest.yml
+
+# pdsh's /etc/machines file created by ansible-role-pdsh-machines
+files/machines
+files/dsh/*
