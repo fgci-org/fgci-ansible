@@ -115,3 +115,6 @@
 
 - src: https://github.com/mhakala/ansible-role-adauth
   path: roles
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pdsh-machines
+  path: roles
