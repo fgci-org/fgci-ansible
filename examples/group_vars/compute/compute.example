@@ -2,8 +2,9 @@
 
 internal_interface: "em1"
 ib_interface: "ib0"
+ip_address: "{{int_ip_addr}}"
 
-ib_net_mask: "255.0.0.0"
+ib_net_mask: "255.255.0.0"
 
 network_ether_interfaces:
   - device: "{{ib_interface}}"
@@ -20,6 +21,7 @@ network_ether_interfaces:
     type: "Ethernet"
 
 infiniband_available: True
+rdma_configure_dual_ports: True
 
 networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
@@ -117,4 +119,4 @@ kickstart_packages: |
   yum-plugin-fastestmirror
   Lmod
   wget
-
+  bzip2

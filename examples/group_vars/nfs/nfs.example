@@ -3,8 +3,7 @@
 internal_interface: "em1"
 ib_interface: "ib0"
 
-ib_ip_addr: "10.2.1.5"
-ib_net_mask: "255.0.0.0"
+internal_ip: "{{int_ip_addr}}"
 
 network_ether_interfaces:
   - device: "{{ib_interface}}"
@@ -24,6 +23,7 @@ networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
 
 infiniband_available: True
+rdma_configure_dual_ports: True
 
 ## PXE
 
@@ -57,7 +57,7 @@ kickstart_packages: |
 
 # NFS exports
 
-nfs_exports: { "/home 10.0.0.0/8(rw,sync,no_root_squash)","/scratch 10.0.0.0/8(rw,no_root_squash)" }
+nfs_exports: { "/home 10.2.0.0/16(rw,sync,no_root_squash)","/scratch 10.2.0.0/16(rw,no_root_squash)","/home 10.1.0.0/16(rw,sync,no_root_squash)","/scratch 10.1.0.0/16(rw,no_root_squash)" }
 
 # Configure smartd
 smartd_service: True

@@ -4,14 +4,8 @@ internal_interface: "em2"
 external_interface: "em1"
 ib_interface: "ib0"
 
-internal_net: "10.0.0.0/8"
-
-int_ip_addr: "10.1.1.4"
 internal_ip: "{{int_ip_addr}}"
-int_net_mask: "255.0.0.0"
-
-ib_ip_addr: "10.2.1.4"
-ib_net_mask: "255.0.0.0"
+ip_address: "{{int_ip_addr}}"
 
 network_ether_interfaces:
   - device: "{{ib_interface}}"
@@ -22,11 +16,12 @@ network_ether_interfaces:
     nm_controlled: "no"
 
 infiniband_available: True
+rdma_configure_dual_ports: True
 
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:
-  - { pool: "vms", size: 180 }
+  - { path: "/var/vms/login.raw", size: 180 }
 bridges:
   - br_ext
   - br_int
@@ -86,6 +81,9 @@ fail2ban_jails:
     protocol: 'tcp'
     logpath: '/var/log/secure'
     maxretry: 10
+
+unconfigured_packages:
+  - fgci-meta-login
 
 sshd:
  PermitRootLogin: "without-password"
