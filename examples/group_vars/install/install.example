@@ -3,13 +3,8 @@
 external_interface: "eth0"
 
 internal_interface: "eth1"
-int_net_addr: "10.0.0.0"
-int_ip_addr: "10.1.1.2"
-int_net_mask: "255.0.0.0"
-int_gateway: "10.1.1.4"
 
 internal_ip: "{{int_ip_addr}}"
-internal_net: "10.0.0.0/8" 
 
 admingroup: "admin"
 
@@ -97,6 +92,7 @@ unconfigured_packages:
  - bash-completion
  - wget
  - pdsh
+ - fgci-meta-install
 
 # For sure do not install infiniband packages on install node
 infiniband_available: False

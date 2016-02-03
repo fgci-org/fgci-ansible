@@ -7,9 +7,9 @@
 - include: admin.yml
 - include: provisioning.yml
 - include: install.yml
-- include: tools/reinstall_node.yml
+#- include: tools/reinstall_node.yml
 - include: nfs.yml
 - include: login.yml
-- include: tools/reinstall_computes.yml
+#- include: tools/reinstall_computes.yml
 - include: compute.yml
 - include: grid.yml

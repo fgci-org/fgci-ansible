@@ -3,34 +3,31 @@
 # By CSC's FGCI deployment team @ Nov. 2015 - http://www.csc.fi
 
 [grid]
-phoenix-grid.fgi.csc.fi ext_ip_addr= 
+phoenix-grid.fgi.csc.f int_ip_addr=10.1.1.3 ext_ip_addr=
 
 [compute]
-ph1 ip_address=10.1.100.1 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph1 ib_ip_addr=10.2.100.1
-ph2 ip_address=10.1.100.2 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph2 ib_ip_addr=10.2.100.2
-ph3 ip_address=10.1.100.3 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph3 ib_ip_addr=10.2.100.3
-ph4 ip_address=10.1.100.4 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph4 ib_ip_addr=10.2.100.4
-gpu ip_address=10.1.100.5 mac_address=XX:XX:XX:XX:XX:XX pxe_name=gpu ib_ip_addr=10.2.100.5 gpu=True
-
-[test]
-test-host
+ph1 int_ip_addr=10.1.100.1 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph1 ib_ip_addr=10.2.100.1
+ph2 int_ip_addr=10.1.100.2 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph2 ib_ip_addr=10.2.100.2
+ph3 int_ip_addr=10.1.100.3 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph3 ib_ip_addr=10.2.100.3 
+ph4 int_ip_addr=10.1.100.4 mac_address=XX:XX:XX:XX:XX:XX pxe_name=ph4 ib_ip_addr=10.2.100.4
+gpu int_ip_addr=10.1.100.4 mac_address=XX:XX:XX:XX:XX:XX pxe_name=gpu ib_ip_addr=10.2.100.5 gpu=True
 
 [install]
-phoenix-install.fgi.csc.fi ext_ip_addr=
+phoenix-install.fgi.csc.fi int_ip_addr=10.1.1.2 ext_ip_addr=
 
 [admin]
-phoenix-admin.fgi.csc.fi ext_ip_addr=
+phoenix-admin.fgi.csc.fi int_ip_addr=10.1.1.1 ext_ip_addr=
 
 [nfs]
-phoenix-nfs ip_address=10.1.1.5 mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix-nfs
+phoenix-nfs int_ip_addr=10.1.1.5 mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix-nfs
 
 [login]
-phoenix.fgi.csc.fi ext_ip_addr= ip_address=10.1.1.4 mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix
+phoenix.fgi.csc.fi int_ip_addr=10.1.1.4 ext_ip_addr= mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix
 
 [vhosts:children]
 install
 grid
-login
+login # <-- Add here just if your login node is a VM [ If so, remove green variables ^ up there ]
 
 [production:children]
 install

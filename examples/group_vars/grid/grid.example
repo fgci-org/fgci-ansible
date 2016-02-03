@@ -3,13 +3,8 @@
 external_interface: "eth0"
 
 internal_interface: "eth1" 
-int_net_addr: "10.0.0.0"
-int_ip_addr: "10.1.1.3"
-int_net_mask: "255.0.0.0"
-int_gateway: "10.1.1.4"
 
 internal_ip: "{{int_ip_addr}}"
-internal_net: "10.0.0.0/8"
 
 network_ether_interfaces:
   - device: "{{external_interface}}"
@@ -90,7 +85,7 @@ unconfigured_packages:
   - bash-completion
   - pdsh
   - Lmod
-  - nfs-utils
+  - fgci-meta-grid
 
 # Do not extra install infiniband packages
 infiniband_available: False
