@@ -1,0 +1,58 @@
+
+{% if item.bootproto == 'static' %}
+DEVICE={{ item.device }}
+{% if item.name is defined %}
+NAME={{ item.name }}
+{% endif %}
+{% if item.physdev is defined %}
+PHYSDEV={{ item.physdev }}
+{% endif %}
+BOOTPROTO=none
+{% if item.type is defined %}
+TYPE={{ item.type }}
+{% endif %}
+{% if item.address is defined %}
+IPADDR={{ item.address }}
+{% endif %}
+{% if item.onboot is defined %}
+ONBOOT={{ item.onboot }}
+{% endif %}
+{% if item.netmask is defined %}
+NETMASK={{ item.netmask }}
+{% endif %}
+{% if item.gateway is defined %}
+GATEWAY={{ item.gateway }}
+{% endif %}
+{% if item.vlan is defined %}
+VLAN=yes
+{% endif %}
+{% if item.pkey is defined and item.pkey_id is defined %}
+PKEY={{ item.pkey }}
+PKEY_ID={{ item.pkey_id }}
+{% endif %}
+{% endif %}
+
+{% if item.ipv6init is defined %}
+IPV6INIT={{ item.ipv6init }}
+{% endif %}
+
+{% if item.mtu is defined %}
+MTU={{ item.mtu }}
+{% endif %}
+
+{% if item.connected_mode is defined %}
+CONNECTED_MODE={{ item.connected_mode }}
+{% endif %}
+
+{% if item.bootproto == 'dhcp' %}
+DEVICE={{ item.device }}
+BOOTPROTO=dhcp
+{% endif %}
+
+{% if item.nm_controlled is defined %}
+NM_CONTROLLED={{ item.nm_controlled }}
+{% endif %}
+
+{% if item.defroute is defined %}
+DEFROUTE={{ item.defroute }}
+{% endif %}
