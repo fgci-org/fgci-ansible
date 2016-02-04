@@ -55,7 +55,7 @@
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
   - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
-  - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'host-keys' ] }
+  - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
 #  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }

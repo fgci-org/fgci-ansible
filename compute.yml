@@ -12,6 +12,7 @@
   sudo: yes
 
   roles: 
+  - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
@@ -25,11 +26,11 @@
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
-  - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
+  - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
+  - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
-  - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
 
