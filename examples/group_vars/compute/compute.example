@@ -21,7 +21,7 @@ network_ether_interfaces:
     type: "Ethernet"
 
 infiniband_available: True
-rdma_configure_dual_ports: True
+rdma_configure_single_port: True
 
 networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
