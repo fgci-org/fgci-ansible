@@ -23,7 +23,7 @@ networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
 
 infiniband_available: True
-rdma_configure_dual_ports: True
+rdma_configure_single_port: True
 
 ## PXE
 
