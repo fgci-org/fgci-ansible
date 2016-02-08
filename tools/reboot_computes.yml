@@ -10,5 +10,8 @@
   
   tasks:
   - name: Reboot compute nodes
-    command: /sbin/shutdown -r
-    ignore_errors: yes
+    shell: sleep 2 && /sbin/shutdown -r now "Ansible reboot"
+    async: 1
+    pool: 0
+    ignore_errors: true
+
