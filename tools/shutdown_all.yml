@@ -10,8 +10,10 @@
   
   tasks:
   - name: Shutdown compute nodes
-    command: /sbin/shutdown -h
-    ignore_errors: yes
+    shell: sleep 2 && /sbin/shutdown -h now "Ansible shutdown"
+    async: 1
+    pool: 0
+    ignore_errors: true
 
 - name: Shutdown Compute Nodes
   hosts: [ grid, install, login, nfs, admin ]
@@ -20,5 +22,7 @@
   
   tasks:
   - name: Shutdown the rest of the nodes
-    command: /sbin/shutdown -h
-    ignore_errors: yes
+    shell: sleep 2 && /sbin/shutdown -h now "Ansible shutdown"
+    async: 1
+    pool: 0 
+    ignore_errors: true
