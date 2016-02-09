@@ -25,6 +25,8 @@ int_net_mask: "255.255.0.0"
 int_gateway: "10.1.1.4"
 internal_net: "10.1.0.0/16"
 
+ip_address: "{{int_ip_addr}}"
+
 ib_net_mask: "255.255.0.0"
 
 nameserver1: "10.1.1.2"
