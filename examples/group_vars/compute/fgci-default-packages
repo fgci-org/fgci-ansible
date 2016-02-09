@@ -73,3 +73,6 @@ remove_packages:
   - phonon-backend-gstreamer
   - qt-x11
   - redhat-lsb-graphics
+  - "NetworkManager"
+  - "NetworkManager-team"
+  - "NetworkManager-tui"
