@@ -26,5 +26,15 @@
   when: iptablesrules.stdout.find("masquerading for internal net") == -1
   remote_user: root
 
+- name: Is dhcpclient running?
+  shell: /usr/bin/pgrep dhcpclient
+  register: dhcpclient
+  failed_when: dhcpclient.stderr != ""
+
+- name: killing dhcpclient
+  shell: /usr/bin/pkill dhcpclient
+  when: dhcpclient.stdout != ""
+  ignore_errors: true
+
 - name: Disabling and stoping NetworkManager
   service: name=NetworkManager enabled=no state=stopped
