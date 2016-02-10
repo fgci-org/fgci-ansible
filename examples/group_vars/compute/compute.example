@@ -2,7 +2,6 @@
 
 internal_interface: "em1"
 ib_interface: "ib0"
-ip_address: "{{int_ip_addr}}"
 
 ib_net_mask: "255.255.0.0"
 
