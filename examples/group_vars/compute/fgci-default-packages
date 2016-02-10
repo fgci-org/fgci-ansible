@@ -68,6 +68,8 @@ unconfigured_packages:
   - time
   - tcsh
   - wget
+  - fgci-meta-compute
+  - bzip2
 
 remove_packages:
   - phonon-backend-gstreamer
