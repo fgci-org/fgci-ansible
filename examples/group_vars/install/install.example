@@ -4,8 +4,6 @@ external_interface: "eth0"
 
 internal_interface: "eth1"
 
-internal_ip: "{{int_ip_addr}}"
-
 admingroup: "admin"
 
 network_ether_interfaces:

@@ -3,8 +3,6 @@
 internal_interface: "em1"
 ib_interface: "ib0"
 
-internal_ip: "{{int_ip_addr}}"
-
 network_ether_interfaces:
   - device: "{{ib_interface}}"
     bootproto: "static"
