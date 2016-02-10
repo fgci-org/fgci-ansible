@@ -122,12 +122,15 @@
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-serial-console
   path: roles
 
-- src: https://github.com/cmprescott/ansible-role-autofs.git
+- src: https://github.com/cmprescott/ansible-role-autofs
   path: roles
   name: ansible-role-autofs
   version: 0.2.0
 
-- src: https://github.com/jtyr/ansible-nsswitch.git
+- src: https://github.com/jtyr/ansible-nsswitch
   path: roles
   name: ansible-role-nsswitch
   version: 13a7ce8783d2573904fda9e584e5eeec65a86237
+
+- src: https://github.com/mhakala/ansible-role-lustre_client
+  path: roles
