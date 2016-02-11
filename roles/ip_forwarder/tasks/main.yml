@@ -36,5 +36,10 @@
   when: dhcpclient.stdout != ""
   ignore_errors: true
 
+- name: Check if NetworkManager is installed
+  stat: path=/usr/lib/systemd/system/NetworkManager.service
+  register: nm
+
 - name: Disabling and stoping NetworkManager
   service: name=NetworkManager enabled=no state=stopped
+  when: nm.stat.exists
