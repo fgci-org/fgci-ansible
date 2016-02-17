@@ -12,7 +12,7 @@
   - name: Shutdown compute nodes
     shell: sleep 2 && /sbin/shutdown -h now "Ansible shutdown"
     async: 1
-    pool: 0
+    poll: 0
     ignore_errors: true
 
 - name: Shutdown Compute Nodes
@@ -24,5 +24,5 @@
   - name: Shutdown the rest of the nodes
     shell: sleep 2 && /sbin/shutdown -h now "Ansible shutdown"
     async: 1
-    pool: 0 
+    poll: 0
     ignore_errors: true
