@@ -3,16 +3,21 @@
 # This role will upgrade and reboot all cluster nodes
 # by Luís for Ansible version 1.9.4
 # TO-DO: Handle proper Slurm shutdown
+# Please note: This will reboot NFS and other nodes independently if there are running jobs or not. 
 #
 
 - name: Upgrade and Reboot NFS Node
   hosts: nfs
   remote_user: root
   gather_facts: false 
-  
+  vars_prompt:
+    - name: continue
+      prompt: "This will reboot the whole cluster even if there are running jobs!\nAre you sure that you want to continue?\n(yes|no):\n"
+      private: no
+
   tasks:
 
-  - name: Full upgrade
+  - name: Full update
     yum: name=* update_cache=yes  state=latest
 
   - name: Reboot nfs node
@@ -32,7 +37,7 @@
   
   tasks:
 
-  - name: Full upgrade
+  - name: Full update
     yum: name=* update_cache=yes  state=latest
 
   - name: Shutdown VM nodes
@@ -48,7 +53,7 @@
   
   tasks:
 
-  - name: Full upgrade
+  - name: Full update
     yum: name=* update_cache=yes  state=latest
 
   - name: Reboot Admin and Login nodes
@@ -62,22 +67,26 @@
     sudo: false
 
 
-- name: Upgrade and Reboot Compute Nodes
-  hosts: compute
+- name: Drain for update and reboot Compute Nodes
+  hosts: install
   remote_user: root
   gather_facts: false 
   
   tasks:
 
-  - name: Full upgrade
+  - name: Full update
     yum: name=* update_cache=yes  state=latest
+    delegate_to: compute
 
-  - name: Reboot compute nodes
-    shell: sleep 2 && /sbin/shutdown -r now "Node software upgrade reboot"
-    async: 1
-    poll: 0
-    ignore_errors: true
+  - name: Drain for reboot computes
+    command: scontrol update nodename="{{ item }}" state=drain reason=reboot
+    with_items: groups['compute']
 
   - name: waiting for computes to come back
     local_action: wait_for host="{{ ansible_ssh_host | default(inventory_hostname) }}" state=started delay=30 timeout=300
     sudo: false
+
+  - name: Resume computes
+    command: scontrol update nodename="{{ item }}" state=resume
+    with_items: groups['compute']
+
