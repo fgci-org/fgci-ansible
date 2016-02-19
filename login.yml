@@ -44,3 +44,7 @@
   - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+  - { role: ansible-role-autofs, tags: [ 'autofs' ] }
+  - { role: ansible-role-adauth, tags: [ 'auth' ] }
+  - { role: ansible-role-pam, tags: [ 'auth' ] }
+  - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
