@@ -60,6 +60,10 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
 #  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
+  - { role: ansible-role-autofs, tags: [ 'autofs' ] }
+  - { role: ansible-role-adauth, tags: [ 'auth' ] }
+  - { role: ansible-role-pam, tags: [ 'auth' ] }
+  - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
 
 # Adding a role here? Make sure you add it to compute.yml for it to work with ansible push
 
