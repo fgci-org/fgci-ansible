@@ -40,6 +40,7 @@
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-pdsh-machines, tags: [ 'pdsh', 'machines' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+  - { role: ansible-role-autofs, tags: [ 'autofs' ] }
  
 - name: grab facts from production nodes
   hosts: production
