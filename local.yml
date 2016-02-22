@@ -58,6 +58,7 @@
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
+  - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
 #  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
