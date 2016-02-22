@@ -120,9 +120,12 @@ kickstart_profile: FGCI-login-node
 kickstart_server_ip: 10.1.1.2
 kickstart_partitions: |
   bootloader --location=mbr --append="selinux=0" --boot-drive=sda
-  autopart --type=lvm
   zerombr
   clearpart --all --initlabel --drives=sda
+  part biosboot --fstype="biosboot" --size=1
+  part / --fstype="xfs" --ondisk=sda --size=50000
+  part swap --size=500
+  part /local --fstype="xfs" --ondisk=sda --size=1 --grow
 kickstart_packages: |
   atlas
   bash-completion
