@@ -135,5 +135,5 @@
 - src: https://github.com/mhakala/ansible-role-lustre_client
   path: roles
 
-- src: https://github.com/mhakala/ansible-role-pam.git
+- src: https://github.com/jabl/ansible-role-pam.git
   path: roles
