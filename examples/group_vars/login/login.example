@@ -114,6 +114,9 @@ limits_domains:
     item: stack
     value: unlimited
 
+## PAM - overwrite pam.d/system-auth and password-auth
+pam_enabled: True
+
 ## PXE
 
 kickstart_profile: FGCI-login-node
