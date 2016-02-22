@@ -33,4 +33,5 @@
   - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
+  - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
