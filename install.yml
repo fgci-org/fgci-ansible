@@ -16,7 +16,7 @@
   roles: 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos' ] }
-  - { role: ansible-role-ferm-firewall, tags: [ 'firewall' ] }
+  - { role: ansible-role-ferm-firewall, tags: [ 'firewall', 'network' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
@@ -24,11 +24,11 @@
           internal_net is defined and
           internal_interface in ansible_interfaces and
           external_interface in ansible_interfaces }
-  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
-  - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap', 'pxe' ] }
-  - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server', 'dhcpserver', 'pxe' ] }
-  - { role: ansible-role-dnsmasq, tags: [ 'dnsmasq', 'pxe' ] }
+  - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap', 'pxe' ] }
+  - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server', 'dhcpserver', 'pxe' ] }
+  - { role: ansible-role-dnsmasq, tags: [ 'dnsmasq', 'pxe' ] }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-pxe_config, tags: [ 'pxe_config', 'pxe' ] }
   - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }

@@ -40,7 +40,7 @@
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
-  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
