@@ -50,6 +50,14 @@ install_ssh_host_keys_to_nfs: False
 install_ssh_host_keys_from_nfs: True
 install_ssh_known_hosts_from_http: True
 
+# PAM
+pam_enabled: True
+pam_use_sssd: False
+pam_enable_slurm: True
+slurm_access_groups:
+ - "{{ admingroup | default('admin') }}"
+ - "root"
+ - "wheel"
 
 #Limits for MPI
 limits_domains:
