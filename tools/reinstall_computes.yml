@@ -9,7 +9,7 @@
   
   tasks:
   - name: Create compute node reinstall flag files in Install node
-    command: /bin/touch /var/www/provision/reinstall/{{ item }}
+    file: path=/var/www/provision/reinstall/{{ item }} state=touch
     with_items: groups.compute
 
   - name: Delete known_hosts entries for compute nodes
