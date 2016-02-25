@@ -62,6 +62,18 @@ ferm_rules_extra:
    domains: [ip, ip6]
    rules:
      - {rule: "proto tcp dport (22) mod state state (NEW) mod comment comment 'Allow new SSH' ACCEPT;", comment: "SSH allow new connections from everywhere"}
+ 92_nat:
+ - chain: FORWARD
+   table: filter
+   domains: [ip]
+   rules:
+     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod comment comment 'forward from internal net ' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface {{ external_interface }} outerface {{ internal_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward established and related from internal net' ACCEPT;", comment: "forwarding"}
+ - chain: POSTROUTING
+   table: nat
+   domains: [ip]
+   rules:
+     - {rule: "outerface {{ external_interface }} saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
 
 # Fail2ban - firewall
 fail2ban_config:
