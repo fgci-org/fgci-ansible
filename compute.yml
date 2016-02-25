@@ -21,6 +21,7 @@
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
+  - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-nhc, tags: [ 'nhc', 'slurm' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
@@ -35,7 +36,6 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
-  - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-adauth, tags: [ 'auth' ] }
   - { role: ansible-role-pam, tags: [ 'auth', 'pam' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
