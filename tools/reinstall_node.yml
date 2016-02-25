@@ -13,7 +13,7 @@
   
   tasks:
   - name: Create node reinstall flag file in Install node
-    command: /bin/touch /var/www/provision/reinstall/{{ node_name }}
+    file: path=/var/www/provision/reinstall/{{ node_name }} state=touch
 
   - name: Delete known_hosts entry for the node
     lineinfile: dest=/root/.ssh/known_hosts regexp="^{{ node_name }}," state=absent
