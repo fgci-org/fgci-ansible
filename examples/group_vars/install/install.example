@@ -112,3 +112,17 @@ central_log_host: "@10.1.1.1"
 #Users
 adminremove_passwords: True
 
+#Setup NAT
+ferm_rules_extra:
+ nat:
+ - chain: FORWARD
+   table: filter
+   domains: [ip, ip6]
+   rules:
+     - {rule: "interface {{ internal_interface }} outerface {{ external_interface }} mod comment comment 'forward from internal net ' ACCEPT;", comment: "forwarding"}
+     - {rule: "interface {{ external_interface }} outerface {{ internal_interface }} mod state state (ESTABLISHED RELATED) mod comment comment 'forward established and related from internal net' ACCEPT;", comment: "forwarding"}
+ - chain: POSTROUTING
+   table: nat
+   domains: [ip]
+   rules:
+     - {rule: "outerface {{ external_interface }} saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
