@@ -29,6 +29,7 @@
 - name: Is dhcpclient running?
   shell: /usr/bin/pgrep dhcpclient
   register: dhcpclient
+  always_run: True
   failed_when: dhcpclient.stderr != ""
 
 - name: killing dhcpclient
