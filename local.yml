@@ -42,6 +42,9 @@
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
+  - { role: ansible-role-adauth, tags: [ 'auth' ] }
+  - { role: ansible-role-pam, tags: [ 'auth', 'pam' ] }
+  - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }
   - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
@@ -62,8 +65,6 @@
   - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
 #  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
-  - { role: ansible-role-adauth, tags: [ 'auth' ] }
-  - { role: ansible-role-pam, tags: [ 'auth', 'pam' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
 
 # Adding a role here? Make sure you add it to compute.yml for it to work with ansible push
