@@ -26,6 +26,7 @@
           external_interface in ansible_interfaces }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
+  - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }
   - { role: ansible-role-pxe_bootstrap, tags: [ 'pxe_bootstrap', 'pxe' ] }
   - { role: ansible-role-dhcp_server, tags: [ 'dhcp_server', 'dhcpserver', 'pxe' ] }
   - { role: ansible-role-dnsmasq, tags: [ 'dnsmasq', 'pxe' ] }
