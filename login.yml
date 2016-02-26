@@ -26,6 +26,9 @@
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp'] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
+  - { role: ansible-role-adauth, tags: [ 'auth' ] }
+  - { role: ansible-role-pam, tags: [ 'auth' ] }
+  - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }
   - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
@@ -45,6 +48,4 @@
   - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
-  - { role: ansible-role-adauth, tags: [ 'auth' ] }
-  - { role: ansible-role-pam, tags: [ 'auth' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
