@@ -32,7 +32,7 @@ login # <-- Add here just if your login node is a VM [ If so, remove green varia
 [production:children]
 install
 admin
-login
+grid
 
 [slurm_service:children]
 install
@@ -44,3 +44,7 @@ compute
 compute
 login
 nfs
+
+[nfs_mount:children]
+compute
+login
