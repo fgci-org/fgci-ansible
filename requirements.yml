@@ -136,3 +136,6 @@
 
 - src: https://github.com/jabl/ansible-role-pam.git
   path: roles
+
+- src: https://github.com/jabl/ansible-role-gitmirror.git
+  path: roles
