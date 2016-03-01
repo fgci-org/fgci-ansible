@@ -12,6 +12,8 @@
 - name: Install Node
   hosts: install
   sudo: yes
+  vars:
+    gitmirror_generate_config: False
 
   roles: 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
@@ -42,6 +44,7 @@
   - { role: ansible-role-pdsh-machines, tags: [ 'pdsh', 'machines' ] }
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-adauth, tags: [ 'auth' ] }
+  - { role: ansible-role-gitmirror, tags: [ 'gitmirror'] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
  
 - name: grab facts from production nodes
