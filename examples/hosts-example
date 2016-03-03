@@ -19,15 +19,15 @@ phoenix-install.fgi.csc.fi int_ip_addr=10.1.1.2 ext_ip_addr=
 phoenix-admin.fgi.csc.fi int_ip_addr=10.1.1.1 ext_ip_addr=
 
 [nfs]
-phoenix-nfs int_ip_addr=10.1.1.5 mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix-nfs
+phoenix-nfs int_ip_addr=10.1.1.5 mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix-nfs ib_ip_addr=10.2.1.
 
 [login]
-phoenix.fgi.csc.fi int_ip_addr=10.1.1.4 ext_ip_addr= mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix
+phoenix.fgi.csc.fi int_ip_addr=10.1.1.4 ext_ip_addr= mac_address=XX:XX:XX:XX:XX:XX pxe_name=phoenix ib_ip_addr=10.2.1.4
 
 [vhosts:children]
 install
 grid
-login # <-- Add here just if your login node is a VM [ If so, remove green variables ^ up there ]
+login # <-- Add here just if your login node is a VM
 
 [production:children]
 install
