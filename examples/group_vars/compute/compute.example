@@ -129,4 +129,4 @@ kickstart_packages: |
   yum-plugin-fastestmirror
   Lmod
   wget
-  bzip2
+#  bzip2
