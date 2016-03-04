@@ -29,7 +29,7 @@
   - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
-  - { role: ansible-role-rsyslog, tags: [ 'rsyslog-client' ] }
+  - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
