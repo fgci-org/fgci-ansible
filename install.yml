@@ -12,8 +12,6 @@
 - name: Install Node
   hosts: install
   sudo: yes
-  vars:
-    gitmirror_generate_config: False
 
   roles: 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
