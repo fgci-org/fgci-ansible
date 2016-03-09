@@ -6,8 +6,7 @@
 
   roles: 
   - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
-  - { role: ansible-role-fgci-install, tags: [ 'fgci-install' ] }
-
+  - { role: ansible-role-fgci-install, tags: [ 'fgci-install', 'gitmirror' ] }
 
 - name: Install Node
   hosts: install
