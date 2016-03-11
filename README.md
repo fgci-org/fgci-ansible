@@ -4,8 +4,11 @@ Collection of the Finnish Grid and Cloud Infrastructure Ansible playbooks
 [![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible.svg?branch=master)](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible) [![Stories in Ready](https://badge.waffle.io/CSC-IT-Center-for-Science/fgci-ansible.png?label=ready&title=Ready)](https://waffle.io/CSC-IT-Center-for-Science/fgci-ansible)
 
 # Usage:
- - make a hosts file
- - install ansible repos with: <pre>ansible-galaxy install -r requirements.yml</pre>
+ - make a hosts file (you can use template file in examples dir)
+ - install ansible repos with: <pre>ansible-galaxy install -r requirements.yml</pre> or <pre>sh tools/pullReqs.sh</pre>
+ - Copy dir examples/group_vars to the repository root dir
+ - on group_vars/ change file names from .example to .yml
+ - Edit group_vars files with your system configuration parameters
 
 # Running:
 
