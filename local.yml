@@ -41,6 +41,7 @@
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-adauth, tags: [ 'auth' ] }
   - { role: ansible-role-pam, tags: [ 'auth', 'pam' ] }
@@ -49,7 +50,6 @@
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
-  - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-nhc, tags: [ 'nhc', 'slurm' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
