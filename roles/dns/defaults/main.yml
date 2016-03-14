@@ -6,3 +6,7 @@
 nameserver1: "10.0.0.1"
 nameserver2: "10.1.0.1"
 nameserver3: "10.2.0.1"
+# To define a sortlist, add,
+# dns_resolv_sortlist: "10.0.0.0/255.0.0.0"
+# To define options, add,
+# dns_resolv_options: "single-request-reopen"

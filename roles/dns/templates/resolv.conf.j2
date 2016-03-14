@@ -5,3 +5,9 @@ search {{ dns_resolv_search }}
 nameserver {{ nameserver1 }}
 nameserver {{ nameserver2 }}
 nameserver {{ nameserver3 }}
+{% if dns_resolv_sortlist is defined %}
+sortlist {{ dns_resolv_sortlist }}
+{% endif %}
+{% if dns_resolv_options is defined %}
+options {{ dns_resolv_options }}
+{% endif %}
