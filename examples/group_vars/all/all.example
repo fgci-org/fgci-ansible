@@ -1,6 +1,7 @@
 ---
 
 siteName: io
+intDomain: int
 siteDomain: fgci.csc.fi
 nodeBase: io
 
