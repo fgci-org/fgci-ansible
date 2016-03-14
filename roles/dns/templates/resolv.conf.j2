@@ -1,4 +1,7 @@
 # {{ ansible_managed }}
+{% if dns_resolv_search is defined %}
+search {{ dns_resolv_search }}
+{% endif %}
 nameserver {{ nameserver1 }}
 nameserver {{ nameserver2 }}
 nameserver {{ nameserver3 }}
