@@ -156,3 +156,6 @@ dell_install_helper_scripts: False
 postfix_relayhost: "smtp.csc.fi"
 
 slurm_compute_nodes: "{{ nodeBase }}[1-4]"
+
+hourly_update_level: "default"
+
