@@ -150,7 +150,7 @@ ansible_pull_sleep: 10
 # Minute interval
 ansible_pull_cron_minute_interval: 120
 # This is the branch of fgci-ansible repo in github.
-ansible_pull_branch: "production"
+ansible_pull_branch: "master"
 # Only install these on the admin node
 dell_install_helper_scripts: False
 
