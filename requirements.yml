@@ -147,7 +147,7 @@
 
 - src: https://github.com/mhakala/ansible-role-adauth
   path: roles
-  version: ecf00602f08c84ae5a183983809f813d0a937c88
+  version: bb2c30281165153e187a7b0fd96c34f1878adb3d
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pdsh-machines
   path: roles
