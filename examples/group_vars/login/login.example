@@ -133,14 +133,23 @@ pam_enabled: True
 
 kickstart_profile: FGCI-login-node
 kickstart_server_ip: 10.1.1.2
+
+# Note on Login node partitioning:
+#
+# Each site can fine tune this to match their needs
+# Only requeirement is that Root part needs at least 200GB
+# Please note that if you rather not have a /local partition you can remove it.
+# If so, don't forget to add "--grow" in part / line
+
 kickstart_partitions: |
   bootloader --location=mbr --append="selinux=0" --boot-drive=sda
   zerombr
   clearpart --all --initlabel --drives=sda
   part biosboot --fstype="biosboot" --size=1
-  part / --fstype="xfs" --ondisk=sda --size=50000
+  part / --fstype="xfs" --ondisk=sda --size=200000 --grow
   part swap --size=500
-  part /local --fstype="xfs" --ondisk=sda --size=1 --grow
+  # part /local --fstype="xfs" --ondisk=sda --size=500000
+
 kickstart_packages: |
   atlas
   bash-completion
