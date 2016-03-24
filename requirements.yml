@@ -178,3 +178,7 @@
 - src: https://github.com/jabl/ansible-role-gitmirror.git
   path: roles
   version: acafcaff5094b5d7f9da796096068d62ae895b85
+
+- src: https://github.com/jabl/ansible-role-open-vm-tools.git
+  path: roles
+  version: v1.0.0
