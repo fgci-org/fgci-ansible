@@ -186,3 +186,7 @@
 - src: https://github.com/mhakala/ansible-role-samba.git
   path: roles
   version: ca4c6dbca39231e61dbaf07e19d5b7f5b0786d3d
+
+- src: https://github.com/jabl/ansible-role-open-vm-tools.git
+  path: roles
+  version: v1.0.0
