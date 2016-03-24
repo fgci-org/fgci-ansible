@@ -178,3 +178,11 @@
 - src: https://github.com/jabl/ansible-role-gitmirror.git
   path: roles
   version: acafcaff5094b5d7f9da796096068d62ae895b85
+
+- src: https://github.com/mhakala/ansible-role-idmapd.git
+  path: roles
+  version: 336875424c799846e455004871a77f7655c1f8c6
+
+- src: https://github.com/mhakala/ansible-role-samba.git
+  path: roles
+  version: ca4c6dbca39231e61dbaf07e19d5b7f5b0786d3d
