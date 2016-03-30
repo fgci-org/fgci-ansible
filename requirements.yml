@@ -44,7 +44,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
   path: roles
-  version: 79ec9499046ca9d1d6e98fd131dceea9880893bd
+  version: v1.2.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
   path: roles
@@ -87,7 +87,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_config
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
   path: roles
