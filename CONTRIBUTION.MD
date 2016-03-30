@@ -9,24 +9,22 @@ Configure upstream:
 <pre>
 cd fgci-ansible 
 git pull
-git checkout test
-git branch --set-upstream-to=origin/test test
-git pull
-git checkout production
-git branch --set-upstream-to=origin/production production
+git checkout devel
+git branch --set-upstream-to=origin/devel devel
 git pull
 git checkout master
 </pre>
 
 Workflow:
 
- - master: Work/commit/push to master, or even better work in feature branches
- - testing: After the work is commited to master, merge master into test and run testing on it
-  - git checkout master; git pull
-  - git checkout test; git pull; git merge --ff-only master; git checkout master
- - production: After it's been tested and it's working on the test system, merge test into production
-  - git checkout master; git pull
-  - git checkout production; git pull; git merge --ff-only test; git checkout master
+ - devel: After the work is commited to devel, run testing. Merge devel into master when testing is done.
+ - master: The stable branch
+
+Syncing changes done in devel:
+<pre>
+git checkout master; git pull
+git merge --ff-only devel; git checkout devel
+</pre>
 
 Git push where appropriate
 
@@ -57,6 +55,7 @@ These are suggestions for requirements of roles that the fgci-ansible orchestrat
  - **readme:**  README.MD should contain description
  - **variables names:**  the variable namespace is global, so try to not use variables called "packages" or "installed". role_name_variable_name is better.
  - **automatic testing:** add the role to travis. Some files needed in the repo - For example see https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
+ - if it's an optional role, the role should not do anything by default. Suggestion is to force users that want to use the role to set something like "autofs_enabled: True". This is how we add site-specific roles to the playbooks.
 
 CSC tasks after adding a new role/repo:
  - **enable automatic testing:** enable the repo in https://travis-ci.org/CSC-IT-Center-for-Science/
