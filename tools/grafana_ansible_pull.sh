@@ -10,14 +10,14 @@ safety() {
 
 which curl 2>&1 >/dev/null
 if [ "$?" != 0 ]; then
-	echo "could not find curl, halting"
+	echo "could not find curl, exiting grafana_ansible_pull.sh"
 	exit 2
 fi
 
 }
 
 started() {
-curl -H "Content-Type: application/json" -X POST -d '{
+curl -f -H "Content-Type: application/json" -X POST -d '{
       "metric": "ansible_pull",
       "text": "started",
       "value": 1,
@@ -33,7 +33,7 @@ curl -H "Content-Type: application/json" -X POST -d '{
 }
 
 failed() {
-curl -H "Content-Type: application/json" -X POST -d '{
+curl -f -H "Content-Type: application/json" -X POST -d '{
       "metric": "ansible_pull",
       "text": "failed",
       "value": 2,
@@ -49,7 +49,7 @@ curl -H "Content-Type: application/json" -X POST -d '{
 }
 
 succeeded() {
-curl -H "Content-Type: application/json" -X POST -d '{
+curl -f -H "Content-Type: application/json" -X POST -d '{
       "metric": "ansible_pull",
       "text": "succeeded",
       "value": 0,
