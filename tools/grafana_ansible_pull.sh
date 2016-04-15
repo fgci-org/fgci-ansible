@@ -24,9 +24,9 @@ curl -f -H "Content-Type: application/json" -X POST -d '{
       "timestamp": '$timestamp',
       "state": "started",
       "tags": {
-         "fqdn": "'"$host"'",
+         "node": "'"$host"'",
          "state": "started",
-         "site": "'"$domain"'"
+         "sitename": "'"$domain"'"
       }
   }
   ' http://cassini.fgci.csc.fi:4242/api/put
@@ -40,9 +40,9 @@ curl -f -H "Content-Type: application/json" -X POST -d '{
       "timestamp": '$timestamp',
       "state": "failed",
       "tags": {
-         "fqdn": "'"$host"'",
+         "node": "'"$host"'",
          "state": "failed",
-         "site": "'"$domain"'"
+         "sitename": "'"$domain"'"
       }
   }
   ' http://cassini.fgci.csc.fi:4242/api/put
@@ -56,9 +56,9 @@ curl -f -H "Content-Type: application/json" -X POST -d '{
       "timestamp": '$timestamp',
       "state": "succeeded",
       "tags": {
-         "fqdn": "'"$host"'",
+         "node": "'"$host"'",
          "state": "succeeded",
-         "site": "'"$domain"'"
+         "sitename": "'"$domain"'"
       }
   }
   ' http://cassini.fgci.csc.fi:4242/api/put
