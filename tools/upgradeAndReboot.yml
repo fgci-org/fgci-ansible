@@ -74,9 +74,7 @@
   
   tasks:
 
-  - name: Full update
-    yum: name=* update_cache=yes  state=latest
-    delegate_to: compute
+# Computes should be up-to-date from ansible-pull script
 
   - name: Drain for reboot computes
     command: scontrol update nodename="{{ item }}" state=drain reason=reboot
