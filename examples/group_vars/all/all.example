@@ -151,6 +151,8 @@ ansible_pull_sleep: 10
 ansible_pull_cron_minute_interval: 120
 # This is the branch of fgci-ansible repo in github.
 ansible_pull_branch: "master"
+# Set the ansible_pull_cron_state to absent to disable the ansible-pull cronjob
+ansible_pull_cron_state: present
 # Only install these on the admin node
 dell_install_helper_scripts: False
 
