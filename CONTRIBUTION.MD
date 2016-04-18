@@ -23,7 +23,12 @@ Workflow:
 Syncing changes done in devel:
 <pre>
 git checkout master; git pull
-git merge --ff-only devel; git checkout devel
+git merge --ff-only devel
+
+#If the merge was successful then make:
+
+git push
+git checkout devel
 </pre>
 
 Git push where appropriate
