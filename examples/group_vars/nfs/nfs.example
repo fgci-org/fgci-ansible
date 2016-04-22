@@ -26,7 +26,6 @@ rdma_configure_single_port: True
 ## PXE
 
 kickstart_profile: FGCI-nfs-node
-kickstart_server_ip: 10.1.1.2
 kickstart_partitions: |
   bootloader --location=mbr --append="selinux=0" --boot-drive=sda
   zerombr

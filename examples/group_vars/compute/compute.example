@@ -81,7 +81,6 @@ limits_domains:
 ## PXE
 
 kickstart_profile: FGCI-compute-node
-kickstart_server_ip: 10.1.1.2
 
 # Note on Compute nodes partitioning:
 #

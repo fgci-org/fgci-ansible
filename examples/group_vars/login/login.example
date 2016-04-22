@@ -132,7 +132,6 @@ pam_enabled: True
 ## PXE
 
 kickstart_profile: FGCI-login-node
-kickstart_server_ip: 10.1.1.2
 
 # Note on Login node partitioning:
 #
