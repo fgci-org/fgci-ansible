@@ -5,12 +5,12 @@
 
 - name: Install the required  packages in Redhat derivatives
   yum: name={{ item }} state=installed
-  with_items: network_pkgs
+  with_items: "{{ network_pkgs }}"
   when: ansible_os_family == 'RedHat'
 
 - name: Install the required packages in Debian derivatives
   apt: name={{ item }} state=installed update_cache=yes
-  with_items: network_pkgs
+  with_items: "{{ network_pkgs }}"
   environment: env
   when: ansible_os_family == 'Debian'
 
@@ -29,7 +29,7 @@
 
 - name: Create the network configuration file for ethernet devices
   template: src=ethernet_{{ ansible_os_family }}.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
-  with_items: network_ether_interfaces
+  with_items: "{{ network_ether_interfaces }}"
   when: network_ether_interfaces is defined
   register: ether_result
   notify:
@@ -37,7 +37,7 @@
 
 - name: Write configuration files for rhel route configuration
   template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }} 
-  with_items: network_ether_interfaces
+  with_items: "{{ network_ether_interfaces }}"
   when: network_ether_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
   notify:
      - restart network
@@ -48,7 +48,7 @@
 
 - name: Create the network configuration file for bond devices
   template: src=bond_{{ ansible_os_family }}.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
-  with_items: network_bond_interfaces
+  with_items: "{{ network_bond_interfaces }}"
   when: network_bond_interfaces is defined
   register: bond_result
   notify:
@@ -60,7 +60,7 @@
 
 - name: Write configuration files for route configuration
   template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }} 
-  with_items: network_bond_interfaces
+  with_items: "{{ network_bond_interfaces }}"
   when: network_bond_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
   notify:
      - restart network
@@ -89,7 +89,7 @@
 
 - name: Create the network configuration file for vlan devices
   template: src=ethernet_{{ ansible_os_family }}.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
-  with_items: network_vlan_interfaces
+  with_items: "{{ network_vlan_interfaces }}"
   when: network_vlan_interfaces is defined
   register: vlan_result
   notify:
@@ -97,7 +97,7 @@
 
 - name: Write configuration files for rhel route configuration with vlan
   template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }} 
-  with_items: network_vlan_interfaces
+  with_items: "{{ network_vlan_interfaces }}"
   when: network_vlan_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
   notify:
      - restart network
@@ -108,7 +108,7 @@
 
 - name: Create the network configuration file for bridge devices
   template: src=bridge_{{ ansible_os_family }}.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
-  with_items: network_bridge_interfaces
+  with_items: "{{ network_bridge_interfaces }}"
   when: network_bridge_interfaces is defined
   register: bridge_result
   notify:
@@ -116,7 +116,7 @@
 
 - name: Write configuration files for rhel route configuration
   template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }}
-  with_items: network_bridge_interfaces
+  with_items: "{{ network_bridge_interfaces }}"
   when: network_bridge_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
   notify:
      - restart network
@@ -139,7 +139,7 @@
 
 - name: Create the network configuration file for IB devices
   template: src=infiniband_{{ ansible_os_family }}.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
-  with_items: network_ib_interfaces
+  with_items: "{{ network_ib_interfaces }}"
   when: network_ib_interfaces is defined
   register: ib_result
   notify:
@@ -147,7 +147,7 @@
 
 - name: Write configuration files for rhel route configuration with vlan
   template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }} 
-  with_items: network_ib_interfaces
+  with_items: "{{ network_ib_interfaces }}"
   when: network_ib_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
   notify:
      - restart network
