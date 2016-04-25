@@ -40,7 +40,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fail2ban
   path: roles
-  version: v1.1.1
+  version: v1.1.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
   path: roles
@@ -162,31 +162,31 @@
   name: ansible-role-autofs
   version: 0.2.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-nsswitch.git
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-nsswitch
   path: roles
   name: ansible-role-nsswitch
   version: v1.0.0
 
 - src: https://github.com/mhakala/ansible-role-lustre_client
   path: roles
-  version: 41e162038fa034fd48ea7720c47a2b76a46ffa9a
+  version: e6b88f51aab69eaef2c498df2d5a270f93100472
 
 - src: https://github.com/jabl/ansible-role-pam
   path: roles
   version: v1.0.0
 
-- src: https://github.com/jabl/ansible-role-gitmirror.git
+- src: https://github.com/jabl/ansible-role-gitmirror
   path: roles
   version: acafcaff5094b5d7f9da796096068d62ae895b85
 
-- src: https://github.com/mhakala/ansible-role-idmapd.git
+- src: https://github.com/mhakala/ansible-role-idmapd
   path: roles
   version: 336875424c799846e455004871a77f7655c1f8c6
 
-- src: https://github.com/mhakala/ansible-role-samba.git
+- src: https://github.com/mhakala/ansible-role-samba
   path: roles
-  version: ca4c6dbca39231e61dbaf07e19d5b7f5b0786d3d
+  version: 9c2d2addb1112b1aad182e626f8bd87e5917cd78
 
-- src: https://github.com/jabl/ansible-role-open-vm-tools.git
+- src: https://github.com/jabl/ansible-role-open-vm-tools
   path: roles
   version: v1.0.0
