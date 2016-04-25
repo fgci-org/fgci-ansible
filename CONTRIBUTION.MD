@@ -36,6 +36,16 @@ Git push where appropriate
 Releases
 --------
 
+After syncing the changes from devel to master we should make a release on github.
+
+Every time a new change is made to the devel branch - a CSC person should mention that change in a draft 
+release note. We anyway should describe the changes in the release, so documenting the release in the
+release note when making the change is better. If the change is not tested (yet) this should also be
+mentioned in the draft release note.
+
+Release Naming Convention: vx.y.z Adjective Snakename 
+
+https://en.wikipedia.org/wiki/List_of_snakes_by_common_name
 
 
 Pull Requests
