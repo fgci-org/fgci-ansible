@@ -78,7 +78,7 @@
 
   - name: Drain for reboot computes
     command: scontrol update nodename="{{ item }}" state=drain reason=reboot
-    with_items: groups['compute']
+    with_items: "{{ groups['compute'] }}"
 
   - name: waiting for computes to come back
     local_action: wait_for host="{{ ansible_ssh_host | default(inventory_hostname) }}" state=started delay=30 timeout=300
@@ -86,5 +86,5 @@
 
   - name: Resume computes
     command: scontrol update nodename="{{ item }}" state=resume
-    with_items: groups['compute']
+    with_items: "{{ groups['compute'] }}"
 
