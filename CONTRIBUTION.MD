@@ -16,6 +16,7 @@ git checkout master
 </pre>
 
 Workflow:
+---------
 
  - devel: After the work is commited to devel, run testing. Merge devel into master when testing is done.
  - master: The stable branch
