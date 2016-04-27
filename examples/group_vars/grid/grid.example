@@ -84,6 +84,7 @@ unconfigured_packages:
   - pdsh
   - Lmod
   - fgci-meta-grid
+  - nfs-utils
 
 # Do not extra install infiniband packages
 infiniband_available: False
