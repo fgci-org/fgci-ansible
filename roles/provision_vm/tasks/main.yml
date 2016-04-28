@@ -1,12 +1,12 @@
 ---
 - name: copy over kickstart file
   template: src="kickstart.cfg" dest="{{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}.ks"
-  sudo: yes
+  become: yes
   delegate_to: "{{ hyper }}"
 
 - name: copy over virt-install script
   template: src="virt-install.sh" dest="{{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}-install.sh"
-  sudo: yes
+  become: yes
   delegate_to: "{{ hyper }}"
 
 - name: creates VM disks directory
@@ -41,7 +41,7 @@
 
 - name: run virt-install script
   command: "bash {{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}-install.sh"
-  sudo: yes
+  become: yes
   #environment: env_virt_install
   environment: { http_proxy: "" }
   args:
