@@ -9,7 +9,7 @@
 - name: NFS Node
   hosts: nfs
   remote_user: root
-  sudo: yes
+  become: yes
 
   roles: 
   - { role: network_interface, tags: [ 'network' ] }
@@ -34,7 +34,7 @@
 
 - name: Mount /home and /scratch on Install Node
   hosts: install
-  sudo: yes
+  become: yes
 
   roles: 
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }

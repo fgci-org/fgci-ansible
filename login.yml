@@ -9,7 +9,7 @@
 - name: Login Node
   hosts: login
   remote_user: root
-  sudo: yes
+  become: yes
 
   roles: 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }

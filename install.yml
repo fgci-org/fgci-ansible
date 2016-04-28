@@ -10,7 +10,7 @@
 
 - name: Install Node
   hosts: install
-  sudo: yes
+  become: yes
   vars:
     gitmirror_generate_config: False
 
@@ -55,7 +55,7 @@
 
 - name:  Configure Admin Node After Install node
   hosts: admin
-  sudo: yes
+  become: yes
 
   roles:
   - { role: dns, tags: [ 'dns' ] }

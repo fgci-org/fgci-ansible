@@ -8,7 +8,7 @@
 
 - name:  Configure Admin Node
   hosts: admin
-  sudo: yes
+  become: yes
 
   roles:
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
