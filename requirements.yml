@@ -62,7 +62,7 @@
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
   name: ansible-role-sshd
-  version: b3df4fae54bd4ff36cc45ecf6dad43da06d353bb
+  version: bb5b94e1bed07242f18d0ee6650407cfda1faeb4
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-system-limits
   path: roles
