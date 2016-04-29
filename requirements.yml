@@ -123,7 +123,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dell
   path: roles
-  version: v1.1.0
+  version: v1.1.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-sshd-host-keys
   path: roles
