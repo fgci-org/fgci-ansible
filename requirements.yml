@@ -160,7 +160,7 @@
 - src: https://github.com/cmprescott/ansible-role-autofs
   path: roles
   name: ansible-role-autofs
-  version: 0.2.0
+  version: 0.2.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-nsswitch
   path: roles
