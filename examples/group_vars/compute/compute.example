@@ -37,6 +37,11 @@ cvmfs_http_proxy: "{{ http_proxy }}"
 yum_proxy: "{{ http_proxy }}"
 # Install NHC from FGCI's yum
 nhc_github: False
+# To add a custom NHC checks in addition to the defaults, define like below (do keep the check_reboot_slurm  - used to be able to drain and reboot nodes):
+#nhc_checks:
+# - { match: "*", name: "check_reboot_slurm", arguments: "" }
+# - { match: "*", name: "check_file_test", arguments: "-r -s /cvmfs/fgi.csc.fi/README" }
+
 # Run ansible-pull during kickstart
 ansible_pull_kickstart: true
 # SSHD
