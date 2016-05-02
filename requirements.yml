@@ -169,7 +169,7 @@
 
 - src: https://github.com/mhakala/ansible-role-lustre_client
   path: roles
-  version: e6b88f51aab69eaef2c498df2d5a270f93100472
+  version: 4ae566c61c6160303552c3d32a9da0c45f07cee6
 
 - src: https://github.com/jabl/ansible-role-pam
   path: roles
