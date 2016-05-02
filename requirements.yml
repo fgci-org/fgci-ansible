@@ -119,7 +119,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nhc
   path: roles
-  version: v1.1.0
+  version: v1.2.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dell
   path: roles
