@@ -160,6 +160,9 @@ dell_install_helper_scripts: False
 postfix_relayhost: "smtp.csc.fi"
 
 slurm_compute_nodes: "{{ nodeBase }}[1-4]"
+slurm_ExtraParamsList:
+        - "# Extra Slurm parameter *uncommented* lines go here"
+        - "# Check ansible-role-slurm defaults file for examples"
 
 hourly_update_level: "default"
 
