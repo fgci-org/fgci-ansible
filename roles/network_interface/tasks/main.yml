@@ -72,7 +72,7 @@
 - name: Create the network configuration file for slave in the bond devices
   template: src=bond_slave_{{ ansible_os_family }}.j2 dest={{ net_path }}/ifcfg-{{ item.1 }}
   with_subelements:
-   - network_bond_interfaces
+   - '{{ network_bond_interfaces }}'
    - bond_slaves
   when: network_bond_interfaces is defined
   register: bond_port_result
@@ -128,7 +128,7 @@
 - name: Create the network configuration file for port on the bridge devices
   lineinfile: dest={{ net_path }}/ifcfg-{{ item.1 }} regexp='^BRIDGE=' line=BRIDGE={{ item.0.device }}
   with_subelements:
-    - network_bridge_interfaces
+    - '{{ network_bridge_interfaces }}'
     - ports
   when: network_bridge_interfaces is defined
   register: bridge_port_result
