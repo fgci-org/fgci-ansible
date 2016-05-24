@@ -9,8 +9,10 @@ nodeBase: io
 # If you have changed it, re-set it to the string bellow and reconfigure your grid node ASAP.
 voName: "fgi.csc.fi" 
 
-instSiteURL: "http://www.csc.fi"
+# gocDBName should be set for the same name as your site is registered in gocdb.egi.eu
 gocDBName: "CSC"
+
+instSiteURL: "http://www.csc.fi"
 infoSysAdminDomain: "csc.fi"
 resource_location: "Espoo, Finland"
 resource_latitude: "60.18"
