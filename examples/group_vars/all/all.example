@@ -5,17 +5,16 @@ intDomain: int
 siteDomain: fgci.csc.fi
 nodeBase: io
 
-# === ARC confs === #
+# Virtual Organization Name - Do not change the following line if your cluster is running in FGCI!!
+# If you have changed it, re-set it to the string bellow and reconfigure your grid node ASAP.
+voName: "fgi.csc.fi" 
 
-voName: "fgi.csc.fi"
 instSiteURL: "http://www.csc.fi"
 gocDBName: "CSC"
 infoSysAdminDomain: "csc.fi"
 resource_location: "Espoo, Finland"
 resource_latitude: "60.18"
 resource_longitude: "24.83"
-
-#####################
 
 ext_gateway: "86.50.166.1"
 ext_net_addr: "86.50.166.0"
