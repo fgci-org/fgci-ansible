@@ -12,7 +12,8 @@ matrix:
 
 env:
   - IMAGE_BUILD_PLATFORM=stable-centos7
-  - IMAGE_BUILD_PLATFORM=devel-centos7
+#  - IMAGE_BUILD_PLATFORM=devel-centos7
+  - IMAGE_BUILD_PLATFORM=epel-centos7
 
 install:
   - npm install -g validate-dockerfile
