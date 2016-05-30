@@ -151,7 +151,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pdsh-machines
   path: roles
-  version: v1.0.2
+  version: v1.1.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-serial-console
   path: roles
