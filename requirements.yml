@@ -111,7 +111,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-bash
   path: roles
-  version: v1.1.1
+  version: v1.1.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cuda
   path: roles
