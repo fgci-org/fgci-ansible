@@ -103,11 +103,11 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs_mount
   path: roles
-  version: v1.0.1
+  version: v1.1.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-arc-frontend
   path: roles
-  version: v1.1.1
+  version: v1.1.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-bash
   path: roles
