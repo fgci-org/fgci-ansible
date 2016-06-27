@@ -1,0 +1,2032 @@
+
+PLAY [grab facts from production nodes] ****************************************
+
+TASK [setup] *******************************************************************
+ok: [io-install.fgci.csc.fi]
+ok: [io-grid.fgci.csc.fi]
+ok: [io-admin.fgci.csc.fi]
+
+PLAY [Grid Node] ***************************************************************
+
+TASK [ansible-role-fgci-repo : Install FGCI repo] ******************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum : include] **********************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-yum/tasks/redhat.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-yum : install repos that are in repos from CentOS] **********
+skipping: [io-grid.fgci.csc.fi] => (item=[u'epel-release']) 
+
+TASK [ansible-role-yum : always install libselinux-python without it ansible facts cannot tell if selinux is enabled] ***
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum : template in yum.conf on CentOS7 if yum_conf_template is True] ***
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum : update all the things] ********************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum : install IB software that do not need extra configuration - on nodes with ib interfaces] ***
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [ansible-role-yum : install software that do not need extra configuration] 
+skipping: [io-grid.fgci.csc.fi] => (item=[u'bash-completion', u'pdsh', u'Lmod', u'fgci-meta-grid']) 
+
+TASK [ansible-role-yum : install globally software that do not need extra configuration] ***
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [ansible-role-yum : remove software] **************************************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'phonon-backend-gstreamer', u'qt-x11', u'redhat-lsb-graphics', u'NetworkManager', u'NetworkManager-team', u'NetworkManager-tui']) 
+
+TASK [ansible-role-yum : disable and stop services] ****************************
+ok: [io-grid.fgci.csc.fi] => (item=firewalld)
+
+TASK [ansible-role-ferm-firewall : Install Ferm] *******************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : Install iptables] ***************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : Disable firewalld] **************************
+ok: [io-grid.fgci.csc.fi] => (item=firewalld)
+
+TASK [ansible-role-ferm-firewall : Ferm | Display rules var] *******************
+ok: [io-grid.fgci.csc.fi] => {
+    "ferm_rules": {
+        "05_ssh": [
+            {
+                "chain": "INPUT", 
+                "domains": [
+                    "ip", 
+                    "ip6"
+                ], 
+                "rules": [
+                    {
+                        "comment": "global policy", 
+                        "rule": "policy DROP;"
+                    }, 
+                    {
+                        "comment": "connection tracking: drop", 
+                        "rule": "mod state state INVALID DROP;"
+                    }, 
+                    {
+                        "comment": "connection tracking", 
+                        "rule": "mod state state (ESTABLISHED RELATED) ACCEPT;"
+                    }, 
+                    {
+                        "comment": "allow local packet", 
+                        "rule": "interface lo ACCEPT;"
+                    }, 
+                    {
+                        "comment": "respond to ping", 
+                        "rule": "proto icmp ACCEPT;"
+                    }, 
+                    {
+                        "comment": "SSH", 
+                        "rule": "proto tcp dport (22) saddr ( 193.166.1.0/24 193.166.3.128/25 193.166.84.0/24 193.166.85.0/24 86.50.166.72/32 2001:708:10:10::/64 2001:708:10:4008::/64 2001:708:10:6802::72/128 )mod comment comment 'SSH' ACCEPT;"
+                    }, 
+                    {
+                        "comment": "internal", 
+                        "rule": "interface eth1 mod comment comment 'Allow all internal' ACCEPT;"
+                    }, 
+                    {
+                        "comment": "internal", 
+                        "rule": "interface ( ib0 ib1 ) mod comment comment 'Allow all internal ib traffic' ACCEPT;"
+                    }
+                ]
+            }, 
+            {
+                "chain": "OUTPUT", 
+                "domains": [
+                    "ip", 
+                    "ip6"
+                ], 
+                "rules": [
+                    {
+                        "comment": "global policy", 
+                        "rule": "policy ACCEPT;"
+                    }
+                ]
+            }, 
+            {
+                "chain": "FORWARD", 
+                "domains": [
+                    "ip", 
+                    "ip6"
+                ], 
+                "rules": [
+                    {
+                        "comment": "global policy", 
+                        "rule": "policy DROP;"
+                    }, 
+                    {
+                        "comment": "connection tracking: drop", 
+                        "rule": "mod state state INVALID DROP;"
+                    }, 
+                    {
+                        "comment": "connection tracking", 
+                        "rule": "mod state state (ESTABLISHED RELATED) ACCEPT;"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+TASK [ansible-role-ferm-firewall : Ferm | Make sure the directory for firewall rules exist] ***
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : Ferm | Create config directory for non-RedHat] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : Ferm | Create config directory for RedHat] **
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : Ferm | Include ferm.d directory on non-RedHat] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : Ferm | Include ferm.d directory on RedHat] **
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : Ferm | Create the default ferm conf files on non-RedHat] ***
+skipping: [io-grid.fgci.csc.fi] => (item={'value': [{u'domains': [u'ip', u'ip6'], u'rules': [{u'comment': u'global policy', u'rule': u'policy DROP;'}, {u'comment': u'connection tracking: drop', u'rule': u'mod state state INVALID DROP;'}, {u'comment': u'connection tracking', u'rule': u'mod state state (ESTABLISHED RELATED) ACCEPT;'}, {u'comment': u'allow local packet', u'rule': u'interface lo ACCEPT;'}, {u'comment': u'respond to ping', u'rule': u'proto icmp ACCEPT;'}, {u'comment': u'SSH', u'rule': u"proto tcp dport (22) saddr ( 193.166.1.0/24 193.166.3.128/25 193.166.84.0/24 193.166.85.0/24 86.50.166.72/32 2001:708:10:10::/64 2001:708:10:4008::/64 2001:708:10:6802::72/128 )mod comment comment 'SSH' ACCEPT;"}, {u'comment': u'internal', u'rule': u"interface eth1 mod comment comment 'Allow all internal' ACCEPT;"}, {u'comment': u'internal', u'rule': u"interface ( ib0 ib1 ) mod comment comment 'Allow all internal ib traffic' ACCEPT;"}], u'chain': u'INPUT'}, {u'domains': [u'ip', u'ip6'], u'rules': [{u'comment': u'global policy', u'rule': u'policy ACCEPT;'}], u'chain': u'OUTPUT'}, {u'domains': [u'ip', u'ip6'], u'rules': [{u'comment': u'global policy', u'rule': u'policy DROP;'}, {u'comment': u'connection tracking: drop', u'rule': u'mod state state INVALID DROP;'}, {u'comment': u'connection tracking', u'rule': u'mod state state (ESTABLISHED RELATED) ACCEPT;'}], u'chain': u'FORWARD'}], 'key': u'05_ssh'}) 
+
+TASK [ansible-role-ferm-firewall : Ferm | Create the default ferm conf files on RedHat] ***
+changed: [io-grid.fgci.csc.fi] => (item={'value': [{u'domains': [u'ip', u'ip6'], u'rules': [{u'comment': u'global policy', u'rule': u'policy DROP;'}, {u'comment': u'connection tracking: drop', u'rule': u'mod state state INVALID DROP;'}, {u'comment': u'connection tracking', u'rule': u'mod state state (ESTABLISHED RELATED) ACCEPT;'}, {u'comment': u'allow local packet', u'rule': u'interface lo ACCEPT;'}, {u'comment': u'respond to ping', u'rule': u'proto icmp ACCEPT;'}, {u'comment': u'SSH', u'rule': u"proto tcp dport (22) saddr ( 193.166.1.0/24 193.166.3.128/25 193.166.84.0/24 193.166.85.0/24 86.50.166.72/32 2001:708:10:10::/64 2001:708:10:4008::/64 2001:708:10:6802::72/128 )mod comment comment 'SSH' ACCEPT;"}, {u'comment': u'internal', u'rule': u"interface eth1 mod comment comment 'Allow all internal' ACCEPT;"}, {u'comment': u'internal', u'rule': u"interface ( ib0 ib1 ) mod comment comment 'Allow all internal ib traffic' ACCEPT;"}], u'chain': u'INPUT'}, {u'domains': [u'ip', u'ip6'], u'rules': [{u'comment': u'global policy', u'rule': u'policy ACCEPT;'}], u'chain': u'OUTPUT'}, {u'domains': [u'ip', u'ip6'], u'rules': [{u'comment': u'global policy', u'rule': u'policy DROP;'}, {u'comment': u'connection tracking: drop', u'rule': u'mod state state INVALID DROP;'}, {u'comment': u'connection tracking', u'rule': u'mod state state (ESTABLISHED RELATED) ACCEPT;'}], u'chain': u'FORWARD'}], 'key': u'05_ssh'})
+
+TASK [ansible-role-ferm-firewall : Ferm | Create extra ferm conf files on non-RedHat] ***
+skipping: [io-grid.fgci.csc.fi] => (item={'value': [{u'domains': [u'ip'], u'table': u'filter', u'rules': [{u'comment': u'Allow HTTPS to grid Frontend', u'rule': u"proto tcp dport (443) mod state state (NEW) mod comment comment 'Allow new 443' ACCEPT;"}, {u'comment': u'Allow HTTPS to grid Frontend', u'rule': u"proto tcp dport (8443) mod state state (NEW) mod comment comment 'Allow new 8443' ACCEPT;"}, {u'comment': u'Allow 2811 to grid Frontend', u'rule': u"proto tcp dport (2811) mod state state (NEW) mod comment comment 'Allow new 2811' ACCEPT;"}, {u'comment': u'Allow BDII to grid Frontend', u'rule': u"proto tcp dport (2135) mod state state (NEW) mod comment comment 'Allow new 2135' ACCEPT;"}, {u'comment': u'Allow gridftp to grid Frontend', u'rule': u"proto tcp dport (20000:25000) mod state state (NEW) mod comment comment 'Allow new gridftp range' ACCEPT;"}], u'chain': u'INPUT'}], 'key': u'grid'}) 
+skipping: [io-grid.fgci.csc.fi] => (item={'value': [{u'domains': [u'ip', u'ip6'], u'table': u'filter', u'rules': [{u'comment': u'forwarding', u'rule': u"interface eth1 outerface eth0 mod state state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;"}, {u'comment': u'forwarding', u'rule': u"interface eth1 outerface eth0 mod state state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;"}], u'chain': u'FORWARD'}, {u'domains': [u'ip'], u'table': u'nat', u'rules': [{u'comment': u'masquerade', u'rule': u"daddr ( 193.166.1.0/24 193.166.3.128/25 193.166.84.0/24 193.166.85.0/24 86.50.166.72/32 10.1.0.0/16 ) mod comment comment 'masquerade for internal net' ACCEPT;"}, {u'comment': u'masquerade', u'rule': u"outerface br_ext saddr ( 10.1.0.0/16 ) mod comment comment 'masquerade for internal net' MASQUERADE;"}], u'chain': u'POSTROUTING'}], 'key': u'10_nat'}) 
+
+TASK [ansible-role-ferm-firewall : Ferm | Create extra ferm conf files on RedHat] ***
+changed: [io-grid.fgci.csc.fi] => (item={'value': [{u'domains': [u'ip'], u'table': u'filter', u'rules': [{u'comment': u'Allow HTTPS to grid Frontend', u'rule': u"proto tcp dport (443) mod state state (NEW) mod comment comment 'Allow new 443' ACCEPT;"}, {u'comment': u'Allow HTTPS to grid Frontend', u'rule': u"proto tcp dport (8443) mod state state (NEW) mod comment comment 'Allow new 8443' ACCEPT;"}, {u'comment': u'Allow 2811 to grid Frontend', u'rule': u"proto tcp dport (2811) mod state state (NEW) mod comment comment 'Allow new 2811' ACCEPT;"}, {u'comment': u'Allow BDII to grid Frontend', u'rule': u"proto tcp dport (2135) mod state state (NEW) mod comment comment 'Allow new 2135' ACCEPT;"}, {u'comment': u'Allow gridftp to grid Frontend', u'rule': u"proto tcp dport (20000:25000) mod state state (NEW) mod comment comment 'Allow new gridftp range' ACCEPT;"}], u'chain': u'INPUT'}], 'key': u'grid'})
+changed: [io-grid.fgci.csc.fi] => (item={'value': [{u'domains': [u'ip', u'ip6'], u'table': u'filter', u'rules': [{u'comment': u'forwarding', u'rule': u"interface eth1 outerface eth0 mod state state (ESTABLISHED RELATED) mod comment comment 'forward establish and related' ACCEPT;"}, {u'comment': u'forwarding', u'rule': u"interface eth1 outerface eth0 mod state state (ESTABLISHED RELATED) mod comment comment 'forward from internal net' ACCEPT;"}], u'chain': u'FORWARD'}, {u'domains': [u'ip'], u'table': u'nat', u'rules': [{u'comment': u'masquerade', u'rule': u"daddr ( 193.166.1.0/24 193.166.3.128/25 193.166.84.0/24 193.166.85.0/24 86.50.166.72/32 10.1.0.0/16 ) mod comment comment 'masquerade for internal net' ACCEPT;"}, {u'comment': u'masquerade', u'rule': u"outerface br_ext saddr ( 10.1.0.0/16 ) mod comment comment 'masquerade for internal net' MASQUERADE;"}], u'chain': u'POSTROUTING'}], 'key': u'10_nat'})
+
+RUNNING HANDLER [ansible-role-ferm-firewall : reload ferm] *********************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : reload ferm] ********************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : enable ferm on boot] ************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ferm-firewall : if ferm_fail2ban is True - restart fail2ban as well if ferm is reloaded] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [network_interface : Add the OS specific varibles] ************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [network_interface : Install the required  packages in Redhat derivatives] 
+skipping: [io-grid.fgci.csc.fi] => (item=[u'libselinux-python', u'bridge-utils', u'iputils']) 
+
+TASK [network_interface : Install the required packages in Debian derivatives] *
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [network_interface : Make sure the include line is there in interfaces file] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [network_interface : Create the directory for interface cfg files] ********
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [network_interface : Create the network configuration file for ethernet devices] ***
+ok: [io-grid.fgci.csc.fi] => (item={u'route': [{u'netmask': u'255.255.255.0', u'network': u'86.50.166.0', u'gateway': u'86.50.166.1'}], u'defroute': u'yes', u'gateway': u'86.50.166.1', u'nm_controlled': u'no', u'netmask': u'255.255.255.0', u'bootproto': u'static', u'address': u'86.50.166.64', u'device': u'eth0', u'type': u'Ethernet', u'onboot': u'yes'})
+ok: [io-grid.fgci.csc.fi] => (item={u'nm_controlled': u'no', u'netmask': u'255.255.0.0', u'bootproto': u'static', u'address': u'10.1.1.3', u'device': u'eth1', u'type': u'Ethernet', u'onboot': u'yes'})
+
+TASK [network_interface : Write configuration files for rhel route configuration] ***
+ok: [io-grid.fgci.csc.fi] => (item={u'route': [{u'netmask': u'255.255.255.0', u'network': u'86.50.166.0', u'gateway': u'86.50.166.1'}], u'defroute': u'yes', u'gateway': u'86.50.166.1', u'nm_controlled': u'no', u'netmask': u'255.255.255.0', u'bootproto': u'static', u'address': u'86.50.166.64', u'device': u'eth0', u'type': u'Ethernet', u'onboot': u'yes'})
+skipping: [io-grid.fgci.csc.fi] => (item={u'nm_controlled': u'no', u'netmask': u'255.255.0.0', u'bootproto': u'static', u'address': u'10.1.1.3', u'device': u'eth1', u'type': u'Ethernet', u'onboot': u'yes'}) 
+
+TASK [network_interface : Create the network configuration file for bond devices] ***
+
+TASK [network_interface : Make sure the bonding module is loaded] **************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [network_interface : Write configuration files for route configuration] ***
+
+TASK [network_interface : Create the network configuration file for slave in the bond devices] ***
+
+TASK [network_interface : Create the network configuration file for vlan devices] ***
+
+TASK [network_interface : Write configuration files for rhel route configuration with vlan] ***
+
+TASK [network_interface : Create the network configuration file for bridge devices] ***
+
+TASK [network_interface : Write configuration files for rhel route configuration] ***
+
+TASK [network_interface : Create the network configuration file for port on the bridge devices] ***
+
+TASK [network_interface : Create the network configuration file for IB devices] 
+
+TASK [network_interface : Write configuration files for rhel route configuration with vlan] ***
+
+TASK [ip_forwarder : set ip_forward to 1 to allow kickstarting of network nodes] ***
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ip_forwarder : get iptables rules] ***************************************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ip_forwarder : allow forwarding traffic in iptables] *********************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ip_forwarder : allow related and established traffic in forwarding chain in iptables] ***
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ip_forwarder : enable masquerading] **************************************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ip_forwarder : Is dhcpclient running?] ***********************************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ip_forwarder : killing dhcpclient] ***************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ip_forwarder : Check if NetworkManager is installed] *********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ip_forwarder : Disabling and stoping NetworkManager] *********************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [dns : Deploy a clean /etc/resolv.conf] ***********************************
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/resolv.conf
++++ after: dynamically generated
+@@ -1,5 +1,4 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/dns/templates/resolv.conf.j2 modified on 2016-03-16 15:05:27 by lalves on alves.x.csc.fi
+-search int.fgci.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/dns/templates/resolv.conf.j2 modified on 2016-03-15 06:49:39 by deploy on houston.fgci.csc.fi
+ nameserver 10.1.1.2
+ nameserver 193.166.4.24
+ nameserver 193.166.4.25
+
+
+TASK [ansible-role-ntp : Add the OS specific variables] ************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ntp : Install the required packages in Redhat derivatives] **
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ntp : Install the required packages in Debian derivatives] **
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-ntp : Copy the ntp.conf template file] **********************
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/ntp.conf
++++ after: dynamically generated
+@@ -1,11 +1,11 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-ntp/templates/ntp.conf.j2 modified on 2015-05-17 01:56:06 by lalves on alves.x.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-ntp/templates/ntp.conf.j2 modified on 2015-05-17 01:56:06 by deploy on houston.fgci.csc.fi
+ 
+ 
+ driftfile /var/lib/ntp/drift
+ 
+ server io-install
+ server io-admin
+ 
+ statistics loopstats peerstats clockstats
+ 
+ filegen loopstats file loopstats type day enable
+
+
+TASK [ansible-role-ntp : Start/stop ntp service] *******************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum-cron-2 : Ensures cron(ie) installed] ********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum-cron-2 : Ensures cron(ie) service is running] ***********
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum-cron-2 : Ensures yum-cron installed] ********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum-cron-2 : Configure yum-cron.conf] ***********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum-cron-2 : Configure yum-cron-hourly.conf] ****************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-yum-cron-2 : Ensures yum-cron service is running] ***********
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : include] **********************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-nis/tasks/install.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-nis : template in yp.conf on non-servers] *******************
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/yp.conf
++++ after: dynamically generated
+@@ -1,11 +1,11 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-nis/templates/yp.conf.j2 modified on 2016-04-25 11:51:37 by lalves on alves.x.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-nis/templates/yp.conf.j2 modified on 2016-04-25 11:51:37 by deploy on houston.fgci.csc.fi
+ # /etc/yp.conf - ypbind configuration file
+ # Valid entries are
+ #
+ # domain NISDOMAIN server HOSTNAME
+ #       Use server HOSTNAME for the domain NISDOMAIN.
+ #
+ # domain NISDOMAIN broadcast
+ #       Use  broadcast  on  the local net for domain NISDOMAIN
+ #
+ # domain NISDOMAIN slp
+
+
+TASK [ansible-role-nis : install nis server packages] **************************
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [ansible-role-nis : install nis common packages] **************************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'ypbind', u'yp-tools', u'nscd']) 
+
+TASK [ansible-role-nis : template in nsswitch - conditionals inside template] **
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/nsswitch.conf
++++ after: dynamically generated
+@@ -1,11 +1,11 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-nis/templates/nsswitch.conf.j2 modified on 2016-04-25 11:51:37 by lalves on alves.x.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-nis/templates/nsswitch.conf.j2 modified on 2016-04-25 11:51:37 by deploy on houston.fgci.csc.fi
+ #
+ # /etc/nsswitch.conf
+ #
+ # An example Name Service Switch config file. This file should be
+ # sorted with the most-used services at the beginning.
+ #
+ # The entry '[NOTFOUND=return]' means that the search for an
+ # entry should stop if the search in the previous entry turned
+ # up nothing. Note that if the search failed due to some other reason
+ # (like no NIS server responding) then the search continues with the
+
+
+TASK [ansible-role-nis : template in /var/yp/securenets] ***********************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : add NISDOMAIN to sysconfig/network] *******************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : template in yp Make cronjob] **************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : enable and start rhel-domainname] *********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : Check if NetworkManager is installed] *****************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : NetworkManager causes timeouts because dbus] **********
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : enable and start yp server daemons] *******************
+skipping: [io-grid.fgci.csc.fi] => (item=ypserv) 
+skipping: [io-grid.fgci.csc.fi] => (item=yppasswdd) 
+
+TASK [ansible-role-nis : enable and start ypbind] ******************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : enable and start nscd] ********************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : include] **********************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-nis/tasks/initialize.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-nis : template in a patched ypinit script that has the ctrl d prompt disabled that creates /var/yp/.csc] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : template in the Makefile] *****************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nis : initialize the master nis server with ypinit_csc if /var/yp/.csc does not exist] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nsswitch : Create nsswitch.conf file] ***********************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nfs_mount : Creates /home dir (if it doesn't exist)] ********
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nfs_mount : Creates /scratch dir (if it doesn't exist)] *****
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nfs_mount : cleanning previous entries on /etc/fstab] *******
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nfs_mount : populate /etc/fstab file with NFS mount points] *
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nfs_mount : cleaning blank lines on /etc/fstab] *************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-nfs_mount : reloading mount points] *************************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-autofs : Setup | apt | ensure autofs's package(s) present] **
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [ansible-role-autofs : Setup | yum | ensure autofs's package(s) present] **
+skipping: [io-grid.fgci.csc.fi] => (item=[u'autofs']) 
+
+TASK [ansible-role-autofs : Setup | zyp | ensure autofs's package(s) present] **
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [ansible-role-autofs : Setup | dnf | ensure autofs's package(s) present] **
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [ansible-role-autofs : Config| all | ensure indirect map paths(s) exist] **
+
+TASK [ansible-role-autofs : Config| all | create indirect map file(s) from template] ***
+
+TASK [ansible-role-autofs : Config| all | add indirect map file(s) to autofs master file] ***
+
+TASK [ansible-role-autofs : Svc   |linux| ensure autofs starts at boot] ********
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-rsyslog : install rsyslog] **********************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-rsyslog : Copy rsyslog config for clients that only ship logs] ***
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/rsyslog.d/central_syslog.conf
++++ after: dynamically generated
+@@ -1,11 +1,11 @@
+-## Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-rsyslog/templates/central_syslog.conf.j2 modified on 2016-03-04 13:03:12 by lalves on alves.x.csc.fi
++## Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-rsyslog/templates/central_syslog.conf.j2 modified on 2016-03-04 13:03:12 by deploy on houston.fgci.csc.fi
+ ## Log some stuff to central log hosts. TCP/UDP is controlled by hostname.
+ ## @ for UDP and @@ for TCP
+ authpriv.*                                      @io-admin;RSYSLOG_ForwardFormat
+ local0.*                                        @io-admin;RSYSLOG_ForwardFormat
+ *.err                                           @io-admin;RSYSLOG_ForwardFormat
+ 
+ if $programname startswith 'ansible' then @io-admin;RSYSLOG_ForwardFormat
+ if $programname startswith 'kernel' then @io-admin;RSYSLOG_ForwardFormat
+ if $programname startswith 'smart' then @io-admin;RSYSLOG_ForwardFormat
+ if $programname startswith 'lmod' then @io-admin;RSYSLOG_ForwardFormat
+
+
+TASK [ansible-role-rsyslog : Create location of remote logs] *******************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-rsyslog : Add logrotate for remote logs] ********************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-open-vm-tools : include] ************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-pam : template pam.d system-auth] ***************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-pam : template pam.d password-auth] *************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-pam : template /etc/security/namespace.d/site.conf] *********
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-pam : lineinfile add admin groups to /etc/security/access.conf] ***
+skipping: [io-grid.fgci.csc.fi] => (item=admin) 
+skipping: [io-grid.fgci.csc.fi] => (item=root) 
+skipping: [io-grid.fgci.csc.fi] => (item=wheel) 
+
+TASK [ansible-role-pam : lineinfile deny all at the end of /etc/security/access.conf] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : include] ********************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : include] ********************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-slurm/tasks/common.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-slurm : Add FGI slurm repo] *********************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : Import FGI slurm repo key] **************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : Install FGCI repo] **********************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : install Slurm on non-compute nodes] *****************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'slurm-plugins', u'slurm', u'slurm-perlapi', u'slurm-slurmdb-direct', u'slurm-sql', u'slurm-lua', u'slurm-devel', u'slurm-pam_slurm', u'slurm-sjstat', u'slurm-slurmdbd', u'slurm-torque', u'slurm-munge', u'slurm-sjobexit']) 
+
+TASK [ansible-role-slurm : install Slurm on compute nodes] *********************
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [ansible-role-slurm : install fgci Slurm addons] **************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : pam.d/slurm] ****************************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : cgroup.conf] ****************************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : gres.conf] ******************************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : slurm.conf] *****************************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : write all slurm logs handled by rsyslog to one file] 
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : configure logrotate to rotate slurm_logs in slurm_log_dir] ***
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : include] ********************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : include] ********************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : include] ********************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : include] ********************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-slurm/tasks/submit.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-slurm : get munge key for distribution to nodes] ************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-slurm : start munge] ****************************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : include] ********************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-cvmfs/tasks/redhat.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-cvmfs : download the CVMFS repo] ****************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : install CVMFS gpg key] ******************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : copy in cernvm.repo if get_url from cvmrepo.web.cern.ch fails] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : Check if fgci-release7 is installed] ****************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : Install FGCI repo] **********************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : Install FGCI CVMFS repofiles] ***********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : Install CVMFS client EL6] ***************************
+skipping: [io-grid.fgci.csc.fi] => (item=[]) 
+
+TASK [ansible-role-cvmfs : Install CVMFS client EL7] ***************************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'cvmfs-keys', u'cvmfs', u'cvmfs-config-default', u'autofs']) 
+
+TASK [ansible-role-cvmfs : add a cms.cern.ch.local if cms_site is defined] *****
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : template cvmfs/default.local if none exists - no overwrite] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : template cvmfs/default.local if it exists - overwrites] ***
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/cvmfs/default.local
++++ after: dynamically generated
+@@ -1,4 +1,4 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-cvmfs/templates/default.local modified on 2016-04-25 11:56:31 by lalves on alves.x.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-cvmfs/templates/default.local modified on 2016-04-25 11:56:31 by deploy on houston.fgci.csc.fi
+ #
+ CVMFS_HTTP_PROXY=http://10.1.1.4:3128
+ CVMFS_QUOTA_LIMIT=10240
+
+
+TASK [ansible-role-cvmfs : template /etc/auto.master.d/cvmfs.autofs EL7 only] **
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/auto.master.d/cvmfs.autofs
++++ after: dynamically generated
+@@ -1,2 +1,2 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-cvmfs/templates/cvmfs.autofs modified on 2016-04-25 11:56:31 by lalves on alves.x.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-cvmfs/templates/cvmfs.autofs modified on 2016-04-25 11:56:31 by deploy on houston.fgci.csc.fi
+ /cvmfs /etc/auto.cvmfs
+
+
+TASK [ansible-role-cvmfs : ensure that autofs is running and enabled] **********
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : ensure that autofs is restarted after configchange] *
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : cvmfs_config chksetup which causes the playbook to fail when there are errors] ***
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : check that the repo is mounted] *********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-cvmfs : debug] **********************************************
+ok: [io-grid.fgci.csc.fi] => {
+    "msg": "Can list cvmfs_test_repo"
+}
+
+TASK [ansible-role-cvmfs : include] ********************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-sshd : Set OS dependent variables] **************************
+ok: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-sshd/vars/RedHat_7.yml)
+
+TASK [ansible-role-sshd : OS is supported] *************************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-sshd : Installed] *******************************************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'openssh', u'openssh-server']) 
+
+TASK [ansible-role-sshd : Run directory] ***************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-sshd : Configuration] ***************************************
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/ssh/sshd_config
++++ after: dynamically generated
+@@ -1,11 +1,11 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-sshd/templates/sshd_config.j2 modified on 2016-04-16 19:32:30 by lalves on alves.x.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-sshd/templates/sshd_config.j2 modified on 2016-04-16 19:32:30 by deploy on houston.fgci.csc.fi
+ HostKey /etc/ssh/ssh_host_rsa_key
+ HostKey /etc/ssh/ssh_host_ecdsa_key
+ HostKey /etc/ssh/ssh_host_ed25519_key
+ AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+ AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+ AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+ AcceptEnv XMODIFIERS
+ AllowGroups root admin
+ AuthorizedKeysFile .ssh/authorized_keys
+ ChallengeResponseAuthentication no
+
+
+TASK [ansible-role-sshd : Service enabled and running] *************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-sshd : Register that this role has run] *********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-aliases : configure /etc/aliases] ***************************
+ok: [io-grid.fgci.csc.fi] => (item={u'alias': u'fgci-csc-admins@listat.csc.fi', u'user': u'root'})
+
+TASK [ansible-role-arc-client : include] ***************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-arc-client/tasks/redhat.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-arc-client : print fgci_install] ****************************
+ok: [io-grid.fgci.csc.fi] => {
+    "fgci_install": true
+}
+
+TASK [ansible-role-arc-client : Install FGCI repo] *****************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-client : install packages for arc-client] ***************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'fetch-crl', u'nordugrid-arc-client', u'nordugrid-arc-plugins-globus', u'fgi-lsc-files']) 
+
+TASK [ansible-role-arc-client : template in fetch-crl.d config] ****************
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/fetch-crl.d/proxy.conf
++++ after: dynamically generated
+@@ -1,8 +1,8 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-arc-client/templates/fetch-crl.conf modified on 2016-04-25 11:45:01 by lalves on alves.x.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-arc-client/templates/fetch-crl.conf modified on 2016-04-25 11:45:01 by deploy on houston.fgci.csc.fi
+ 
+ infodir = /etc/grid-security/certificates
+ agingtolerance = 24
+ nosymlinks
+ nowarnings
+ noerrors
+ http_proxy = http://10.1.1.4:3128
+
+
+TASK [ansible-role-arc-client : start fetch-crl-cron] **************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-client : add EGI Trustanchors REPO] *********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-client : install repo_egi_packages] *********************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'ca-policy-egi-core']) 
+
+TASK [ansible-role-arc-client : include] ***************************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : install nordugrid repo] **********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : install nordugrid rpm key] *******************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : update all the things] ***********************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : install Nordugrid ARC packages] **************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'nordugrid-arc-arex', u'nordugrid-arc-gridftpd', u'nordugrid-arc-gridmap-utils', u'nordugrid-arc-ldap-infosys', u'nordugrid-arc-aris', u'nordugrid-arc-arex', u'nordugrid-arc-hed', u'nordugrid-arc-python', u'nordugrid-arc-plugins-globus', u'fetch-crl', u'net-tools']) 
+
+TASK [ansible-role-arc-frontend : check if there's a nordugrid.repo.rpmnew] ****
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Replace old nordugrid.repo] ******************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : arc_frontend_griddir must be defined] ********
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : arc_frontend_sessiondir must be defined] *****
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : arc_frontend_runtimedir must be defined] *****
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : arc_frontend_cachedir must be defined] *******
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create Grid dir] *****************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create Session dir] **************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create Runtime dir] **************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create Cache dir] ****************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create UnixGroup for OPS dir] ****************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Populate ops pool file] **********************
+skipping: [io-grid.fgci.csc.fi] => (item=ops000) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops001) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops002) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops003) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops004) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops005) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops006) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops007) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops008) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops009) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops010) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops011) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops012) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops013) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops014) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops015) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops016) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops017) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops018) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops019) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops020) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops021) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops022) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops023) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops024) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops025) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops026) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops027) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops028) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops029) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops030) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops031) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops032) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops033) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops034) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops035) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops036) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops037) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops038) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops039) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops040) 
+
+TASK [ansible-role-arc-frontend : Populate fgi pool file] **********************
+skipping: [io-grid.fgci.csc.fi] => (item=fgi000) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi001) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi002) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi003) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi004) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi005) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi006) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi007) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi008) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi009) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi010) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi011) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi012) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi013) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi014) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi015) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi016) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi017) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi018) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi019) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi020) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi021) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi022) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi023) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi024) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi025) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi026) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi027) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi028) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi029) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi030) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi031) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi032) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi033) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi034) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi035) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi036) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi037) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi038) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi039) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi040) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi041) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi042) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi043) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi044) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi045) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi046) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi047) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi048) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi049) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi050) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi051) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi052) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi053) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi054) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi055) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi056) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi057) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi058) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi059) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi060) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi061) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi062) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi063) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi064) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi065) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi066) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi067) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi068) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi069) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi070) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi071) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi072) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi073) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi074) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi075) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi076) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi077) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi078) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi079) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi080) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi081) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi082) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi083) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi084) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi085) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi086) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi087) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi088) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi089) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi090) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi091) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi092) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi093) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi094) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi095) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi096) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi097) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi098) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi099) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi100) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi101) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi102) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi103) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi104) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi105) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi106) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi107) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi108) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi109) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi110) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi111) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi112) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi113) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi114) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi115) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi116) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi117) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi118) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi119) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi120) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi121) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi122) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi123) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi124) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi125) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi126) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi127) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi128) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi129) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi130) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi131) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi132) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi133) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi134) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi135) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi136) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi137) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi138) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi139) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi140) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi141) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi142) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi143) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi144) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi145) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi146) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi147) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi148) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi149) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi150) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi151) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi152) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi153) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi154) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi155) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi156) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi157) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi158) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi159) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi160) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi161) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi162) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi163) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi164) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi165) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi166) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi167) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi168) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi169) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi170) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi171) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi172) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi173) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi174) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi175) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi176) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi177) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi178) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi179) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi180) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi181) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi182) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi183) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi184) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi185) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi186) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi187) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi188) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi189) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi190) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi191) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi192) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi193) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi194) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi195) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi196) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi197) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi198) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi199) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi200) 
+
+TASK [ansible-role-arc-frontend : Create UnixGroup for FGI dir] ****************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create gridops group] ************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create gridfgi group] ************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create OPS home dir] *************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create FGI home dir] *************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create generic gridnull user] ****************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create generic grid user] ********************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create Grid users for OPS] *******************
+skipping: [io-grid.fgci.csc.fi] => (item=ops000) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops001) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops002) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops003) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops004) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops005) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops006) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops007) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops008) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops009) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops010) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops011) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops012) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops013) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops014) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops015) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops016) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops017) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops018) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops019) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops020) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops021) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops022) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops023) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops024) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops025) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops026) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops027) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops028) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops029) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops030) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops031) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops032) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops033) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops034) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops035) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops036) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops037) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops038) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops039) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops040) 
+
+TASK [ansible-role-arc-frontend : Create Grid users for FGI] *******************
+skipping: [io-grid.fgci.csc.fi] => (item=fgi000) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi001) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi002) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi003) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi004) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi005) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi006) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi007) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi008) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi009) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi010) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi011) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi012) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi013) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi014) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi015) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi016) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi017) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi018) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi019) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi020) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi021) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi022) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi023) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi024) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi025) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi026) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi027) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi028) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi029) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi030) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi031) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi032) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi033) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi034) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi035) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi036) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi037) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi038) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi039) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi040) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi041) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi042) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi043) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi044) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi045) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi046) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi047) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi048) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi049) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi050) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi051) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi052) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi053) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi054) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi055) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi056) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi057) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi058) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi059) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi060) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi061) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi062) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi063) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi064) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi065) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi066) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi067) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi068) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi069) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi070) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi071) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi072) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi073) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi074) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi075) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi076) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi077) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi078) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi079) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi080) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi081) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi082) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi083) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi084) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi085) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi086) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi087) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi088) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi089) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi090) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi091) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi092) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi093) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi094) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi095) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi096) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi097) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi098) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi099) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi100) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi101) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi102) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi103) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi104) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi105) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi106) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi107) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi108) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi109) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi110) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi111) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi112) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi113) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi114) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi115) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi116) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi117) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi118) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi119) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi120) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi121) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi122) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi123) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi124) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi125) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi126) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi127) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi128) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi129) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi130) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi131) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi132) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi133) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi134) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi135) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi136) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi137) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi138) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi139) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi140) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi141) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi142) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi143) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi144) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi145) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi146) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi147) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi148) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi149) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi150) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi151) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi152) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi153) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi154) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi155) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi156) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi157) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi158) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi159) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi160) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi161) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi162) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi163) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi164) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi165) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi166) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi167) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi168) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi169) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi170) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi171) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi172) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi173) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi174) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi175) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi176) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi177) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi178) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi179) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi180) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi181) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi182) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi183) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi184) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi185) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi186) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi187) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi188) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi189) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi190) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi191) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi192) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi193) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi194) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi195) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi196) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi197) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi198) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi199) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi200) 
+
+TASK [ansible-role-arc-frontend : Update NIS DB] *******************************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create Slurm user account for OPS 1/2] *******
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create Slurm user account for OPS 2/2] *******
+skipping: [io-grid.fgci.csc.fi] => (item=ops000) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops001) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops002) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops003) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops004) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops005) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops006) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops007) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops008) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops009) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops010) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops011) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops012) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops013) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops014) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops015) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops016) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops017) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops018) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops019) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops020) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops021) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops022) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops023) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops024) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops025) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops026) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops027) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops028) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops029) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops030) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops031) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops032) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops033) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops034) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops035) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops036) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops037) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops038) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops039) 
+skipping: [io-grid.fgci.csc.fi] => (item=ops040) 
+
+TASK [ansible-role-arc-frontend : Create Slurm user account for FGI 1/2] *******
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : Create Slurm user account for FGI 2/2] *******
+skipping: [io-grid.fgci.csc.fi] => (item=fgi000) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi001) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi002) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi003) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi004) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi005) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi006) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi007) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi008) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi009) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi010) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi011) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi012) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi013) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi014) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi015) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi016) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi017) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi018) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi019) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi020) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi021) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi022) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi023) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi024) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi025) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi026) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi027) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi028) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi029) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi030) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi031) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi032) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi033) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi034) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi035) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi036) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi037) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi038) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi039) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi040) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi041) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi042) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi043) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi044) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi045) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi046) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi047) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi048) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi049) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi050) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi051) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi052) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi053) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi054) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi055) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi056) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi057) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi058) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi059) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi060) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi061) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi062) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi063) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi064) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi065) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi066) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi067) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi068) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi069) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi070) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi071) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi072) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi073) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi074) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi075) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi076) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi077) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi078) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi079) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi080) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi081) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi082) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi083) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi084) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi085) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi086) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi087) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi088) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi089) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi090) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi091) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi092) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi093) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi094) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi095) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi096) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi097) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi098) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi099) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi100) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi101) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi102) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi103) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi104) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi105) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi106) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi107) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi108) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi109) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi110) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi111) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi112) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi113) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi114) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi115) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi116) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi117) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi118) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi119) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi120) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi121) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi122) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi123) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi124) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi125) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi126) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi127) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi128) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi129) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi130) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi131) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi132) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi133) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi134) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi135) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi136) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi137) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi138) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi139) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi140) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi141) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi142) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi143) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi144) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi145) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi146) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi147) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi148) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi149) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi150) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi151) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi152) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi153) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi154) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi155) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi156) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi157) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi158) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi159) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi160) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi161) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi162) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi163) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi164) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi165) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi166) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi167) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi168) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi169) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi170) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi171) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi172) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi173) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi174) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi175) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi176) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi177) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi178) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi179) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi180) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi181) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi182) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi183) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi184) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi185) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi186) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi187) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi188) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi189) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi190) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi191) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi192) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi193) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi194) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi195) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi196) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi197) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi198) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi199) 
+skipping: [io-grid.fgci.csc.fi] => (item=fgi200) 
+
+TASK [ansible-role-arc-frontend : Template arc.conf file] **********************
+changed: [io-grid.fgci.csc.fi]
+--- before: /etc/arc.conf
++++ after: dynamically generated
+@@ -1,11 +1,11 @@
+-# Ansible managed: /home/lalves/code/io/fgci-ansible/roles/ansible-role-arc-frontend/templates/arc.conf.j2 modified on 2016-04-26 16:41:26 by lalves on alves.x.csc.fi
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-arc-frontend/templates/arc.conf.j2 modified on 2016-04-26 16:41:26 by deploy on houston.fgci.csc.fi
+ # FGCI arc.conf 
+ 
+ 
+ [common]
+ 
+ hostname="io-grid.fgci.csc.fi"
+ lrms="SLURM"
+ LRMSName="SLURM"
+ slurm_wakeupperiod="60"
+ globus_tcp_port_range="20000,25000"
+@@ -73,22 +73,22 @@
+ 
+ cachedir="/scratch/cache"
+ cachesize="80 70"
+ cachelifetime="60d"
+ 
+ jobreport_logfile="/var/log/arc/jura.log"
+ jobreport="https://pulse.fgi.csc.fi:6143/sgas"
+ jobreport="APEL:https://mq.cro-ngi.hr:6162"
+ jobreport_publisher="jura"
+ jobreport_credentials="/etc/grid-security/hostkey.pem /etc/grid-security/hostcert.pem /etc/grid-security/certificates"
+-jobreport_period="3600" 
+-jobreport_options="urbatch:200,archiving:/var/spool/nordugrid/jura,topic:/queue/global.accounting.cpu.central,gocdb_name:CSC,benchmark_type:HEPSPEC,benchmark_value:15.8,benchmark_description:HS06,use_ssl:true,vomsless_vo:fgi.csc.fi"
++jobreport_period="86400" 
++jobreport_options="urbatch:100,archiving:/var/spool/nordugrid/jura,topic:/queue/global.accounting.cpu.central,gocdb_name:CSC,benchmark_type:HEPSPEC,benchmark_value:15.8,benchmark_description:HS06,use_ssl:true,vomsless_vo:fgi.csc.fi"
+ 
+ logsize="1000000 52"
+ shared_filesystem="yes"
+ mail="fgci-csc-admins@listat.csc.fi"
+ joblog="/var/log/arc/gm-jobs.log"
+ maxjobs="10000 10000 80"
+ wakeupperiod="30"
+ defaultttl="604800 1209600"
+ authplugin="FINISHED timeout=30,onfailure=pass"
+ arex_mount_point="https://io-grid.fgci.csc.fi:443"
+@@ -110,30 +110,28 @@
+ 
+ path="/jobs"
+ plugin="jobplugin.so"
+ allownew="yes"
+ maxjobdesc="5242880"
+ 
+ 
+ [infosys]
+ 
+ port="2135"
+-timelimit="600"
+-idletimeout="900"
++timelimit="1800"
+ registrationlog="/var/log/arc/inforegistration.log"
+ providerlog="/var/log/arc/infoprovider.log"
+ provider_loglevel="2"
+ infosys_nordugrid="enable"
+ infosys_glue12="enable"
+ infosys_glue2_ldap="enable"
+-#ttl=200
+-provider_timeout="600"
++ttl=200
+ 
+ 
+ [infosys/admindomain]
+ 
+ name="csc.fi"
+ ttl=190
+ 
+ 
+ [infosys/glue12]
+ 
+@@ -145,48 +143,49 @@
+ glue_site_web="http://www.csc.fi"
+ glue_site_unique_id="CSC"
+ provide_glue_site_info="false"
+ 
+ 
+ [infosys/cluster/registration/fgigiis2]
+ 
+ targethostname=giis2.fgi.csc.fi
+ targetport="2135"
+ targetsuffix="mds-vo-name=Finland,o=grid"
+-regperiod="120"
++regperiod="300"
+ registranthostname="io-grid.fgci.csc.fi"
+ registrantport="2135"
+ 
+ 
+ [infosys/cluster/registration/fgigiis1]
+ 
+ targethostname=giis1.fgi.csc.fi
+ targetport="2135"
+ targetsuffix="mds-vo-name=Finland,o=grid"
+ registranthostname="io-grid.fgci.csc.fi"
+-regperiod="120"
++regperiod="300"
+ registrantport="2135"
++
+ 
+ [cluster]
+ 
+ cluster_alias="io (FGCI)"
+ comment="FGCI cluster"
+ cluster_location="Espoo, Finland"
+ cluster_owner="CSC"
+ authorizedvo="fgi.csc.fi"
+ authorizedvo="ops"
+ nodeaccess="outbound"
+ clustersupport="fgci-csc-admins@listat.csc.fi"
+ architecture="adotf"
+ defaultmemory="1024"
+ opsys="CentOS"
+-benchmark="SPECINT2000 3940"
++benchmark="SPECINT2000  3940"
+ benchmark="HEPSPEC2006 15.8"
+ nodecpu="Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz"
+ 
+ [queue/grid]
+ 
+ name="grid"
+ comment="Grid queue"
+ nodecpu="Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz"
+ nodememory="128000"
+ benchmark="SPECINT2000 3940"
+
+
+TASK [ansible-role-arc-frontend : checks hostkey.pem exists on files/certificates/] ***
+ok: [io-grid.fgci.csc.fi -> 127.0.0.1]
+
+TASK [ansible-role-arc-frontend : checks hostcert.pem exists on files/certificates/] ***
+ok: [io-grid.fgci.csc.fi -> 127.0.0.1]
+
+TASK [ansible-role-arc-frontend : copy host certificate key file] **************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : copy host certificate file] ******************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : start and enable arc frontend services] ******
+ok: [io-grid.fgci.csc.fi] => (item=a-rex)
+ok: [io-grid.fgci.csc.fi] => (item=gridftpd)
+ok: [io-grid.fgci.csc.fi] => (item=nordugrid-arc-bdii)
+ok: [io-grid.fgci.csc.fi] => (item=nordugrid-arc-slapd)
+ok: [io-grid.fgci.csc.fi] => (item=nordugrid-arc-inforeg)
+
+TASK [ansible-role-arc-frontend : Create cron job that copies runtime apps from CVMFS] ***
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-arc-frontend : run /usr/sbin/nordugridmap] ******************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-fgci-bash : copy FGCI bash profile scripts] *****************
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/createkeys.csh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/createkeys.sh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/fgi-manpath.csh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/fgi-manpath.sh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/glib2.csh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/glib2.sh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/hist.sh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/lmod_log.sh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/qt.csh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/qt.sh)
+
+TASK [ansible-role-fgci-bash : copy specified bash profile scripts] ************
+skipping: [io-grid.fgci.csc.fi] => (item=hist.sh) 
+
+TASK [ansible-role-fgci-bash : template FGCI bash profile scripts] *************
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../templates/modules-cvmfs.csh)
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../templates/modules-cvmfs.sh)
+
+TASK [ansible-role-fgci-bash : copy CSC LUA script] ****************************
+changed: [io-grid.fgci.csc.fi] => (item=/home/admin/ansible/io/fgci-ansible/roles/ansible-role-fgci-bash/files/../files/SitePackage.lua)
+
+TASK [ansible-role-fgci-bash : copy specified CSC LUA script] ******************
+skipping: [io-grid.fgci.csc.fi] => (item=SitePackage.sh) 
+
+TASK [ansible-role-collectd : include] *****************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-collectd/tasks/redhat.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-collectd : install EPEL] ************************************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : install collectd] ********************************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : install collectd_plugin_packages] ****************
+skipping: [io-grid.fgci.csc.fi] => (item=[u'collectd-write_tsdb']) 
+
+TASK [ansible-role-collectd : template in collectd.d/collectd.conf] ************
+changed: [io-grid.fgci.csc.fi]
+--- before
++++ after: dynamically generated
+@@ -0,0 +1,238 @@
++# Ansible managed: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-collectd/templates/collectd.conf.j2 modified on 2016-05-20 10:43:01 by deploy on houston.fgci.csc.fi
++##
++CollectInternalStats true
++Interval 60
++
++###
++
++LoadPlugin "cpu"
++
++LoadPlugin "interface"
++
++LoadPlugin "load"
++
++LoadPlugin "memory"
++
++LoadPlugin "aggregation"
++
++LoadPlugin "cpufreq"
++
++LoadPlugin "exec"
++
++LoadPlugin "processes"
++
++###
++
++# Set WriteThreads to 1 from default 5 in case we run an exec plugin
++WriteThreads    1
++
++
++<Plugin "aggregation">
++        <Aggregation>
++        # Aggregate all local CPUs values.
++        Plugin "cpu"
++        Type "cpu"
++        GroupBy "Host"
++        GroupBy "TypeInstance"
++        CalculateNum false
++        CalculateSum false
++        CalculateAverage true
++        CalculateMinimum true
++        CalculateMaximum true
++        CalculateStddev false
++    </Aggregation>
++            <Aggregation>
++        # Aggregate all local cpufreq values.
++        Plugin "cpufreq"
++        Type "cpufreq"
++        GroupBy "Host"
++        CalculateNum false
++        CalculateSum false
++        CalculateAverage true
++        CalculateMinimum true
++        CalculateMaximum true
++        CalculateStddev false
++    </Aggregation>
++    </Plugin>
++
++<Plugin interface>
++   Interface "lo"
++   IgnoreSelected true
++</Plugin>
++
++<Plugin processes>
++   Process "slurmstepd"
++</Plugin>
++
++        
++# This write_tsdb plugin writes to influxdb
++LoadPlugin write_tsdb
++<Plugin write_tsdb>
++       <Node>
++               Host "cassini.fgci.csc.fi"
++               Port "4242"
++               HostTags "site=io"
++               StoreRates true
++               AlwaysAppendDS false
++       </Node>
++</Plugin>
++
++####### Chains
++
++LoadPlugin match_regex
++LoadPlugin target_replace
++
++PreCacheChain "PreCache"
++
++
++
++<Chain "PreCache">
++    <Rule "no_fork_rate">
++        # collectd.processes.fork_rate
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "fork_rate"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_ps_code">
++        # collectd.processes-slurmstepd.ps_code
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_code"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_ps_data">
++        # collectd.processes-slurmstepd.ps_data
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_data"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_ps_vm">
++        # collectd.processes-slurmstepd.ps_vm
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_vm"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_ps_stacksize">
++        # collectd.processes-slurmstepd.ps_stacksize
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_stacksize"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_ps_rss">
++        # collectd.processes-slurmstepd.ps_rss
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_rss"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_pagefaults_">
++        # collectd.processes-slurmstepd.ps_pagefaults.minflt
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type ".minflt"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_pagefaults_">
++        # collectd.processes-slurmstepd.ps_pagefaults.maxflt
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_pagefaults"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_ps_states_">
++        # collectd.processes.ps_state.*
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type ".*ps_state.*"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_disk2">
++        # collectd.processes-slurmstepd.ps_disk_octets.write
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_disk_octets"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_disk3">
++        # collectd.processes-slurmstepd.ps_disk_ops.write
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_disk_ops"
++        </Match>
++        Target "stop"
++    </Rule>
++    <Rule "no_cpu">
++        # collectd.processes-slurmstepd.ps_cputime
++        <Match "regex">
++            Plugin "processes"
++        </Match>
++        <Match "regex">
++            Type "ps_cputime"
++        </Match>
++        Target "stop"
++    </Rule>
++</Chain>
++
++PostCacheChain "PostCache"
++<Chain "PostCache">
++            <Rule>
++            <Match "regex">
++                Plugin "^cpu$"
++            </Match>
++            <Target "write">
++                Plugin "aggregation"
++            </Target>
++            Target "stop"
++        </Rule>
++                <Rule>
++            <Match "regex">
++                Plugin "^cpufreq$"
++            </Match>
++            <Target "write">
++                Plugin "aggregation"
++            </Target>
++            Target "stop"
++        </Rule>
++            # Pass all other local values as they are.
++        <Target write>
++        	    # https://collectd.org/wiki/index.php/Plugin:Write_TSDB
++            Plugin "write_tsdb/cassini.fgci.csc.fi/4242"
++ 		        </Target>
++</Chain>
++
+
+
+TASK [ansible-role-collectd : install the ipmitool.sh on non guest hosts] ******
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : set permissions on ipmitool.sh] ******************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : add sudoers rule for ipmitool] *******************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : install ipmitool if virtualization role is not guest] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : install dcmi.sh on non guest hosts] **************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : add sudoers rule for freeipmi] *******************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : install freeipmi if virtualization role is not guest] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : when using exec plugin prevent value has been dispatched messages from reaching rsyslog] ***
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : enable and start collectd] ***********************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : restart rsyslog if collectd_rsyslog_drop changed] 
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-collectd : restart collectd on configchange] ****************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-postfix : make sure postfix is installed] *******************
+ok: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-postfix : set inet_protocols to ipv4] ***********************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-postfix : set relayhost] ************************************
+changed: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-flowdock : include] *****************************************
+included: /home/admin/ansible/io/fgci-ansible/roles/ansible-role-flowdock/tasks/flowdock.yml for io-grid.fgci.csc.fi
+
+TASK [ansible-role-flowdock : store git head] **********************************
+changed: [io-grid.fgci.csc.fi -> localhost]
+
+TASK [ansible-role-flowdock : send a chat message to flowdock] *****************
+skipping: [io-grid.fgci.csc.fi]
+
+TASK [ansible-role-flowdock : send a inbox message to flowdock] ****************
+ok: [io-grid.fgci.csc.fi]
+
+RUNNING HANDLER [ansible-role-ntp : restart ntp] *******************************
+changed: [io-grid.fgci.csc.fi]
+
+RUNNING HANDLER [ansible-role-nis : restart rpcbind] ***************************
+changed: [io-grid.fgci.csc.fi]
+
+RUNNING HANDLER [ansible-role-nis : restart ypbind] ****************************
+changed: [io-grid.fgci.csc.fi]
+
+RUNNING HANDLER [ansible-role-rsyslog : Restart rsyslog] ***********************
+changed: [io-grid.fgci.csc.fi]
+
+RUNNING HANDLER [ansible-role-sshd : reload_sshd] ******************************
+changed: [io-grid.fgci.csc.fi]
+
+RUNNING HANDLER [ansible-role-postfix : reload postfix] ************************
+changed: [io-grid.fgci.csc.fi]
+
+PLAY RECAP *********************************************************************
+io-admin.fgci.csc.fi       : ok=1    changed=0    unreachable=0    failed=0   
+io-grid.fgci.csc.fi        : ok=149  changed=39   unreachable=0    failed=0   
+io-install.fgci.csc.fi     : ok=1    changed=0    unreachable=0    failed=0   
+
