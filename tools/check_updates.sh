@@ -1,19 +1,50 @@
 #!/bin/bash
+# This script could probably be written much more nicely with python..
 # Check if there have been updates to the fgci-ansible git repo - it uses the same branch that is checked out locally
 # Usage Example:
 # $ cd fgci-ansible
 # $ git checkout master
+# $ export GITHUB_TOKEN="my-token-here" # https://github.com/settings/tokens
 # $ bash tools/check_updates.sh
 # https://github.com/CSC-IT-Center-for-Science/fgci-ansible/compare/6171df84bbf4a513993309dc1a6350ea4a6751e6...c499024f2b44cd2207de9f74c8341b5c7c7f40f0
 # Arguments:
 # -q # don't print anything, just return code 1 if they do not match
-# anything or nothing # print a URL to visually compare the commits
+# -r # check if the latest role version/commit on github is different than the one defined in requirements.yml
+# anything or nothing # print a URL to visually compare the commits. If they are even then just print OK
 #
 
 #BASEURL=https://github.com/CSC-IT-Center-for-Science/fgci-ansible/compare/{{ LATEST_COMMIT_IN_LOCAL_CLONE }}...{{ LATEST_COMMIT_ON_GITHUB }}
-BASEURL=https://github.com/CSC-IT-Center-for-Science/fgci-ansible/compare
+BASEURL="https://github.com/CSC-IT-Center-for-Science/fgci-ansible/compare"
+
+DEBUG=0
+
+## Checking if the GITHUB_TOKEN variable is defined
+## If it is not defined we stop if it's a -r argument, but allow through -q without printing anything and if no arguments are used then we print some more.
+if [ "x$GITHUB_TOKEN" == "x" ]; then
+ curlcmd="curl"
+ if [ "$1" != "-q" ]; then
+   echo "Error: GITHUB_TOKEN variable is not defined"
+   echo "  "
+   echo "Create an oAUTH GITHUB_TOKEN on https://github.com/settings/tokens."
+   echo "before running check_updates.sh set the GITHUB_TOKEN variable:"
+   echo "export GITHUB_TOKEN=your-token-with-no-scope"
+   echo "  "
+   echo "no-scope is needed on the token"
+   echo "Without this the github api allows only 60 queries in one hour."
+   if [ "$1" == "" ]; then
+     echo "But as we only check one repo (fgci-ansible) then we run this script anyway"
+   else
+     exit 17
+   fi
+ fi
+else
+ curlcmd="curl -H \"Authorization: token "$GITHUB_TOKEN"\""
+fi
+##
+if [ "$DEBUG" != "0" ]; then echo "curlcmd: $curlcmd"; fi
 
 check_roles() {
+	bad_repo_counter=0
 	# - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-repo
 	# - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-bash
 	if [ -f "requirements.yml" ]; then
@@ -22,48 +53,70 @@ check_roles() {
 		rpath="../requirements.yml"
 	fi
   	roles_list=$(grep src: $rpath|cut -d " " -f3)
+	
 	for role in $roles_list; do
-		sleep 5
+		#sleep 5
 		# https://developer.github.com/v3/#rate-limiting
 		# which says for unauthenticated it's 60 requests per hour
 		role_version=""
 		role_version="$(grep src: -A3 $rpath|grep -A3 $role\$|grep version|cut -d ":" -f2|sed -e 's/\s//')"
-		echo "###$role##"
-		role_shorter_github_name="$(echo $role|cut -d "." -f2|sed -e 's/^com\///')"
+		if [ "$DEBUG" != "0" ]; then echo "###$role##"; fi
+		role_shorter_github_name="$(echo "$role"|cut -d "." -f2|sed -e 's/^com\///')"
 		role_api_url_base="https://api.github.com/repos"
 		role_api_url_suffix="git/refs/heads/master"
-		role_api_url="$role_api_url_base/$role_shorter_github_name/$role_api_url_suffix"
-		role_api_url_latest="$role_api_url_base/$role_shorter_github_name/releases/latest"
+		role_api_url=""$role_api_url_base"/"$role_shorter_github_name"/"$role_api_url_suffix""
+		role_api_url_latest=""$role_api_url_base"/"$role_shorter_github_name"/releases/latest"
 		# We check if there is number.number.number anywhere in the version - then we assume it's a tag/release and not a commit
+		# https://api.github.com/repos/CSC-IT-Center-for-Science/ansible-role-fgci-install/releases/latest
+
 		if [[ "$role_version" =~ [0-9]\.[0-9]\.[0-9] ]]; then
-		  echo $role_api_url_latest
-		  LATESTREMOTERELEASE="$(curl -qsf $role_api_url_latest|grep tag_name|cut -d ":" -f2|cut -d '"' -f2)"
-		    if [ "$?" != 0 ]; then
-		        echo "Halting, could not curl $role_api_url"
-		        exit 13
-		    fi
-		    if [ "$LATESTREMOTERELEASE" == "" ]; then
-		      echo "Could not figure out the LATESTREMOTERELEASE - is github rate limiting you?"
-		      exit 15
-		    fi
-            	    if [ "$role_version" != "$LATESTREMOTERELEASE" ]; then
-		      echo "$role_version and $LATESTREMOTERELEASE"
-		      #echo "There is a newer version of $role out!"
+		  # $role_version is a versiony looking number - like 1.1.2
+  	  	  if [ "$DEBUG" != "0" ]; then
+    	            ### Here the curl command can be modified to also print verbosely and http headers if DEBUG=1 (add -iv to the -qsf)
+  		    thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url_latest")"
+		  else
+  		    thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url_latest"|grep tag_name|cut -d ":" -f2|cut -d '"' -f2)"
+		  fi
+		  if [ "$DEBUG" != "0" ]; then echo $role_api_url_latest; fi
+		  LATESTREMOTERELEASE="$thecurl"
+		  if [ "$?" != 0 ]; then
+		      echo "Halting, could not curl $role_api_url"
+		      exit 13
+		  fi
+		  if [ "$LATESTREMOTERELEASE" == "" ]; then
+		    if [[ "$role_api_url_latest" =~ CSC ]]; then
+		    	echo "$role_api_url_latest Could not figure out the LATESTREMOTERELEASE - is github rate limiting you or does the URL for some other reason not work?"
+		    	exit 15
 		    else
-		      echo "$role_version and $LATESTREMOTERELEASE"
-	    	    fi
+		  	echo "$role Could not figure out last release but it's not a CSC repo so we don't stop the script. Check this repo manually."
+		    fi
+		  fi
+	          if [ "$role_version" != "$LATESTREMOTERELEASE" ]; then
+		    if [ "$LATESTREMOTERELEASE" != "" ]; then
+		    	echo "$role tag can be updated - old: $role_version new: $LATESTREMOTERELEASE"
+			let "bad_repo_counter += 1"
+		    fi
+		  else
+		    if [ "$DEBUG" != "0" ]; then echo "$role_version and $LATESTREMOTERELEASE"; fi
+		  fi
 		else
-		  REMOTESHA="$(curl -qsf $role_api_url|grep sha|cut -d ":" -f2|cut -d '"' -f2)"
+		  # $role_version is not a versiony looking number - perhaps a sha commit?
+		  # https://api.github.com/repos/CSC-IT-Center-for-Science/ansible-role-fgci-install/git/refs/heads/master
+  		  thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url"|grep sha|cut -d ":" -f2|cut -d '"' -f2)"
+		  REMOTESHA="$thecurl"
 		    if [ "$?" != 0 ]; then
 		        echo "Halting, could not curl $role_api_url"
 		        exit 13
 		    fi
             	    if [ "$role_version" != "$REMOTESHA" ]; then
-		      echo "There is a newer commit of $role out!"
+		    	echo "$role sha can be updated - old: $role_version new: $LATESTREMOTERELEASE"
+			let "bad_repo_counter += 1"
 		    else
-		      echo "$role_version and $REMOTESHA"
+		      if [ "$DEBUG" != "0" ]; then echo "$role_version and $REMOTESHA"; fi
+		      echo "$role latest commit used"
 	    	    fi
 		fi
+        if [ "$DEBUG" != "0" ]; then echo "$bad_repo_counter"; fi
 	done
 
 }
@@ -82,7 +135,7 @@ check_fgci_ansible() {
 	    echo "Halting, could not get local branch, is $PWD in a git repository?"
 	    exit 11
 	fi
-	REMOTESHA="$(curl -qsf https://api.github.com/repos/CSC-IT-Center-for-Science/fgci-ansible/git/refs/heads/$LOCALBRANCH|grep sha|cut -d ":" -f2|cut -d '"' -f2)"
+	REMOTESHA="$($curlcmd -qsf https://api.github.com/repos/CSC-IT-Center-for-Science/fgci-ansible/git/refs/heads/$LOCALBRANCH|grep sha|cut -d ":" -f2|cut -d '"' -f2)"
 	if [ "$?" != 0 ]; then
 	    echo "Halting, could not curl https://api.github.com/repos/CSC-IT-Center-for-Science/fgci-ansible/git/refs/heads/$LOCALBRANCH"
 	    exit 12
@@ -104,7 +157,12 @@ case "$1" in
             fi
           ;;
           -r)
-            check_roles
+	    check_roles
+            if [ "$bad_repo_counter" != "0" ]; then
+              exit 1
+            else
+              exit 0
+            fi
 	  ;;
           *)
 	    check_fgci_ansible
