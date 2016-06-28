@@ -64,18 +64,32 @@ check_roles() {
 		role_shorter_github_name="$(echo "$role"|cut -d "." -f2|sed -e 's/^com\///')"
 		role_api_url_base="https://api.github.com/repos"
 		role_api_url_suffix="git/refs/heads/master"
+		role_api_url_tag_suffix="git/refs/tags"
 		role_api_url=""$role_api_url_base"/"$role_shorter_github_name"/"$role_api_url_suffix""
 		role_api_url_latest=""$role_api_url_base"/"$role_shorter_github_name"/releases/latest"
+		role_api_url_ext_tags=""$role_api_url_base"/"$role_shorter_github_name"/"$role_api_url_tag_suffix""
 		# We check if there is number.number.number anywhere in the version - then we assume it's a tag/release and not a commit
+		# The tags can be gotten from at least two places:
 		# https://api.github.com/repos/CSC-IT-Center-for-Science/ansible-role-fgci-install/releases/latest
+		# https://api.github.com/repos/CSC-IT-Center-for-Science/ansible-role-fgci-install/git/refs/tags
 
 		if [[ "$role_version" =~ [0-9]\.[0-9]\.[0-9] ]]; then
 		  # $role_version is a versiony looking number - like 1.1.2
   	  	  if [ "$DEBUG" != "0" ]; then
     	            ### Here the curl command can be modified to also print verbosely and http headers if DEBUG=1 (add -iv to the -qsf)
-  		    thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url_latest")"
+		    if [[ "$role_api_url_latest" =~ CSC ]]; then
+  		      thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url_latest"|grep tag_name|cut -d ":" -f2|cut -d '"' -f2)"
+		    else
+		      # grab the last ref tag
+  		      thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url_ext_tags"|grep ref\":|grep tags|tail -1|cut -d "/" -f3|sed -e 's/\",$//')"
+		    fi
 		  else
-  		    thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url_latest"|grep tag_name|cut -d ":" -f2|cut -d '"' -f2)"
+		    if [[ "$role_api_url_latest" =~ CSC ]]; then
+  		      thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url_latest"|grep tag_name|cut -d ":" -f2|cut -d '"' -f2)"
+		    else
+		      # grab the last ref tag
+  		      thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url_ext_tags"|grep ref\":|grep tags|tail -1|cut -d "/" -f3|sed -e 's/\",$//')"
+		    fi
 		  fi
 		  if [ "$DEBUG" != "0" ]; then echo $role_api_url_latest; fi
 		  LATESTREMOTERELEASE="$thecurl"
@@ -112,8 +126,9 @@ check_roles() {
 		    	echo "$role sha can be updated - old: $role_version new: $LATESTREMOTERELEASE"
 			let "bad_repo_counter += 1"
 		    else
-		      if [ "$DEBUG" != "0" ]; then echo "$role_version and $REMOTESHA"; fi
-		      echo "$role latest commit used"
+		      if [ "$DEBUG" != "0" ]; then echo "$role_version and $REMOTESHA"
+		        echo "$role latest commit used"
+	      	      fi
 	    	    fi
 		fi
         if [ "$DEBUG" != "0" ]; then echo "$bad_repo_counter"; fi
