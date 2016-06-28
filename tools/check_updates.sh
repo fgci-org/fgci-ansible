@@ -1,22 +1,36 @@
 #!/bin/bash
-# This script could probably be written much more nicely with python..
 # Check if there have been updates to the fgci-ansible git repo - it uses the same branch that is checked out locally
-# Usage Example:
-# $ cd fgci-ansible
-# $ git checkout master
-# $ export GITHUB_TOKEN="my-token-here" # https://github.com/settings/tokens
-# $ bash tools/check_updates.sh
-# https://github.com/CSC-IT-Center-for-Science/fgci-ansible/compare/6171df84bbf4a513993309dc1a6350ea4a6751e6...c499024f2b44cd2207de9f74c8341b5c7c7f40f0
-# Arguments:
-# -q # don't print anything, just return code 1 if they do not match
-# -r # check if the latest role version/commit on github is different than the one defined in requirements.yml
-# anything or nothing # print a URL to visually compare the commits. If they are even then just print OK
-#
+
+usage() {
+echo "$0 [-q] [-r]"
+echo " "
+echo "Check if there have been updates to the fgci-ansible git repo or roles."
+echo "for the -q or no argument arguments this script uses the same branch that is checked out locally"
+echo " "
+echo "Usage Example:"
+echo "$ cd fgci-ansible"
+echo "$ git checkout master"
+echo "$ export GITHUB_TOKEN="my-token-here" # https://github.com/settings/tokens"
+echo "$ bash tools/$0"
+echo "https://github.com/CSC-IT-Center-for-Science/fgci-ansible/compare/6171df84bbf4a513993309dc1a6350ea4a6751e6...c499024f2b44cd2207de9f74c8341b5c7c7f40f0"
+echo " "
+echo "Arguments:"
+echo " -q # don't print anything, just return code 1 if they do not match"
+echo " -r # check if the latest role version/commit on github is different than the one defined in requirements.yml . This requires bash environment variable GITHUB_TOKEN to be defined."
+echo " no argument # print a URL to visually compare the commits. If they are even then just print OK"
+
+exit 20
+
+}
 
 #BASEURL=https://github.com/CSC-IT-Center-for-Science/fgci-ansible/compare/{{ LATEST_COMMIT_IN_LOCAL_CLONE }}...{{ LATEST_COMMIT_ON_GITHUB }}
 BASEURL="https://github.com/CSC-IT-Center-for-Science/fgci-ansible/compare"
 
 DEBUG=0
+
+ if [ "$1" == "-h" ]; then
+   usage
+ fi
 
 ## Checking if the GITHUB_TOKEN variable is defined
 ## If it is not defined we stop if it's a -r argument, but allow through -q without printing anything and if no arguments are used then we print some more.
@@ -59,7 +73,7 @@ check_roles() {
 		# https://developer.github.com/v3/#rate-limiting
 		# which says for unauthenticated it's 60 requests per hour
 		role_version=""
-		role_version="$(grep src: -A3 $rpath|grep -A3 $role\$|grep version|cut -d ":" -f2|sed -e 's/\s//')"
+		role_version="$(grep src: -A3 $rpath|grep -A3 $role\$|grep version|grep -v '#.*version'|cut -d ":" -f2|sed -e 's/\s//')"
 		if [ "$DEBUG" != "0" ]; then echo "###$role##"; fi
 		role_shorter_github_name="$(echo "$role"|cut -d "." -f2|sed -e 's/^com\///')"
 		role_api_url_base="https://api.github.com/repos"
@@ -107,7 +121,7 @@ check_roles() {
 		  fi
 	          if [ "$role_version" != "$LATESTREMOTERELEASE" ]; then
 		    if [ "$LATESTREMOTERELEASE" != "" ]; then
-		    	echo "$role tag can be updated - old: $role_version new: $LATESTREMOTERELEASE"
+		    	echo "$role tag can be updated - current: $role_version latest: $LATESTREMOTERELEASE"
 			let "bad_repo_counter += 1"
 		    fi
 		  else
@@ -123,7 +137,7 @@ check_roles() {
 		        exit 13
 		    fi
             	    if [ "$role_version" != "$REMOTESHA" ]; then
-		    	echo "$role sha can be updated - old: $role_version new: $LATESTREMOTERELEASE"
+		    	echo "$role sha can be updated - current: $role_version latest: $REMOTESHA"
 			let "bad_repo_counter += 1"
 		    else
 		      if [ "$DEBUG" != "0" ]; then echo "$role_version and $REMOTESHA"
@@ -178,6 +192,9 @@ case "$1" in
             else
               exit 0
             fi
+	  ;;
+  	  -h)
+	    usage
 	  ;;
           *)
 	    check_fgci_ansible
