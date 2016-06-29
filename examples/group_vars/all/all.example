@@ -144,10 +144,10 @@ pull_install_ip: "{{ kickstart_server_ip }}"
 nis_domain: "fgci.csc.fi"
 nis_server_address: "10.1.1.2"
 
-#Disable ansible-pull by default
+#ansible-pull is disabled here by default. Enabled per group
 ansible_pull_kickstart: false
-# Random delay in seconds
-ansible_pull_sleep: 10
+# Random max delay in seconds
+ansible_pull_sleep: 600
 # Minute interval
 ansible_pull_cron_minute_interval: 120
 # This is the branch of fgci-ansible repo in github.

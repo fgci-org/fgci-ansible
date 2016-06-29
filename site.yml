@@ -5,7 +5,7 @@
 #           This playbook is more, at this point, a guideline for the proper deployment sequence 
 
 - include: admin.yml
-- include: provisioning.yml
+#- include: provisioning.yml
 - include: install.yml
 #- include: tools/reinstall_node.yml
 - include: nfs.yml

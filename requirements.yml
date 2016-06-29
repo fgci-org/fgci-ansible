@@ -5,7 +5,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-install
   path: roles
-  version: v1.5.0
+  version: v1.6.0
 
 # called -2 because it replaces another role called ansible-role-yum-cron
 - src: https://github.com/jeffwidman/ansible-yum-cron
@@ -44,7 +44,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
   path: roles
-  version: v1.3.0
+  version: v1.4.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
   path: roles
@@ -75,7 +75,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-yum
   path: roles
-  version: v1.2.0
+  version: v1.3.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-flowdock
   path: roles
@@ -91,7 +91,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
   path: roles
-  version: v0.9.0
+  version: v1.0.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nis
   path: roles
@@ -131,7 +131,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-smartd
   path: roles
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-postfix
   path: roles
