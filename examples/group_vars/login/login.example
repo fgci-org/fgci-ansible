@@ -31,9 +31,6 @@ networks:
 extdefroute: True
 chgIntGW: True
 
-# Slurm
-slurm_type: "submit"
-
 # This makes ansible-role-ferm-firewall restart fail2ban if ferm is reloaded.
 ferm_fail2ban: True
 

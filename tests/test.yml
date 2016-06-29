@@ -2,7 +2,6 @@
 
 # Order of roles is important
 # vars are documented in https://github.com/CSC-IT-Center-for-Science/fgci-ansible/tree/master/examples
-# slurm_type - we only do the slurm service node tasks because submit/compute depend on the munge key from the service node task.
 
  - hosts: localhost
    remote_user: root
