@@ -42,9 +42,6 @@ fqdn: "{{siteName}}-grid.{{siteDomain}}"
 networks:
   - "network --onboot={{enable_ext_nic}} --device={{external_interface}} --bootproto=static --ip={{ext_ip_addr}} --netmask={{ext_net_mask}} --nameserver={{nameserver2}} --hostname={{ fqdn }} --gateway={{ext_gateway}} --noipv6"
 
-# Slurm
-slurm_type: "submit"
-
 # Ferm - firewall
 ferm_rules_extra:
  grid:
