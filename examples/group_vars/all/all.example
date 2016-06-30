@@ -148,8 +148,9 @@ nis_server_address: "10.1.1.2"
 ansible_pull_kickstart: false
 # Random max delay in seconds
 ansible_pull_sleep: 600
-# Minute interval
-ansible_pull_cron_minute_interval: 120
+# Defaults to "0 */2 * * *" - every second hour
+ansible_pull_cron_minute_interval: "0"
+ansible_pull_cron_hour_interval: "*/2"
 # This is the branch of fgci-ansible repo in github.
 ansible_pull_branch: "master"
 # Set the ansible_pull_cron_state to absent to disable the ansible-pull cronjob
