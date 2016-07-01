@@ -156,3 +156,5 @@
 #  with_items: ib_result.results
 #  when: ib_result is defined and item.changed
 
+- name: flush the handlers - so that network settings are applied before any other roles. 
+  meta: flush_handlers
