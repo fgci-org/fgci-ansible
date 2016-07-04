@@ -25,7 +25,7 @@
   - { role: ansible-role-smartd, tags: [ 'smartd' ] }
   - { role: ansible-role-idmapd, tags: [ 'idmapd' ] }
   - { role: ansible-role-nfs, tags: [ 'nfs' ] }
-  - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
+#  - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
