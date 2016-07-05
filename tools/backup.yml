@@ -1,0 +1,76 @@
+---
+# This playbook will make a backup of your Cluster's critical files
+#
+# TODO: 
+# - create a dir name with embeded date
+# - have maximum backup | delete old ones
+# - bckpDir variable valid for all play
+# - Add mySQL Slurm DB dumpping role
+
+- hosts: localhost
+  vars:
+    - bckpDir: "backup"
+
+  # Create backup folder
+  tasks: 
+    - name: Create a backup folder # Remember to add it to .gitingnore
+      file: path={{ bckpDir }} state=directory mode=0755
+      tags: preBackup
+
+    - name: Make sure git ignores backup folder
+      lineinfile: dest={{ inventory_dir }}/.gitignore state=present line="{{ bckpDir }}/"
+      tags: preBackup
+
+    - name: Check if hostcert.pem and hostkey.pem exists locally
+      stat: path={{ inventory_dir }}/files/certificates/hostcert.pem
+      stat: path={{ inventory_dir }}/files/certificates/hostkey.pem
+      tags: preBackup
+
+    - name: Check if munge.key exists locally
+      stat: path={{ inventory_dir }}/files/munge.key
+      tags: preBackup
+
+    - name: Check if nodes dir exists locally
+      stat: path={{ inventory_dir }}/files/nodes/{{ item }}
+      with_items: 
+        - "{{ groups['compute'] }}"
+        - install
+        - login
+        - grid
+        - nfs
+      tags: preBackup
+
+    # Backup Repo
+    - name: compress repo into tarball and place it in backup folder
+      shell: tar -zczf {{ bckpDir }}/fgci-ansible-{{ ansible_date_time.iso8601 }}.tar.gz .
+      args:
+        chdir: "{{ inventory_dir }}"
+
+- hosts: install
+  become: yes
+  vars:
+    - bckpDir: "backup"
+
+  #roles:
+  #  Get Slurm DB Dump
+  #  - { role: ansible-role-mysql? }
+
+  tasks:
+    - name: Copy files from Install node
+      fetch: src={{ item }} dest={{ inventory_dir }}/{{ bckpDir }} fail_on_missing=yes
+      with_items:
+        - /etc/slurm/slurm.conf
+        # - Add log files here
+      
+- hosts: grid
+  become: yes
+  vars:
+    - bckpDir: "backup"
+
+  tasks:
+    - name: Copy files from grid node
+      fetch: src={{ item }} dest={{ inventory_dir }}/{{ bckpDir }} fail_on_missing=yes
+      with_items:
+        - /etc/arc.conf
+        # - Add log files here
+      
