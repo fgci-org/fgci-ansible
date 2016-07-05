@@ -9,7 +9,7 @@
 
 - hosts: localhost
   vars:
-    - bckpDir: "backup"
+    - bckpDir: "backup-{{ siteName }}"
 
   # Create backup folder
   tasks: 
@@ -42,18 +42,14 @@
 
     # Backup Repo
     - name: compress repo into tarball and place it in backup folder
-      shell: tar -zczf {{ bckpDir }}/fgci-ansible-{{ ansible_date_time.iso8601 }}.tar.gz .
+      shell: tar -zczf {{ bckpDir }}/fgci-ansible-{{ ansible_date_time.date }}.tar.gz .
       args:
         chdir: "{{ inventory_dir }}"
 
 - hosts: install
   become: yes
   vars:
-    - bckpDir: "backup"
-
-  #roles:
-  #  Get Slurm DB Dump
-  #  - { role: ansible-role-mysql? }
+    - bckpDir: "backup-{{ siteName }}"
 
   tasks:
     - name: Copy files from Install node
@@ -61,11 +57,11 @@
       with_items:
         - /etc/slurm/slurm.conf
         # - Add log files here
-      
+     
 - hosts: grid
   become: yes
   vars:
-    - bckpDir: "backup"
+    - bckpDir: "backup-{{ siteName }}"
 
   tasks:
     - name: Copy files from grid node
@@ -73,4 +69,34 @@
       with_items:
         - /etc/arc.conf
         # - Add log files here
-      
+
+- hosts: install
+  become: yes
+  vars:
+    - bckpDir: "backup-{{ siteName }}"
+
+  # LA: Still haven't tested what's bellow!! Needs some closer check and a free testing cluster to minimize possible damages - Waiting for Io to be empty.
+
+  tasks:
+    - name: stop slurmctld
+      service: name=slurmctld state=stopped
+
+    - name: stop slurmdbd
+      service: name=slurmdbd state=stopped
+      delegate_to: install
+
+    - name: Dump Slurm DB
+      mysql_db: state=dump name=all target=/tmp/{{ siteName }}-install-slurmDB.sql
+      delegate_to: install
+
+    - name: start slurmdbd
+      service: name=slurmdbd state=started
+      delegate_to: install
+
+    - name: start slurmctld
+      service: name=slurmctld state=started
+
+    - name: Fetch Slurm DB dump file from install node
+      fetch: src=/tmp/{{ siteName }}-install-slurmDB.sql dest={{ inventory_dir }}/{{ bckpDir }} fail_on_missing=yes
+
+
