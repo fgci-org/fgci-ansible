@@ -3,9 +3,8 @@
 #
 # TODO: 
 # - create a dir name with embeded date
-# - have maximum backup | delete old ones
+# - have maximum number of backups | delete old ones
 # - bckpDir variable valid for all play
-# - Add mySQL Slurm DB dumpping role
 
 - hosts: localhost
   vars:
@@ -74,8 +73,6 @@
   become: yes
   vars:
     - bckpDir: "backup"
-
-  # LA: Still haven't tested what's bellow!! Needs some closer check and a free testing cluster to minimize possible damages - Waiting for Io to be empty.
 
   tasks:
     - name: stop slurmctld
