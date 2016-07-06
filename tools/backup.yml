@@ -9,7 +9,7 @@
 
 - hosts: localhost
   vars:
-    - bckpDir: "backup-{{ siteName }}"
+    - bckpDir: "backup"
 
   # Create backup folder
   tasks: 
@@ -49,7 +49,7 @@
 - hosts: install
   become: yes
   vars:
-    - bckpDir: "backup-{{ siteName }}"
+    - bckpDir: "backup"
 
   tasks:
     - name: Copy files from Install node
@@ -61,7 +61,7 @@
 - hosts: grid
   become: yes
   vars:
-    - bckpDir: "backup-{{ siteName }}"
+    - bckpDir: "backup"
 
   tasks:
     - name: Copy files from grid node
@@ -73,7 +73,7 @@
 - hosts: install
   become: yes
   vars:
-    - bckpDir: "backup-{{ siteName }}"
+    - bckpDir: "backup"
 
   # LA: Still haven't tested what's bellow!! Needs some closer check and a free testing cluster to minimize possible damages - Waiting for Io to be empty.
 
