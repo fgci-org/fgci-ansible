@@ -9,15 +9,12 @@
 - hosts: localhost
   vars:
     - bckpDir: "backup"
+    - backup_dir: "/tmp/{{ bckpDir }}"
 
   # Create backup folder
   tasks: 
     - name: Create a backup folder # Remember to add it to .gitingnore
-      file: path={{ bckpDir }} state=directory mode=0755
-      tags: preBackup
-
-    - name: Make sure git ignores backup folder
-      lineinfile: dest={{ inventory_dir }}/.gitignore state=present line="{{ bckpDir }}/"
+      file: path={{ backup_dir}} state=directory mode=0755
       tags: preBackup
 
     - name: Check if hostcert.pem and hostkey.pem exists locally
@@ -41,7 +38,7 @@
 
     # Backup Repo
     - name: compress repo into tarball and place it in backup folder
-      shell: tar -zczf {{ bckpDir }}/fgci-ansible-{{ ansible_date_time.date }}.tar.gz .
+      shell: tar -zcf {{ backup_dir }}/fgci-ansible-{{ ansible_date_time.date }}.tar.gz .
       args:
         chdir: "{{ inventory_dir }}"
 
@@ -49,10 +46,11 @@
   become: yes
   vars:
     - bckpDir: "backup"
+    - backup_dir: "/tmp/{{ bckpDir }}"
 
   tasks:
     - name: Copy files from Install node
-      fetch: src={{ item }} dest={{ inventory_dir }}/{{ bckpDir }} fail_on_missing=yes
+      fetch: src={{ item }} dest={{ backup_dir }} fail_on_missing=yes
       with_items:
         - /etc/slurm/slurm.conf
         # - Add log files here
@@ -61,10 +59,11 @@
   become: yes
   vars:
     - bckpDir: "backup"
+    - backup_dir: "/tmp/{{ bckpDir }}"
 
   tasks:
     - name: Copy files from grid node
-      fetch: src={{ item }} dest={{ inventory_dir }}/{{ bckpDir }} fail_on_missing=yes
+      fetch: src={{ item }} dest={{ backup_dir }} fail_on_missing=yes
       with_items:
         - /etc/arc.conf
         # - Add log files here
@@ -73,6 +72,7 @@
   become: yes
   vars:
     - bckpDir: "backup"
+    - backup_dir: "/tmp/{{ bckpDir }}"
 
   tasks:
     - name: stop slurmctld
@@ -94,6 +94,6 @@
       service: name=slurmctld state=started
 
     - name: Fetch Slurm DB dump file from install node
-      fetch: src=/tmp/{{ siteName }}-install-slurmDB.sql dest={{ inventory_dir }}/{{ bckpDir }} fail_on_missing=yes
+      fetch: src=/tmp/{{ siteName }}-install-slurmDB.sql dest={{ backup_dir }} fail_on_missing=yes
 
 
