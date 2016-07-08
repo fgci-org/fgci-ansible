@@ -53,6 +53,8 @@
       fetch: src={{ item }} dest={{ backup_dir }} fail_on_missing=yes
       with_items:
         - /etc/slurm/slurm.conf
+        - /etc/passwd
+        - /etc/group
         # - Add log files here
      
 - hosts: grid
