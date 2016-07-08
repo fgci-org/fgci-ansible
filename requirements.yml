@@ -15,7 +15,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-users
   path: roles
-  version: v1.3.0
+  version: v1.4.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-rsyslog
   path: roles
