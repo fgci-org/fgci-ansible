@@ -49,13 +49,18 @@
     - backup_dir: "/tmp/{{ bckpDir }}"
 
   tasks:
+    - name: compress Slurm log dir into tarball
+      shell: tar -zcf /tmp/slurm-logs-{{ ansible_date_time.date }}.tar.gz .
+      args:
+        chdir: /var/log/slurm/
+
     - name: Copy files from Install node
       fetch: src={{ item }} dest={{ backup_dir }} fail_on_missing=yes
       with_items:
         - /etc/slurm/slurm.conf
         - /etc/passwd
         - /etc/group
-        # - Add log files here
+        - /tmp/slurm-logs-{{ ansible_date_time.date }}.tar.gz
      
 - hosts: grid
   become: yes
@@ -64,11 +69,16 @@
     - backup_dir: "/tmp/{{ bckpDir }}"
 
   tasks:
+    - name: compress ARC log dir into tarball
+      shell: tar -zcf /tmp/arc-logs-{{ ansible_date_time.date }}.tar.gz .
+      args:
+        chdir: /var/log/arc/
+
     - name: Copy files from grid node
       fetch: src={{ item }} dest={{ backup_dir }} fail_on_missing=yes
       with_items:
         - /etc/arc.conf
-        # - Add log files here
+        - /tmp/arc-logs-{{ ansible_date_time.date }}.tar.gz
 
 - hosts: install
   become: yes
