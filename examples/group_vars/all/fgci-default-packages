@@ -1,47 +1,21 @@
 ---
-# This list is taken from fgi-default-packagse and ks.py
+# The packages in unconfigured_packages list is installed by ansible-role-yum. It is overridden by all the other groups_vars in FGCI. 
+# Keeping it here for future use.
 unconfigured_packages:
-  - atlas
   - bash-completion
-  - blas
-  - bonnie++
-  - cvs
   - epel-release
-  - fftw
-  - fftw2
-  - gcc
-  - gcc-c++
-  - gcc-gfortran
   - git
-  - "glibc.i686"
-  - hdf5-openmpi
-  - iperf
-  - "java-1.8.0-openjdk"
-  - lapack
-  - libcgroup
-  - "libgcc.i686"
-  - libgfortran
-  - "libstdc++.i686"
-  - "libxml2.i686"
   - mcelog
-  - mpitests-openmpi
-  - mvapich2
-  - netcdf
+  - net-tools
   - nfs-utils
   - nscd
-  - numpy
-  - openmpi
   - openssh-server
   - pdsh
   - pciutils
   - perl-Filesys-Df
-  - subversion
-  - xerces-c
-  - yum-plugin-fastestmirror
-  - wget
-  - "zlib.i686"
-  - net-tools
   - time
+  - wget
+  - yum-plugin-fastestmirror
 
 ib_unconfigured_packages:
   - "@infiniband"
