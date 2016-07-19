@@ -59,3 +59,23 @@ nfs_exports: { "/home 10.2.0.0/16(rw,sync,no_root_squash)","/scratch 10.2.0.0/16
 # Configure smartd
 smartd_service: True
 
+unconfigured_packages:
+  - bash-completion
+  - bonnie++
+  - cvs
+  - epel-release
+  - git
+  - iperf
+  - mcelog
+  - net-tools
+  - nfs-utils
+  - nscd
+  - openmpi
+  - openssh-server
+  - pdsh
+  - pciutils
+  - perl-Filesys-Df
+  - time
+  - wget
+  - yum-plugin-fastestmirror
+
