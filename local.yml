@@ -7,6 +7,12 @@
 
   # Before the roles
   pre_tasks:
+    - name: with setup module grab ansible_facts because printing ansible_facts stack traces see ansible github issue 7732
+      setup:
+      register: reg_pull_facts
+
+    - name: debug print reg_pull_facts
+      debug: var=reg_pull_facts
       
     - name: get variables files
       get_url: url="http://{{ pull_install_ip }}/pull_variables.yml" dest=/root mode=0640
