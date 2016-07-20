@@ -5,7 +5,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-install
   path: roles
-  version: v1.6.2
+  version: v1.6.3
 
 # called -2 because it replaces another role called ansible-role-yum-cron
 - src: https://github.com/jeffwidman/ansible-yum-cron
@@ -23,11 +23,11 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dhcp_server
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_bootstrap
   path: roles
-  version: v1.2.0
+  version: v1.3.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-squid
   path: roles
@@ -44,8 +44,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
   path: roles
-  version: 16ca2b66f4d2dc4c8309ec551493929e99d3bec9
-  #version: v1.4.1
+  version: v1.4.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
   path: roles
@@ -84,15 +83,15 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-collectd
   path: roles
-  version: v1.3.0
+  version: v1.3.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_config
   path: roles
-  version: v1.2.0
+  version: v1.3.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nis
   path: roles
@@ -108,7 +107,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-arc-frontend
   path: roles
-  version: v1.2.0
+  version: v1.2.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-bash
   path: roles
@@ -132,7 +131,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-smartd
   path: roles
-  version: v1.0.2
+  version: v1.0.3
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-postfix
   path: roles
