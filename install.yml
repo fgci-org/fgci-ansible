@@ -42,7 +42,7 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
-  - { role: ansible-role-pdsh-machines, tags: [ 'pdsh', 'machines' ] }
+  - { role: ansible-role-pdsh-genders, tags: [ 'pdsh', 'genders' ] }
   - { role: ansible-role-adauth, tags: [ 'auth' ] }
   - { role: ansible-role-gitmirror, tags: [ 'gitmirror'] }
   - { role: ansible-role-idmapd, tags: [ 'idmapd'] }
