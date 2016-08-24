@@ -190,3 +190,9 @@
 - src: https://github.com/jabl/ansible-role-open-vm-tools
   path: roles
   version: v1.0.0
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-systemd-journal
+  path: roles
+  version: 605b43039cf9f9ffb0465b4c81efbc515420c319
+  name: ansible-role-systemd-journal
+
