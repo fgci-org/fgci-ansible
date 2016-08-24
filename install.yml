@@ -47,7 +47,7 @@
   - { role: ansible-role-gitmirror, tags: [ 'gitmirror'] }
   - { role: ansible-role-idmapd, tags: [ 'idmapd'] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
-  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+  - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
  
 - name: grab facts from production nodes
   hosts: production
@@ -61,5 +61,5 @@
   roles:
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
-  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+  - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
 

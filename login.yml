@@ -52,4 +52,4 @@
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
-  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+  - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }

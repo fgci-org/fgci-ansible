@@ -41,4 +41,4 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
-  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
+  - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
