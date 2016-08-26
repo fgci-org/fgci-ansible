@@ -32,6 +32,9 @@ network_ether_interfaces:
 
 nfs_mount_addr: "10.1.1.5"
 
+# See examples/hosts-example for an ansible group showing how one can add an extra group of hosts to the DNS (/etc/hosts & dnsmasq on install node)
+#hosts_file_extra_group_to_populate: "{{ groups.switches }}"
+
 ## DHCP_SERVER
 
 dhcp_interfaces: "{{ internal_interface }}"

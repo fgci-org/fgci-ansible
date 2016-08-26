@@ -48,3 +48,14 @@ nfs
 [nfs_mount:children]
 compute
 login
+
+### Adding extra hosts to the internal DNS:
+# This group is here to illustrate how to add extra internal hosts to the internal DNS.
+# The name of the group is not important except that it will also be available as a pdsh group/gender.
+# Also define this ansible variable:
+# hosts_file_extra_group_to_populate: "{{ groups.switches }}"
+#
+#[switches]
+#ibsw1 int_ip_addr=10.44.55.1 ib_ip_addr=10.55.66.1
+#ethsw20 int_ip_addr=10.44.55.20
+####
