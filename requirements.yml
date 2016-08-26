@@ -115,7 +115,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cuda
   path: roles
-  version: v1.1.1
+  version: v1.3.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nhc
   path: roles
