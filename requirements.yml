@@ -79,7 +79,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-flowdock
   path: roles
-  version: v1.2.3
+  version: v1.2.4
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-collectd
   path: roles
