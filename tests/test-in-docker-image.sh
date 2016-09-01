@@ -35,7 +35,7 @@ fi
 
 
 cd $RDIR/..
-printf "[defaults]\nroles_path = ../:roles" > ansible.cfg
+printf "[defaults]\nroles_path = ../:roles\ncallback_whitelist = profile_tasks" > ansible.cfg
 printf "" > ssh.config
 
 function show_version() {
