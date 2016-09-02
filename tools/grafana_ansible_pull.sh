@@ -5,6 +5,7 @@ timestamp="$(date +%s)"
 host="$(hostname -s)"
 DOMAINNAME="$(domainname)"
 domain="${DOMAINNAME:-UNDEFINED}"
+runtime="${2:-""}"
 
 safety() {
 
@@ -24,6 +25,7 @@ curl -f -H "Content-Type: application/json" -X POST -d '{
       "timestamp": '$timestamp',
       "state": "started",
       "tags": {
+         "runtime": "'"$runtime"'",
          "node": "'"$host"'",
          "state": "started",
          "sitename": "'"$domain"'"
@@ -40,6 +42,7 @@ curl -f -H "Content-Type: application/json" -X POST -d '{
       "timestamp": '$timestamp',
       "state": "failed",
       "tags": {
+         "runtime": "'"$runtime"'",
          "node": "'"$host"'",
          "state": "failed",
          "sitename": "'"$domain"'"
@@ -56,6 +59,7 @@ curl -f -H "Content-Type: application/json" -X POST -d '{
       "timestamp": '$timestamp',
       "state": "succeeded",
       "tags": {
+         "runtime": "'"$runtime"'",
          "node": "'"$host"'",
          "state": "succeeded",
          "sitename": "'"$domain"'"
@@ -80,7 +84,7 @@ case "$1" in
             succeeded
             ;;
         *)
-            echo $"Usage: $0 {started|failed|succeeded}"
+            echo $"Usage: $0 {started|failed|succeeded} [optional runtime in seconds]"
             exit 1
 
 esac
