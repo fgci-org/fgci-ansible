@@ -68,7 +68,7 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
-  - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
+#  - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
 
 # Adding a role here? Make sure you add it to compute.yml for it to work with ansible push
 
