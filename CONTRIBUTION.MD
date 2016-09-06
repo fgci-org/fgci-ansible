@@ -69,12 +69,14 @@ As of writing (20160906) if we add a new role to the ansible-pull playbook (loca
 
 We have an open issue about this: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-install/issues/11
 
-Testing the changes before merging / adding to fgci-ansible's devel branch
+Testing the changes:
 ----------------
 
-List of scenarios we aim to test before merging into devel:
+In general we make updates in the devel branch, improve them and test them there.
+
+List of scenarios we aim to test/consider:
  - applies to ansible-pull
-  - test the changes to ansible-pull by: **TBA**
+  - test the changes to ansible-pull by making the change to the devel branch on github
  - applies to ansible-push
   - test this by making local changes in the fgci-ansible working directory and running the role, first with --check --diff
  - applies to reinstalls / brand new clusters
