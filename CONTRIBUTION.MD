@@ -1,7 +1,7 @@
 fgci-ansible contribution guidelines
 -------------------------
 
-Branches
+Git Branches
 --------
 
 Configure upstream:
@@ -15,7 +15,7 @@ git pull
 git checkout master
 </pre>
 
-Workflow:
+Git Workflow:
 ---------
 
  - devel: After the work is commited to devel, run testing. Merge devel into master when testing is done.
@@ -34,7 +34,7 @@ git checkout devel
 
 Git push where appropriate
 
-Releases
+Releases / Tags
 --------
 
 After syncing the changes from devel to master we should make a release on github.
@@ -57,6 +57,34 @@ Pull Requests
   - This is important, don't make the updates in the master branch of your local repo.
  - Commit and push to this new_feature branch in your repo
  - Create a pull request with the fix
+
+Adding new roles for ansible-pull
+---------------------------------
+
+As of writing (20160906) if we add a new role to the ansible-pull playbook (local.yml) - it will cause ansible-pull to fail on the compute nodes _until_ the sites have updated their local git mirror. For this reason the process for adding a new role to ansible-pull is:
+
+ 1. Add the new role to requirements.yml, preferably on Monday/Tuesday
+ 2. Inform the sites via e-mail/social media that in a week we'll add a new role and that they should update their local git-mirror (run fgci-install tag/role on install node, see the tools/pullReqs.sh helper script)
+ 3. On the following Monday add the role to local.yml
+
+We have an open issue about this: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-install/issues/11
+
+Testing the changes before merging / adding to fgci-ansible's devel branch
+----------------
+
+List of scenarios we aim to test before merging into devel:
+ - applies to ansible-pull
+  - test the changes to ansible-pull by: **TBA**
+ - applies to ansible-push
+  - test this by making local changes in the fgci-ansible working directory and running the role, first with --check --diff
+ - applies to reinstalls / brand new clusters
+  - test this by reinstalling the cluster
+  - think of the order (available in site.yml) in which nodes are installed, install node before login node for example
+ - applies to partial reinstalls, like keeping a filesystem or sql database
+  - test this by reinstalling the cluster
+ - applies to sites using hardware that's not only from the initial FGCI Dell Harware?
+  - ask the sites for assistance
+
 
 Ansible Roles
 -------------
