@@ -13,6 +13,7 @@
 
   roles: 
   - { role: network_interface, tags: [ 'network' ] }
+  - { role: ansible-role-hosts-int, tags: [ 'hosts'] }
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall', 'network' ] }

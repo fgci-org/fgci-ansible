@@ -16,6 +16,7 @@
   - { role: ansible-role-yum, tags: [ 'yum', 'repos' ] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall', 'network' ] }
   - { role: network_interface, tags: [ 'network' ] }
+  - { role: ansible-role-hosts-int, tags: [ 'hosts'] }
   - { role: ip_forwarder, tags: [ 'network' ], 
     when: internal_interface is defined and
           external_interface is defined and
