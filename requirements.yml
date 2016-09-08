@@ -198,4 +198,4 @@
 
 - src: https://github.com/jabl/ansible-role-hosts-int
   path: roles
-  version: v1.0.1
+  version: v1.0.2
