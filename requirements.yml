@@ -87,7 +87,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_config
   path: roles
-  version: v1.3.4
+  version: v1.4.0
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
   path: roles
