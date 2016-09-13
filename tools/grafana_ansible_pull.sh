@@ -1,5 +1,10 @@
 #!/bin/bash
-# This sends an annotation to opentsdb on cassini.fgci.csc.fi
+# Send metrics to opentsdb on cassini.fgci.csc.fi
+#
+# We use these to build a dashboard showing the status and runtime of FGCI's 
+#  ansible-pull-script.sh
+# API documentation: 
+#  http://opentsdb.net/docs/build/html/api_http/put.html#example-multiple-data-point-put
 
 timestamp="$(date +%s)"
 host="$(hostname -s)"
@@ -17,54 +22,38 @@ fi
 
 }
 
-started() {
-curl -f -H "Content-Type: application/json" -X POST -d '{
+pull_runtime() {
+curl -f -H "Content-Type: application/json" -X POST -d '[ 
+  {
+      "metric": "pull_runtime",
+      "value": '$runtime',
+      "timestamp": '$timestamp',
+      "tags": {
+         "pull_runtime": "pull_runtime",
+         "node": "'"$host"'",
+         "state": "'"$1"'",
+         "sitename": "'"$domain"'"
+      }
+  }
+]
+  ' http://cassini.fgci.csc.fi:4242/api/put
+}
+
+pull_state() {
+curl -f -H "Content-Type: application/json" -X POST -d '[ 
+  {
       "metric": "ansible_pull",
-      "text": "started",
+      "text": "'"$1"'",
       "value": 1,
       "timestamp": '$timestamp',
-      "state": "started",
+      "state": "'"$1"'",
       "tags": {
-         "runtime": "'"$runtime"'",
          "node": "'"$host"'",
-         "state": "started",
+         "state": "'"$1"'",
          "sitename": "'"$domain"'"
       }
   }
-  ' http://cassini.fgci.csc.fi:4242/api/put
-}
-
-failed() {
-curl -f -H "Content-Type: application/json" -X POST -d '{
-      "metric": "ansible_pull",
-      "text": "failed",
-      "value": 2,
-      "timestamp": '$timestamp',
-      "state": "failed",
-      "tags": {
-         "runtime": "'"$runtime"'",
-         "node": "'"$host"'",
-         "state": "failed",
-         "sitename": "'"$domain"'"
-      }
-  }
-  ' http://cassini.fgci.csc.fi:4242/api/put
-}
-
-succeeded() {
-curl -f -H "Content-Type: application/json" -X POST -d '{
-      "metric": "ansible_pull",
-      "text": "succeeded",
-      "value": 0,
-      "timestamp": '$timestamp',
-      "state": "succeeded",
-      "tags": {
-         "runtime": "'"$runtime"'",
-         "node": "'"$host"'",
-         "state": "succeeded",
-         "sitename": "'"$domain"'"
-      }
-  }
+]
   ' http://cassini.fgci.csc.fi:4242/api/put
 }
 
@@ -72,19 +61,25 @@ safety
 
 case "$1" in
         started)
-	    safety
-            started
+            pull_state $1
+	    if [ "$2" != "" ]; then 
+		pull_runtime $1
+	    fi
             ;;
         failed)
-	    safety
-            failed
+            pull_state $1
+	    if [ "$2" != "" ]; then 
+		pull_runtime $1
+	    fi
             ;;
         succeeded)
-	    safety
-            succeeded
+            pull_state $1
+	    if [ "$2" != "" ]; then 
+		pull_runtime $1
+	    fi
             ;;
         *)
-            echo $"Usage: $0 {started|failed|succeeded} [optional runtime in seconds]"
+            echo $"Usage: $0 {started|failed|succeeded} [optional runtime in seconds in a second metric/API call]"
             exit 1
 
 esac
