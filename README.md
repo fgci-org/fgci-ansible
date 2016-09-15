@@ -50,3 +50,7 @@ For our backlog checkout the waffle iron: https://waffle.io/CSC-IT-Center-for-Sc
 Please submit these to the individual Github repositories or normal CSC service desk. If they are not in CSC's organization in github submitting to this repo (fgci-ansible) is OK.
 
 There is a list of where the ansible roles come from in the <a href="requirements.yml">requirements.yml</a> file.
+
+## License
+
+MIT
