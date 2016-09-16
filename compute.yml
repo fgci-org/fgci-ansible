@@ -22,6 +22,7 @@
             weekday="{{ansible_pull_cron_weekday_interval | default('*')}}"
             cron_file=ansible-pull
             state={{ansible_pull_cron_state | default('present')}}
+      tags: pull
 
   roles: 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
