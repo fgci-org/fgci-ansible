@@ -12,6 +12,10 @@ DOMAINNAME="$(domainname)"
 domain="${DOMAINNAME:-UNDEFINED}"
 runtime="${2:-""}"
 
+SUCCEEDED=0
+STARTED=1
+FAILED=2
+
 safety() {
 
 which curl 2>&1 >/dev/null
@@ -44,7 +48,7 @@ curl -f -H "Content-Type: application/json" -X POST -d '[
   {
       "metric": "ansible_pull",
       "text": "'"$1"'",
-      "value": 1,
+      "value": '$2',
       "timestamp": '$timestamp',
       "state": "'"$1"'",
       "tags": {
@@ -61,19 +65,19 @@ safety
 
 case "$1" in
         started)
-            pull_state $1
+            pull_state $1 $STARTED
 	    if [ "$2" != "" ]; then 
 		pull_runtime $1
 	    fi
             ;;
         failed)
-            pull_state $1
+            pull_state $1 $FAILED
 	    if [ "$2" != "" ]; then 
 		pull_runtime $1
 	    fi
             ;;
         succeeded)
-            pull_state $1
+            pull_state $1 $SUCCEEDED
 	    if [ "$2" != "" ]; then 
 		pull_runtime $1
 	    fi
