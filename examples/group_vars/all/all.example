@@ -120,6 +120,11 @@ sshd:
 
 #NTP
 ntp_config_server: [ 0.fi.pool.ntp.org, 1.fi.pool.ntp.org, 2.fi.pool.ntp.org, 3.fi.pool.ntp.org, ntp2.funet.fi, ntp4.funet.fi]
+#Chrony
+chrony_ntp_servers: "{{ ntp_config_server }}"
+chrony_pkg_state: "installed"
+chrony_pkg_update_cache: "no"
+chrony_remove_ntp: True
 
 #Users
 adminremove_passwords: True
