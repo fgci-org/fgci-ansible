@@ -149,3 +149,6 @@ dell_install_helper_scripts: True
 # Configure smartd
 smartd_service: True
 
+# NTP/chrony server
+chrony_allow_deny:
+   - "allow {{ internal_net }}"

@@ -127,3 +127,8 @@ ferm_rules_extra:
    domains: [ip]
    rules:
      - {rule: "outerface {{ external_interface }} saddr ( {{ internal_net }} ) mod comment comment 'masquerade for internal net' MASQUERADE;", comment: "masquerade"}
+
+# NTP/chrony server
+chrony_allow_deny:
+ - "allow {{ internal_net }}"
+
