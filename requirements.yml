@@ -199,3 +199,7 @@
 - src: https://github.com/jabl/ansible-role-hosts-int
   path: roles
   version: v1.0.2
+
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-chrony
+  path: roles
+  version: d492d1dd4f1e709d555e99465533bda64c85aaf4
