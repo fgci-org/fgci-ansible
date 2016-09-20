@@ -38,6 +38,7 @@
      - ansible-role-aliases
      - ansible-role-arc-client
 #     - ansible-role-arc-frontend
+     - ansible-role-chrony
      - ansible-role-collectd
      - ansible-role-cuda
 #     - ansible-role-dhcp_server
@@ -49,7 +50,7 @@
 #     - ansible-role-nfs_mount
      - ansible-role-nhc
      - ansible-role-nis
-     - ansible-role-ntp
+#     - ansible-role-ntp
      - ansible-role-postfix
 #     - ansible-role-pxe_bootstrap
 #     - ansible-role-pxe_config
