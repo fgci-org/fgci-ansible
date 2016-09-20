@@ -24,7 +24,7 @@
           internal_interface in ansible_interfaces and
           external_interface in ansible_interfaces }
   - { role: dns, tags: [ 'dns' ] }
-  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-chrony, tags: [ 'ntp', 'chrony' ] }
   - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }

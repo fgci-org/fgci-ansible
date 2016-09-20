@@ -25,7 +25,7 @@
           internal_net is defined and
           internal_interface in ansible_interfaces and
           external_interface in ansible_interfaces }
-  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-chrony, tags: [ 'ntp', 'chrony' ] }
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }
