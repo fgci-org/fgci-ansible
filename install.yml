@@ -41,6 +41,8 @@
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
+  - { role: ansible-role-ssh-hostca-srv, tags: ['ssh', 'ssh-hostca'] }
+  - { role: ansible-role-sshd-host-keys-client, tags: [ 'ssh', 'ssh-hostca' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-pdsh-genders, tags: [ 'pdsh', 'genders' ] }
   - { role: ansible-role-adauth, tags: [ 'auth' ] }
@@ -62,4 +64,4 @@
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
-
+  - { role: ansible-role-sshd-host-keys-client, tags: [ 'ssh', 'ssh-hostca' ] }

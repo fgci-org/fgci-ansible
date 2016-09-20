@@ -48,6 +48,7 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }  
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
+  - { role: ansible-role-sshd-host-keys-client, tags: [ 'ssh', 'ssh-hostca' ] }
   - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
