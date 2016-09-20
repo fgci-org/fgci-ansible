@@ -125,6 +125,10 @@ chrony_ntp_servers: "{{ ntp_config_server }}"
 chrony_pkg_state: "installed"
 chrony_pkg_update_cache: "no"
 chrony_remove_ntp: True
+# We make chronyd not act as a server by default by not allowing any subnets
+chrony_allow_deny:
+  - ""
+
 
 #Users
 adminremove_passwords: True
