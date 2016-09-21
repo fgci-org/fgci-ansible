@@ -164,6 +164,12 @@ ansible_pull_cron_hour_interval: "*/2"
 ansible_pull_branch: "master"
 # Set the ansible_pull_cron_state to absent to disable the ansible-pull cronjob
 ansible_pull_cron_state: present
+# Store ansible-pull logs longer than just the last run
+ansible_pull_log: True
+ansible_pull_logrotate: True
+ansible_pull_logrotate_interval: daily
+ansible_pull_logrotate_rotate: 16
+
 # Only install these on the admin node
 dell_install_helper_scripts: False
 
