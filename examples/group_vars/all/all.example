@@ -44,9 +44,9 @@ infiniband_available: False
 # NFS mounts
 
 nfs_mount_addr: "10.2.1.5"
-nfs_mount: |
-  {{ nfs_mount_addr }}:/scratch /scratch nfs4 defaults 0 0
-  {{ nfs_mount_addr }}:/home /home nfs4 defaults 0 0
+nfs_mounts:
+ - { fstype: "nfs4", name: "/scratch", src: "{{ nfs_mount_addr }}:/scratch" }
+ - { fstype: "nfs4", name: "/home", src: "{{ nfs_mount_addr }}:/home", state: "mounted", opts: "defaults" }
 
 repo_location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"
 repos:
