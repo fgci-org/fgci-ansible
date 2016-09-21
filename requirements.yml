@@ -206,7 +206,7 @@
 
 - src: https://github.com/jabl/ansible-role-ssh-hostca-srv
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/jabl/ansible-role-sshd-host-keys-client
   path: roles
