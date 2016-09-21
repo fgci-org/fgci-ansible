@@ -63,6 +63,7 @@
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
   - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }
+  - { role: ansible-role-fgci-install, tags: [ 'fgci-install', 'pull'] }
   - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-smartd, tags: [ 'smartd', 'smart' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
