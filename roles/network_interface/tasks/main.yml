@@ -14,6 +14,13 @@
   environment: env
   when: ansible_os_family == 'Debian'
 
+- name: Set default packet scheduler to reduce bufferbloat
+  sysctl:
+    name=net.core.default_qdisc
+    value="{{ network_scheduler }}"
+    sysctl_file=/etc/sysctl.d/40-bufferbloat.conf
+    sysctl_set=yes
+
 - name: Make sure the include line is there in interfaces file
   lineinfile: >
      regexp="^source\ \/etc\/network\/interfaces.d\/\*"
