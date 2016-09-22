@@ -9,6 +9,8 @@ external_interface: "em1"
 
 internal_interface: "em2"
 
+network_scheduler: "fq_codel"
+
 network_ether_interfaces:
   - device: "{{external_interface}}"
     bootproto: "static"
