@@ -44,7 +44,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
   path: roles
-  version: v1.4.4
+  version: v1.4.5
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
   path: roles
