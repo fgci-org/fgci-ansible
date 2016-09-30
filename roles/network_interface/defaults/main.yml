@@ -4,3 +4,9 @@ network_bridge_interfaces: []
 network_bond_interfaces: []
 network_ib_interfaces: []
 network_vlan_interfaces: []
+
+# Default network packet scheduler. Recommendation: fq for hosts,
+# fq_codel for routers. See
+# http://lwn.net/Articles/616241/
+# https://www.bufferbloat.net/projects/codel/wiki/
+network_scheduler: "fq"
