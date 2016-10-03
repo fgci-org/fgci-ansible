@@ -42,7 +42,7 @@
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-hosts-int, tags: [ 'hosts'] }
-  - { role: ansible-role-ntp, tags: [ 'ntp' ] }
+  - { role: ansible-role-chrony, tags: [ 'ntp', 'chrony' ] }
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-adauth, tags: [ 'auth' ] }
