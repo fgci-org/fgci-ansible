@@ -11,6 +11,8 @@
      - adminMailAddr: "changeme@example.com"
      - yum_conf_template: False
      - nis_server: True
+     - collectd_plugin_packages:
+       - collectd-write_tsdb
      - fail2ban_jails:
          sshd:
            enabled: 'true'
