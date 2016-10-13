@@ -178,6 +178,7 @@ postfix_relayhost: "smtp.csc.fi"
 postfix_mydomain: "{{ siteDomain }}"
 
 slurm_compute_nodes: "{{ nodeBase }}[1-4]"
+slurm_compute_threadspercore: "1"
 slurm_ExtraParamsList:
         - "# Extra Slurm parameter *uncommented* lines go here"
         - "# Check ansible-role-slurm defaults file for examples"
