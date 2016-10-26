@@ -14,18 +14,18 @@
     - name: debug print reg_pull_facts
       debug: var=reg_pull_facts
       
-    - name: get variables files
+    - name: fetch pull_variables.yml file from pull_install_ip
       get_url: url="http://{{ pull_install_ip }}/pull_variables.yml" dest=/root mode=0640
       tags: pull
 
-    - name: include variables
+    - name: include_vars the pull_variables.yml
       include_vars: /root/pull_variables.yml
       tags: pull
 
     - name: Install ansible
       yum: pkg=ansible state=installed
 
-    - name: set cron interval for ansible-pull
+    - name: Configure a cronjob for ansible-pull
       cron: name='ansible-pull' user=root 
             job='/bin/nice /bin/bash /usr/local/bin/ansible-pull-script.sh >/var/log/ansible.log 2>&1' 
             minute="{{ ansible_pull_cron_minute_interval | default('0')}}" 
