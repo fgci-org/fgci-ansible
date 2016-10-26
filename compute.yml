@@ -14,7 +14,7 @@
   pre_tasks:
     - name: set cron interval for ansible-pull
       cron: name='ansible-pull' user=root
-            job='/bin/bash /usr/local/bin/ansible-pull-script.sh >/var/log/ansible.log 2>&1'
+            job='/bin/nice /bin/bash /usr/local/bin/ansible-pull-script.sh >/var/log/ansible.log 2>&1'
             minute="{{ansible_pull_cron_minute_interval | default('0')}}"
             hour="{{ansible_pull_cron_hour_interval | default('*/2')}}"
             day="{{ansible_pull_cron_day_interval | default('*')}}"
