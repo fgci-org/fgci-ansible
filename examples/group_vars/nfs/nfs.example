@@ -16,6 +16,8 @@ network_ether_interfaces:
     onboot: "yes"
     address: "{{int_ip_addr}}"
     netmask: "{{int_net_mask}}"
+    defroute: "yes"
+    gateway: "{{int_gateway}}"
     nm_controlled: "no"
     type: "Ethernet"
 
