@@ -12,8 +12,10 @@ network_ether_interfaces:
     nm_controlled: "no"
 
   - device: "{{internal_interface}}"
-    bootproto: "dhcp"
+    bootproto: "static"
     onboot: "yes"
+    address: "{{int_ip_addr}}"
+    netmask: "{{int_net_mask}}"
     nm_controlled: "no"
     type: "Ethernet"
 
