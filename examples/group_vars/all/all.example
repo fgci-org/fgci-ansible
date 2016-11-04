@@ -183,5 +183,9 @@ slurm_ExtraParamsList:
         - "# Extra Slurm parameter *uncommented* lines go here"
         - "# Check ansible-role-slurm defaults file for examples"
 
+#yum cron defaults to daily and hourly updating of everything 
+daily_update_level: "default"
+daily_download_updates: yes
+daily_apply_updates: yes
 hourly_update_level: "default"
 
