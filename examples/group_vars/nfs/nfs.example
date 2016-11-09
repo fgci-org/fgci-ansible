@@ -57,7 +57,7 @@ kickstart_packages: |
   yum-plugin-fastestmirror
 
 # NFS exports
-nfs_exports: { "/home 10.2.0.0/16(rw,sync,root_squash)","/scratch 10.2.0.0/16(rw,root_squash)","/home 10.1.0.0/16(rw,sync,root_squash)","/scratch 10.1.1.3/32(rw,no_root_squash) 10.1.1.2/32(rw,no_root_squash) 10.1.0.0/16(rw,root_squash)" }
+nfs_exports: { "/home 10.2.0.0/16(rw,sync,no_root_squash)","/scratch 10.2.0.0/16(rw,root_squash)","/home 10.1.0.0/16(rw,sync,no_root_squash)","/scratch 10.1.1.3/32(rw,no_root_squash) 10.1.1.2/32(rw,no_root_squash) 10.1.0.0/16(rw,root_squash)" }
 
 # Configure smartd
 smartd_service: True
