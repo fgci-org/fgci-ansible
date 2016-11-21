@@ -207,3 +207,8 @@
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-chrony
   path: roles
   version: v1.1.1
+
+- src: https://github.com/bvansomeren/ansible-lldpd
+  path: roles
+  version: 5255d1f6f95517b3047966d18a15709e86a73d80
+  name: ansible-role-lldpd
