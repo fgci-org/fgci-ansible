@@ -135,7 +135,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-smartd
   path: roles
-  version: v1.1.1
+  version: v1.1.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-postfix
   path: roles
