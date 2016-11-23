@@ -133,4 +133,6 @@ command/shell tasks should be avoided, but if they are used and they are only us
 
 When removing tasks, try to set the state to "absent" rather than just removing the task - like this https://github.com/CSC-IT-Center-for-Science/ansible-role-cuda/commit/076296dc24c3f4fbc85e15a81432a7d2bd3fa714
 
+Enable tasks (whenever possible) which are disabled by default in automatic testing. Use tests/test.yml to set variables to True if that's how they are enabled.
+
 
