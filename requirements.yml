@@ -155,7 +155,7 @@
 
 - src: https://github.com/jabl/ansible-role-pdsh-genders
   path: roles
-  version: v1.2.1
+  version: 4402bca5c1d6283347048ea3c4b44cc99f16c2f1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-serial-console
   path: roles
