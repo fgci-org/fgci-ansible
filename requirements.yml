@@ -40,11 +40,11 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fail2ban
   path: roles
-  version: v1.1.3
+  version: v1.1.4
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
   path: roles
-  version: v1.5.3
+  version: v1.5.5
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
   path: roles
@@ -135,7 +135,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-smartd
   path: roles
-  version: v1.1.3
+  version: v1.1.4
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-postfix
   path: roles
