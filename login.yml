@@ -28,7 +28,7 @@
   - { role: ansible-role-chrony, tags: [ 'ntp', 'chrony'] }
   - { role: ansible-role-nis, tags: [ 'nis' ] }
   - { role: ansible-role-adauth, tags: [ 'auth' ] }
-  - { role: ansible-role-pam, tags: [ 'auth', 'pam', 'slurm' ] }
+  - { role: ansible-role-pam, tags: [ 'auth', 'pam' ] }
   - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }
   - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
