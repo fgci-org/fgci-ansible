@@ -31,7 +31,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-squid
   path: roles
-  version: v1.2.0
+  version: v1.2.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-ferm-firewall
   path: roles
@@ -48,7 +48,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
   path: roles
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-aliases
   path: roles
@@ -57,7 +57,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-rdma
   path: roles
-  version: v1.1.1
+  version: v1.1.2
 
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
@@ -87,7 +87,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_config
   path: roles
-  version: v1.4.2
+  version: v1.4.3
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
   path: roles
@@ -103,7 +103,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs_mount
   path: roles
-  version: v1.2.2
+  version: v1.2.3
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-arc-frontend
   path: roles
@@ -115,11 +115,11 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cuda
   path: roles
-  version: v1.5.2
+  version: v1.5.3
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nhc
   path: roles
-  version: v1.2.2
+  version: v1.2.3
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nhc-scripts
   path: roles
