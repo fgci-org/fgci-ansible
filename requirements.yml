@@ -210,5 +210,5 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-lldpd
   path: roles
-  version: f00685588b2d94532b073927cd9e59b21ef4f5f4
+  version: e874a6c7654811196ec7666d0976ac214ee3321e
   name: ansible-role-lldpd
