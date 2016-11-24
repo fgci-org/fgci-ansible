@@ -99,7 +99,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs
   path: roles
-  version: v1.0.2
+  version: v1.0.1
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs_mount
   path: roles
@@ -208,7 +208,7 @@
   path: roles
   version: v1.1.1
 
-- src: https://github.com/bvansomeren/ansible-lldpd
+- src: https://github.com/CSC-IT-Center-for-Science/ansible-lldpd
   path: roles
-  version: 5255d1f6f95517b3047966d18a15709e86a73d80
+  version: f00685588b2d94532b073927cd9e59b21ef4f5f4
   name: ansible-role-lldpd
