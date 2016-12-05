@@ -99,7 +99,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs
   path: roles
-  version: v1.0.1
+  version: v1.0.3
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs_mount
   path: roles
