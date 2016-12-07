@@ -57,6 +57,7 @@
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
   - { role: ansible-role-sshd-host-keys, tags: [ 'sshd', 'ssh', 'host-keys' ] }
   - { role: ansible-role-nhc, tags: [ 'nhc', 'slurm' ] }
+  - { role: ansible-role-nhc-scripts, tags: [ 'nhc', 'slurm', 'nhc-scripts' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-cvmfs, tags: [ 'cvmfs' ] }
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }

@@ -51,6 +51,7 @@
 #     - ansible-role-nfs
 #     - ansible-role-nfs_mount
      - ansible-role-nhc
+     - ansible-role-nhc-scripts
      - ansible-role-nis
 #     - ansible-role-ntp
      - ansible-role-postfix
