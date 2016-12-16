@@ -20,7 +20,7 @@ RUN yum clean all && \
     yum -y remove $(rpm -qa "*-devel") && \
     yum -y groupremove "Development tools" && \
     yum -y autoremove && \
-    yum -y install bzip2 file findutils gem git gzip hg procps-ng svn sudo tar which unzip xz zip && \
+    yum -y install bzip2 crontabs file findutils gem git gzip hg procps-ng svn sudo tar which unzip xz zip && \
     yum clean all && rm -rf /var/cache/yum
 
 RUN mkdir /etc/ansible/
