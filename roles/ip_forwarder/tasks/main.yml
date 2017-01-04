@@ -10,6 +10,7 @@
   register: iptablesrules
   remote_user: root
   check_mode: no
+  changed_when: False
 
 - name: allow forwarding traffic in iptables
   command: iptables -I FORWARD 1 -i "{{ internal_interface }}" -o "{{ external_interface }}" -m comment --comment "forward from internal net" -j ACCEPT
@@ -28,13 +29,14 @@
 
 - name: Is dhcpclient running?
   shell: /usr/bin/pgrep dhcpclient
-  register: dhcpclient
+  register: reg_dhcpclient
   check_mode: no
-  failed_when: dhcpclient.stderr != ""
+  failed_when: reg_dhcpclient.stderr != ""
+  changed_when: False
 
 - name: killing dhcpclient
   shell: /usr/bin/pkill dhcpclient
-  when: dhcpclient.stdout != ""
+  when: reg_dhcpclient.stdout != ""
   ignore_errors: true
 
 - name: Check if NetworkManager is installed
