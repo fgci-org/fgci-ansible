@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+# https://bugzilla.redhat.com/show_bug.cgi?id=1411412
+[Socket]
+ListenStream=
+ListenStream=/var/run/rpcbind.sock
+BindIPv6Only=default

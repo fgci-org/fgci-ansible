@@ -36,4 +36,5 @@
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-pdsh-genders, tags: [ 'pdsh', 'genders' ] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
+  - { role: systemd_rpcbind tags: [ 'systemd', 'rpcbind' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }

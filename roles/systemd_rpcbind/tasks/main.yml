@@ -1,0 +1,17 @@
+---
+- name: create systemd override directory for rpcbind.socket
+  file:
+    state: directory
+    dest: /etc/systemd/system/rpcbind.socket.d
+    mode: 0755
+    owner: root
+  when: systemd_rpcbind_override
+
+- name: template in an override for rpcbind.socket
+  template:
+    src: systemd_override_rpcbind.socket.j2 
+    dest: /etc/systemd/system/rpcbind.socket.d/override.conf
+    backup: no
+    mode: 0644
+    owner: root
+  when: systemd_rpcbind_override
