@@ -1,6 +1,6 @@
 ---
 - name: create systemd override directory for rpcbind.socket
-  template:
+  file:
     state: directory
     dest: /etc/systemd/system/rpcbind.socket.d
     mode: 0755
