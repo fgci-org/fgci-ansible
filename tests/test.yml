@@ -42,6 +42,7 @@
        - { name: admin2, uid: 5002, state: "present", groups: "{{admingroup}}", shell: "{{adminshell}}", pubkey: "ssh-rsa admin2@KEY1" }
        - { name: admin3, uid: 5003, state: "present", groups: "{{admingroup}}", shell: "{{adminshell}}", pubkey: "" }
        - { name: admin4, uid: 5004, state: "absent", groups: "{{admingroup}}", shell: "{{adminshell}}", pubkey: "ssh-rsa admin4@KEY1" }
+       - { name: admin5, uid: 5005, state: "present", groups: "{{admingroup}}", shell: "/sbin/nologin", pubkey: "ssh-rsa admin5@KEY1", key_state: "absent" }
 
 
 # on docker there's no rsyslog by default and thus no /var/log/secure
