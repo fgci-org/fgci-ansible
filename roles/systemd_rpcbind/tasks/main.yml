@@ -14,5 +14,4 @@
     backup: no
     mode: 0644
     owner: root
-    state: "{{ systemd_rpcbind_override_template_state|default(omit) }}"
   when: systemd_rpcbind_override
