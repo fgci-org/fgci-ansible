@@ -4,10 +4,12 @@
 # We need some facts from the install node, specifically to find address of slurm controller.
 - name: grab facts from install nodes
   hosts: production
+  strategy: free
   tasks: [ ]
 
 - name: Compute Nodes
   hosts: compute
+  strategy: free
   remote_user: root
   become: yes
 
@@ -65,6 +67,7 @@
 
 - name: GPU Nodes
   hosts: compute
+  strategy: free
   remote_user: root
   become: yes
 
