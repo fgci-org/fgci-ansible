@@ -73,6 +73,7 @@
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: systemd_rpcbind, tags: [ 'systemd', 'rpcbind' ] }
+  - { role: ansible-role-lldpd, tags: [ 'lldpd', 'lldp' ] }
 
 # Adding a role here? Make sure you add it to compute.yml for it to work with ansible push
 
