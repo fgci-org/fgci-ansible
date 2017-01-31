@@ -42,6 +42,8 @@ nhc_github: False
 #nhc_checks:
 # - { match: "*", name: "check_reboot_slurm", arguments: "" }
 # - { match: "*", name: "check_file_test", arguments: "-r -s /cvmfs/fgi.csc.fi/README" }
+# - { match: '*', name: 'check_cmd_output', arguments: '-m "/Leap\ status\.*\:\ Normal/" /usr/bin/chronyc tracking' }
+
 
 # Run ansible-pull during kickstart
 ansible_pull_kickstart: true
