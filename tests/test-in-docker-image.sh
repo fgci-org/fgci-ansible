@@ -109,8 +109,8 @@ function test_install_requirements(){
       ansible-galaxy install -r requirements2.yml --force ||(echo "requirements install failed" && exit 2 )
 
     else
-      echo "TEST: grep -A4 ansible-role-users requirements2.yml"
-      grep -A4 ansible-role-users requirements2.yml
+      echo "TEST: grep -A4 ansible-role-users requirements.yml"
+      grep -A4 ansible-role-users requirements.yml
 
       echo "TEST: ansible-galaxy install -r requirements.yml --force"
       ansible-galaxy install -r requirements.yml --force ||(echo "requirements install failed" && exit 2 )
