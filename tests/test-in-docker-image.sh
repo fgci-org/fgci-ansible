@@ -16,10 +16,8 @@ ANSIBLE_PLAYBOOk="tests/test.yml"
 ANSIBLE_LOG_LEVEL="-v"
 APACHE_CTL="apache2ctl"
 
-echo "TEST: first arg is: $OS_TYPE" 
-
 if [ "$OS_TYPE" == "latest" ]; then
-    print "TEST: latest"
+    echo "TEST: latest"
     export LATEST=1
 fi
 
