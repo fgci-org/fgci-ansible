@@ -97,7 +97,10 @@ function test_ansible_setup(){
 function test_install_requirements(){
     if [ "$LATEST" == 1 ]; then
 
+      echo "TEST: grep -v version: requirements.yml > requirements2.yml"
       grep -v version: requirements.yml > requirements2.yml
+      echo "TEST: grep -A4 ansible-role-users requirements2.yml"
+      grep -A4 ansible-role-users requirements2.yml
       echo "TEST: ansible-galaxy install -r requirements2.yml --force"
 
       ansible-galaxy install -r requirements2.yml --force ||(echo "requirements install failed" && exit 2 )
