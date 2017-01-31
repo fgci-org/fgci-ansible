@@ -16,8 +16,11 @@ ANSIBLE_PLAYBOOk="tests/test.yml"
 ANSIBLE_LOG_LEVEL="-v"
 APACHE_CTL="apache2ctl"
 
-if [ "$1" == "latest" ]; then
-    LATEST=1
+echo "TEST: first arg is: $OS_TYPE" 
+
+if [ "$OS_TYPE" == "latest" ]; then
+    print "TEST: latest"
+    export LATEST=1
 fi
 
 # if there wasn't sudo then ansible couldn't use it
@@ -95,18 +98,21 @@ function test_ansible_setup(){
 
 
 function test_install_requirements(){
-    if [ "$LATEST" == 1 ]; then
+    if [ "$OS_TYPE" == "latest" ]; then
 
       echo "TEST: grep -v version: requirements.yml > requirements2.yml"
       grep -v version: requirements.yml > requirements2.yml
       echo "TEST: grep -A4 ansible-role-users requirements2.yml"
       grep -A4 ansible-role-users requirements2.yml
+
       echo "TEST: ansible-galaxy install -r requirements2.yml --force"
-
       ansible-galaxy install -r requirements2.yml --force ||(echo "requirements install failed" && exit 2 )
-    else
-      echo "TEST: ansible-galaxy install -r requirements.yml --force"
 
+    else
+      echo "TEST: grep -A4 ansible-role-users requirements2.yml"
+      grep -A4 ansible-role-users requirements2.yml
+
+      echo "TEST: ansible-galaxy install -r requirements.yml --force"
       ansible-galaxy install -r requirements.yml --force ||(echo "requirements install failed" && exit 2 )
     fi
 
