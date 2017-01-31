@@ -14,6 +14,7 @@ env:
   - IMAGE_BUILD_PLATFORM=stable-centos7
   - IMAGE_BUILD_PLATFORM=devel-centos7
   - IMAGE_BUILD_PLATFORM=epel-centos7
+  - IMAGE_BUILD_PLATFORM=latest-epel-centos7
 
 install:
   - npm install -g validate-dockerfile
@@ -35,7 +36,9 @@ script:
   - DOCKER_CONTAINER_ID=$(docker ps | grep ${IMAGE_BUILD_PLATFORM} | awk '{print $1}')
   - docker logs $DOCKER_CONTAINER_ID
   # Testing of this ansible-role:
-  - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test-in-docker-image.sh"
+  # Two variants, one where we modify requirements.yml to not have any versions
+  - if [ "$IMAGE_BUILD_PLATFORM" == "latest-epel-centos7" ]; then docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test-in-docker-image.sh latest"; fi
+  - if [ "$IMAGE_BUILD_PLATFORM" != "latest-epel-centos7" ]; then docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test-in-docker-image.sh"; fi
   # Print some logs and other useful information for debugging travis:
   - >
     docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'echo -ne "------\nEND ANSIBLE TESTS\n------\nSystemD Units:\n------\n";

@@ -16,6 +16,10 @@ ANSIBLE_PLAYBOOk="tests/test.yml"
 ANSIBLE_LOG_LEVEL="-v"
 APACHE_CTL="apache2ctl"
 
+if [ "$1" == "latest" ]; then
+    LATEST=1
+fi
+
 # if there wasn't sudo then ansible couldn't use it
 if [ "x$SUDO" == "x" ];then
     SUDO_OPTION=""
@@ -91,9 +95,17 @@ function test_ansible_setup(){
 
 
 function test_install_requirements(){
-    echo "TEST: ansible-galaxy install -r requirements.yml --force"
+    if [ "$LATEST" == 1 ]; then
 
-    ansible-galaxy install -r requirements.yml --force ||(echo "requirements install failed" && exit 2 )
+      grep -v version: requirements.yml > requirements2.yml
+      echo "TEST: ansible-galaxy install -r requirements2.yml --force"
+
+      ansible-galaxy install -r requirements2.yml --force ||(echo "requirements install failed" && exit 2 )
+    else
+      echo "TEST: ansible-galaxy install -r requirements.yml --force"
+
+      ansible-galaxy install -r requirements.yml --force ||(echo "requirements install failed" && exit 2 )
+    fi
 
 }
 
