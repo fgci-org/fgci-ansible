@@ -37,6 +37,7 @@ unconfigured_packages:
   - pciutils
   - pdsh
   - perl-Filesys-Df
+  - rsync
   - smartmontools
   - subversion
   - xerces-c
@@ -44,7 +45,6 @@ unconfigured_packages:
   - net-tools
   - time
   - tcsh
-  - wget
   - fgci-meta-compute
   - bzip2
 

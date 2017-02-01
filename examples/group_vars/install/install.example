@@ -91,7 +91,7 @@ unconfigured_packages:
  - git
  - nfs-utils
  - bash-completion
- - wget
+ - rsync
  - pdsh
  - fgci-meta-install
 
