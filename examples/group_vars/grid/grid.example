@@ -84,6 +84,7 @@ unconfigured_packages:
   - Lmod
   - fgci-meta-grid
   - nfs-utils
+  - rsync
 
 # Do not extra install infiniband packages
 infiniband_available: False

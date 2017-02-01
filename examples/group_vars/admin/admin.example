@@ -132,6 +132,7 @@ unconfigured_packages:
  - "xorg-x11-xinit"
  - "xvattr"
  - "dejavu-lgc-sans-fonts"
+ - "rsync"
  - "wget"
  - "pciutils"
  - "bash-completion"

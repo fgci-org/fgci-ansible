@@ -88,11 +88,12 @@ install_ssh_known_hosts_from_http: True
 
 # Install extra packages
 unconfigured_packages:
+ - bash-completion
  - git
  - nfs-utils
- - bash-completion
- - wget
  - pdsh
+ - rsync
+ - wget
  - fgci-meta-install
 
 # For sure do not install infiniband packages on install node

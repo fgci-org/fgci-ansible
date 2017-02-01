@@ -37,6 +37,7 @@ unconfigured_packages:
   - pciutils
   - pdsh
   - perl-Filesys-Df
+  - rsync
   - smartmontools
   - subversion
   - xerces-c

@@ -53,6 +53,7 @@ kickstart_packages: |
   nfs-utils
   nscd
   openssh-server
+  rsync
   smartmontools
   yum-plugin-fastestmirror
 
@@ -78,6 +79,7 @@ unconfigured_packages:
   - pdsh
   - pciutils
   - perl-Filesys-Df
+  - rsync
   - time
   - wget
   - yum-plugin-fastestmirror

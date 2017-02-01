@@ -182,6 +182,7 @@ kickstart_packages: |
   openmpi
   openssh-server
   perl-Filesys-Df
+  rsync
   subversion
   xerces-c
   yum-plugin-fastestmirror
