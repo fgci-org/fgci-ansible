@@ -132,7 +132,7 @@ unconfigured_packages:
  - "xorg-x11-xinit"
  - "xvattr"
  - "dejavu-lgc-sans-fonts"
- - "wget"
+ - "rsync"
  - "pciutils"
  - "bash-completion"
  - "smartmontools"

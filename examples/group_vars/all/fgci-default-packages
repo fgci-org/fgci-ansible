@@ -13,8 +13,8 @@ unconfigured_packages:
   - pdsh
   - pciutils
   - perl-Filesys-Df
+  - rsync
   - time
-  - wget
   - yum-plugin-fastestmirror
 
 ib_unconfigured_packages:
