@@ -47,11 +47,15 @@
 
 
 # on docker there's no rsyslog by default and thus no /var/log/secure
+# roles that need these: fail2ban 
    pre_tasks:
      - name: test only - make sure /var/log directory exists
        file: path=/var/log state=directory
      - name: test only - touch /var/log/secure logfile
        file: path=/var/log/secure state=touch
+     - name: test only - create /var/run/fail2ban for systemd socket file..
+       file: path=/var/run/fail2ban state=directory mode=0755
+
 
    roles:
      - fgci-ansible
