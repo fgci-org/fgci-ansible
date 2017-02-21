@@ -19,7 +19,7 @@ env:
 install:
   - npm install -g validate-dockerfile
 
-script:
+before_script:
   # TESTDIR = Where the stable-centos/Dockerfile is located
   - export TESTDIR=tests
   # ROLETOTEST = The name of this repo
@@ -37,27 +37,20 @@ script:
   - docker logs $DOCKER_CONTAINER_ID
   # Testing of this ansible-role:
   # Two variants, one where we modify requirements.yml to not have any versions
+script:
   - if [ "$IMAGE_BUILD_PLATFORM" == "latest-epel-centos7" ]; then docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test-in-docker-image.sh latest"; fi
   - if [ "$IMAGE_BUILD_PLATFORM" != "latest-epel-centos7" ]; then docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test-in-docker-image.sh"; fi
+after_script:
   # Print some logs and other useful information for debugging travis:
   - >
     docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'echo -ne "------\nEND ANSIBLE TESTS\n------\nSystemD Units:\n------\n";
        systemctl --no-pager --all --full status ;
        echo -ne "------\nJournalD Logs:\n------\n" ;
        sudo journalctl --catalog --all --full --no-pager'
-  - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'sudo yum -y install tree'
   - docker exec -ti $DOCKER_CONTAINER_ID /bin/sh -c 'tree /ansible*'
   - docker ps -a
   - docker stop $DOCKER_CONTAINER_ID
   - docker rm -v $DOCKER_CONTAINER_ID
-#after_success:
-#  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-#  - if [ "$TRAVIS_BRANCH" == "master" -a "$IMAGE_BUILD_PLATFORM" == "stable-centos7" ]; then docker tag ${REPO}:${IMAGE_BUILD_PLATFORM} $REPO:latest; fi
-#  - docker tag ${REPO}:${IMAGE_BUILD_PLATFORM} $REPO:travis-${TRAVIS_BUILD_NUMBER}
-#  - docker tag ${REPO}:${IMAGE_BUILD_PLATFORM} $REPO:${IMAGE_BUILD_PLATFORM}-${ANSIBLE_VERSION}
-#  - docker tag ${REPO}:${IMAGE_BUILD_PLATFORM} $REPO:${IMAGE_BUILD_PLATFORM}-${GIT_COMMIT:-$GIT_TAG}
-#  - docker push $REPO
-#  - "[ -e \"~/.docker/config.json\" ] && shred -n 30 -u -z ~/.docker/config.json"
 
 notifications:
   email: false
