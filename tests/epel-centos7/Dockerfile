@@ -9,7 +9,7 @@ RUN yum clean all && \
     yum -y install PyYAML python-jinja2 python-httplib2 python-keyczar python-paramiko python-setuptools git python-pip \
     pip install pyrax pysphere boto passlib dnspython && \
     yum -y autoremove && \
-    yum -y install bzip2 crontabs file findutils gem git gzip hg procps-ng svn sudo tar which unzip xz zip
+    yum -y install bzip2 crontabs file findutils gem git gzip hg procps-ng svn sudo tar tree which unzip xz zip
 
 RUN mkdir /etc/ansible/
 RUN echo -e '[local]\nlocalhost' > /etc/ansible/hosts

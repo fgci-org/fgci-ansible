@@ -144,7 +144,7 @@ function extra_tests(){
 
 set -e
 function main(){
-    install_os_deps
+#    install_os_deps
 #    install_ansible_devel
     show_version
 #    tree_list
