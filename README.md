@@ -18,11 +18,11 @@ Used in production in >9 uniform HPC clusters.
    - Ethernet and Infiniband networks
 
 ## Software Stack:
- - Ansible (ansible-pull is used on the compute nodes, push mode on the rest)
+ - [Ansible](http://ansible.com/) (ansible-pull is used on the compute nodes, push mode on the rest)
  - CentOS 7
- - CVMFS for software distribution á la modules
- - Nordugrid ARC
- - Slurm
+ - [CVMFS](https://cernvm.cern.ch/portal/filesystem) for software distribution á la modules
+ - [Nordugrid ARC](http://www.nordugrid.org/arc/)
+ - [SLURM](https://slurm.schedmd.com/)
 
 # Minimally Descriptive Configuration:
  - clone this repo
