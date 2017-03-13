@@ -43,7 +43,7 @@ ansible-playbook -u ssh-user -i hosts site.yml --tags user --diff
 
 For our backlog checkout the waffle iron: https://waffle.io/CSC-IT-Center-for-Science/fgci-ansible
 
-## Contributions
+## Contributions, Workflow and role preferences
 
 <a href="CONTRIBUTION.MD">CONTRIBUTION.MD</a>
 

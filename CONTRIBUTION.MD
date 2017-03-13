@@ -110,15 +110,9 @@ CSC tasks after adding a new role/repo:
 
 Ansible role suggestions (not mandatory):
 
-Make it work on also non-EL systems. Don't use yum module if possible, use something like:
-
-<pre>
-- name: install rdma
-  action: 
-    module: "{{ ansible_pkg_mgr }}" 
-    name: rdma 
-    state: present
- </pre>
+Don't force role to be EL specific unless it's really necessary. For example:
+ - Use the package module instead of yum or apt
+ - Use the service module instead of systemd
 
 If the role is only for EL, have this in ansible-role-name/tasks/main.yml:
 
