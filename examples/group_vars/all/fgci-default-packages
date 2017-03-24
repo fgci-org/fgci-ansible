@@ -23,6 +23,7 @@ ib_unconfigured_packages:
   - infiniband-diags
 
 remove_packages:
+  - environment-modules
   - phonon-backend-gstreamer
   - qt-x11
   - redhat-lsb-graphics
