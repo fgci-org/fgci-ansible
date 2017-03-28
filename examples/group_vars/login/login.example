@@ -162,7 +162,6 @@ kickstart_packages: |
   gcc-gfortran
   git
   glibc.i686
-  hdf5-openmpi
   @infiniband
   infiniband-diags
   iperf
@@ -174,12 +173,10 @@ kickstart_packages: |
   libstdc++.i686
   libxml2.i686
   mcelog
-  mpitests-openmpi
   netcdf
   nfs-utils
   nscd
   numpy
-  openmpi
   openssh-server
   perl-Filesys-Df
   rsync
