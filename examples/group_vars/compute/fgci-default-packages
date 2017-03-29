@@ -14,7 +14,6 @@ unconfigured_packages:
   - gcc-gfortran
   - git
   - "glibc.i686"
-  - hdf5-openmpi
   - "@infiniband"
   - infiniband-diags
   - iperf
@@ -26,13 +25,10 @@ unconfigured_packages:
   - "libstdc++.i686"
   - "libxml2.i686"
   - mcelog
-  - mpitests-openmpi
   - netcdf
   - nfs-utils
   - nscd
   - numpy
-  - openmpi
-  - openmpi-devel
   - openssh-server
   - pciutils
   - pdsh
@@ -50,6 +46,7 @@ unconfigured_packages:
   - bzip2
 
 remove_packages:
+  - environment-modules
   - phonon-backend-gstreamer
   - qt-x11
   - redhat-lsb-graphics
