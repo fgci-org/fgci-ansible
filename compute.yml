@@ -62,6 +62,7 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: systemd_rpcbind, tags: [ 'systemd', 'rpcbind' ] }
   - { role: ansible-role-lldpd, tags: [ 'lldpd', 'lldp' ] }
+  - { role: ansible-role-singularity, tags: [ 'singularity' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
 
 # Adding a role here? Make sure to add it to local.yml too for the role to be used with ansible-pull
