@@ -23,7 +23,7 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dhcp_server
   path: roles
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_bootstrap
   path: roles
