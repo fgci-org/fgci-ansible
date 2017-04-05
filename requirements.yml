@@ -215,4 +215,4 @@
 
 - src: https://github.com/CSC-IT-Center-for-Science/ansible-role-singularity
   path: roles
-  version: v1.0.0
+  version: v1.0.1
