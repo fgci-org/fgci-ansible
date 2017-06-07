@@ -5,9 +5,9 @@ Used in production in >9 uniform HPC clusters.
 
 <a href="https://research.csc.fi/fgci"><img src="meta/FGCI-logo.jpg"></a>
 
-[![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible.svg?branch=master)](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible) [![Stories in Ready](https://badge.waffle.io/CSC-IT-Center-for-Science/fgci-ansible.png?label=ready&title=Ready)](https://waffle.io/CSC-IT-Center-for-Science/fgci-ansible)
+[![Build Status](https://travis-ci.org/CSCfi/fgci-ansible.svg?branch=master)](https://travis-ci.org/CSCfi/fgci-ansible) [![Stories in Ready](https://badge.waffle.io/CSCfi/fgci-ansible.png?label=ready&title=Ready)](https://waffle.io/CSCfi/fgci-ansible)
 
-[Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/fgci-ansible) [Backlog](https://waffle.io/CSC-IT-Center-for-Science/fgci-ansible)
+[Build Status](https://travis-ci.org/CSCfi/fgci-ansible) [Backlog](https://waffle.io/CSCfi/fgci-ansible)
 
 ## Physical Hardware:
  - The clusters are made with the same basic building blocks:
@@ -41,7 +41,7 @@ ansible-playbook -u ssh-user -i hosts site.yml --tags user --diff
 
 ## Backlog
 
-For our backlog checkout the waffle iron: https://waffle.io/CSC-IT-Center-for-Science/fgci-ansible
+For our backlog checkout the waffle iron: https://waffle.io/CSCfi/fgci-ansible
 
 ## Contributions, Workflow and role preferences
 

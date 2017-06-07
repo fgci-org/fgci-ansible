@@ -48,6 +48,8 @@ Release Naming Convention: vx.y.z Adjective Snakename
 
 https://en.wikipedia.org/wiki/List_of_snakes_by_common_name
 
+Send release notes to users via blogs/e-mails/etc.
+
 
 Pull Requests
 -------------
