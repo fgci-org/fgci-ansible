@@ -3,7 +3,7 @@
   path: roles
   version: 0.4.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-install
+- src: https://github.com/CSCfi/ansible-role-fgci-install
   path: roles
   version: v1.7.7
 
@@ -13,151 +13,151 @@
   name: ansible-role-yum-cron-2
   version: f58e773036aa9e2baade8c4a33b81be08a232414
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-users
+- src: https://github.com/CSCfi/ansible-role-users
   path: roles
   version: v1.7.3
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-rsyslog
+- src: https://github.com/CSCfi/ansible-role-rsyslog
   path: roles
   version: v1.1.2
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dhcp_server
+- src: https://github.com/CSCfi/ansible-role-dhcp_server
   path: roles
-  version: v1.0.1
+  version: v1.0.2
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_bootstrap
+- src: https://github.com/CSCfi/ansible-role-pxe_bootstrap
   path: roles
   version: v1.4.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-squid
+- src: https://github.com/CSCfi/ansible-role-squid
   path: roles
   version: v1.2.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-ferm-firewall
+- src: https://github.com/CSCfi/ansible-ferm-firewall
   path: roles
   name: ansible-role-ferm-firewall
   version: v1.0.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fail2ban
+- src: https://github.com/CSCfi/ansible-role-fail2ban
   path: roles
   version: v1.2.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-slurm
+- src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
   version: v1.6.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cvmfs
+- src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
-  version: v1.0.2
+  version: v1.1.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-aliases
+- src: https://github.com/CSCfi/ansible-aliases
   path: roles
   name: ansible-role-aliases
   version: v1.0.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-rdma
+- src: https://github.com/CSCfi/ansible-role-rdma
   path: roles
   version: v1.2.1
 
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
   name: ansible-role-sshd
-  version: bb5b94e1bed07242f18d0ee6650407cfda1faeb4
+  version: v0.5
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-system-limits
+- src: https://github.com/CSCfi/ansible-system-limits
   path: roles
   name: ansible-role-system-limits
   version: v1.0.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-arc-client
+- src: https://github.com/CSCfi/ansible-role-arc-client
   path: roles
   version: v1.3.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-yum
+- src: https://github.com/CSCfi/ansible-role-yum
   path: roles
   version: v1.4.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-flowdock
+- src: https://github.com/CSCfi/ansible-role-flowdock
   path: roles
   version: v1.2.6
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-collectd
+- src: https://github.com/CSCfi/ansible-role-collectd
   path: roles
   version: v1.4.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-pxe_config
+- src: https://github.com/CSCfi/ansible-role-pxe_config
   path: roles
   version: v1.4.3
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
+- src: https://github.com/CSCfi/ansible-role-dnsmasq
   path: roles
   version: v1.0.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nis
+- src: https://github.com/CSCfi/ansible-role-nis
   path: roles
   version: v1.0.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs
+- src: https://github.com/CSCfi/ansible-role-nfs
   path: roles
   version: v1.0.4
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nfs_mount
+- src: https://github.com/CSCfi/ansible-role-nfs_mount
   path: roles
   version: v1.2.3
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-arc-frontend
+- src: https://github.com/CSCfi/ansible-role-arc-frontend
   path: roles
   version: v1.3.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-bash
+- src: https://github.com/CSCfi/ansible-role-fgci-bash
   path: roles
   version: v1.1.4
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-cuda
+- src: https://github.com/CSCfi/ansible-role-cuda
   path: roles
   version: v1.5.3
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nhc
+- src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
   version: v1.2.4
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-nhc-scripts
+- src: https://github.com/CSCfi/ansible-role-nhc-scripts
   path: roles
   version: v1.0.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-dell
+- src: https://github.com/CSCfi/ansible-role-dell
   path: roles
   version: v1.1.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-sshd-host-keys
+- src: https://github.com/CSCfi/ansible-role-sshd-host-keys
   path: roles
   version: v1.0.2
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-smartd
+- src: https://github.com/CSCfi/ansible-role-smartd
   path: roles
   version: v1.1.4
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-postfix
+- src: https://github.com/CSCfi/ansible-role-postfix
   path: roles
   version: v1.0.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-repo
+- src: https://github.com/CSCfi/ansible-role-fgci-repo
   path: roles
   version: v1.0.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-fgci-login
+- src: https://github.com/CSCfi/ansible-role-fgci-login
   path: roles
   version: v1.1.2
 
 - src: https://github.com/mhakala/ansible-role-adauth
   path: roles
-  version: bb2c30281165153e187a7b0fd96c34f1878adb3d
+  version: ae40b205c857cff6bcebf7f4a37b3ca2e31ba247
 
 - src: https://github.com/jabl/ansible-role-pdsh-genders
   path: roles
   version: 4402bca5c1d6283347048ea3c4b44cc99f16c2f1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-serial-console
+- src: https://github.com/CSCfi/ansible-role-serial-console
   path: roles
   version: v1.0.1
 
@@ -166,7 +166,7 @@
   name: ansible-role-autofs
   version: 0.2.2
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-nsswitch
+- src: https://github.com/CSCfi/ansible-nsswitch
   path: roles
   name: ansible-role-nsswitch
   version: v1.0.0
@@ -195,7 +195,7 @@
   path: roles
   version: v1.0.0
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-systemd-journal
+- src: https://github.com/CSCfi/ansible-systemd-journal
   path: roles
   version: v1.0.1
   name: ansible-role-systemd-journal
@@ -204,15 +204,15 @@
   path: roles
   version: v1.0.2
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-chrony
+- src: https://github.com/CSCfi/ansible-role-chrony
   path: roles
   version: v1.1.1
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-lldpd
+- src: https://github.com/CSCfi/ansible-lldpd
   path: roles
   version: v1.1.2
   name: ansible-role-lldpd
 
-- src: https://github.com/CSC-IT-Center-for-Science/ansible-role-singularity
+- src: https://github.com/CSCfi/ansible-role-singularity
   path: roles
-  version: v1.0.0
+  version: v1.0.1
