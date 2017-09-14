@@ -55,6 +55,8 @@
        file: path=/var/log/secure state=touch
      - name: test only - create /var/run/fail2ban for systemd socket file..
        file: path=/var/run/fail2ban state=directory mode=0755
+     - name: test only - sshd host keys must be available for the validate command to run
+       command: ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
 
 
    roles:
