@@ -9,6 +9,8 @@ services:
 
 matrix:
   fast_finish: true
+  allow_failures:
+    - env: IMAGE_BUILD_PLATFORM=latest-epel-centos7
 
 env:
   - IMAGE_BUILD_PLATFORM=stable-centos7
