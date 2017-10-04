@@ -140,10 +140,11 @@ kickstart_profile: FGCI-login-node
 # If so, don't forget to add "--grow" in part / line
 
 kickstart_partitions: |
-  bootloader --location=mbr --append="selinux=0" --boot-drive=sda
   zerombr
   clearpart --all --initlabel --drives=sda
+  bootloader --append="selinux=0" --boot-drive=sda
   part biosboot --fstype="biosboot" --size=1
+  part /boot/efi --fstype=efi --label EFI  --size=200
   part / --fstype="xfs" --ondisk=sda --size=200000 --grow
   part swap --size=500
   # part /local --fstype="xfs" --ondisk=sda --size=500000
