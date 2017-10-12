@@ -31,10 +31,12 @@ rdma_configure_single_port: True
 
 kickstart_profile: FGCI-nfs-node
 kickstart_partitions: |
-  bootloader --location=mbr --append="selinux=0" --boot-drive=sda
   zerombr
   clearpart --initlabel --drives=sda --all
+  bootloader --append="selinux=0" --boot-drive=sda
+  part biosboot --fstype="biosboot" --size=1
   part /boot --fstype="ext3" --size=400
+  part /boot/efi --fstype=efi --label EFI  --size=200
   part swap --fstype="swap" --size=10000
   part pv.01 --fstype="lvmpv" --size=1 --grow
   part /scratch --fstype="xfs" --onpart=sdc
