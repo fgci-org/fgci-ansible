@@ -108,7 +108,6 @@ kickstart_partitions: |
   part /local --fstype="xfs" --ondisk=sda --size=1 --grow
 
 kickstart_packages: |
-  ansible
   atlas
   blas
   bonnie++
