@@ -4,12 +4,12 @@
 # Warning: there are a few steps in between the following roles that still need to be carried out manually.
 #           This playbook is more, at this point, a guideline for the proper deployment sequence 
 
-- include_tasks: admin.yml
-#- include_tasks: provisioning.yml
-- include_tasks: install.yml
-#- include_tasks: tools/reinstall_node.yml
-- include_tasks: nfs.yml
-- include_tasks: login.yml
-#- include_tasks: tools/reinstall_computes.yml
-- include_tasks: compute.yml
-- include_tasks: grid.yml
+- import_playbook: admin.yml
+#- import_playbook: provisioning.yml
+- import_playbook: install.yml
+#- import_playbook: tools/reinstall_node.yml
+- import_playbook: nfs.yml
+- import_playbook: login.yml
+#- import_playbook: tools/reinstall_computes.yml
+- import_playbook: compute.yml
+- import_playbook: grid.yml
