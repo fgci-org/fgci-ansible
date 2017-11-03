@@ -119,7 +119,7 @@ Don't force role to be EL specific unless it's really necessary. For example:
 If the role is only for EL, have this in ansible-role-name/tasks/main.yml:
 
 <pre>
-- include: redhat.yml
+- include_tasks: redhat.yml
   when: ansible_os_family == "RedHat"
 </pre> 
 

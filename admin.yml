@@ -38,3 +38,9 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: systemd_rpcbind, tags: [ 'systemd', 'rpcbind' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
+
+
+# Local addons to this playbook
+#
+- import_playbook: admin_local_play.yml
+                                      

@@ -55,3 +55,8 @@
   - { role: systemd_rpcbind, tags: [ 'systemd', 'rpcbind' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
+
+
+# Local addons to this playbook
+#
+- import_playbook: login_local_play.yml

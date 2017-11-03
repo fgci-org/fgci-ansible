@@ -27,7 +27,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-pxe_bootstrap
   path: roles
-  version: v1.4.2
+  version: v1.4.3
 
 - src: https://github.com/CSCfi/ansible-role-squid
   path: roles
@@ -155,7 +155,7 @@
 
 - src: https://github.com/jabl/ansible-role-pdsh-genders
   path: roles
-  version: 4402bca5c1d6283347048ea3c4b44cc99f16c2f1
+  version: v1.2.4
 
 - src: https://github.com/CSCfi/ansible-role-serial-console
   path: roles
