@@ -5,7 +5,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-fgci-install
   path: roles
-  version: v1.7.8
+  version: v1.8.0
 
 # called -2 because it replaces another role called ansible-role-yum-cron
 - src: https://github.com/jeffwidman/ansible-yum-cron
@@ -15,7 +15,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-users
   path: roles
-  version: v1.7.3
+  version: v1.8.2
 
 - src: https://github.com/CSCfi/ansible-role-rsyslog
   path: roles
@@ -27,16 +27,16 @@
 
 - src: https://github.com/CSCfi/ansible-role-pxe_bootstrap
   path: roles
-  version: v1.4.2
+  version: v1.4.3
 
 - src: https://github.com/CSCfi/ansible-role-squid
   path: roles
-  version: v1.2.1
+  version: v1.3.1
 
 - src: https://github.com/CSCfi/ansible-ferm-firewall
   path: roles
   name: ansible-role-ferm-firewall
-  version: v1.0.1
+  version: v1.2.0
 
 - src: https://github.com/CSCfi/ansible-role-fail2ban
   path: roles
@@ -44,20 +44,20 @@
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
-  version: v1.6.3
+  version: v1.6.4
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
-  version: v1.1.0
+  version: v1.2.0
 
 - src: https://github.com/CSCfi/ansible-aliases
   path: roles
   name: ansible-role-aliases
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/CSCfi/ansible-role-rdma
   path: roles
-  version: v1.2.2
+  version: v1.3.0
 
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
@@ -71,23 +71,23 @@
 
 - src: https://github.com/CSCfi/ansible-role-arc-client
   path: roles
-  version: v1.3.0
+  version: v1.4.0
 
 - src: https://github.com/CSCfi/ansible-role-yum
   path: roles
-  version: v1.4.0
+  version: v1.5.0
 
 - src: https://github.com/CSCfi/ansible-role-flowdock
   path: roles
-  version: v1.2.7
+  version: v1.3.0
 
 - src: https://github.com/CSCfi/ansible-role-collectd
   path: roles
-  version: v1.4.0
+  version: v2.1.0
 
 - src: https://github.com/CSCfi/ansible-role-pxe_config
   path: roles
-  version: v1.5.0
+  version: v1.6.0
 
 - src: https://github.com/CSCfi/ansible-role-dnsmasq
   path: roles
@@ -95,11 +95,11 @@
 
 - src: https://github.com/CSCfi/ansible-role-nis
   path: roles
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/CSCfi/ansible-role-nfs
   path: roles
-  version: v1.0.4
+  version: v1.1.0
 
 - src: https://github.com/CSCfi/ansible-role-nfs_mount
   path: roles
@@ -107,15 +107,15 @@
 
 - src: https://github.com/CSCfi/ansible-role-arc-frontend
   path: roles
-  version: v1.3.1
+  version: v1.4.0
 
 - src: https://github.com/CSCfi/ansible-role-fgci-bash
   path: roles
-  version: v1.2.0
+  version: v1.2.1
 
 - src: https://github.com/CSCfi/ansible-role-cuda
   path: roles
-  version: v1.5.3
+  version: v1.6.0
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
@@ -123,19 +123,19 @@
 
 - src: https://github.com/CSCfi/ansible-role-nhc-scripts
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/CSCfi/ansible-role-dell
   path: roles
-  version: v1.1.1
+  version: v1.1.2
 
 - src: https://github.com/CSCfi/ansible-role-sshd-host-keys
   path: roles
-  version: v1.0.3
+  version: v1.1.0
 
 - src: https://github.com/CSCfi/ansible-role-smartd
   path: roles
-  version: v1.1.4
+  version: v1.2.0
 
 - src: https://github.com/CSCfi/ansible-role-postfix
   path: roles
@@ -151,11 +151,11 @@
 
 - src: https://github.com/mhakala/ansible-role-adauth
   path: roles
-  version: ae40b205c857cff6bcebf7f4a37b3ca2e31ba247
+  version: 82f57eb98fb7c58b754eb286ed35010bb9aed1aa
 
 - src: https://github.com/jabl/ansible-role-pdsh-genders
   path: roles
-  version: 4402bca5c1d6283347048ea3c4b44cc99f16c2f1
+  version: v1.2.4
 
 - src: https://github.com/CSCfi/ansible-role-serial-console
   path: roles
@@ -164,7 +164,7 @@
 - src: https://github.com/cmprescott/ansible-role-autofs
   path: roles
   name: ansible-role-autofs
-  version: 0.2.2
+  version: 0.3.0
 
 - src: https://github.com/CSCfi/ansible-nsswitch
   path: roles
@@ -173,7 +173,7 @@
 
 - src: https://github.com/mhakala/ansible-role-lustre_client
   path: roles
-  version: 47f1cc95587246e307f364949f467a07fb171b33
+  version: 919b7a5640b52e3a0bcc941ad41c64e14f27873d
 
 - src: https://github.com/jabl/ansible-role-pam
   path: roles
@@ -181,19 +181,19 @@
 
 - src: https://github.com/jabl/ansible-role-gitmirror
   path: roles
-  version: acafcaff5094b5d7f9da796096068d62ae895b85
+  version: v1.0.0
 
 - src: https://github.com/mhakala/ansible-role-idmapd
   path: roles
-  version: 336875424c799846e455004871a77f7655c1f8c6
+  version: 0b48d86318da6e303e76359a593f5195076f3021
 
 - src: https://github.com/mhakala/ansible-role-samba
   path: roles
-  version: 9c2d2addb1112b1aad182e626f8bd87e5917cd78
+  version: 303611d1ff5a4a471128dff485de4fa637a7bee5
 
 - src: https://github.com/jabl/ansible-role-open-vm-tools
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/CSCfi/ansible-systemd-journal
   path: roles

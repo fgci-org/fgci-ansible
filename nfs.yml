@@ -43,3 +43,8 @@
   roles: 
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
   - { role: ansible-role-sshd-host-keys, tags: [ 'host-keys' ] }
+
+
+# Local addons to this playbook
+#
+- import_playbook: nfs_local_play.yml

@@ -1,0 +1,4 @@
+---
+- name: Local addons playbook (login) 
+  hosts: login
+

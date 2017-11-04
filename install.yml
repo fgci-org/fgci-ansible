@@ -64,3 +64,8 @@
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
 
+
+
+# Local addons to this playbook
+#
+- import_playbook: install_local_play.yml
