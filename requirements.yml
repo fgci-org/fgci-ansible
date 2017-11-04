@@ -36,7 +36,7 @@
 - src: https://github.com/CSCfi/ansible-ferm-firewall
   path: roles
   name: ansible-role-ferm-firewall
-  version: v1.0.1
+  version: v1.2.0
 
 - src: https://github.com/CSCfi/ansible-role-fail2ban
   path: roles
@@ -44,20 +44,20 @@
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
-  version: v1.6.3
+  version: v1.6.4
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
-  version: v1.1.0
+  version: v1.2.0
 
 - src: https://github.com/CSCfi/ansible-aliases
   path: roles
   name: ansible-role-aliases
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/CSCfi/ansible-role-rdma
   path: roles
-  version: v1.2.2
+  version: v1.3.0
 
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
@@ -71,23 +71,23 @@
 
 - src: https://github.com/CSCfi/ansible-role-arc-client
   path: roles
-  version: v1.3.0
+  version: v1.4.0
 
 - src: https://github.com/CSCfi/ansible-role-yum
   path: roles
-  version: v1.4.0
+  version: v1.5.0
 
 - src: https://github.com/CSCfi/ansible-role-flowdock
   path: roles
-  version: v1.2.7
+  version: v1.3.0
 
 - src: https://github.com/CSCfi/ansible-role-collectd
   path: roles
-  version: v1.4.0
+  version: v2.1.0
 
 - src: https://github.com/CSCfi/ansible-role-pxe_config
   path: roles
-  version: v1.5.0
+  version: v1.6.0
 
 - src: https://github.com/CSCfi/ansible-role-dnsmasq
   path: roles
@@ -95,11 +95,11 @@
 
 - src: https://github.com/CSCfi/ansible-role-nis
   path: roles
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/CSCfi/ansible-role-nfs
   path: roles
-  version: v1.0.4
+  version: v1.1.0
 
 - src: https://github.com/CSCfi/ansible-role-nfs_mount
   path: roles
@@ -107,7 +107,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-arc-frontend
   path: roles
-  version: v1.3.1
+  version: v1.4.0
 
 - src: https://github.com/CSCfi/ansible-role-fgci-bash
   path: roles
