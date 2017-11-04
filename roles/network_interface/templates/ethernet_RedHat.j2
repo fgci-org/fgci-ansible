@@ -22,7 +22,6 @@ VLAN=yes
 {% if item.bootproto == 'dhcp' %}
 DEVICE={{ item.device }}
 BOOTPROTO=dhcp
-PERSISTENT_DHCLIENT=y
 {% endif %}
 
 {% if item.nm_controlled is defined %}

@@ -3,3 +3,27 @@
   service: 
     name: network
     state: restarted
+  when: item.changed == true
+  with_items: "{{ ether_result.results }}"
+
+- name: restart route
+  service:
+    name: network
+    state: restarted
+  when: item.changed == true
+  with_items: "{{ route_result.results }}"
+
+- name: restart bond
+  service:
+    name: network
+    state: restarted
+  when: item.changed == true
+  with_items: "{{ bond_result.results }}"
+
+- name: restart vlan
+  service:
+    name: network
+    state: restarted
+  when: item.changed == true
+  with_items: "{{ vlan_result.results }}"
+
