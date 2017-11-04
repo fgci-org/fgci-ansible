@@ -111,11 +111,11 @@
 
 - src: https://github.com/CSCfi/ansible-role-fgci-bash
   path: roles
-  version: v1.2.0
+  version: v1.2.1
 
 - src: https://github.com/CSCfi/ansible-role-cuda
   path: roles
-  version: v1.5.3
+  version: v1.6.0
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
@@ -123,19 +123,19 @@
 
 - src: https://github.com/CSCfi/ansible-role-nhc-scripts
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/CSCfi/ansible-role-dell
   path: roles
-  version: v1.1.1
+  version: v1.1.2
 
 - src: https://github.com/CSCfi/ansible-role-sshd-host-keys
   path: roles
-  version: v1.0.3
+  version: v1.1.0
 
 - src: https://github.com/CSCfi/ansible-role-smartd
   path: roles
-  version: v1.1.4
+  version: v1.2.0
 
 - src: https://github.com/CSCfi/ansible-role-postfix
   path: roles
