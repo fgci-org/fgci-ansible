@@ -40,7 +40,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-fail2ban
   path: roles
-  version: v1.2.0
+  version: v1.3.0
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
@@ -67,7 +67,7 @@
 - src: https://github.com/CSCfi/ansible-system-limits
   path: roles
   name: ansible-role-system-limits
-  version: v1.0.1
+  version: v1.1.0
 
 - src: https://github.com/CSCfi/ansible-role-arc-client
   path: roles
@@ -95,7 +95,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-nis
   path: roles
-  version: v1.0.2
+  version: v1.0.3
 
 - src: https://github.com/CSCfi/ansible-role-nfs
   path: roles
@@ -119,7 +119,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
-  version: v1.2.5
+  version: v1.3.0
 
 - src: https://github.com/CSCfi/ansible-role-nhc-scripts
   path: roles
@@ -159,7 +159,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-serial-console
   path: roles
-  version: v1.0.1
+  version: v1.1.0
 
 - src: https://github.com/cmprescott/ansible-role-autofs
   path: roles
