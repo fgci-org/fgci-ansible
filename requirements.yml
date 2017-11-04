@@ -5,7 +5,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-fgci-install
   path: roles
-  version: v1.7.8
+  version: v1.8.0
 
 # called -2 because it replaces another role called ansible-role-yum-cron
 - src: https://github.com/jeffwidman/ansible-yum-cron
@@ -15,7 +15,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-users
   path: roles
-  version: v1.7.3
+  version: v1.8.2
 
 - src: https://github.com/CSCfi/ansible-role-rsyslog
   path: roles
@@ -31,7 +31,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-squid
   path: roles
-  version: v1.2.1
+  version: v1.3.1
 
 - src: https://github.com/CSCfi/ansible-ferm-firewall
   path: roles
