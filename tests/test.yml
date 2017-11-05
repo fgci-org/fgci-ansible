@@ -100,3 +100,4 @@
 #     - network_interface
 #     - provision_vm
      - ansible-role-flowdock
+     - watermark-release
