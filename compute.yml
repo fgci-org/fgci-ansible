@@ -27,6 +27,7 @@
       tags: pull
 
   roles: 
+  - { role: watermark-release } 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: network_interface, tags: [ 'network' ] }
