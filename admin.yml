@@ -11,6 +11,7 @@
   become: yes
 
   roles:
+  - { role: watermark-release, tags: [ 'always' ] } 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos' ] }
