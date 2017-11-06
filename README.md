@@ -40,6 +40,16 @@ ansible-playbook -i hosts site.yml --tags user
 ansible-playbook -u ssh-user -i hosts site.yml --tags user --diff
 </pre>
 
+## Site local addons
+Site local addons can be added via the following playbooks:
+ - admin\_local\_play.yml
+ - compute\_local\_play.yml
+ - grid\_local\_play.yml
+ - install\_local\_play.yml
+ - login\_local\_play.yml
+ - nfs\_local\_play.yml
+
+
 ## Backlog
 
 For our backlog checkout the waffle iron: https://waffle.io/CSCfi/fgci-ansible
