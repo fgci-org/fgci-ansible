@@ -1,8 +1,8 @@
 
-{% if item.bootproto == 'static' %}
+{% if item.bootproto != 'dhcp' %}
 DEVICE={{ item.device }}
 USERCTL=no
-BOOTPROTO=none
+BOOTPROTO={{ item.bootproto }}
 {% if item.address is defined %}
 IPADDR={{ item.address }}
 {% endif %}
@@ -15,12 +15,12 @@ NETMASK={{ item.netmask }}
 {% if item.gateway is defined %}
 GATEWAY={{ item.gateway }}
 {% endif %}
-BONDING_OPTS="mode={{ item.bond_mode }} miimon={{ item.bond_miimon|default(100) }} "
+BONDING_OPTS="mode={{ item.bond_mode }} miimon={{ item.bond_miimon|default(100) }} {{ item.bond_extra_opts|default('') }} "
 {% endif %}
 
 {% if item.bootproto == 'dhcp' %}
 DEVICE={{ item.device }}
-BONDING_OPTS="mode={{ item.bond_mode }} miimon={{ item.bond_miimon|default(100) }} "
+BONDING_OPTS="mode={{ item.bond_mode }} miimon={{ item.bond_miimon|default(100) }} {{ item.bond_extra_opts|default('') }} "
 USERCTL=no
 ONBOOT={{ item.onboot|default("yes") }}
 BOOTPROTO=dhcp
@@ -34,10 +34,14 @@ NM_CONTROLLED={{ item.nm_controlled }}
 DEFROUTE={{ item.defroute }}
 {% endif %}
 
-{% if item.static_ipv6 is defined %}
-IPV6ADDR={{ item.static_ipv6 }}
+{% if item.type is defined %}
+TYPE={{ item.type }}
+{% endif %}
+{% if item.bonding_master is defined %}
+BONDING_MASTER={{ item.bonding_master }}
 {% endif %}
 
-{% if item.static_ipv6_gw is defined %}
-IPV6_DEFAULTGW={{ item.static_ipv6_gw }}
+{% if item.bridge is defined %}
+BRIDGE={{ item.bridge }}
 {% endif %}
+
