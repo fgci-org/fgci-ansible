@@ -103,7 +103,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-nfs_mount
   path: roles
-  version: v1.2.4
+  version: v1.2.5
 
 - src: https://github.com/CSCfi/ansible-role-arc-frontend
   path: roles
