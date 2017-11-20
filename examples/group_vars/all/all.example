@@ -52,6 +52,7 @@ repo_location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"
 repos:
   - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64", pkgname: "epel-release" }
   - { name: "EL Repo", url: "http://elrepo.org/linux/elrepo/el7/x86_64", pkgname: "elrepo-release" }
+  - { name: "CentOS Extras", url: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/extras/x86_64/" } 
 
 hyper: "{{siteName}}-admin.{{siteDomain}}"
 bastion_host: "{{siteName}}-admin.{{siteDomain}}"
