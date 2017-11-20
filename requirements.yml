@@ -95,7 +95,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-nis
   path: roles
-  version: v1.0.3
+  version: v1.0.5
 
 - src: https://github.com/CSCfi/ansible-role-nfs
   path: roles
