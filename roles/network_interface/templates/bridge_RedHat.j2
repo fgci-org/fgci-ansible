@@ -36,3 +36,11 @@ NM_CONTROLLED={{ item.nm_controlled }}
 {% if item.defroute is defined %}
 DEFROUTE={{ item.defroute }}
 {% endif %}
+
+{% if item.static_ipv6 is defined %}
+IPV6ADDR={{ item.static_ipv6 }}
+{% endif %}
+
+{% if item.static_ipv6_gw is defined %}
+IPV6_DEFAULTGW={{ item.static_ipv6_gw }}
+{% endif %}
