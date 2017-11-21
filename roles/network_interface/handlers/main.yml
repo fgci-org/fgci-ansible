@@ -27,3 +27,11 @@
   when: item.changed == true
   with_items: "{{ vlan_result.results }}"
 
+- name: restart bridge 
+  service:
+    name: network 
+    state: restarted
+  when: item.changed == true
+  with_items: "{{ bridge_result.results }}"
+
+
