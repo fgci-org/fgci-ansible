@@ -57,11 +57,18 @@ NM_CONTROLLED={{ item.nm_controlled }}
 DEFROUTE={{ item.defroute }}
 {% endif %}
 
-
-{% if item.static_ipv6 is defined %}
-IPV6ADDR={{ item.static_ipv6 }}
+{% if item.ipv6_address is defined %}
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_FAILURE_FATAL="no"
+IPV6_FORWARDING="yes"
+IPV6_PEERDNS="yes"
+IPV6_PEERROUTES="yes"
+IPV6_PRIVACY="no"
+IPV6ADDR={{ item.ipv6_address }}
+{% endif %}
+{% if item.ipv6_gateway is defined %}
+IPV6_DEFAULTGW="{{ item.ipv6_gateway }}"
 {% endif %}
 
-{% if item.static_ipv6_gw is defined %}
-IPV6_DEFAULTGW={{ item.static_ipv6_gw }}
-{% endif %}

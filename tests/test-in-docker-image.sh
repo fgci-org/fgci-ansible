@@ -34,7 +34,7 @@ if [ "${OS_TYPE}" == "centos" ];then
 fi
 
 ANSIBLE_EXTRA_VARS=""
-if [ "${ANSIBLE_VAR}x" == "x" ];then
+if [ "${ANSIBLE_VAR}x" != "x" ];then
     ANSIBLE_EXTRA_VARS=" -e \"${ANSIBLE_VAR}\" "
 fi
 
