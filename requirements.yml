@@ -62,7 +62,7 @@
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
   name: ansible-role-sshd
-  version: v0.5
+  version: v0.5.1
 
 - src: https://github.com/CSCfi/ansible-system-limits
   path: roles
@@ -103,7 +103,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-nfs_mount
   path: roles
-  version: v1.2.5
+  version: v1.3.0
 
 - src: https://github.com/CSCfi/ansible-role-arc-frontend
   path: roles
