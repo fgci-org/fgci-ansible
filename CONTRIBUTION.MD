@@ -19,6 +19,7 @@ Git Workflow:
 ---------
 
  - devel: After the work is commited to devel, run testing. Merge devel into master when testing is done.
+ - After testing has succeeded, update roles/watermark-release/files/fgci-ansible-release to the new release version
  - master: The stable branch
 
 Syncing changes done in devel:
