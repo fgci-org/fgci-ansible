@@ -34,4 +34,10 @@
   when: item.changed == true
   with_items: "{{ bridge_result.results }}"
 
+- name: restart ib
+  service:
+    name: network 
+    state: restarted
+  when: item.changed == true
+  with_items: "{{ ib_result.results }}"
 
