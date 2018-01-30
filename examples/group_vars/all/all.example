@@ -7,7 +7,7 @@ nodeBase: io
 
 # Virtual Organization Name - Do not change the following line if your cluster is running in FGCI!!
 # If you have changed it, re-set it to the string bellow and reconfigure your grid node ASAP.
-voName: "fgi.csc.fi" 
+voName: "fgi.csc.fi"
 
 # gocDBName should be set for the same name as your site is registered in gocdb.egi.eu
 gocDBName: "CSC"
@@ -52,7 +52,7 @@ repo_location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"
 repos:
   - { name: "EPEL", url: "http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/epel/7/x86_64", pkgname: "epel-release" }
   - { name: "EL Repo", url: "http://elrepo.org/linux/elrepo/el7/x86_64", pkgname: "elrepo-release" }
-  - { name: "CentOS Extras", url: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/extras/x86_64/" } 
+  - { name: "CentOS Extras", url: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/extras/x86_64/" }
 
 hyper: "{{siteName}}-admin.{{siteDomain}}"
 bastion_host: "{{siteName}}-admin.{{siteDomain}}"
@@ -103,7 +103,7 @@ ferm_rules:
        comment: "connection tracking: drop"
      - rule: "mod state state (ESTABLISHED RELATED) ACCEPT;"
        comment: "connection tracking"
- 
+
 # CVMFS - if fgci_install is set to False it does not install the CVMFS configs from FGCI repo
 fgci_install: True
 # set cms_site and we create /etc/cvmfs/config.d/cms.cern.ch.local
@@ -184,7 +184,7 @@ slurm_ExtraParamsList:
         - "# Extra Slurm parameter *uncommented* lines go here"
         - "# Check ansible-role-slurm defaults file for examples"
 
-#yum cron defaults to daily and hourly updating of everything 
+#yum cron defaults to daily and hourly updating of everything
 daily_update_level: "default"
 daily_download_updates: yes
 daily_apply_updates: yes

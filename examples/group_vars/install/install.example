@@ -76,7 +76,7 @@ networks:
 
 # SSHD
 sshd:
- AllowGroups: "root admin" 
+ AllowGroups: "root admin"
  PermitRootLogin: "without-password"
 
 # Do not install host keys on this node

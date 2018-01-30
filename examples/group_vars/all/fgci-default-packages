@@ -1,5 +1,5 @@
 ---
-# The packages in unconfigured_packages list is installed by ansible-role-yum. It is overridden by all the other groups_vars in FGCI. 
+# The packages in unconfigured_packages list is installed by ansible-role-yum. It is overridden by all the other groups_vars in FGCI.
 # Keeping it here for future use.
 unconfigured_packages:
   - bash-completion
