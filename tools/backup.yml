@@ -1,7 +1,7 @@
 ---
 # This playbook will make a backup of your Cluster's critical files
 #
-# TODO: 
+# TODO:
 # - create a dir name with embeded date
 # - have maximum number of backups | delete old ones
 # - bckpDir variable valid for all play
@@ -12,7 +12,7 @@
     - backup_dir: "/tmp/{{ bckpDir }}"
 
   # Create backup folder
-  tasks: 
+  tasks:
     - name: Create a backup folder # Remember to add it to .gitingnore
       file: path={{ backup_dir}} state=directory mode=0755
       tags: preBackup
@@ -28,7 +28,7 @@
 
     - name: Check if nodes dir exists locally
       stat: path={{ inventory_dir }}/files/nodes/{{ item }}
-      with_items: 
+      with_items:
         - "{{ groups['compute'] }}"
         - install
         - login
@@ -61,7 +61,7 @@
         - /etc/passwd
         - /etc/group
         - /tmp/slurm-logs-{{ ansible_date_time.date }}.tar.gz
-     
+
 - hosts: grid
   become: yes
   vars:

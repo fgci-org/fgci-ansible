@@ -37,7 +37,7 @@
      - slurm_plugstack: True
      - fgci_slurmrepo_version: "fgcislurm1605"
      - slurm_x11_spank: True
-     - adminusers:             
+     - adminusers:
        - { name: admin1, uid: 5001, state: "present", groups: "{{admingroup}}", shell: "{{adminshell}}", pubkey: "ssh-rsa admin1@KEY1" }
        - { name: admin2, uid: 5002, state: "present", groups: "{{admingroup}}", shell: "{{adminshell}}", pubkey: "ssh-rsa admin2@KEY1" }
        - { name: admin3, uid: 5003, state: "present", groups: "{{admingroup}}", shell: "{{adminshell}}", pubkey: "" }
@@ -47,7 +47,7 @@
 
 
 # on docker there's no rsyslog by default and thus no /var/log/secure
-# roles that need these: fail2ban 
+# roles that need these: fail2ban
    pre_tasks:
      - name: test only - make sure /var/log directory exists
        file: path=/var/log state=directory

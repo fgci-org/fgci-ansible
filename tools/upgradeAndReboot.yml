@@ -3,13 +3,13 @@
 # This role will upgrade and reboot all cluster nodes
 # by Luís for Ansible version 1.9.4
 # TO-DO: Handle proper Slurm shutdown
-# Please note: This will reboot NFS and other nodes independently if there are running jobs or not. 
+# Please note: This will reboot NFS and other nodes independently if there are running jobs or not.
 #
 
 - name: Upgrade and Reboot NFS Node
   hosts: nfs
   remote_user: root
-  gather_facts: false 
+  gather_facts: false
   vars_prompt:
     - name: continue
       prompt: "This will reboot the whole cluster even if there are running jobs!\nAre you sure that you want to continue?\n(yes|no):\n"
@@ -33,8 +33,8 @@
 - name: Upgrade and shutdown VMs
   hosts: vhosts
   remote_user: root
-  gather_facts: false 
-  
+  gather_facts: false
+
   tasks:
 
   - name: Full update
@@ -49,8 +49,8 @@
 - name: Upgrade and Reboot Admin and Login nodes
   hosts: [admin, login]
   remote_user: root
-  gather_facts: false 
-  
+  gather_facts: false
+
   tasks:
 
   - name: Full update
@@ -70,8 +70,8 @@
 - name: Drain for update and reboot Compute Nodes
   hosts: install
   remote_user: root
-  gather_facts: false 
-  
+  gather_facts: false
+
   tasks:
 
 # Computes should be up-to-date from ansible-pull script

@@ -6,7 +6,7 @@
 - name: Compute Nodes
   hosts: install
   remote_user: root
-  
+
   tasks:
   - name: Create compute node reinstall flag files in Install node
     file: path=/var/www/provision/reinstall/{{ item }} state=touch

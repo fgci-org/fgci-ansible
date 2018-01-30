@@ -11,8 +11,8 @@
   remote_user: root
   become: yes
 
-  roles: 
-  - { role: watermark-release, tags: [ 'always' ]  } 
+  roles:
+  - { role: watermark-release, tags: [ 'always' ]  }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-hosts-int, tags: [ 'hosts'] }
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
@@ -41,7 +41,7 @@
   hosts: install
   become: yes
 
-  roles: 
+  roles:
   - { role: ansible-role-nfs_mount, tags: [ 'nfsmount' ] }
   - { role: ansible-role-sshd-host-keys, tags: [ 'host-keys' ] }
 

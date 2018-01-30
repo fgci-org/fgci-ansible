@@ -6,8 +6,8 @@
 - name: Shutdown Compute Nodes
   hosts: compute
   remote_user: root
-  gather_facts: false 
-  
+  gather_facts: false
+
   tasks:
   - name: Shutdown compute nodes
     shell: sleep 2 && /sbin/shutdown -h now "Ansible shutdown"
@@ -18,8 +18,8 @@
 - name: Shutdown Compute Nodes
   hosts: [ grid, install, login, nfs, admin ]
   remote_user: root
-  gather_facts: false 
-  
+  gather_facts: false
+
   tasks:
   - name: Shutdown the rest of the nodes
     shell: sleep 2 && /sbin/shutdown -h now "Ansible shutdown"

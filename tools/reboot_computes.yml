@@ -6,8 +6,8 @@
 - name: Reboot Compute Nodes
   hosts: compute
   remote_user: root
-  gather_facts: false 
-  
+  gather_facts: false
+
   tasks:
   - name: Reboot compute nodes
     shell: sleep 2 && /sbin/shutdown -r now "Ansible reboot"
