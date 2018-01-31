@@ -1,6 +1,6 @@
 ---
 - name: restart network
-  service: 
+  service:
     name: network
     state: restarted
   when: item.changed == true
@@ -27,16 +27,16 @@
   when: item.changed == true
   with_items: "{{ vlan_result.results }}"
 
-- name: restart bridge 
+- name: restart bridge
   service:
-    name: network 
+    name: network
     state: restarted
   when: item.changed == true
   with_items: "{{ bridge_result.results }}"
 
 - name: restart ib
   service:
-    name: network 
+    name: network
     state: restarted
   when: item.changed == true
   with_items: "{{ ib_result.results }}"

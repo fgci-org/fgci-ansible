@@ -2,7 +2,7 @@
 
 external_interface: "eth0"
 
-internal_interface: "eth1" 
+internal_interface: "eth1"
 
 network_scheduler: "fq_codel"
 
@@ -91,7 +91,7 @@ infiniband_available: False
 
 # SSH
 sshd:
- AllowGroups: "root admin" 
+ AllowGroups: "root admin"
  PermitRootLogin: "without-password"
 
 # ARC Frontend vars

@@ -37,16 +37,16 @@
 - name: Create the network configuration file for ethernet devices
   template: src=ethernet_{{ ansible_os_family }}.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
   with_items: "{{ network_ether_interfaces }}"
-  when: network_ether_interfaces is defined 
+  when: network_ether_interfaces is defined
   register: ether_result
   notify:
      - restart network
 
 - name: Write configuration files for rhel route configuration
-  template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }} 
+  template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }}
   with_items: "{{ network_ether_interfaces }}"
   when: network_ether_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
-  register: route_result 
+  register: route_result
   notify:
      - restart route
 
@@ -67,7 +67,7 @@
   when: bond_result|changed
 
 - name: Write configuration files for route configuration
-  template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }} 
+  template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }}
   with_items: "{{ network_bond_interfaces }}"
   when: network_bond_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
   register: route_result
@@ -105,10 +105,10 @@
      - restart vlan
 
 - name: Write configuration files for rhel route configuration with vlan
-  template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }} 
+  template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }}
   with_items: "{{ network_vlan_interfaces }}"
   when: network_vlan_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
-  register: route_result 
+  register: route_result
   notify:
      - restart route
 
@@ -157,10 +157,10 @@
      - restart ib
 
 - name: Write configuration files for rhel route configuration with vlan
-  template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }} 
+  template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }}
   with_items: "{{ network_ib_interfaces }}"
   when: network_ib_interfaces is defined and item.route is defined and ansible_os_family == 'RedHat'
-  register: route_result   
+  register: route_result
   notify:
      - restart route
 
@@ -168,5 +168,5 @@
 #  with_items: "{{ ib_result.results }}"
 #  when: ib_result is defined and item.changed
 
-- name: flush the handlers - so that network settings are applied before any other roles. 
+- name: flush the handlers - so that network settings are applied before any other roles.
   meta: flush_handlers
