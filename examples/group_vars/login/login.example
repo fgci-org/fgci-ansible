@@ -1,6 +1,6 @@
 ---
 
-internal_interface: "em2" 
+internal_interface: "em2"
 external_interface: "em1"
 ib_interface: "ib0"
 

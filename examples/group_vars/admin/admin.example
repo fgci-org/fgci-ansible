@@ -112,7 +112,7 @@ ferm_rules_extra:
 # SSHD
 
 sshd:
- AllowGroups: "root admin" 
+ AllowGroups: "root admin"
  PermitRootLogin: "without-password"
 
 # Install these package

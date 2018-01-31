@@ -10,7 +10,7 @@
           - name: node_name
             prompt: "Insert the node's name to be re-installed.\nPlease use the short name (as it apears in inventory file and without the domain).\nBe aware that after next reboot the machine will be reinstalled and all data will be lost.\nMake sure you made all the needed Backups!\n"
             private: no
-  
+
   tasks:
   - name: Create node reinstall flag file in Install node
     file: path=/var/www/provision/reinstall/{{ node_name }} state=touch
