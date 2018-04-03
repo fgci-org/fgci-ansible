@@ -216,3 +216,8 @@
 - src: https://github.com/CSCfi/ansible-role-singularity
   path: roles
   version: v1.0.1
+
+- src: https://github.com/CSCfi/ansible-falco
+  path: roles
+  version: f88505cef537366d4589c2e2816eb921c6d28190
+  name: ansible-role-falco
