@@ -57,7 +57,7 @@ Pull Requests
 
  - Make a fork of this repo (or the ansible-role repo if it's for a role)
  - Create a new branch in your fork called "new_feature"
-  - This is important, don't make the updates in the master branch of your local repo.
+   - This is important, don't make the updates in the master branch of your local repo.
  - Commit and push to this new_feature branch in your repo
  - Create a pull request with the fix
 
@@ -79,16 +79,16 @@ In general we make updates in the devel branch, improve them and test them there
 
 List of scenarios we aim to test/consider:
  - applies to ansible-pull
-  - test the changes to ansible-pull by making the change to the devel branch on github
+   - test the changes to ansible-pull by making the change to the devel branch on github
  - applies to ansible-push
-  - test this by making local changes in the fgci-ansible working directory and running the role, first with --check --diff
+   - test this by making local changes in the fgci-ansible working directory and running the role, first with --check --diff
  - applies to reinstalls / brand new clusters
-  - test this by reinstalling the cluster
-  - think of the order (available in site.yml) in which nodes are installed, install node before login node for example
+   - test this by reinstalling the cluster
+   - think of the order (available in site.yml) in which nodes are installed, install node before login node for example
  - applies to partial reinstalls, like keeping a filesystem or sql database
-  - test this by reinstalling the cluster
+   - test this by reinstalling the cluster
  - applies to sites using hardware that's not only from the initial FGCI Dell Harware?
-  - ask the sites for assistance
+   - ask the sites for assistance
 
 
 Ansible Roles
