@@ -64,7 +64,7 @@
 
 - name: Make sure the bonding module is loaded
   modprobe: name=bonding state=present
-  when: bond_result|changed
+  when: bond_result is changed
 
 - name: Write configuration files for route configuration
   template: src=route_{{ ansible_os_family }}.j2 dest={{ net_path }}/route-{{ item.device }}
