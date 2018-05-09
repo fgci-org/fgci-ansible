@@ -15,6 +15,29 @@ git pull
 git checkout master
 </pre>
 
+General Plan for Updating roles in requirements.yml in fgci-ansible
+--------------------------------------------------
+
+ - On your laptop:
+   - Work in a feature branch in a git clone of ansible-role-myrole
+     - Push changes to feature/branch on github
+     - Ready = travis tests are passing. Look in logs of travis build, does it look good? Is the resulting config file like you want it?
+     - Make a Pull Request when the work is ready
+     - Make a github release (and add links to PRs or text about what was changed) in master branch in ansible-role-myrole with incremental new version
+   - Work in a fgci-ansible feature branch (of devel branch)
+     - Point to new version of ansible-role-myrole in requirements.yml
+     - Wait for travis to pass, look in travis logs.
+     - Submit Pull Request
+     - Update draft in github for fgci-ansible next release
+ - Work in fgci-ansible directory on our deployment machine for the test cluster
+   - Update the role:
+     - ansible-galaxy install -r requirements.yml ansible-role-myrole
+   - Update all roles:
+     - ansible-galaxy install -r requirements.yml
+   - Run a playbook like install.yml
+   - Run tools/pullReqs.sh from fgci-ansible to make ansible-pull also get the changes
+ - Continue with the "Git Workflow" section
+
 Git Workflow:
 ---------
 
@@ -87,7 +110,7 @@ List of scenarios we aim to test/consider:
    - think of the order (available in site.yml) in which nodes are installed, install node before login node for example
  - applies to partial reinstalls, like keeping a filesystem or sql database
    - test this by reinstalling the cluster
- - applies to sites using hardware that's not only from the initial FGCI Dell Harware?
+ - applies to sites using hardware that's not only from the initial FGCI $VENDOR hardware
    - ask the sites for assistance
 
 
