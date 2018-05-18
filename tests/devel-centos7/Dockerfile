@@ -13,8 +13,8 @@ RUN yum clean all && \
     yum -y install acl sudo && \
     sed -i -e 's/^Defaults.*requiretty/Defaults    !requiretty/' -e 's/^%wheel.*ALL$/%wheel    ALL=(ALL)    NOPASSWD: ALL/' /etc/sudoers && \
     yum -y install PyYAML python-jinja2 python-httplib2 python-keyczar python-paramiko python-setuptools git python-pip && \
-    pip install --upgrade pip && \
-    #pip install requests[security] && \
+    pip install --upgrade --force-reinstall pip==9.0.3 && \
+    pip install requests[security] && \
     pip --version && \
     pip install passlib dnspython && \
     sh -c 'yum -y remove libffi-devel || yum -y --setopt=tsflags=noscripts remove libffi-devel' && \
