@@ -17,8 +17,7 @@ virt-install \
   --connect qemu:///system \
   --location {{ location }} \
   --graphics=vnc,keymap="fi" \
-  --wait 20 \
+  --wait 30 \
   --initrd-inject '{{ kickstart_tempdir }}/{{ inventory_hostname.split('.').0 }}.ks' \
-  --extra-args 'ks=file:/{{ inventory_hostname.split('.').0 }}.ks console=ttyS0,115200n8' \
-  --console pty,target_type=serial
+  --extra-args 'ks=file:/{{ inventory_hostname.split('.').0 }}.ks'
 fi
