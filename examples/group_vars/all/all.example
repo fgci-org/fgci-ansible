@@ -40,7 +40,7 @@ dhcp_common_domain: "{{ intDomain }}.{{ siteDomain }}"
 enable_ext_nic: "yes"
 enable_int_nic: "yes"
 
-infiniband_available: False
+infiniband_available: True
 
 # NFS mounts
 
