@@ -36,8 +36,14 @@ nameserver1: "10.1.1.2"
 cvmfs_http_proxy: "{{ http_proxy }}"
 # YUM proxy
 yum_proxy: "{{ http_proxy }}"
+
 # Install NHC from FGCI's yum
 nhc_github: False
+# Node Health Check (NHC) options
+# Infiniband check / speed check, 40Gb / 56Gb / something else
+#nhc_hw_ib: "56"
+nhc_hw_eth: "{{internal_interface}}"
+
 # To add a custom NHC checks in addition to the defaults, define like below (do keep the check_reboot_slurm  - used to be able to drain and reboot nodes):
 #nhc_checks:
 # - { match: "*", name: "check_reboot_slurm", arguments: "" }
