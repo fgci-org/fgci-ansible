@@ -44,11 +44,11 @@
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
-  version: v1.7.2
+  version: v1.7.4
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
-  version: v1.2.0
+  version: v1.2.1
 
 - src: https://github.com/CSCfi/ansible-aliases
   path: roles
@@ -87,7 +87,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-pxe_config
   path: roles
-  version: v1.6.0
+  version: v1.6.1
 
 - src: https://github.com/CSCfi/ansible-role-dnsmasq
   path: roles
@@ -119,7 +119,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
-  version: v1.3.0
+  version: v1.3.2
 
 - src: https://github.com/CSCfi/ansible-role-nhc-scripts
   path: roles
@@ -151,7 +151,7 @@
 
 - src: https://github.com/mhakala/ansible-role-adauth
   path: roles
-  version: 82f57eb98fb7c58b754eb286ed35010bb9aed1aa
+  version: 2bdbb3389ac2a163a81e883139088da7e237162c
 
 - src: https://github.com/jabl/ansible-role-pdsh-genders
   path: roles
@@ -177,7 +177,7 @@
 
 - src: https://github.com/jabl/ansible-role-pam
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/jabl/ansible-role-gitmirror
   path: roles
@@ -215,4 +215,4 @@
 
 - src: https://github.com/CSCfi/ansible-role-singularity
   path: roles
-  version: v1.0.1
+  version: v1.0.2
