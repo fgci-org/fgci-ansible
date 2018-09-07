@@ -3,8 +3,7 @@
 siteName: io
 intDomain: int
 siteDomain: fgci.csc.fi
-nodeBase: io-node
-nodeGpuBase: io-node-gpu
+nodeBase: io
 
 # Virtual Organization Name - Do not change the following line if your cluster is running in FGCI!!
 # If you have changed it, re-set it to the string bellow and reconfigure your grid node ASAP.
@@ -180,8 +179,6 @@ postfix_relayhost: "smtp.csc.fi"
 postfix_mydomain: "{{ siteDomain }}"
 
 slurm_compute_nodes: "{{ nodeBase }}[1-4]"
-slurm_gpu_nodes: "{{ nodeGpuBase }}[5-6]"
-
 slurm_compute_threadspercore: "1"
 slurm_ExtraParamsList:
         - "# Extra Slurm parameter *uncommented* lines go here"
