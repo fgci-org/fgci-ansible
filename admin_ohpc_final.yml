@@ -1,0 +1,16 @@
+---
+#- name: First add users to admin node as root
+#  hosts: admin
+#  remote_user: root
+
+#  roles: 
+#  - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
+
+- name:  Finish OpenHPC images on admin Node
+  hosts: admin
+  become: yes
+
+  roles:
+  - { role: ansible-role-ohpc-finish, tags: [ 'ohpc', 'always' ] }
+
+
