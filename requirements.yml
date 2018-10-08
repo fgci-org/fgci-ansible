@@ -46,9 +46,9 @@
   path: roles
   version: a2d874a98dbe76d093b06031f2058984caf6b838
 
-- src: https://github.com/jabl/ansible-role-cvmfs
+- src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
-  version: c76338a674433d741ae54dfef88b71c9a9ec0976
+  version: 0760a16399bbf6b7e4bcb87ba409c8aed38a959a
 
 - src: https://github.com/CSCfi/ansible-aliases
   path: roles
