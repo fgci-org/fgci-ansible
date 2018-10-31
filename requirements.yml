@@ -189,7 +189,7 @@
 
 - src: https://github.com/AaltoScienceIT/ansible-role-samba
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/jabl/ansible-role-open-vm-tools
   path: roles
