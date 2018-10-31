@@ -19,7 +19,7 @@
     name: net.core.default_qdisc
     value: "{{ network_scheduler }}"
     sysctl_file: /etc/sysctl.d/40-bufferbloat.conf
-    sysctl_set: yes
+    sysctl_set: "{{ 'yes' if ansible_connection != 'chroot' else 'no' }}"
 
 - name: Make sure the include line is there in interfaces file
   lineinfile: >
