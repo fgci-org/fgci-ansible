@@ -187,9 +187,9 @@
   path: roles
   version: 0b48d86318da6e303e76359a593f5195076f3021
 
-- src: https://github.com/mhakala/ansible-role-samba
+- src: https://github.com/AaltoScienceIT/ansible-role-samba
   path: roles
-  version: 303611d1ff5a4a471128dff485de4fa637a7bee5
+  version: v1.0.1
 
 - src: https://github.com/jabl/ansible-role-open-vm-tools
   path: roles
@@ -216,3 +216,7 @@
 - src: https://github.com/CSCfi/ansible-role-singularity
   path: roles
   version: v1.0.2
+
+- src: https://github.com/jabl/ansible-role-ohpc-repo
+  path: roles
+  version: v0.1

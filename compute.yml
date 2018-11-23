@@ -30,6 +30,7 @@
   - { role: watermark-release, tags: [ 'always' ]  } 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
+  - { role: ansible-role-ohpc-repo, tags: [ 'yum', 'repos', 'ohpc' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-hosts-int, tags: [ 'hosts'] }
   - { role: ansible-role-chrony, tags: [ 'ntp', 'chrony' ] }
