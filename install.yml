@@ -49,7 +49,6 @@
   - { role: ansible-role-gitmirror, tags: [ 'gitmirror'] }
   - { role: ansible-role-idmapd, tags: [ 'idmapd'] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
-  - { role: systemd_rpcbind, tags: [ 'systemd', 'rpcbind' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
  
 - name: grab facts from production nodes
