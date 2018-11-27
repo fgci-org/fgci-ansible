@@ -131,7 +131,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-sshd-host-keys
   path: roles
-  version: v1.1.2
+  version: v1.1.3
 
 - src: https://github.com/CSCfi/ansible-role-smartd
   path: roles
