@@ -197,7 +197,7 @@
 
 - src: https://github.com/CSCfi/ansible-systemd-journal
   path: roles
-  version: v1.0.1
+  version: v1.0.2
   name: ansible-role-systemd-journal
 
 - src: https://github.com/jabl/ansible-role-hosts-int
