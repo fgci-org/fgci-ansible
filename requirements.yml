@@ -210,7 +210,7 @@
 
 - src: https://github.com/CSCfi/ansible-lldpd
   path: roles
-  version: v1.1.3
+  version: v1.1.4
   name: ansible-role-lldpd
 
 - src: https://github.com/CSCfi/ansible-role-singularity
