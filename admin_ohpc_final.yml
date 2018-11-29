@@ -7,7 +7,7 @@
 #  - { role: ansible-role-users, tags: [ 'users', 'admin-users', 'user' ] }
 
 - name:  Finish OpenHPC images on admin Node
-  hosts: admin
+  hosts: ohpc_admin_nodes
   become: yes
 
   roles:
