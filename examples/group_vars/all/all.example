@@ -3,7 +3,8 @@
 siteName: io
 intDomain: int
 siteDomain: fgci.csc.fi
-nodeBase: io
+nodeBase: io-node
+nodeGpuBase: io-node-gpu
 
 # Virtual Organization Name - Do not change the following line if your cluster is running in FGCI!!
 # If you have changed it, re-set it to the string bellow and reconfigure your grid node ASAP.
@@ -39,7 +40,7 @@ dhcp_common_domain: "{{ intDomain }}.{{ siteDomain }}"
 enable_ext_nic: "yes"
 enable_int_nic: "yes"
 
-infiniband_available: False
+infiniband_available: True
 
 # NFS mounts
 
@@ -179,7 +180,14 @@ postfix_relayhost: "smtp.csc.fi"
 postfix_mydomain: "{{ siteDomain }}"
 
 slurm_compute_nodes: "{{ nodeBase }}[1-4]"
+slurm_gpu_nodes: "{{ nodeGpuBase }}[5-6]"
+
 slurm_compute_threadspercore: "1"
+#slurm_partitionlist:
+# - "PartitionName=normal Nodes={{ slurm_compute_nodes }},{{ slurm_gpu_nodes }} Default=YES MaxTime={{ slurm_max_job_time }} State=UP DefaultTime={{ slurm_job_def_time }}"
+# - "PartitionName=test Nodes={{ slurm_compute_nodes }} Default=NO MaxTime={{ slurm_max_job_time }} State=UP DefaultTime={{ slurm_job_def_time }}"
+# - "PartitionName=grid Nodes={{ slurm_compute_nodes }},{{ slurm_gpu_nodes }} Default=NO MaxTime={{ slurm_max_job_time }} State=UP DefaultTime={{ slurm_job_def_time }}"
+
 slurm_ExtraParamsList:
         - "# Extra Slurm parameter *uncommented* lines go here"
         - "# Check ansible-role-slurm defaults file for examples"

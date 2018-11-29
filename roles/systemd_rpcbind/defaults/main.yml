@@ -1,8 +1,0 @@
----
-# defaults for systemd_rpcbind
-
-systemd_rpcbind_override: True
-# set systemd_rpcbind_override_template_state to "absent" to create
-# a mostly empty rpcbind.socket file. Template module in ansible does
-# not support "state:" parameter
-systemd_rpcbind_override_template_state: "present"

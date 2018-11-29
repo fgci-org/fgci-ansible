@@ -4,13 +4,11 @@
   include_vars: "{{ ansible_os_family }}.yml"
 
 - name: Install the required  packages in Redhat derivatives
-  yum: name={{ item }} state=installed
-  with_items: "{{ network_pkgs }}"
+  yum: name={{ network_pkgs }} state=installed
   when: ansible_os_family == 'RedHat'
 
 - name: Install the required packages in Debian derivatives
-  apt: name={{ item }} state=installed update_cache=yes
-  with_items: "{{ network_pkgs }}"
+  apt: name={{ network_pkgs }} state=installed update_cache=yes
   environment: env
   when: ansible_os_family == 'Debian'
 
