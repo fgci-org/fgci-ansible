@@ -40,7 +40,7 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
 #  - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
-  - { role: ansible-role-ohpc-setup, tags: [ 'ohpc', 'always' ] }
+  - { role: ansible-role-ohpc-setup, tags: [ 'ohpc' ] }
 
 
 # Local addons to this playbook
