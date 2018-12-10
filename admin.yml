@@ -15,6 +15,7 @@
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: dns, tags: [ 'dns' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos' ] }
+  - { role: ansible-role-ohpc-repo, tags: [ 'yum', 'repos', 'ohpc' ] }
   - { role: network_interface, tags: [ 'network' ],
     when: internal_interface in ansible_interfaces and
           external_interface in ansible_interfaces }
@@ -37,7 +38,6 @@
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-pdsh-genders, tags: [ 'pdsh', 'genders' ] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
-  - { role: systemd_rpcbind, tags: [ 'systemd', 'rpcbind' ] }
   - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
 
 

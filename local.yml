@@ -41,6 +41,7 @@
   - { role: watermark-release, tags: [ 'always' ]  }
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
+  - { role: ansible-role-ohpc-repo, tags: [ 'yum', 'repos', 'ohpc' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-hosts-int, tags: [ 'hosts'] }
   - { role: ansible-role-chrony, tags: [ 'ntp', 'chrony' ] }
@@ -73,7 +74,6 @@
   - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
-  - { role: systemd_rpcbind, tags: [ 'systemd', 'rpcbind' ] }
   - { role: ansible-role-lldpd, tags: [ 'lldpd', 'lldp' ] }
   - { role: ansible-role-singularity, tags: [ 'singularity' ] }
 

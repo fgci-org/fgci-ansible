@@ -92,7 +92,6 @@
      - ansible-role-sshd
      - ansible-role-sshd-host-keys
      - ansible-role-system-limits
-     - systemd_rpcbind
      - ansible-role-users
      - ansible-role-yum-cron-2
 #     - dns
