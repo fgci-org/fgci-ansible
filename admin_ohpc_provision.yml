@@ -11,6 +11,6 @@
   become: yes
 
   roles:
-  - { role: ansible-role-ohpc-finish, tags: [ 'ohpc', 'always' ] }
+  - { role: ansible-role-ohpc-provision, tags: [ 'ohpc' ] }
 
 
