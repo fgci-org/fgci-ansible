@@ -221,8 +221,8 @@
   path: roles
   version: v0.1
 
-- src: https://github.com/jabl/ansible-role-ohpc-setup
+- src: https://github.com/AaltoScienceIT/ansible-role-ohpc-setup
   path: roles
 
-- src: https://github.com/jabl/ansible-role-ohpc-finish
+- src: https://github.com/AaltoScienceIT/ansible-role-ohpc-provision
   path: roles
