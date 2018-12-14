@@ -14,19 +14,6 @@
   become: yes
   connection: chroot
 
-#  pre_tasks:
-#    - name: Configure a cronjob for ansible-pull
-#      cron: name='ansible-pull' user=root
-#            job='/bin/nice /bin/bash /usr/local/bin/ansible-pull-script.sh >/var/log/ansible.log 2>&1'
-#            minute="{{ansible_pull_cron_minute_interval | default('0')}}"
-#            hour="{{ansible_pull_cron_hour_interval | default('*/2')}}"
-#            day="{{ansible_pull_cron_day_interval | default('*')}}"
-#            month="{{ansible_pull_cron_month_interval | default('*')}}"
-#            weekday="{{ansible_pull_cron_weekday_interval | default('*')}}"
-#            cron_file=ansible-pull
-#            state={{ansible_pull_cron_state | default('present')}}
-#      tags: pull
-
   roles: 
   - { role: watermark-release, tags: [ 'always' ]  } 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
@@ -66,18 +53,8 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-lldpd, tags: [ 'lldpd', 'lldp' ] }
   - { role: ansible-role-singularity, tags: [ 'singularity' ] }
-#  - { role: ansible-role-flowdock, tags: [ 'flowdock' ] }
-
-# Adding a role here? Make sure to add it to local.yml too for the role to be used with ansible-pull
-
-#- name: GPU Nodes
-#  hosts: compute
-#  strategy: free
-#  remote_user: root
-#  become: yes
-
-#  roles: 
-#  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
+  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ],
+                               when: gpu==True }
 
 
 # Local addons to this playbook
