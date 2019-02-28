@@ -107,11 +107,11 @@
 
 - src: https://github.com/CSCfi/ansible-role-arc-frontend
   path: roles
-  version: v1.4.1
+  version: v1.4.2
 
 - src: https://github.com/CSCfi/ansible-role-fgci-bash
   path: roles
-  version: v1.2.1
+  version: v1.2.2
 
 - src: https://github.com/CSCfi/ansible-role-cuda
   path: roles
@@ -164,7 +164,7 @@
 - src: https://github.com/cmprescott/ansible-role-autofs
   path: roles
   name: ansible-role-autofs
-  version: 1e52d2e57a964345a20ba591bd73f438f2e16576
+  version: 1.0.0
 
 - src: https://github.com/CSCfi/ansible-nsswitch
   path: roles
