@@ -75,7 +75,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-yum
   path: roles
-  version: v1.5.2
+  version: v1.5.3
 
 - src: https://github.com/CSCfi/ansible-role-flowdock
   path: roles
