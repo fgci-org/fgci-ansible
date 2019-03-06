@@ -57,7 +57,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-rdma
   path: roles
-  version: v1.3.3
+  version: v1.3.4
 
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
@@ -75,7 +75,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-yum
   path: roles
-  version: v1.5.2
+  version: v1.5.3
 
 - src: https://github.com/CSCfi/ansible-role-flowdock
   path: roles
@@ -115,7 +115,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-cuda
   path: roles
-  version: v1.6.0
+  version: v1.6.1
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
