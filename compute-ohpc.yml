@@ -55,7 +55,8 @@
   - { role: ansible-role-singularity, tags: [ 'singularity' ] }
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ],
                                when: gpu==True }
-
+  - { role: ansible-role-sacct_gpu, tags: [ 'gpu', 'nvidia' ],
+                                    when: gpu==True }
 
 # Local addons to this playbook
 #
