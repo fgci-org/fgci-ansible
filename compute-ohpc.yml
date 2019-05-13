@@ -15,6 +15,7 @@
   connection: chroot
 
   roles: 
+  - { role: ansible-role-fgci-ssh-keys, tags: [ 'ssh' ] }
   - { role: watermark-release, tags: [ 'always' ]  } 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }

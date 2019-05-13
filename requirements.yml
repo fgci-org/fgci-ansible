@@ -229,3 +229,6 @@
 
 - src: https://github.com/AaltoScienceIT/ansible-role-sacct_gpu
   path: roles
+
+- src: https://github.com/AaltoScienceIT/ansible-role-fgci-ssh-keys
+  path: roles
