@@ -44,7 +44,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
-  version: v1.7.8
+  version: v1.7.9
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
