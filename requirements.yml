@@ -159,7 +159,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-serial-console
   path: roles
-  version: v1.1.0
+  version: v1.1.1
 
 - src: https://github.com/cmprescott/ansible-role-autofs
   path: roles
