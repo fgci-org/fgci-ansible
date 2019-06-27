@@ -67,7 +67,7 @@
 - src: https://github.com/CSCfi/ansible-system-limits
   path: roles
   name: ansible-role-system-limits
-  version: v1.1.0
+  version: v1.1.1
 
 - src: https://github.com/CSCfi/ansible-role-arc-client
   path: roles
