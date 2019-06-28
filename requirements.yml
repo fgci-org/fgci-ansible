@@ -177,7 +177,7 @@
 
 - src: https://github.com/jabl/ansible-role-pam
   path: roles
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/jabl/ansible-role-gitmirror
   path: roles
