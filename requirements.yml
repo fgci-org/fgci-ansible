@@ -31,7 +31,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-squid
   path: roles
-  version: v1.3.1
+  version: v1.3.3
 
 - src: https://github.com/CSCfi/ansible-ferm-firewall
   path: roles
