@@ -179,6 +179,20 @@ dell_install_helper_scripts: False
 postfix_relayhost: "smtp.csc.fi"
 postfix_mydomain: "{{ siteDomain }}"
 
+# For overriding all of the postfix defaults in a role
+#
+#postfix_custom_main: |
+# myhostname = {{ ansible_fqdn }}
+# mydomain = example.com
+# myorigin = $myhostname
+# relayhost = smtp.example.com
+# alias_maps = hash:/etc/aliases
+# alias_database = hash:/etc/aliases
+# inet_interfaces = loopback-only
+# inet_protocols = ipv4
+# mydestination = $myhostname, localhost.$mydomain, localhost
+# masquerade_domains = example.com
+
 slurm_compute_nodes: "{{ nodeBase }}[1-4]"
 slurm_gpu_nodes: "{{ nodeGpuBase }}[5-6]"
 
