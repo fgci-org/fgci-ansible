@@ -31,12 +31,12 @@
 
 - src: https://github.com/CSCfi/ansible-role-squid
   path: roles
-  version: v1.3.1
+  version: v1.3.3
 
 - src: https://github.com/CSCfi/ansible-ferm-firewall
   path: roles
   name: ansible-role-ferm-firewall
-  version: v1.2.2
+  version: v1.2.4
 
 - src: https://github.com/CSCfi/ansible-role-fail2ban
   path: roles
@@ -155,7 +155,7 @@
 
 - src: https://github.com/jabl/ansible-role-pdsh-genders
   path: roles
-  version: v1.3.1
+  version: v1.3.2
 
 - src: https://github.com/CSCfi/ansible-role-serial-console
   path: roles
@@ -177,11 +177,11 @@
 
 - src: https://github.com/jabl/ansible-role-pam
   path: roles
-  version: v1.0.1
+  version: v1.0.2
 
 - src: https://github.com/jabl/ansible-role-gitmirror
   path: roles
-  version: v1.0.0
+  version: v1.0.1
 
 - src: https://github.com/mhakala/ansible-role-idmapd
   path: roles
