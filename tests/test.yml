@@ -35,7 +35,7 @@
      - nhc_checks:
        - { match: "*", name: "check_reboot_slurm", arguments: "" }
      - slurm_plugstack: True
-     - fgci_slurmrepo_version: "fgcislurm1605"
+     - fgci_slurmrepo_version: "fgcislurm1711"
      - slurm_x11_spank: True
      - adminusers:
        - { name: admin1, uid: 5001, state: "present", groups: "{{admingroup}}", shell: "{{adminshell}}", pubkey: "ssh-rsa admin1@KEY1" }
@@ -92,7 +92,6 @@
      - ansible-role-sshd
      - ansible-role-sshd-host-keys
      - ansible-role-system-limits
-     - systemd_rpcbind
      - ansible-role-users
      - ansible-role-yum-cron-2
 #     - dns

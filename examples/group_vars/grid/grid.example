@@ -80,7 +80,6 @@ cvmfs_quota_limit: "10240"
 # Install extra packages
 unconfigured_packages:
   - bash-completion
-  - pdsh
   - Lmod
   - fgci-meta-grid
   - nfs-utils

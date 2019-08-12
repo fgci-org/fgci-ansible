@@ -10,7 +10,6 @@ unconfigured_packages:
   - nfs-utils
   - nscd
   - openssh-server
-  - pdsh
   - pciutils
   - perl-Filesys-Df
   - rsync

@@ -31,7 +31,6 @@ unconfigured_packages:
   - numpy
   - openssh-server
   - pciutils
-  - pdsh
   - perl-Filesys-Df
   - rsync
   - smartmontools

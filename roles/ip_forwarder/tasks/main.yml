@@ -43,6 +43,17 @@
   stat: path=/usr/lib/systemd/system/NetworkManager.service
   register: nm
 
-- name: Disabling and stoping NetworkManager
+- name: Disable and stop NetworkManager
   service: name=NetworkManager enabled=no state=stopped
   when: nm.stat.exists
+
+- name: Search NetworkManager process
+  command: pgrep NetworkManager
+  register: pgrep_result
+  failed_when: pgrep_result.rc > 1
+  changed_when: pgrep_result.rc == 0
+
+- name: Kill the NetworkManager process if found
+  command: pkill -2 -f NetworkManager
+  when: pgrep_result.rc == 0
+
