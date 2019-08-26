@@ -197,6 +197,13 @@ slurm_compute_nodes: "{{ nodeBase }}[1-4]"
 slurm_gpu_nodes: "{{ nodeGpuBase }}[5-6]"
 
 slurm_compute_threadspercore: "1"
+
+# What type is the gpu card eg. teslak80, can be defined in host_vars too
+#slurm_gpu_type: "teslak80"
+
+# How many /dev/nvidiaXX you see, how many gpu cards per node, can be defined in host_vars too
+#slurm_gpu_count: "8"
+
 #slurm_partitionlist:
 # - "PartitionName=normal Nodes={{ slurm_compute_nodes }},{{ slurm_gpu_nodes }} Default=YES MaxTime={{ slurm_max_job_time }} State=UP DefaultTime={{ slurm_job_def_time }}"
 # - "PartitionName=test Nodes={{ slurm_compute_nodes }} Default=NO MaxTime={{ slurm_max_job_time }} State=UP DefaultTime={{ slurm_job_def_time }}"
