@@ -198,10 +198,10 @@ slurm_gpu_nodes: "{{ nodeGpuBase }}[5-6]"
 
 slurm_compute_threadspercore: "1"
 
-# What type is the gpu card eg. teslak80, can be defined in host_vars too
+# What type is the gpu card eg. teslak80
 #slurm_gpu_type: "teslak80"
 
-# How many /dev/nvidiaXX you see, how many gpu cards per node, can be defined in host_vars too
+# How many /dev/nvidiaXX you see, how many gpu cards per node
 #slurm_gpu_count: "8"
 
 #slurm_partitionlist:
