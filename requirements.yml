@@ -44,7 +44,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
-  version: v1.8.1
+  version: v1.9.0
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
@@ -107,7 +107,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-arc-frontend
   path: roles
-  version: v1.4.3
+  version: v1.4.5
 
 - src: https://github.com/CSCfi/ansible-role-fgci-bash
   path: roles
@@ -115,7 +115,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-cuda
   path: roles
-  version: v1.6.2
+  version: v1.6.3
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
