@@ -193,7 +193,7 @@ postfix_mydomain: "{{ siteDomain }}"
 # mydestination = $myhostname, localhost.$mydomain, localhost
 # masquerade_domains = example.com
 
-slurm_ohpc: "ohpc"
+slurm_repo: "ohpc"
 slurm_compute_nodes: "{{ nodeBase }}[1-4]"
 slurm_gpu_nodes: "{{ nodeGpuBase }}[5-6]"
 
