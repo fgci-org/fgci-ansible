@@ -44,7 +44,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
-  version: v1.9.1
+  version: v1.9.5
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
@@ -57,7 +57,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-rdma
   path: roles
-  version: v1.3.5
+  version: v1.3.7
 
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
@@ -127,7 +127,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-dell
   path: roles
-  version: v1.1.5
+  version: v1.1.7
 
 - src: https://github.com/CSCfi/ansible-role-sshd-host-keys
   path: roles
