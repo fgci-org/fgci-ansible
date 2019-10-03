@@ -11,7 +11,7 @@
 - src: https://github.com/jeffwidman/ansible-yum-cron
   path: roles
   name: ansible-role-yum-cron-2
-  version: f58e773036aa9e2baade8c4a33b81be08a232414
+  version: 764cc56389f10320be5c60e0ee5baa82c3c012a3
 
 - src: https://github.com/CSCfi/ansible-role-users
   path: roles
