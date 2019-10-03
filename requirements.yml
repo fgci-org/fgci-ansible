@@ -8,10 +8,10 @@
   version: v1.8.1
 
 # called -2 because it replaces another role called ansible-role-yum-cron
-- src: https://github.com/jeffwidman/ansible-yum-cron
+- src: https://github.com/VilleS1/ansible-yum-cron
   path: roles
   name: ansible-role-yum-cron-2
-  version: 764cc56389f10320be5c60e0ee5baa82c3c012a3
+  version: a19ebd277abfb65f0a6afeba89b7d281faf7b78a
 
 - src: https://github.com/CSCfi/ansible-role-users
   path: roles
