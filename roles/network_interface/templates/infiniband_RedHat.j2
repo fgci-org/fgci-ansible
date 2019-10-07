@@ -12,13 +12,25 @@ BOOTPROTO=none
 TYPE={{ item.type }}
 {% endif %}
 {% if item.address is defined %}
+{% if item.address is not string %}
+{% for a in item.address %}
+IPADDR{{ loop.index - 1 }}={{ a }}
+{% endfor %}
+{% else %}
 IPADDR={{ item.address }}
+{% endif %}
 {% endif %}
 {% if item.onboot is defined %}
 ONBOOT={{ item.onboot }}
 {% endif %}
 {% if item.netmask is defined %}
+{% if item.netmask is not string %}
+{% for n in item.netmask %}
+NETMASK{{ loop.index - 1 }}={{ n }}
+{% endfor %}
+{% else %}
 NETMASK={{ item.netmask }}
+{% endif %}
 {% endif %}
 {% if item.gateway is defined %}
 GATEWAY={{ item.gateway }}
