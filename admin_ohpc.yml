@@ -25,6 +25,7 @@
           internal_net is defined and
           internal_interface in ansible_interfaces and
           external_interface in ansible_interfaces }
+  - { role: ansible-role-hosts-int, tags: [ 'hosts'] }
   - { role: ansible-role-ferm-firewall, tags: [ 'firewall', 'network' ] }
   - { role: ansible-role-chrony, tags: [ 'ntp', 'chrony' ] }
   - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
