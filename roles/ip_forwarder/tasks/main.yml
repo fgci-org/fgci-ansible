@@ -2,7 +2,11 @@
 
 
 - name: set ip_forward to 1 to allow kickstarting of network nodes
-  sysctl: name=net.ipv4.ip_forward value=1 sysctl_set=yes reload=no
+  sysctl:
+     name: net.ipv4.ip_forward
+     value: 1
+     sysctl_set: yes 
+     reload: no
   remote_user: root
 
 - name: get iptables rules
@@ -40,14 +44,18 @@
   ignore_errors: true
 
 - name: Check if NetworkManager is installed
-  stat: path=/usr/lib/systemd/system/NetworkManager.service
+  stat:
+     path: "/usr/lib/systemd/system/NetworkManager.service"
   register: nm
 
 - name: Disable and stop NetworkManager
-  service: name=NetworkManager enabled=no state=stopped
+  service:
+     name: "NetworkManager"
+     enabled: no
+     state: stopped
   when: nm.stat.exists
 
-- name: Search NetworkManager process
+- name: Search for NetworkManager process
   command: pgrep NetworkManager
   register: pgrep_result
   failed_when: pgrep_result.rc > 1
