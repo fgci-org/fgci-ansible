@@ -5,7 +5,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-fgci-install
   path: roles
-  version: v1.8.3
+  version: v1.8.4
 
 # called -2 because it replaces another role called ansible-role-yum-cron
 - src: https://github.com/jeffwidman/ansible-yum-cron
