@@ -179,7 +179,7 @@
   path: roles
   version: v1.0.2
 
-- src: https://github.com/jabl/ansible-role-gitmirror
+- src: https://github.com/fgci-org/ansible-role-gitmirror
   path: roles
   version: v1.0.1
 
