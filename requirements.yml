@@ -217,6 +217,6 @@
   path: roles
   version: v1.0.5
 
-- src: https://github.com/jabl/ansible-role-ohpc-repo
+- src: https://github.com/fgci-org/ansible-role-ohpc-repo
   path: roles
   version: v0.1
