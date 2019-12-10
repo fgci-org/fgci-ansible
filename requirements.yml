@@ -153,7 +153,7 @@
   path: roles
   version: 2bdbb3389ac2a163a81e883139088da7e237162c
 
-- src: https://github.com/jabl/ansible-role-pdsh-genders
+- src: https://github.com/fgci-org/ansible-role-pdsh-genders
   path: roles
   version: v1.3.2
 
