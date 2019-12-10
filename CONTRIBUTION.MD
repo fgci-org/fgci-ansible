@@ -93,10 +93,8 @@ As of writing (20160906) if we add a new role to the ansible-pull playbook (loca
  2. Inform the sites via e-mail/social media that in a week we'll add a new role and that they should update their local git-mirror (run fgci-install tag/role on install node, see the tools/pullReqs.sh helper script)
  3. On the following Monday add the role to local.yml
 
-We have an open issue about this: https://github.com/CSCfi/ansible-role-fgci-install/issues/11
-
-Testing the changes:
-----------------
+Testing the changes
+-------------------
 
 In general we make updates in the devel branch, improve them and test them there.
 
