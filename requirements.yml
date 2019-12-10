@@ -200,7 +200,7 @@
   version: v1.0.2
   name: ansible-role-systemd-journal
 
-- src: https://github.com/jabl/ansible-role-hosts-int
+- src: https://github.com/fgci-org/ansible-role-hosts-int
   path: roles
   version: v1.0.2
 
