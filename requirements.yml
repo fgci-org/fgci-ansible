@@ -171,9 +171,9 @@
   name: ansible-role-nsswitch
   version: v1.0.1
 
-- src: https://github.com/mhakala/ansible-role-lustre_client
+- src: https://github.com/fgci-org/ansible-role-lustre_client
   path: roles
-  version: 09318407eb25927d2d8360f28e86921a72d8d1b6
+  version: v1.0.1
 
 - src: https://github.com/fgci-org/ansible-role-pam
   path: roles
