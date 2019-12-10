@@ -191,7 +191,7 @@
   path: roles
   version: v1.0.1
 
-- src: https://github.com/jabl/ansible-role-open-vm-tools
+- src: https://github.com/fgci-org/ansible-role-open-vm-tools
   path: roles
   version: v1.0.1
 
