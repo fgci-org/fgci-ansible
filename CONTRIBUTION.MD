@@ -93,10 +93,8 @@ As of writing (20160906) if we add a new role to the ansible-pull playbook (loca
  2. Inform the sites via e-mail/social media that in a week we'll add a new role and that they should update their local git-mirror (run fgci-install tag/role on install node, see the tools/pullReqs.sh helper script)
  3. On the following Monday add the role to local.yml
 
-We have an open issue about this: https://github.com/CSCfi/ansible-role-fgci-install/issues/11
-
-Testing the changes:
-----------------
+Testing the changes
+-------------------
 
 In general we make updates in the devel branch, improve them and test them there.
 
@@ -130,9 +128,8 @@ These are suggestions for requirements of roles that the fgci-ansible orchestrat
  - if it's an optional role, the role should not do anything by default. Suggestion is to force users that want to use the role to set something like "autofs_enabled: True". This is how we add site-specific roles to the playbooks.
 
 CSC tasks after adding a new role/repo:
- - **enable automatic testing:** enable the repo in https://travis-ci.org/CSCfi/
+ - **enable automatic testing:** enable the repo in https://travis-ci.org/fgci-org/
  - **notifications:** add the new github repo to the #fgci channel in flowdock
- - **backlog management:** add the new github repo to https://waffle.io/CSCfi/fgci-ansible/
 
 Ansible role suggestions (not mandatory):
 
@@ -151,7 +148,7 @@ Then do the tasks in redhat.yml
 
 command/shell tasks should be avoided, but if they are used and they are only used to write the output into a variable - they should have "check_mode: no" so that the role works when running the playbook it with --check. They should also have a "changed_when: False" so that they aren't listed as changed. 
 
-When removing tasks, try to set the state to "absent" rather than just removing the task - like this https://github.com/CSCfi/ansible-role-cuda/commit/076296dc24c3f4fbc85e15a81432a7d2bd3fa714
+When removing tasks, try to set the state to "absent" rather than just removing the task - like this https://github.com/fgci-org/ansible-role-cuda/commit/076296dc24c3f4fbc85e15a81432a7d2bd3fa714
 
 Enable tasks (whenever possible) which are disabled by default in automatic testing. Use tests/test.yml to set variables to True if that's how they are enabled.
 

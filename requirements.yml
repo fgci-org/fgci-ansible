@@ -44,7 +44,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
-  version: v1.9.8
+  version: v1.9.9
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
@@ -57,7 +57,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-rdma
   path: roles
-  version: v1.3.9
+  version: v1.4.0
 
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
@@ -153,7 +153,7 @@
   path: roles
   version: 2bdbb3389ac2a163a81e883139088da7e237162c
 
-- src: https://github.com/jabl/ansible-role-pdsh-genders
+- src: https://github.com/fgci-org/ansible-role-pdsh-genders
   path: roles
   version: v1.3.2
 
@@ -171,15 +171,15 @@
   name: ansible-role-nsswitch
   version: v1.0.1
 
-- src: https://github.com/mhakala/ansible-role-lustre_client
+- src: https://github.com/fgci-org/ansible-role-lustre_client
   path: roles
-  version: 09318407eb25927d2d8360f28e86921a72d8d1b6
+  version: v1.0.1
 
-- src: https://github.com/jabl/ansible-role-pam
+- src: https://github.com/fgci-org/ansible-role-pam
   path: roles
   version: v1.0.2
 
-- src: https://github.com/jabl/ansible-role-gitmirror
+- src: https://github.com/fgci-org/ansible-role-gitmirror
   path: roles
   version: v1.0.1
 
@@ -191,7 +191,7 @@
   path: roles
   version: v1.0.1
 
-- src: https://github.com/jabl/ansible-role-open-vm-tools
+- src: https://github.com/fgci-org/ansible-role-open-vm-tools
   path: roles
   version: v1.0.1
 
@@ -200,7 +200,7 @@
   version: v1.0.2
   name: ansible-role-systemd-journal
 
-- src: https://github.com/jabl/ansible-role-hosts-int
+- src: https://github.com/fgci-org/ansible-role-hosts-int
   path: roles
   version: v1.0.2
 
@@ -217,7 +217,7 @@
   path: roles
   version: v1.0.5
 
-- src: https://github.com/jabl/ansible-role-ohpc-repo
+- src: https://github.com/fgci-org/ansible-role-ohpc-repo
   path: roles
   version: v0.1
 
