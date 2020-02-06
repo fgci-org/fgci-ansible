@@ -72,7 +72,7 @@
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
-  - { role: ansible-role-lustre_client, tags: [ 'lustre' ] }
+  - { role: ansible-role-lustre_client, tags: [ 'lustre' ], when: lustre_client_enabled }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-lldpd, tags: [ 'lldpd', 'lldp' ] }
   - { role: ansible-role-singularity, tags: [ 'singularity' ] }
