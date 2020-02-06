@@ -87,7 +87,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-pxe_config
   path: roles
-  version: v1.6.1
+  version: v1.6.2
 
 - src: https://github.com/CSCfi/ansible-role-dnsmasq
   path: roles
@@ -119,7 +119,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
-  version: v1.3.5
+  version: v1.3.6
 
 - src: https://github.com/CSCfi/ansible-role-nhc-scripts
   path: roles
@@ -139,7 +139,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-postfix
   path: roles
-  version: v1.1.2
+  version: v1.1.3
 
 - src: https://github.com/CSCfi/ansible-role-fgci-repo
   path: roles
