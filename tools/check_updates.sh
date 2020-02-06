@@ -12,7 +12,7 @@ echo "$ cd fgci-ansible"
 echo "$ git checkout master"
 echo "$ export GITHUB_TOKEN="my-token-here" # https://github.com/settings/tokens"
 echo "$ bash tools/$0"
-echo "https://github.com/CSCfi/fgci-ansible/compare/6171df84bbf4a513993309dc1a6350ea4a6751e6...c499024f2b44cd2207de9f74c8341b5c7c7f40f0"
+echo "https://github.com/fgci-org/fgci-ansible/compare/6171df84bbf4a513993309dc1a6350ea4a6751e6...c499024f2b44cd2207de9f74c8341b5c7c7f40f0"
 echo " "
 echo "Arguments:"
 echo " -q # don't print anything, just return code 1 if they do not match"
@@ -23,8 +23,8 @@ exit 20
 
 }
 
-#BASEURL=https://github.com/CSCfi/fgci-ansible/compare/{{ LATEST_COMMIT_IN_LOCAL_CLONE }}...{{ LATEST_COMMIT_ON_GITHUB }}
-BASEURL="https://github.com/CSCfi/fgci-ansible/compare"
+#BASEURL=https://github.com/fgci-org/fgci-ansible/compare/{{ LATEST_COMMIT_IN_LOCAL_CLONE }}...{{ LATEST_COMMIT_ON_GITHUB }}
+BASEURL="https://github.com/fgci-org/fgci-ansible/compare"
 
 DEBUG=0
 
@@ -84,8 +84,8 @@ check_roles() {
 		role_api_url_ext_tags=""$role_api_url_base"/"$role_shorter_github_name"/"$role_api_url_tag_suffix""
 		# We check if there is number.number.number anywhere in the version - then we assume it's a tag/release and not a commit
 		# The tags can be gotten from at least two places:
-		# https://api.github.com/repos/CSCfi/ansible-role-fgci-install/releases/latest
-		# https://api.github.com/repos/CSCfi/ansible-role-fgci-install/git/refs/tags
+		# https://api.github.com/repos/fgci-org/ansible-role-fgci-install/releases/latest
+		# https://api.github.com/repos/fgci-org/ansible-role-fgci-install/git/refs/tags
 
 		if [[ "$role_version" =~ [0-9]\.[0-9]\.[0-9] ]]; then
 		  # $role_version is a versiony looking number - like 1.1.2
@@ -129,7 +129,7 @@ check_roles() {
 		  fi
 		else
 		  # $role_version is not a versiony looking number - perhaps a sha commit?
-		  # https://api.github.com/repos/CSCfi/ansible-role-fgci-install/git/refs/heads/master
+		  # https://api.github.com/repos/fgci-org/ansible-role-fgci-install/git/refs/heads/master
   		  thecurl="$(curl -H "Authorization: token $GITHUB_TOKEN" -qsf "$role_api_url"|grep sha|cut -d ":" -f2|cut -d '"' -f2)"
 		  REMOTESHA="$thecurl"
 		    if [ "$?" != 0 ]; then
@@ -164,9 +164,9 @@ check_fgci_ansible() {
 	    echo "Halting, could not get local branch, is $PWD in a git repository?"
 	    exit 11
 	fi
-	REMOTESHA="$($curlcmd -qsf https://api.github.com/repos/CSCfi/fgci-ansible/git/refs/heads/$LOCALBRANCH|grep sha|cut -d ":" -f2|cut -d '"' -f2)"
+	REMOTESHA="$($curlcmd -qsf https://api.github.com/repos/fgci-org/fgci-ansible/git/refs/heads/$LOCALBRANCH|grep sha|cut -d ":" -f2|cut -d '"' -f2)"
 	if [ "$?" != 0 ]; then
-	    echo "Halting, could not curl https://api.github.com/repos/CSCfi/fgci-ansible/git/refs/heads/$LOCALBRANCH"
+	    echo "Halting, could not curl https://api.github.com/repos/fgci-org/fgci-ansible/git/refs/heads/$LOCALBRANCH"
 	    exit 12
 	fi
 	if [ "$REMOTESHA" == "" ]; then

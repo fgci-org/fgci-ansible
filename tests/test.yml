@@ -1,7 +1,7 @@
 ---
 
 # Order of roles is important
-# vars are documented in https://github.com/CSCfi/fgci-ansible/tree/master/examples
+# vars are documented in https://github.com/fgci-org/fgci-ansible/tree/master/examples
 
  - hosts: localhost
    remote_user: root

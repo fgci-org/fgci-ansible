@@ -44,7 +44,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-slurm
   path: roles
-  version: v1.9.9
+  version: v2.0.0
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
@@ -206,7 +206,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-chrony
   path: roles
-  version: v1.1.3
+  version: v1.1.4
 
 - src: https://github.com/CSCfi/ansible-lldpd
   path: roles
