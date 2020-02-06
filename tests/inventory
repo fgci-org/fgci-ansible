@@ -1,4 +1,4 @@
-# https://github.com/CSCfi/fgci-ansible/blob/master/examples/hosts-example
+# https://github.com/fgci-org/fgci-ansible/blob/master/examples/hosts-example
 localhost
 
 [login]
