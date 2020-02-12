@@ -25,6 +25,8 @@ rdma_configure_single_port: True
 rdma_opensm_state: "stopped"
 rdma_opensm_enabled: "no"
 
+lustre_client_enabled: False
+
 networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
 
