@@ -151,7 +151,7 @@
 
 - src: https://github.com/mhakala/ansible-role-adauth
   path: roles
-  version: 2bdbb3389ac2a163a81e883139088da7e237162c
+  version: v1.0
 
 - src: https://github.com/fgci-org/ansible-role-pdsh-genders
   path: roles
