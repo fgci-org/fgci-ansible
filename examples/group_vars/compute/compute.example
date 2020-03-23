@@ -25,11 +25,13 @@ rdma_configure_single_port: True
 rdma_opensm_state: "stopped"
 rdma_opensm_enabled: "no"
 
+lustre_client_enabled: False
+
 networks:
   - "network --onboot=yes --bootproto=dhcp --device={{ internal_interface }} --noipv6"
 
 # NTP
-ntp_config_server: [ "{{ hostvars[groups['install'][0]]['ansible_hostname'] }}", "{{ hostvars[groups['admin'][0]]['ansible_hostname'] }}" ]
+ntp_config_server: [ "{{ hostvars[groups['install'][0]]['int_ip_addr'] }}", "{{ hostvars[groups['admin'][0]]['int_ip_addr'] }}" ]
 # DNS
 nameserver1: "10.1.1.2"
 # CVMFS
