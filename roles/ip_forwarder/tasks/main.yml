@@ -4,7 +4,7 @@
 - name: set ip_forward to 1 to allow kickstarting of network nodes
   sysctl:
      name: net.ipv4.ip_forward
-     value: 1
+     value: "1"
      sysctl_set: yes 
      reload: no
   remote_user: root
