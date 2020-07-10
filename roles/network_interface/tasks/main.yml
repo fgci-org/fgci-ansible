@@ -51,10 +51,6 @@
   notify:
      - restart route
 
-#- shell: ifdown {{ item.item.device }}; ifup {{ item.item.device }}
-#  with_items: "{{ ether_result.results }}"
-#  when: ether_result is defined and item.changed
-
 - name: Create the network configuration file for bond devices
   template:
      src: "bond_{{ ansible_os_family }}.j2"
@@ -158,7 +154,7 @@
   notify:
      - restart ib
 
-- name: Write configuration files for rhel route configuration with vlan
+- name: Write configuration files for rhel route configuration on IB
   template:
      src: "route_{{ ansible_os_family }}.j2"
      dest: "{{ net_path }}/route-{{ item.device }}"
@@ -167,7 +163,6 @@
   register: route_result
   notify:
      - restart route
-
 
 - name: flush the handlers - so that network settings are applied before any other roles.
   meta: flush_handlers
