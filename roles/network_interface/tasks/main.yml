@@ -1,12 +1,19 @@
 ---
 
 - name: Add the OS specific varibles
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+    - "{{ ansible_os_family }}.yml"
 
 - name: Install the required  packages
   package:
     name: "{{ network_pkgs }}"
     state: present
+
+- name: Include CentOS8 specific tasks
+  include_tasks: CentOS_8.yml
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"
 
 - name: Set default packet scheduler to reduce bufferbloat
   sysctl:

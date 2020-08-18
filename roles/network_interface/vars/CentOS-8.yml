@@ -1,0 +1,8 @@
+---
+network_pkgs:
+  - network-scripts
+  - python3-libselinux
+  - iputils
+
+net_path: "/etc/sysconfig/network-scripts"
+
