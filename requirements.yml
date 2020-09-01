@@ -109,6 +109,10 @@
   path: roles
   version: v1.4.9
 
+- src: https://github.com/CSCfi/ansible-role-arc-frontend-6
+  path: roles
+  version: v1.2.0
+
 - src: https://github.com/fgci-org/ansible-role-fgci-bash
   path: roles
   version: v1.3.0
