@@ -117,7 +117,7 @@
   path: roles
   version: v1.3.0
 
-- src: https://github.com/CSCfi/ansible-role-cuda
+- src: https://github.com/fgci-org/ansible-role-cuda
   path: roles
   version: v1.6.7
 
