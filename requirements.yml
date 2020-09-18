@@ -111,15 +111,15 @@
 
 - src: https://github.com/CSCfi/ansible-role-arc-frontend-6
   path: roles
-  version: v1.2.5
+  version: v1.2.8
 
 - src: https://github.com/fgci-org/ansible-role-fgci-bash
   path: roles
   version: v1.3.0
 
-- src: https://github.com/CSCfi/ansible-role-cuda
+- src: https://github.com/fgci-org/ansible-role-cuda
   path: roles
-  version: v1.6.7
+  version: v1.6.8
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
