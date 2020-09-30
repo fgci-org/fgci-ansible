@@ -1,57 +1,35 @@
 ---
 
-# This playbook is used with ansible-pull
-#
-- hosts: compute
-  remote_user: root
+# http://serverfault.com/questions/638507/how-to-access-host-variable-of-a-different-host-with-ansible
+# We need some facts from the install node, specifically to find address of slurm controller.
+#- name: grab facts from install nodes
+#  hosts: production
+#  strategy: free
+#  tasks: [ ]
 
-  # Before the roles
-  pre_tasks:
-    - name: with setup module grab ansible_facts because printing ansible_facts stack traces see ansible github issue 7732
-      setup:
-      register: reg_pull_facts
+- name: Compute Nodes
+  hosts: ohpc_images_compute
+  strategy: free
+  #remote_user: root
+  become: yes
+  connection: chroot
 
-    - name: debug print reg_pull_facts
-      debug: var=reg_pull_facts
-      
-    - name: fetch pull_variables.yml file from pull_install_ip
-      get_url: url="http://{{ pull_install_ip }}/pull_variables.yml" dest=/root mode=0640
-      tags: pull
-
-    - name: include_vars the pull_variables.yml
-      include_vars: /root/pull_variables.yml
-      tags: pull
-
-    - name: Install ansible
-      yum: pkg=ansible state=installed
-
-    - name: Configure a cronjob for ansible-pull
-      cron: name='ansible-pull' user=root 
-            job='/bin/nice /bin/bash /usr/local/bin/ansible-pull-script.sh >/var/log/ansible.log 2>&1' 
-            minute="{{ ansible_pull_cron_minute_interval | default('0')}}" 
-            hour="{{ ansible_pull_cron_hour_interval | default('*/2') }}"
-            day="{{ ansible_pull_cron_day_interval | default('*') }}"
-            month="{{ ansible_pull_cron_month_interval | default('*') }}"
-            weekday="{{ ansible_pull_cron_weekday_interval | default('*') }}"
-            cron_file=ansible-pull 
-            state={{ ansible_pull_cron_state | default('present') }}
-      tags: pull
-
-  roles:
-  - { role: watermark-release, tags: [ 'always' ]  }
+  roles: 
+  - { role: ansible-role-fgci-ssh-keys, tags: [ 'ssh' ] }
+  - { role: watermark-release, tags: [ 'always' ]  } 
   - { role: ansible-role-fgci-repo, tags: [ 'fgci7', 'repos' ] }
   - { role: ansible-role-yum, tags: [ 'yum', 'repos', 'login' ] }
   - { role: ansible-role-ohpc-repo, tags: [ 'yum', 'repos', 'ohpc' ] }
+#  - { role: ansible-role-ohpc-node, tags: [ 'ohpc' ] }
   - { role: network_interface, tags: [ 'network' ] }
   - { role: ansible-role-hosts-int, tags: [ 'hosts'] }
   - { role: ansible-role-chrony, tags: [ 'ntp', 'chrony' ] }
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
-  - { role: ansible-role-nis, tags: [ 'nis' ] }
-  - { role: ansible-role-adauth, tags: [ 'auth' ] }
+#  - { role: ansible-role-nis, tags: [ 'nis' ] }
+#  - { role: ansible-role-adauth, tags: [ 'auth' ] }
   - { role: ansible-role-pam, tags: [ 'auth', 'pam' ] }
-  - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }
-  - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
-  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
+#  - { role: ansible-role-nsswitch, tags: [ 'nsswitch', 'auth' ] }
+#  - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
@@ -76,6 +54,11 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-lldpd, tags: [ 'lldpd', 'lldp' ] }
   - { role: ansible-role-singularity, tags: [ 'singularity' ] }
+  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ],
+                               when: gpu==True }
+  - { role: ansible-role-sacct_gpu, tags: [ 'gpu', 'nvidia' ],
+                                    when: gpu==True }
 
-# Adding a role here? Make sure you add it to compute.yml for it to work with ansible push
-
+# Local addons to this playbook
+#
+#- import_playbook: compute_local_play.yml

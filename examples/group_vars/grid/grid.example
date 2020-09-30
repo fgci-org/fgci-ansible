@@ -124,7 +124,7 @@ logsize: "1000000 52"
 shared_filesystem: "yes"
 joblog: "/var/log/arc/gm-jobs.log"
 
-maxjobs: "10000 10000 80"
+maxjobs: "10000 10000 80 -1 -1"
 wakeupperiod: "30"
 defaultttl: "604800 1209600"
 authplugin: "FINISHED timeout=30,onfailure=pass"

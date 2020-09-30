@@ -17,6 +17,8 @@ network_ether_interfaces:
 infiniband_available: True
 rdma_configure_single_port: True
 
+lustre_client_enabled: False
+
 vcpus: "{{vm_cpus}}"
 ram: "{{vm_mem}}"
 disks:
