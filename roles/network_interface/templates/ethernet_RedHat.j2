@@ -22,6 +22,7 @@ VLAN=yes
 {% if item.bootproto == 'dhcp' %}
 DEVICE={{ item.device }}
 BOOTPROTO=dhcp
+PERSISTENT_DHCLIENT=y
 {% endif %}
 
 {% if item.ipv6_address is defined %}
