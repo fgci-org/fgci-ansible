@@ -127,7 +127,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-dell
   path: roles
-  version: v1.1.8
+  version: v1.1.9
 
 - src: https://github.com/CSCfi/ansible-role-sshd-host-keys
   path: roles
