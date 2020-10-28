@@ -1,9 +1,9 @@
 ---
 
-- name: stop network manager
+- name: Make sure network manager is on
   systemd:
     name: NetworkManager
-    state: stopped
-    enabled: no
-    masked: yes
+    state: started
+    enabled: yes
+    masked: no
 
