@@ -1,0 +1,9 @@
+---
+
+- name: Make sure network manager is on
+  systemd:
+    name: NetworkManager
+    state: started
+    enabled: yes
+    masked: no
+
