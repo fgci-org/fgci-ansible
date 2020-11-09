@@ -38,6 +38,11 @@
   name: ansible-role-ferm-firewall
   version: v1.3.0
 
+- src: https://github.com/fgci-org/ansible-role-nftables
+  path: roles
+  name: ansible-role-nftables
+  version: v1.0
+
 - src: https://github.com/CSCfi/ansible-role-fail2ban
   path: roles
   version: v1.3.1
