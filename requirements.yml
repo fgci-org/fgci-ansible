@@ -60,7 +60,7 @@
   name: ansible-role-aliases
   version: v1.0.3
 
-- src: https://github.com/CSCfi/ansible-role-rdma
+- src: https://github.com/fgci-org/ansible-role-rdma
   path: roles
   version: v1.4.1
 
