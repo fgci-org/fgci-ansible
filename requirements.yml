@@ -182,7 +182,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-pam
   path: roles
-  version: v1.0.2
+  version: v1.0.3
 
 - src: https://github.com/fgci-org/ansible-role-gitmirror
   path: roles
