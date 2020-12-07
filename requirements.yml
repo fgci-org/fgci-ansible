@@ -178,7 +178,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-lustre_client
   path: roles
-  version: v1.2
+  version: v1.2.2
 
 - src: https://github.com/fgci-org/ansible-role-pam
   path: roles
