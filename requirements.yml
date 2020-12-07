@@ -62,7 +62,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-rdma
   path: roles
-  version: v1.4.1
+  version: v1.4.2
 
 - src: https://github.com/willshersystems/ansible-sshd
   path: roles
