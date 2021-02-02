@@ -76,7 +76,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-arc-client
   path: roles
-  version: v1.4.7
+  version: v1.5.1
 
 - src: https://github.com/fgci-org/ansible-role-yum
   path: roles
