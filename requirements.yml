@@ -120,7 +120,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-cuda
   path: roles
-  version: v1.6.8
+  version: v1.6.9
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
