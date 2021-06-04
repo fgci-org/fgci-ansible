@@ -104,7 +104,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-nfs
   path: roles
-  version: v1.2.0
+  version: v1.2.1
 
 - src: https://github.com/CSCfi/ansible-role-nfs_mount
   path: roles
