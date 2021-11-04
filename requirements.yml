@@ -156,7 +156,7 @@
 
 - src: https://github.com/mhakala/ansible-role-adauth
   path: roles
-  version: v1.0
+  version: v1.1
 
 - src: https://github.com/fgci-org/ansible-role-pdsh-genders
   path: roles
@@ -236,4 +236,7 @@
   path: roles
 
 - src: https://github.com/AaltoScienceIT/ansible-role-fgci-ssh-keys
+  path: roles
+
+- src: https://github.com/KEAOSolutions/ansible-grub_cmdline
   path: roles

@@ -32,3 +32,6 @@ notes
 
 # by Luís
 requirements-latest.yml
+
+# site local settings form compute
+compute_local_play.yml
