@@ -47,7 +47,7 @@
   path: roles
   version: v1.3.1
 
-- src: https://github.com/CSCfi/ansible-role-slurm
+- src: https://github.com/fgci-org/ansible-role-slurm
   path: roles
   version: v2.1.1
 
