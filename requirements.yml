@@ -72,7 +72,7 @@
 - src: https://github.com/CSCfi/ansible-system-limits
   path: roles
   name: ansible-role-system-limits
-  version: v1.1.2
+  version: v1.1.3
 
 - src: https://github.com/fgci-org/ansible-role-yum
   path: roles
