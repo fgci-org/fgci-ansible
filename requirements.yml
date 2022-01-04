@@ -45,7 +45,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-fail2ban
   path: roles
-  version: v1.3.1
+  version: v1.3.2
 
 - src: https://github.com/fgci-org/ansible-role-slurm
   path: roles
@@ -58,7 +58,7 @@
 - src: https://github.com/CSCfi/ansible-aliases
   path: roles
   name: ansible-role-aliases
-  version: v1.0.3
+  version: v1.0.4
 
 - src: https://github.com/fgci-org/ansible-role-rdma
   path: roles
@@ -80,7 +80,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-yum
   path: roles
-  version: v1.5.7
+  version: v1.5.8
 
 - src: https://github.com/CSCfi/ansible-role-collectd
   path: roles
