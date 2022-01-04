@@ -7,6 +7,5 @@
 # Update requirements_mirror.yml for ansible-pull-script 
 # sync group_ and host_vars to the install node
 # update ansible-pull-script on the install node
-# send a flowdock notification to fgci admins
 
 ansible-playbook install.yml --tags=fgci-install --diff
