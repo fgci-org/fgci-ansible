@@ -136,7 +136,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-postfix
   path: roles
-  version: v1.1.3
+  version: v1.1.4
 
 - src: https://github.com/CSCfi/ansible-role-fgci-repo
   path: roles
