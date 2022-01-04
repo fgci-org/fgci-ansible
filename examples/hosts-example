@@ -2,9 +2,6 @@
 # Edit this file with your Cluster's parameters, information and architecture.
 # By CSC's FGCI deployment team @ Nov. 2015 - http://www.csc.fi
 
-[grid]
-phoenix-grid.fgci.csc.fi int_ip_addr=10.1.1.3 ext_ip_addr=
-
 [compute]
 ph1 int_ip_addr=10.1.100.1 mac_address=XX:XX:XX:XX:XX:XX ib_ip_addr=10.2.100.1
 ph2 int_ip_addr=10.1.100.2 mac_address=XX:XX:XX:XX:XX:XX ib_ip_addr=10.2.100.2
@@ -26,13 +23,11 @@ phoenix int_ip_addr=10.1.1.4 ext_ip_addr= mac_address=XX:XX:XX:XX:XX:XX ib_ip_ad
 
 [vhosts:children]
 install
-grid
 login # <-- Remove the login node from the vhosts group if it is a physical machine.
 
 [production:children]
 install
 admin
-grid
 
 [slurm_service:children]
 install
