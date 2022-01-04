@@ -135,10 +135,6 @@ chrony_allow_deny:
 #Users
 adminremove_passwords: True
 
-#Flowdock
-# set flowdock_token: "TOKEN" to prevent sending flowdock messages to #fgci
-flowdock_token: 22a225c10814863ea809b80940d25b0e
-
 #Collectd
 collectd_tsdb_writer: True
 collectd_tsdb_host: cassini.fgci.csc.fi
