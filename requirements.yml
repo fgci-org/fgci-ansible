@@ -160,7 +160,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-pdsh-genders
   path: roles
-  version: v1.3.3
+  version: v1.3.4
 
 - src: https://github.com/CSCfi/ansible-role-serial-console
   path: roles
