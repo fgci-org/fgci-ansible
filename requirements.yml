@@ -49,7 +49,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-slurm
   path: roles
-  version: v2.1.2
+  version: v2.1.3
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
