@@ -199,7 +199,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-hosts-int
   path: roles
-  version: v1.0.4
+  version: v1.0.5
 
 - src: https://github.com/CSCfi/ansible-role-chrony
   path: roles
