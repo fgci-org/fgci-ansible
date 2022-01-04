@@ -129,7 +129,6 @@ These are suggestions for requirements of roles that the fgci-ansible orchestrat
 
 CSC tasks after adding a new role/repo:
  - **enable automatic testing:** enable the repo in https://travis-ci.org/fgci-org/
- - **notifications:** add the new github repo to the #fgci channel in flowdock
 
 Ansible role suggestions (not mandatory):
 
