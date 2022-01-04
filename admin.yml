@@ -38,7 +38,6 @@
   - { role: ansible-role-autofs, tags: [ 'autofs' ] }
   - { role: ansible-role-pdsh-genders, tags: [ 'pdsh', 'genders' ] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
-  - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
 
 
 # Local addons to this playbook

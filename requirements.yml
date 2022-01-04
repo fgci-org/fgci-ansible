@@ -82,10 +82,6 @@
   path: roles
   version: v1.5.7
 
-- src: https://github.com/CSCfi/ansible-role-flowdock
-  path: roles
-  version: v1.3.2
-
 - src: https://github.com/CSCfi/ansible-role-collectd
   path: roles
   version: v2.1.4

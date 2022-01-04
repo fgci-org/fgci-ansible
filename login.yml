@@ -56,7 +56,6 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ], when: lustre_client_enabled }
-  - { role: ansible-role-flowdock, tags: [ 'flowdock', 'always' ] }
 
 
 # Local addons to this playbook
