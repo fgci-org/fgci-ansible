@@ -120,7 +120,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-nhc-scripts
   path: roles
-  version: v1.0.2
+  version: v1.0.3
 
 - src: https://github.com/CSCfi/ansible-role-dell
   path: roles
