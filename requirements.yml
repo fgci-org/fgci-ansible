@@ -108,7 +108,7 @@
 
 - src: https://github.com/fgci-org/ansible-role-fgci-bash
   path: roles
-  version: v1.3.0
+  version: v1.3.1
 
 - src: https://github.com/fgci-org/ansible-role-cuda
   path: roles
