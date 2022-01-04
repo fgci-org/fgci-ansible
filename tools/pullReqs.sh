@@ -9,4 +9,4 @@
 # update ansible-pull-script on the install node
 # send a flowdock notification to fgci admins
 
-ansible-playbook install.yml --tags=fgci-install,flowdock --diff -e flowdock_from_address=pullReqs@{{siteDomain}}
+ansible-playbook install.yml --tags=fgci-install --diff
