@@ -27,7 +27,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-pxe_bootstrap
   path: roles
-  version: v1.4.5
+  version: v1.4.6
 
 - src: https://github.com/CSCfi/ansible-role-squid
   path: roles
