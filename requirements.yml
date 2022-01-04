@@ -82,9 +82,9 @@
   path: roles
   version: v1.5.8
 
-- src: https://github.com/CSCfi/ansible-role-collectd
+- src: https://github.com/fgci-org/ansible-role-collectd
   path: roles
-  version: v2.1.4
+  version: v2.1.5
 
 - src: https://github.com/CSCfi/ansible-role-pxe_config
   path: roles
