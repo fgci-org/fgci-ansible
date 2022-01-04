@@ -152,7 +152,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-fgci-login
   path: roles
-  version: v1.1.2
+  version: v1.1.3
 
 - src: https://github.com/mhakala/ansible-role-adauth
   path: roles
