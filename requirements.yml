@@ -53,7 +53,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
-  version: v1.2.5
+  version: v1.2.6
 
 - src: https://github.com/CSCfi/ansible-aliases
   path: roles
