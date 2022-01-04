@@ -19,7 +19,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-rsyslog
   path: roles
-  version: v1.1.8
+  version: v1.1.9
 
 - src: https://github.com/CSCfi/ansible-role-dhcp_server
   path: roles
