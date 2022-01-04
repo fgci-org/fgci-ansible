@@ -212,7 +212,7 @@
 
 - src: https://github.com/CSCfi/ansible-role-singularity
   path: roles
-  version: v1.0.5
+  version: v1.0.6
 
 - src: https://github.com/fgci-org/ansible-role-ohpc-repo
   path: roles
