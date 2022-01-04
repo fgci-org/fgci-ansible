@@ -46,7 +46,6 @@
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-smartd, tags: [ 'smartd' ] }
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
-  - { role: ansible-role-arc-client, tags: [ 'arc', 'nordugrid' ] }
   - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }  
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
