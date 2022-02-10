@@ -76,6 +76,6 @@
   - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ] }
 
 
-# Local addons to this playbook
+# Local addons (not in git) to this playbook. Use compute_local_play.yml.example as a template
 #
 - import_playbook: compute_local_play.yml
