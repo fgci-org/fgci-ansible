@@ -31,6 +31,7 @@
   - { role: ansible-role-yum-cron-2, tags: [ 'yumcron' ] }
   - { role: ansible-role-rsyslog, tags: [ 'rsyslog' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
+  - { role: ansible-role-adauth, tags: [ 'auth' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-smartd, tags: [ 'smartd' ] }
   - { role: ansible-role-dell, tags: [ 'dell' ] }
@@ -41,7 +42,7 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-ohpc-setup, tags: [ 'ohpc' ] }
-
+  - { role: ansible-role-lustre_client, tags: [ 'lustre' ], when: lustre_client_enabled }
 
 # Local addons to this playbook
 #
