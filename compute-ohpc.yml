@@ -53,10 +53,9 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-lldpd, tags: [ 'lldpd', 'lldp' ] }
   - { role: ansible-role-singularity, tags: [ 'singularity' ] }
-  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ],
-                               when: gpu==True }
-  - { role: ansible-role-sacct_gpu, tags: [ 'gpu', 'nvidia' ],
-                                    when: gpu==True }
+  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ], when: gpu==True }
+  - { role: ansible-role-sacct_gpu, tags: [ 'gpu', 'nvidia' ], when: gpu==True }
+  - { role: ansible-role-ood-client, tags: [ 'ood' ], when: ood_client==True }
 
 # Local addons to this playbook
 #
