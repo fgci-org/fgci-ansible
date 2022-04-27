@@ -41,7 +41,7 @@
 - src: https://github.com/fgci-org/ansible-role-nftables
   path: roles
   name: ansible-role-nftables
-  version: v1.0
+  version: v1.1
 
 - src: https://github.com/CSCfi/ansible-role-fail2ban
   path: roles
