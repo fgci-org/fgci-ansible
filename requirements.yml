@@ -47,9 +47,15 @@
   path: roles
   version: v1.3.2
 
-- src: https://github.com/fgci-org/ansible-role-slurm
+#- src: https://github.com/fgci-org/ansible-role-slurm
+#  path: roles
+#  version: v2.1.3
+- src: https://github.com/AaltoSciComp/ansible-role-slurm
   path: roles
-  version: v2.1.3
+#  version: 2234c2daa757fc012df2c8edd7b9c9d842541a01 <-- this one forced the prolog
+  #version: 383e078fc92ab5d4ddb69872fb1c8f7e71fbd386
+  version: d230cbd6dcfee0a37f5b3a4db64beeeb7babf248 # <-- Support for more complex prolog/epilog & prolog/epilog for slurmctld
+
 
 - src: https://github.com/CSCfi/ansible-role-cvmfs
   path: roles
@@ -78,9 +84,9 @@
   path: roles
   version: v1.5.9
 
-- src: https://github.com/fgci-org/ansible-role-collectd
-  path: roles
-  version: v2.1.5
+#- src: https://github.com/fgci-org/ansible-role-collectd
+#  path: roles
+#  version: v2.1.5
 
 - src: https://github.com/CSCfi/ansible-role-pxe_config
   path: roles
@@ -108,7 +114,8 @@
 
 - src: https://github.com/fgci-org/ansible-role-cuda
   path: roles
-  version: v1.7.4
+  version: a9065d74439f3cbef035026c27736237703333e1
+  branch: runfile-improvements
 
 - src: https://github.com/CSCfi/ansible-role-nhc
   path: roles
@@ -142,9 +149,9 @@
   path: roles
   version: v1.1.3
 
-- src: https://github.com/mhakala/ansible-role-adauth
+- src: https://github.com/fgci-org/ansible-role-adauth
   path: roles
-  version: v1.1
+  version: v1.1.2
 
 - src: https://github.com/fgci-org/ansible-role-pdsh-genders
   path: roles
@@ -231,3 +238,12 @@
 
 - src: https://github.com/AaltoSciComp/ansible-role-ood-client.git
   path: roles
+
+- src: https://github.com/KEAOSolutions/ansible-grub_cmdline
+  path: roles
+
+# Temporarily using commit instead of 2.0.0 as that fixes a bug during initial deployment:
+# https://github.com/cloudalchemy/ansible-node-exporter/pull/233
+- src: https://github.com/cloudalchemy/ansible-node-exporter
+  path: roles
+  version: 18ff8f8833b1e357ce91bee6832c3a3d16e709f2

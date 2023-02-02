@@ -41,7 +41,7 @@
   - { role: ansible-role-open-vm-tools, tags: ['open-vm-tools'] }
   - { role: ansible-role-slurm, tags: [ 'slurm' ] }
   - { role: ansible-role-aliases, tags: [ 'aliases', 'email' ] }
-  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
+#  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-postfix, tags: [ 'postfix', 'mail' ] }
   - { role: ansible-role-pdsh-genders, tags: [ 'pdsh', 'genders' ] }
@@ -49,6 +49,7 @@
   - { role: ansible-role-gitmirror, tags: [ 'gitmirror'] }
   - { role: ansible-role-idmapd, tags: [ 'idmapd'] }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
+  - { role: ansible-prometheus-slurm-exporter, tags: [ 'slurm-exporter', 'monitoring' ] }
  
 - name: grab facts from production nodes
   hosts: production
@@ -61,7 +62,7 @@
 
   roles:
   - { role: dns, tags: [ 'dns' ] }
-  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
+#  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
 
 
 

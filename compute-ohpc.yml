@@ -47,15 +47,15 @@
   - { role: ansible-role-dell, tags: [ 'dell' ] }
   - { role: ansible-role-smartd, tags: [ 'smartd', 'smart' ] }
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
-  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
+#  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ], when: lustre_client_enabled }
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-lldpd, tags: [ 'lldpd', 'lldp' ] }
   - { role: ansible-role-singularity, tags: [ 'singularity' ] }
-  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ], when: gpu==True }
-  - { role: ansible-role-sacct_gpu, tags: [ 'gpu', 'nvidia' ], when: gpu==True }
-  - { role: ansible-role-ood-client, tags: [ 'ood' ], when: ood_client==True }
+  - { role: ansible-role-cuda, tags: [ 'cuda', 'nvidia' ],     when: (gpu is defined) and (gpu==True) }
+  - { role: ansible-role-sacct_gpu, tags: [ 'gpu', 'nvidia' ], when: (gpu is defined) and (gpu==True) }
+  - { role: ansible-role-ood-client, tags: [ 'ood' ], when: (ood_client is defined) and (ood_client==True) }
 
 # Local addons to this playbook
 #

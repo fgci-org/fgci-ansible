@@ -46,7 +46,7 @@
   - { role: ansible-role-rdma, tags: [ 'rdma', 'infiniband' ] }
   - { role: ansible-role-smartd, tags: [ 'smartd' ] }
   - { role: ansible-role-system-limits, tags: [ 'limits', 'limit' ] }
-  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
+#  - { role: ansible-role-collectd, tags: [ 'collectd', 'monitoring' ] }
   - { role: ansible-role-fgci-bash, tags: [ 'bash'] }  
   - { role: ansible-role-sshd, tags: [ 'sshd', 'ssh' ] }
   - { role: ansible-role-dell, tags: [ 'dell' ] }
@@ -55,7 +55,8 @@
   - { role: ansible-role-systemd-journal, tags: [ 'systemd', 'journal', 'journald' ] }
   - { role: ansible-role-serial-console, tags: [ 'serial', 'console' ] }
   - { role: ansible-role-lustre_client, tags: [ 'lustre' ], when: lustre_client_enabled }
-
+  - { role: ansible-node-exporter, tags: [ 'node_exporter', 'monitoring' ] }
+  - { role: ansible-telegraf, tags: [ 'telegraf', 'monitoring' ] }
 
 # Local addons to this playbook
 #
