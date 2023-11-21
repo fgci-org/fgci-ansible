@@ -1,15 +1,26 @@
-
 {% if item.bootproto == 'static' %}
 DEVICE={{ item.device }}
 BOOTPROTO=none
 {% if item.address is defined %}
 IPADDR={{ item.address }}
 {% endif %}
+{% if item.address1 is defined %}
+IPADDR1={{ item.address1 }}
+{% endif %}
+{% if item.address2 is defined %}
+IPADDR2={{ item.address2 }}
+{% endif %}
 {% if item.onboot is defined %}
 ONBOOT={{ item.onboot }}
 {% endif %}
 {% if item.netmask is defined %}
 NETMASK={{ item.netmask }}
+{% endif %}
+{% if item.netmask1 is defined %}
+NETMASK1={{ item.netmask1 }}
+{% endif %}
+{% if item.netmask2 is defined %}
+NETMASK2={{ item.netmask2 }}
 {% endif %}
 {% if item.gateway is defined %}
 GATEWAY={{ item.gateway }}
